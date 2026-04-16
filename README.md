@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# tripon-ai Component Preview
 
-## Getting Started
+Standalone visual preview app for components built in /Users/sanazkhanali/dev/tripon-ai
 
-First, run the development server:
+## Purpose
+Visually verify components and icons match Figma designs and use correct design tokens
+before integrating into the main app.
 
+## How to run
 ```bash
+cd /Users/sanazkhanali/dev/test_rendered
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+Visit http://localhost:3000/preview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Adding a new component preview
+1. Copy the component folder from tripon-ai:
+   ```bash
+   cp -r /Users/sanazkhanali/dev/tripon-ai/components/ui/[Component] \
+     ./components/ui/[Component]
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. Re-copy tokens.css if tokens have changed:
+   ```bash
+   cp /Users/sanazkhanali/dev/tripon-ai/app/design-system/tokens/tokens.css \
+     ./design-system/tokens/tokens.css
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Re-copy icons if new icons were added:
+   ```bash
+   cp -r /Users/sanazkhanali/dev/tripon-ai/app/design-system/icons/components \
+     ./design-system/icons/
+   cp /Users/sanazkhanali/dev/tripon-ai/app/design-system/icons/index.ts \
+     ./design-system/icons/index.ts
+   ```
 
-## Learn More
+4. Create app/preview/[component-name]/page.tsx
 
-To learn more about Next.js, take a look at the following resources:
+5. Add a nav link in app/preview/layout.tsx
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Currently previewed
+- Buttons — Button, ButtonVertical, ButtonIcon
+- Icons — 46 total
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Important
+This app copies files from tripon-ai.
+It does not auto-sync.
+Re-copy any file that changes in tripon-ai.

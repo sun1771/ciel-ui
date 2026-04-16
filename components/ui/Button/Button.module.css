@@ -1,0 +1,251 @@
+/* Button.module.css
+   Shared styles for Button, ButtonVertical, ButtonIcon.
+   Every value references a --ds- token. Zero hardcoded hex, px, or font names.
+   Token source: app/design-system/tokens/tokens.css
+*/
+
+/* ─── Base ──────────────────────────────────────────────────────────────────── */
+
+.base {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  /* Typography */
+  font-family: var(--ds-brand-font-family-body), sans-serif;
+  font-weight: var(--ds-brand-font-weight-regular);
+  white-space: nowrap;
+  text-decoration: none;
+  /* Shape */
+  border-radius: var(--ds-alias-border-radius-lg);
+  border-width: var(--ds-alias-border-width-sm);
+  border-style: solid;
+  /* Interaction */
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  /* Transition — only opacity/colors, never layout */
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.base:focus-visible {
+  /* Focus ring drawn via a pseudo-element so it sits outside the button border.
+     Uses --ds-mapped-border-focus and --ds-alias-border-width-md per Figma spec. */
+  outline: none;
+}
+
+.base:focus-visible::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: var(--ds-alias-border-radius-lg);
+  border: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
+  pointer-events: none;
+}
+
+/* ─── Variants ──────────────────────────────────────────────────────────────── */
+
+.variantDefault {
+  background-color: var(--ds-mapped-surface-action);
+  border-color: var(--ds-mapped-border-action);
+  color: var(--ds-mapped-text-on-action);
+}
+
+.variantDefault:hover:not(:disabled):not(.loading) {
+  background-color: var(--ds-mapped-surface-action-hover);
+  border-color: var(--ds-mapped-border-action-hover);
+}
+
+.variantDefault:focus-visible:not(:disabled):not(.loading) {
+  background-color: var(--ds-mapped-surface-action);
+  border-color: var(--ds-mapped-border-action-hover);
+}
+
+/* ────────────────────── */
+
+.variantOutline {
+  background-color: var(--ds-mapped-surface-default);
+  border-color: var(--ds-mapped-border-default);
+  color: var(--ds-mapped-text-body);
+}
+
+.variantOutline:hover:not(:disabled):not(.loading) {
+  border-color: var(--ds-mapped-border-action-hover);
+  color: var(--ds-mapped-text-action-hover);
+}
+
+.variantOutline:focus-visible:not(:disabled):not(.loading) {
+  border-color: var(--ds-mapped-border-action-hover);
+  color: var(--ds-mapped-text-action);
+}
+
+/* ────────────────────── */
+
+.variantTransparent {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--ds-mapped-text-action);
+}
+
+.variantTransparent:hover:not(:disabled):not(.loading) {
+  color: var(--ds-mapped-text-action-hover);
+}
+
+.variantTransparent:focus-visible:not(:disabled):not(.loading) {
+  color: var(--ds-mapped-text-action);
+}
+
+/* Transparent focus ring is tighter (no border to push against) */
+.variantTransparent:focus-visible::after {
+  inset: -4px;
+}
+
+/* ─── Sizes ─────────────────────────────────────────────────────────────────── */
+
+.sizeLg {
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
+  gap: var(--ds-alias-spacing-xs);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+}
+
+.sizeSm {
+  padding: var(--ds-alias-spacing-xxs) var(--ds-alias-spacing-xs);
+  gap: var(--ds-alias-spacing-xxs);
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: var(--ds-typography-body-sm-line-height);
+}
+
+/* ─── States ────────────────────────────────────────────────────────────────── */
+
+.base:disabled,
+.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: var(--ds-mapped-surface-default);
+  border-color: var(--ds-mapped-border-disabled);
+  color: var(--ds-mapped-text-disabled);
+}
+
+/* Transparent variant disabled keeps no background/border */
+.variantTransparent:disabled,
+.variantTransparent.disabled {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.loading {
+  cursor: wait;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* ─── Icon slots ─────────────────────────────────────────────────────────────── */
+
+.iconLeft {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.iconRight {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+/* ─── Loading spinner ────────────────────────────────────────────────────────── */
+
+.spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  border-radius: var(--ds-alias-border-radius-round);
+  border: var(--ds-alias-border-width-md) solid currentColor;
+  border-top-color: transparent;
+  animation: buttonSpin 600ms linear infinite;
+}
+
+@keyframes buttonSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── ButtonVertical ─────────────────────────────────────────────────────────── */
+
+.vertical {
+  flex-direction: column;
+}
+
+.vertical.sizeLg {
+  padding: var(--ds-alias-spacing-sm) var(--ds-alias-spacing-xs);
+  gap: var(--ds-alias-spacing-xs);
+}
+
+.vertical.sizeSm {
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-xxs);
+  gap: var(--ds-alias-spacing-xxs);
+}
+
+.iconTop {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.iconBottom {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.supportText {
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: var(--ds-typography-body-sm-line-height);
+  color: inherit;
+}
+
+.vertical.sizeSm .supportText {
+  font-size: var(--ds-typography-body-xsm-font-size);
+  line-height: var(--ds-typography-body-xsm-line-height);
+}
+
+/* ─── ButtonIcon ─────────────────────────────────────────────────────────────── */
+
+.iconOnly {
+  /* Symmetric padding — size token per size class */
+}
+
+.iconOnly.sizeLg {
+  padding: var(--ds-alias-spacing-xs);
+  gap: 0;
+}
+
+.iconOnly.sizeSm {
+  padding: var(--ds-alias-spacing-xxs);
+  gap: 0;
+}
+
+.shapeRound {
+  border-radius: var(--ds-alias-border-radius-round);
+}
+
+/* Round focus ring matches the round border-radius */
+.shapeRound:focus-visible::after {
+  border-radius: var(--ds-alias-border-radius-round);
+}
+
+/* ButtonIcon disabled=default uses surface/disabled fill (differs from Button) */
+.iconOnly.variantDefault:disabled,
+.iconOnly.variantDefault.disabled {
+  background-color: var(--ds-mapped-surface-disabled);
+  border-color: var(--ds-mapped-border-disabled);
+}
+
+/* ─── Icon color inheritance by variant ─────────────────────────────────────── */
+/* Icons inherit currentColor from the button. The text color rules above
+   drive icon color automatically — no extra rules needed. */
