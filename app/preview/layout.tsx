@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react'
 const navLinks = [
   { href: '/preview/buttons', label: 'Buttons' },
   { href: '/preview/icons', label: 'Icons' },
+  { href: '/preview/menu', label: 'Menu' },
 ]
 
 export default function PreviewLayout({ children }: { children: React.ReactNode }) {

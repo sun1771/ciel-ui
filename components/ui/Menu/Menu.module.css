@@ -1,0 +1,141 @@
+/* ============================================
+   Menu styles — MenuItem + Menu container
+   Tokens: app/docs/design-system.md
+   Figma:  app/design-system/figma.md → Menu
+   Nodes:  .menuitem 282:1143 / Menu 1748:4388
+   ============================================ */
+
+/* ─── MenuItem — base ────────────────────────────────────────────────────────── */
+
+.item {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+  width: 100%;
+  text-align: left;
+  /* Typography */
+  font-family: var(--ds-brand-font-family-body), sans-serif;
+  font-weight: var(--ds-brand-font-weight-regular);
+  /* Appearance — default (not selected) state */
+  background-color: var(--ds-mapped-surface-default);
+  border: none;
+  border-bottom: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  color: var(--ds-mapped-text-body);
+  /* Interaction */
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  /* Transition */
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+/* ─── MenuItem — sizes ───────────────────────────────────────────────────────── */
+
+.sizeLg {
+  padding: var(--ds-alias-spacing-sm);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+}
+
+.sizeSm {
+  padding: var(--ds-alias-spacing-xs);
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: var(--ds-typography-body-sm-line-height);
+}
+
+/* ─── MenuItem — hover (not selected) ───────────────────────────────────────── */
+
+.item:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-mapped-surface-action-hover-light);
+  border-bottom-color: var(--ds-mapped-border-action-hover);
+  color: var(--ds-mapped-text-action-hover);
+}
+
+/* ─── MenuItem — selected ────────────────────────────────────────────────────── */
+
+.selected {
+  background-color: var(--ds-mapped-surface-action);
+  border-bottom-color: var(--ds-mapped-border-action);
+  color: var(--ds-mapped-text-on-action);
+}
+
+/* Selected hover — background shifts to action-hover but text stays on-action (white) */
+.selected:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--ds-mapped-surface-action-hover);
+  border-bottom-color: var(--ds-mapped-border-action-hover);
+  color: var(--ds-mapped-text-on-action);
+}
+
+/* ─── MenuItem — disabled ────────────────────────────────────────────────────── */
+
+.item:disabled,
+.item[aria-disabled='true'] {
+  cursor: not-allowed;
+  pointer-events: none;
+  color: var(--ds-mapped-text-disabled);
+  border-bottom-color: var(--ds-mapped-border-disabled);
+  background-color: var(--ds-mapped-surface-default);
+}
+
+/* Disabled + selected: surface becomes disabled (gray) */
+.selected:disabled,
+.selected[aria-disabled='true'] {
+  background-color: var(--ds-mapped-surface-disabled);
+}
+
+/* ─── MenuItem — focus-visible ───────────────────────────────────────────────── */
+
+.item:focus-visible {
+  outline: none;
+}
+
+.item:focus-visible::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─── MenuItem — icon slots ──────────────────────────────────────────────────── */
+
+.iconLeft,
+.iconRight {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+/* ─── MenuItem — label ───────────────────────────────────────────────────────── */
+
+.label {
+  flex: 1 0 0;
+  min-width: 0;
+  color: inherit;
+}
+
+/* ─── Menu container — base ──────────────────────────────────────────────────── */
+
+.menu {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* Appearance */
+  background-color: var(--ds-mapped-surface-default);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  border-radius: var(--ds-alias-border-radius-lg);
+  box-shadow: var(--ds-effect-shadow-overlay-light);
+  overflow: hidden;
+}
+
+/* ─── Menu container — scrollbar variant ─────────────────────────────────────── */
+
+.scrollable {
+  overflow-y: auto;
+}

@@ -41,6 +41,7 @@ Visit http://localhost:3000/preview
 ## Currently previewed
 - Buttons — Button, ButtonVertical, ButtonIcon
 - Icons — 46 total
+- Menu — MenuItem (2 sizes, 4 states) + Menu container (scrollable) — components/ui/
 
 ## Important
 This app copies files from tripon-ai.
