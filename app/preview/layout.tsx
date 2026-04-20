@@ -6,6 +6,9 @@ const navLinks = [
   { href: '/preview/buttons', label: 'Buttons' },
   { href: '/preview/icons', label: 'Icons' },
   { href: '/preview/menu', label: 'Menu' },
+  { href: '/preview/label', label: 'Label' },
+  { href: '/preview/field', label: 'Field + Input' },
+  { href: '/preview/select-button', label: 'SelectButton' },
 ]
 
 export default function PreviewLayout({ children }: { children: React.ReactNode }) {

@@ -42,6 +42,9 @@ Visit http://localhost:3000/preview
 - Buttons — Button, ButtonVertical, ButtonIcon
 - Icons — 46 total
 - Menu — MenuItem (2 sizes, 4 states) + Menu container (scrollable) — components/ui/
+- Label — 2 variants (default, required), icon slot — components/ui/
+- SelectButton — 3 variants (default, outline, transparent), 2 sizes, disabled, isSelected toggle — components/ui/
+- Field + Input — 5 states (default, hover, focus, disabled, error), icon slots, Label + hint/error text — components/ui/
 
 ## Important
 This app copies files from tripon-ai.

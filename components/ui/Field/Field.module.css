@@ -1,0 +1,86 @@
+/* ============================================
+   Field styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Field (63:939)
+   ============================================ */
+
+/* Outer wrapper — carries border, bg, and layout */
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
+  width: 100%;
+  position: relative;
+  background-color: var(--ds-mapped-surface-default);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  border-radius: var(--ds-alias-border-radius-lg);
+  cursor: text;
+  box-sizing: border-box;
+  transition: border-color 120ms ease;
+}
+
+/* Hover — border tints blue */
+.wrapper:hover:not(.disabled) {
+  border-color: var(--ds-mapped-border-action-hover);
+}
+
+/* Focus — border goes full blue; used as the visible focus indicator */
+.wrapper:focus-within:not(.disabled) {
+  border-color: var(--ds-mapped-border-action);
+}
+
+/* Error state */
+.error {
+  border-color: var(--ds-mapped-border-error);
+}
+
+/* Error takes precedence over focus border on hover */
+.wrapper.error:hover:not(.disabled),
+.wrapper.error:focus-within:not(.disabled) {
+  border-color: var(--ds-mapped-border-error);
+}
+
+/* Disabled state */
+.disabled {
+  background-color: var(--ds-mapped-surface-disabled);
+  border-color: var(--ds-mapped-border-disabled);
+  cursor: not-allowed;
+}
+
+/* Native <input> — transparent so wrapper styling shows through */
+.input {
+  flex: 1 0 0;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-body);
+}
+
+.input::placeholder {
+  color: var(--ds-mapped-text-placeholder);
+}
+
+.disabled .input {
+  color: var(--ds-mapped-text-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Icon slots — decorative, inherit currentColor for easy theming */
+.iconSlot {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--ds-mapped-icon-default);
+}
+
+.disabled .iconSlot {
+  color: var(--ds-mapped-icon-disabled);
+}

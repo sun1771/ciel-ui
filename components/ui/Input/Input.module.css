@@ -1,0 +1,31 @@
+/* ============================================
+   Input styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Input (165:1110)
+   ============================================ */
+
+/* Outer wrapper — stacks Label, Field, and hint vertically */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-xs);
+  width: 100%;
+}
+
+/* Hint text shown below the field */
+.hint {
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-body);
+}
+
+/* Error message — replaces hint when error prop is set */
+.errorText {
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-error);
+}

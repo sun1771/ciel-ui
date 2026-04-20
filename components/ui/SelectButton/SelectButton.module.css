@@ -1,0 +1,138 @@
+/* ============================================
+   SelectButton styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Select Button (node 1748:7209)
+   ============================================ */
+
+/* ─── Base ──────────────────────────────────────────────────────────────────── */
+
+.base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: var(--ds-brand-font-family-body), sans-serif;
+  font-weight: var(--ds-brand-font-weight-regular);
+  white-space: nowrap;
+  text-decoration: none;
+  border-radius: var(--ds-alias-border-radius-lg);
+  border-width: var(--ds-alias-border-width-sm);
+  border-style: solid;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.base:focus-visible {
+  outline: none;
+}
+
+.base:focus-visible::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: var(--ds-alias-border-radius-lg);
+  border: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
+  pointer-events: none;
+}
+
+/* ─── Variants ──────────────────────────────────────────────────────────────── */
+
+.variantDefault {
+  background-color: var(--ds-mapped-surface-action);
+  border-color: var(--ds-mapped-border-action);
+  color: var(--ds-mapped-text-on-action);
+}
+
+.variantDefault:hover:not(:disabled) {
+  background-color: var(--ds-mapped-surface-action-hover);
+  border-color: var(--ds-mapped-border-action-hover);
+}
+
+.variantDefault:focus-visible:not(:disabled) {
+  background-color: var(--ds-mapped-surface-action);
+  border-color: var(--ds-mapped-border-action-hover);
+}
+
+/* ────────────────────── */
+
+.variantOutline {
+  background-color: var(--ds-mapped-surface-default);
+  border-color: var(--ds-mapped-border-default);
+  color: var(--ds-mapped-text-body);
+}
+
+.variantOutline:hover:not(:disabled) {
+  border-color: var(--ds-mapped-border-action-hover);
+  color: var(--ds-mapped-text-action-hover);
+}
+
+.variantOutline:focus-visible:not(:disabled) {
+  border-color: var(--ds-mapped-border-action-hover);
+  color: var(--ds-mapped-text-action);
+}
+
+/* ────────────────────── */
+
+.variantTransparent {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--ds-mapped-text-action);
+}
+
+.variantTransparent:hover:not(:disabled) {
+  color: var(--ds-mapped-text-action-hover);
+}
+
+.variantTransparent:focus-visible:not(:disabled) {
+  color: var(--ds-mapped-text-action);
+}
+
+.variantTransparent:focus-visible::after {
+  inset: -4px;
+}
+
+/* ─── Sizes ─────────────────────────────────────────────────────────────────── */
+
+.sizeLg {
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
+  gap: var(--ds-alias-spacing-xs);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+}
+
+.sizeSm {
+  padding: var(--ds-alias-spacing-xxs) var(--ds-alias-spacing-xs);
+  gap: var(--ds-alias-spacing-xxs);
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: var(--ds-typography-body-sm-line-height);
+}
+
+/* ─── Disabled ───────────────────────────────────────────────────────────────── */
+
+.base:disabled,
+.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: var(--ds-mapped-surface-default);
+  border-color: var(--ds-mapped-border-disabled);
+  color: var(--ds-mapped-text-disabled);
+}
+
+.variantTransparent:disabled,
+.variantTransparent.disabled {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+/* ─── Chevron icon slot ──────────────────────────────────────────────────────── */
+
+.chevron {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: inherit;
+}
