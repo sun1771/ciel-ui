@@ -45,6 +45,9 @@ Visit http://localhost:3000/preview
 - Label — 2 variants (default, required), icon slot — components/ui/
 - SelectButton — 3 variants (default, outline, transparent), 2 sizes, disabled, isSelected toggle — components/ui/
 - Field + Input — 5 states (default, hover, focus, disabled, error), icon slots, Label + hint/error text — components/ui/
+- RadioButton — 4 states (default, hover, focus, disabled), with/without label, group example — components/ui/
+- Switch — 2 checked states (on/off), hover, focus, disabled, with/without label — components/ui/
+- Checkbox — unchecked/checked, with/without label, error, disabled, interactive toggle — components/ui/
 
 ## Important
 This app copies files from tripon-ai.

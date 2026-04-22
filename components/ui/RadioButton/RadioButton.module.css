@@ -1,0 +1,125 @@
+/* ============================================
+   RadioButton styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Radio Button
+   Nodes:  .Radio Button 307:1550 / Radio Button 307:1583
+   ============================================ */
+
+/* ─── Wrapper (the <label> element) ─────────────────────────────────────────── */
+
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+.wrapper.wrapperDisabled {
+  cursor: not-allowed;
+}
+
+/* ─── Native input (visually hidden, stays accessible) ───────────────────────── */
+
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─── Custom radio circle ────────────────────────────────────────────────────── */
+
+.radio {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--ds-alias-border-radius-round);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-action);
+  background-color: var(--ds-mapped-surface-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease;
+}
+
+/* Focus ring — drawn on ::after so it sits outside the circle border */
+.radio::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: var(--ds-alias-border-radius-round);
+  border: var(--ds-alias-border-width-md) solid transparent;
+  pointer-events: none;
+}
+
+.input:focus-visible + .radio::after {
+  border-color: var(--ds-mapped-border-focus);
+}
+
+/* ─── Inner dot (knob) ───────────────────────────────────────────────────────── */
+
+.knob {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--ds-alias-border-radius-round);
+  background-color: var(--ds-mapped-text-on-action);
+  display: none;
+  flex-shrink: 0;
+}
+
+/* ─── Checked state ──────────────────────────────────────────────────────────── */
+
+.input:checked + .radio {
+  background-color: var(--ds-mapped-surface-action);
+  border-color: var(--ds-mapped-border-action);
+}
+
+.input:checked + .radio .knob {
+  display: block;
+}
+
+/* ─── Hover — unselected ─────────────────────────────────────────────────────── */
+
+.wrapper:not(.wrapperDisabled):hover .radio {
+  background-color: var(--ds-mapped-surface-action-hover-light);
+  border-color: var(--ds-mapped-border-action-hover);
+}
+
+/* ─── Hover — selected (higher specificity overrides hover-unselected) ───────── */
+
+.wrapper:not(.wrapperDisabled):hover .input:checked + .radio {
+  background-color: var(--ds-mapped-surface-action-hover);
+  border-color: var(--ds-mapped-border-action-hover);
+}
+
+/* ─── Disabled ───────────────────────────────────────────────────────────────── */
+
+.input:disabled + .radio {
+  background-color: var(--ds-mapped-surface-disabled);
+  border-color: var(--ds-mapped-border-disabled);
+}
+
+/* ─── Label text ─────────────────────────────────────────────────────────────── */
+
+.label {
+  font-family: var(--ds-brand-font-family-body), sans-serif;
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-body);
+}
+
+.wrapperDisabled .label {
+  color: var(--ds-mapped-text-disabled);
+}
