@@ -1,0 +1,74 @@
+/* ============================================
+   NumericUpDown styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Numeric Up Down (node 1503:4111)
+   ============================================ */
+
+/* Base — outer wrapper */
+.base {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-sm);
+}
+
+/* Circular stepper button */
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ds-alias-spacing-xxs);
+  border-radius: var(--ds-alias-border-radius-round);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  background-color: var(--ds-mapped-surface-default);
+  color: var(--ds-mapped-icon-default);
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  line-height: 0;
+}
+
+/* Hover — only when not disabled */
+.button:hover:not(:disabled) {
+  background-color: var(--ds-mapped-surface-action-hover-light);
+  border-color: var(--ds-mapped-border-action-hover);
+}
+
+/* Focus ring */
+.button:focus-visible {
+  outline: none;
+}
+
+.button:focus-visible::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: var(--ds-alias-border-radius-round);
+  border: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
+  pointer-events: none;
+}
+
+/* Disabled button — at min/max limit or fully disabled */
+.button:disabled {
+  cursor: not-allowed;
+  border-color: var(--ds-mapped-border-disabled);
+  color: var(--ds-mapped-icon-disabled);
+  background-color: var(--ds-mapped-surface-default);
+}
+
+/* Value display */
+.value {
+  font-family: var(--ds-typography-body-md-semibold-font-family);
+  font-weight: var(--ds-typography-body-md-semibold-font-weight);
+  font-size: var(--ds-typography-body-md-semibold-font-size);
+  line-height: var(--ds-typography-body-md-semibold-line-height);
+  color: var(--ds-mapped-text-body);
+  flex-shrink: 0;
+  white-space: nowrap;
+  min-width: 1.5ch;
+  text-align: center;
+}
+
+/* Disabled — mute value text when entire component is disabled */
+.disabled .value {
+  color: var(--ds-mapped-text-disabled);
+}

@@ -1,0 +1,23 @@
+/* ============================================
+   Separator styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Separator
+   ============================================ */
+
+/* Base — shared by both orientations */
+.base {
+  flex-shrink: 0;
+  background-color: var(--ds-mapped-border-default);
+}
+
+/* Horizontal — spans full width, 1px tall */
+.horizontal {
+  width: 100%;
+  height: var(--ds-alias-border-width-sm);
+}
+
+/* Vertical — 1px wide, spans full height of container */
+.vertical {
+  width: var(--ds-alias-border-width-sm);
+  height: 100%;
+}

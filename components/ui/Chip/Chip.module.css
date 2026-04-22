@@ -1,0 +1,83 @@
+/* ============================================
+   Chip styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Chip (1249:2540)
+   ============================================ */
+
+/* Base — applied to every instance */
+.base {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xxs);
+  padding: var(--ds-alias-spacing-xxs) var(--ds-alias-spacing-xs);
+  border-radius: var(--ds-alias-border-radius-lg);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  font-family: var(--ds-typography-body-xsm-font-family);
+  font-weight: var(--ds-typography-body-xsm-font-weight);
+  font-size: var(--ds-typography-body-xsm-font-size);
+  line-height: var(--ds-typography-body-xsm-line-height);
+  color: var(--ds-mapped-text-body);
+  white-space: nowrap;
+  width: fit-content;
+}
+
+/* Icon slot — prevents icon from stretching */
+.iconSlot {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   Color × Variant combinations
+   Background changes per combination.
+   Text color: only brand/sharp uses on-action (white);
+   all others inherit text-body from .base.
+   ============================================ */
+
+/* Brand */
+.brandLight {
+  background-color: var(--ds-mapped-surface-action-hover-light);
+}
+
+.brandSharp {
+  /* bg: border/action-hover (#667aff) — MCP confirmed; figma.md pre-analysis incorrectly listed surface/action */
+  background-color: var(--ds-mapped-border-action-hover);
+  color: var(--ds-mapped-text-on-action);
+}
+
+/* Blue */
+.blueLight {
+  background-color: var(--ds-mapped-surface-information);
+}
+
+.blueSharp {
+  background-color: var(--ds-mapped-border-information);
+}
+
+/* Green */
+.greenLight {
+  background-color: var(--ds-mapped-surface-success);
+}
+
+.greenSharp {
+  background-color: var(--ds-mapped-border-success);
+}
+
+/* Orange */
+.orangeLight {
+  background-color: var(--ds-mapped-surface-warning);
+}
+
+.orangeSharp {
+  background-color: var(--ds-mapped-border-warning);
+}
+
+/* Red */
+.redLight {
+  background-color: var(--ds-mapped-surface-error);
+}
+
+.redSharp {
+  background-color: var(--ds-mapped-border-error);
+}

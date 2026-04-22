@@ -40,6 +40,7 @@ Visit http://localhost:3000/preview
 
 ## Currently previewed
 - Avatar — 3 types (icon, image, initials), 3 sizes (lg/md/sm) — components/ui/
+- Badge — 5 variants (default, error, success, information, warning), 2 types (pill, dot) — components/ui/
 - Buttons — Button, ButtonVertical, ButtonIcon
 - Icons — 46 total
 - Menu — MenuItem (2 sizes, 4 states) + Menu container (scrollable) — components/ui/
@@ -52,6 +53,10 @@ Visit http://localhost:3000/preview
 - Tag — 2 sizes (lg/sm), static + dismissible (onDismiss), disabled — components/ui/
 - TextArea — 5 states (default, hover, focus, disabled, error), iconRight slot, label/hint/error composition — components/ui/
 - Link — 2 variants (default, in-line), hover underline toggle, focus ring, disabled, icon slots — components/ui/
+- Chip — 5 colors (brand/blue/green/orange/red), 2 variants (light/sharp), icon + label slots — components/ui/
+- Separator — 2 orientations (horizontal, vertical) — components/ui/
+- NumericUpDown — stepper (min/max limits, disabled state, traveler count example) — components/ui/
+- SearchBox — pill search input, clear button, custom icon slot, parent-controlled dropdown — components/ui/
 
 ## Important
 This app copies files from tripon-ai.

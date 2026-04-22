@@ -4,7 +4,9 @@ import React, { useState, useEffect } from 'react'
 
 const navLinks = [
   { href: '/preview/avatar', label: 'Avatar' },
+  { href: '/preview/badge', label: 'Badge' },
   { href: '/preview/buttons', label: 'Buttons' },
+  { href: '/preview/chip', label: 'Chip' },
   { href: '/preview/checkbox', label: 'Checkbox' },
   { href: '/preview/icons', label: 'Icons' },
   { href: '/preview/menu', label: 'Menu' },
@@ -15,7 +17,11 @@ const navLinks = [
   { href: '/preview/link', label: 'Link' },
   { href: '/preview/switch', label: 'Switch' },
   { href: '/preview/tag', label: 'Tag' },
+  { href: '/preview/separator', label: 'Separator' },
   { href: '/preview/text-area', label: 'TextArea' },
+  { href: '/preview/field-picker', label: 'FieldPicker' },
+  { href: '/preview/numeric-up-down', label: 'NumericUpDown' },
+  { href: '/preview/search-box', label: 'SearchBox' },
 ]
 
 export default function PreviewLayout({ children }: { children: React.ReactNode }) {
