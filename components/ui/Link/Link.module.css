@@ -1,0 +1,94 @@
+/* ============================================
+   Link styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Link (466:1407)
+   ============================================ */
+
+/* Base — applied to every instance */
+.base {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+  position: relative;
+
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-body);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Icon wrapper — explicit color independent of text */
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--ds-mapped-icon-default);
+}
+
+/* ============================================
+   Variants
+   ============================================ */
+
+/* default: no underline at rest */
+.default {
+  text-decoration: none;
+}
+
+/* in-line: underline at rest (appears within body text) */
+.inline {
+  text-decoration: underline;
+}
+
+/* ============================================
+   Interactive states
+   ============================================ */
+
+/* Hover — color change + underline toggle */
+.base:hover {
+  color: var(--ds-mapped-text-action-hover);
+}
+
+.base:hover .iconWrapper {
+  color: var(--ds-mapped-icon-action-hover);
+}
+
+/* default variant adds underline on hover */
+.default:hover {
+  text-decoration: underline;
+}
+
+/* in-line variant removes underline on hover */
+.inline:hover {
+  text-decoration: none;
+}
+
+/* Focus-visible ring */
+.base:focus-visible {
+  outline: none;
+}
+
+.base:focus-visible::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
+  border-radius: var(--ds-alias-border-radius-lg);
+  pointer-events: none;
+}
+
+/* ============================================
+   Disabled state
+   ============================================ */
+
+.disabled {
+  color: var(--ds-mapped-text-disabled);
+  cursor: default;
+  pointer-events: none;
+}
+
+.disabled .iconWrapper {
+  color: var(--ds-mapped-icon-disabled);
+}

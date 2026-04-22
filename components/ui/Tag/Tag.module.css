@@ -1,0 +1,83 @@
+/* ============================================
+   Tag styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Tag
+   ============================================ */
+
+/* Base — applied to every instance */
+.base {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  border-style: solid;
+  border-width: var(--ds-alias-border-width-sm);
+  border-color: var(--ds-mapped-border-action);
+  border-radius: var(--ds-alias-border-radius-lg);
+  background-color: var(--ds-mapped-surface-default);
+  color: var(--ds-mapped-text-action);
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  white-space: nowrap;
+}
+
+/* Sizes */
+.lg {
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
+  gap: var(--ds-alias-spacing-xs);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+}
+
+.sm {
+  padding: var(--ds-alias-spacing-xxs) var(--ds-alias-spacing-xs);
+  gap: var(--ds-alias-spacing-xs);
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: var(--ds-typography-body-sm-line-height);
+}
+
+/* Disabled state */
+.disabled {
+  background-color: var(--ds-mapped-surface-disabled);
+  border-color: var(--ds-mapped-border-disabled);
+  color: var(--ds-mapped-text-disabled);
+  cursor: not-allowed;
+}
+
+/* Hover — CSS only, no prop needed */
+.base:hover:not(.disabled) {
+  background-color: var(--ds-mapped-surface-action-hover-light);
+  border-color: var(--ds-mapped-border-action-hover);
+  color: var(--ds-mapped-text-action-hover);
+}
+
+/* Focus ring — shows on entire tag when X button inside receives focus */
+.base:focus-within:not(.disabled)::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-width: var(--ds-alias-border-width-md);
+  border-style: solid;
+  border-color: var(--ds-mapped-border-focus);
+  border-radius: var(--ds-alias-border-radius-lg);
+  pointer-events: none;
+}
+
+/* X dismiss button — inherits color from parent .base */
+.dismissButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  line-height: 0;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.dismissButton:disabled {
+  cursor: not-allowed;
+}

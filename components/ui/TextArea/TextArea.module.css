@@ -1,0 +1,126 @@
+/* ============================================
+   TextArea styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Text Area (317:206 / 318:1216)
+   ============================================ */
+
+/* Outer wrapper — stacks label, hint, field, and error vertically */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-xs);
+  width: 100%;
+}
+
+/* Label text */
+.label {
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-body);
+}
+
+/* Hint text — shown above the field (between label and textarea) */
+.hint {
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-placeholder);
+}
+
+/* Field container — carries border, bg, and flex row layout */
+.field {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ds-alias-spacing-xs);
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
+  min-height: 108px; /* component-specific — no token equivalent */
+  width: 100%;
+  background-color: var(--ds-mapped-surface-default);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  border-radius: var(--ds-alias-border-radius-lg);
+  box-sizing: border-box;
+  cursor: text;
+  transition: border-color 120ms ease;
+}
+
+/* Hover — border tints blue */
+.field:hover:not(.fieldDisabled) {
+  border-color: var(--ds-mapped-border-action-hover);
+}
+
+/* Focus — border goes full blue; used as the visible focus indicator */
+.field:focus-within:not(.fieldDisabled) {
+  border-color: var(--ds-mapped-border-action);
+}
+
+/* Error state */
+.fieldError {
+  border-color: var(--ds-mapped-border-error);
+}
+
+/* Error takes precedence over hover and focus borders */
+.field.fieldError:hover:not(.fieldDisabled),
+.field.fieldError:focus-within:not(.fieldDisabled) {
+  border-color: var(--ds-mapped-border-error);
+}
+
+/* Disabled state */
+.fieldDisabled {
+  background-color: var(--ds-mapped-surface-disabled);
+  border-color: var(--ds-mapped-border-disabled);
+  cursor: not-allowed;
+}
+
+/* Native <textarea> — transparent so field container styling shows through */
+.textarea {
+  flex: 1 0 0;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  resize: vertical;
+  padding: 0;
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-body);
+}
+
+.textarea::placeholder {
+  color: var(--ds-mapped-text-placeholder);
+}
+
+.fieldDisabled .textarea {
+  color: var(--ds-mapped-text-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.fieldDisabled .textarea::placeholder {
+  color: var(--ds-mapped-text-disabled);
+}
+
+/* Icon right slot */
+.iconSlot {
+  display: inline-flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+  color: var(--ds-mapped-icon-default);
+}
+
+.fieldDisabled .iconSlot {
+  color: var(--ds-mapped-icon-disabled);
+}
+
+/* Error message — shown below the field when error prop is set */
+.errorText {
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-error);
+}

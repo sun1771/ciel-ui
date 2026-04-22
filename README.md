@@ -39,6 +39,7 @@ Visit http://localhost:3000/preview
 5. Add a nav link in app/preview/layout.tsx
 
 ## Currently previewed
+- Avatar — 3 types (icon, image, initials), 3 sizes (lg/md/sm) — components/ui/
 - Buttons — Button, ButtonVertical, ButtonIcon
 - Icons — 46 total
 - Menu — MenuItem (2 sizes, 4 states) + Menu container (scrollable) — components/ui/
@@ -48,6 +49,9 @@ Visit http://localhost:3000/preview
 - RadioButton — 4 states (default, hover, focus, disabled), with/without label, group example — components/ui/
 - Switch — 2 checked states (on/off), hover, focus, disabled, with/without label — components/ui/
 - Checkbox — unchecked/checked, with/without label, error, disabled, interactive toggle — components/ui/
+- Tag — 2 sizes (lg/sm), static + dismissible (onDismiss), disabled — components/ui/
+- TextArea — 5 states (default, hover, focus, disabled, error), iconRight slot, label/hint/error composition — components/ui/
+- Link — 2 variants (default, in-line), hover underline toggle, focus ring, disabled, icon slots — components/ui/
 
 ## Important
 This app copies files from tripon-ai.

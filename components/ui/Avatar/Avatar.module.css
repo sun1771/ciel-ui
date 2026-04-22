@@ -1,0 +1,81 @@
+/* ============================================
+   Avatar styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Avatar (node 814:1333)
+   ============================================ */
+
+/* Base — circular container applied to every instance */
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--ds-alias-border-radius-round);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  background-color: var(--ds-mapped-surface-default);
+  flex-shrink: 0;
+  position: relative;
+  color: var(--ds-mapped-icon-default);
+}
+
+/* Sizes — no --ds- tokens exist for these dimensions (component-specific) */
+.lg {
+  width: 64px;
+  height: 64px;
+}
+
+.md {
+  width: 48px;
+  height: 48px;
+}
+
+.sm {
+  width: 32px;
+  height: 32px;
+}
+
+/* type="image" — no background; image fills the circle */
+.image {
+  background-color: transparent;
+}
+
+/* Image fill — covers the entire circle */
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+/* type="initials" */
+.initialsText {
+  white-space: nowrap;
+  color: var(--ds-mapped-text-heading);
+  line-height: 1;
+}
+
+/* lg initials — Poppins SemiBold 24px/28px */
+.lg .initialsText {
+  font-family: var(--ds-typography-heading-h6-font-family);
+  font-weight: var(--ds-typography-heading-h6-font-weight);
+  font-size: var(--ds-typography-heading-h6-font-size);
+  line-height: var(--ds-typography-heading-h6-line-height);
+}
+
+/* md initials — Poppins SemiBold 20px/24px */
+.md .initialsText {
+  font-family: var(--ds-typography-heading-h7-font-family);
+  font-weight: var(--ds-typography-heading-h7-font-weight);
+  font-size: var(--ds-typography-heading-h7-font-size);
+  line-height: var(--ds-typography-heading-h7-line-height);
+}
+
+/* sm initials — Inter SemiBold 16px/20px */
+.sm .initialsText {
+  font-family: var(--ds-typography-body-md-semibold-font-family);
+  font-weight: var(--ds-typography-body-md-semibold-font-weight);
+  font-size: var(--ds-typography-body-md-semibold-font-size);
+  line-height: var(--ds-typography-body-md-semibold-line-height);
+}
