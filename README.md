@@ -67,6 +67,8 @@ Visit http://localhost:3000/preview
 - Carousel — CarouselItem nav button (2 directions, 2 shapes, 2 sizes, 4 states) + Carousel container (slides, nav, pagination, disabled) — components/ui/navigation/
 - Expander — controlled accordion disclosure, 2 sizes (lg/sm), 3 states (default/hover/disabled), collapsed/expanded with chevron flip + semibold label — components/ui/navigation/
 - Pagination — dot-style page indicator, 1 status variant (disabled), interactive totalPages/page/onChange props — components/ui/navigation/
+- Card — layout container, 4 states (default/hover/selected/loading), image slot, carousel nav overlay (CarouselItem + Pagination), skeleton shimmer, children body slot — components/layout/
+- PackageCard — 2 variants (default: prev/next, itinerary: prev/"Day N"/next), heading, TripOn AI action button, children slot — components/layout/
 
 ## Important
 This app copies files from tripon-ai.

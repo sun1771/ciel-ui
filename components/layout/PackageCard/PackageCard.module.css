@@ -1,0 +1,122 @@
+/* ============================================
+   PackageCard styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Package Card
+   ============================================ */
+
+/* Card container */
+.card {
+  background-color: var(--ds-mapped-surface-default);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  border-radius: var(--ds-alias-border-radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Header row — heading + action button + nav */
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-md);
+  padding: var(--ds-alias-spacing-sm) var(--ds-alias-spacing-md);
+  width: 100%;
+}
+
+/* H8 heading — Poppins SemiBold 18px/20px */
+.heading {
+  flex: 1 0 0;
+  min-width: 1px;
+  font-family: var(--ds-typography-heading-h8-font-family);
+  font-weight: var(--ds-typography-heading-h8-font-weight);
+  font-size: var(--ds-typography-heading-h8-font-size);
+  line-height: var(--ds-typography-heading-h8-line-height);
+  color: var(--ds-mapped-text-heading);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* TripOn Chat Icon action button */
+.actionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ds-alias-spacing-xxs);
+  border-radius: var(--ds-alias-border-radius-lg);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  color: var(--ds-mapped-icon-default);
+}
+
+.actionBtn:hover {
+  background-color: var(--ds-mapped-surface-action-hover-light);
+}
+
+.actionBtn:focus-visible {
+  outline: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
+  outline-offset: 2px;
+}
+
+/* Navigation group (prev/next) */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+  flex-shrink: 0;
+}
+
+/* "Day N" label (itinerary variant) — Body/md Inter Regular 16px/20px */
+.dayLabel {
+  font-family: var(--ds-typography-body-md-font-family);
+  font-weight: var(--ds-typography-body-md-font-weight);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-heading);
+  white-space: nowrap;
+}
+
+/* Round nav button — 24px circle, transparent glassmorphism */
+/* TODO: no dedicated 24px dimension token — using --ds-alias-spacing-lg (24px) */
+.navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ds-alias-spacing-lg);
+  height: var(--ds-alias-spacing-lg);
+  padding: var(--ds-alias-spacing-xxs);
+  border-radius: var(--ds-alias-border-radius-round);
+  background-color: var(--ds-mapped-surface-default-transparent);
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  color: var(--ds-mapped-icon-default);
+  overflow: hidden;
+}
+
+.navBtn:disabled {
+  color: var(--ds-mapped-icon-disabled);
+  cursor: default;
+}
+
+.navBtn:hover:not(:disabled) {
+  background-color: var(--ds-mapped-surface-action-hover-light);
+}
+
+.navBtn:focus-visible {
+  outline: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
+  outline-offset: 2px;
+}
+
+/* Content area — children slot */
+.content {
+  padding: 0 var(--ds-alias-spacing-md) var(--ds-alias-spacing-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}

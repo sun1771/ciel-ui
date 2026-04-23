@@ -1,0 +1,129 @@
+/* ============================================
+   Card styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Card
+   ============================================ */
+
+/* Base — applied to every instance */
+.card {
+  background: var(--ds-mapped-surface-default);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  border-radius: var(--ds-alias-border-radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* TODO: 230px/220px — no --ds- token for card width; Figma spec */
+  width: 230px;
+  min-width: 220px;
+}
+
+/* Hover — CSS only, no prop needed */
+.card:hover {
+  border-width: var(--ds-alias-border-width-md);
+  border-color: var(--ds-mapped-border-action-hover);
+}
+
+/* Selected state */
+.selected {
+  border-width: var(--ds-alias-border-width-md);
+  border-color: var(--ds-mapped-border-action);
+}
+
+/* Selected+hover: keep action border, not action-hover */
+.selected:hover {
+  border-color: var(--ds-mapped-border-action);
+}
+
+/* ---- Image area ---- */
+
+.imageArea {
+  position: relative;
+  /* TODO: 102px — no --ds- token for image area height; Figma spec */
+  height: 102px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* Carousel nav arrows — absolute overlay on top of image */
+.carouselNav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--ds-alias-spacing-xxs);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.carouselNav > * {
+  pointer-events: auto;
+}
+
+/* Pagination dots overlay — bottom-center of image */
+.paginationOverlay {
+  position: absolute;
+  bottom: var(--ds-alias-spacing-xxs);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* ---- Loading skeleton ---- */
+
+.skeletonImageArea {
+  /* TODO: 102px — same as imageArea, no --ds- token */
+  height: 102px;
+  flex-shrink: 0;
+  background: var(--ds-mapped-surface-disabled);
+  position: relative;
+  overflow: hidden;
+}
+
+.skeletonContent {
+  padding: var(--ds-alias-spacing-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-xs);
+}
+
+.skeletonRow {
+  border-radius: var(--ds-alias-border-radius-md);
+  background: var(--ds-mapped-surface-disabled);
+  position: relative;
+  overflow: hidden;
+  /* TODO: 20px row height — no --ds- token; matches body-sm line-height */
+  height: 20px;
+  width: 100%;
+}
+
+.skeletonRowSm {
+  width: 60%;
+}
+
+/* Shimmer animation on skeleton areas */
+.skeletonImageArea::after,
+.skeletonRow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* TODO: shimmer highlight — Background++/_backgroundPlaceholder has no --ds- token */
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
