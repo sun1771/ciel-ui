@@ -1,0 +1,33 @@
+/* ============================================
+   Loader styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Loader
+   ============================================ */
+
+/* Base — outer container, always inline-flex */
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Sizes — exact Figma dimensions mapped to alias spacing tokens */
+.lg  { width: var(--ds-alias-spacing-xxxl); height: var(--ds-alias-spacing-xxxl); }
+.md  { width: var(--ds-alias-spacing-xxl);  height: var(--ds-alias-spacing-xxl);  }
+.sm  { width: var(--ds-alias-spacing-xl);   height: var(--ds-alias-spacing-xl);   }
+.xs  { width: var(--ds-alias-spacing-lg);   height: var(--ds-alias-spacing-lg);   }
+.xxs { width: var(--ds-alias-spacing-md);   height: var(--ds-alias-spacing-md);   }
+
+/* SVG spinner — fills container and rotates */
+.spinner {
+  width: 100%;
+  height: 100%;
+  animation: spin 0.8s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}

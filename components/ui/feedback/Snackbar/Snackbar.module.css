@@ -1,0 +1,196 @@
+/* ============================================
+   Snackbar styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Snackbar
+   ============================================ */
+
+/* Base — wrapping container */
+.base {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ds-alias-spacing-sm);
+  width: 370px;
+  max-width: 100%;
+  padding:
+    var(--ds-alias-spacing-sm)
+    var(--ds-alias-spacing-sm)
+    var(--ds-alias-spacing-md)
+    var(--ds-alias-spacing-sm);
+  background-color: var(--ds-mapped-surface-default);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  border-radius: var(--ds-alias-border-radius-lg);
+  overflow: hidden;
+}
+
+/* Icon slot — 20×20 flex-shrink-0 */
+.icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+/* Content column */
+.content {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-sm);
+}
+
+/* Title — body/lg-semibold */
+.title {
+  font-family: var(--ds-typography-body-lg-semibold-font-family);
+  font-weight: var(--ds-typography-body-lg-semibold-font-weight);
+  font-size: var(--ds-typography-body-lg-semibold-font-size);
+  line-height: var(--ds-typography-body-lg-semibold-line-height);
+  margin: 0;
+}
+
+/* Body message — body/md */
+.message {
+  font-family: var(--ds-typography-body-md-font-family);
+  font-weight: var(--ds-typography-body-md-font-weight);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-body);
+  margin: 0;
+}
+
+/* Action link row */
+.actionRow {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+}
+
+.actionLabel {
+  font-family: var(--ds-typography-body-md-font-family);
+  font-weight: var(--ds-typography-body-md-font-weight);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.actionLabel:hover {
+  text-decoration: underline;
+}
+
+/* Close button */
+.closeButton {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ds-mapped-icon-default);
+  border-radius: var(--ds-alias-border-radius-md);
+  outline: none;
+}
+
+.closeButton:focus-visible {
+  outline: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
+  outline-offset: 2px;
+}
+
+.closeButton:hover {
+  color: var(--ds-mapped-icon-action-hover);
+}
+
+/* Progress bar — absolute bottom strip */
+.progressBar {
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+  height: 4px;
+  overflow: hidden;
+  border-radius: var(--ds-alias-border-radius-round);
+}
+
+.progressFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  transition: width 0.3s linear;
+}
+
+/* ============================================
+   Variant — title + icon + action link + progress
+   ============================================ */
+
+/* default */
+.default .title,
+.default .actionLabel {
+  color: var(--ds-mapped-text-action);
+}
+.default .progressBar {
+  background-color: var(--ds-mapped-surface-action-hover-light);
+}
+.default .progressFill {
+  background-color: var(--ds-mapped-text-action);
+}
+
+/* success */
+.success .title,
+.success .actionLabel {
+  color: var(--ds-mapped-text-success);
+}
+.success .progressBar {
+  background-color: var(--ds-mapped-surface-success);
+}
+.success .progressFill {
+  background-color: var(--ds-mapped-icon-success);
+}
+
+/* error */
+.error .title,
+.error .actionLabel {
+  color: var(--ds-mapped-text-error);
+}
+.error .progressBar {
+  background-color: var(--ds-mapped-surface-error);
+}
+.error .progressFill {
+  background-color: var(--ds-mapped-icon-error);
+}
+
+/* warning */
+.warning .title,
+.warning .actionLabel {
+  color: var(--ds-mapped-text-warning);
+}
+.warning .progressBar {
+  background-color: var(--ds-mapped-surface-warning);
+}
+.warning .progressFill {
+  background-color: var(--ds-mapped-icon-warning);
+}
+
+/* info */
+.info .title,
+.info .actionLabel {
+  color: var(--ds-mapped-text-information);
+}
+.info .progressBar {
+  background-color: var(--ds-mapped-surface-information);
+}
+.info .progressFill {
+  background-color: var(--ds-mapped-icon-information);
+}

@@ -57,6 +57,16 @@ Visit http://localhost:3000/preview
 - Separator — 2 orientations (horizontal, vertical) — components/ui/
 - NumericUpDown — stepper (min/max limits, disabled state, traveler count example) — components/ui/
 - SearchBox — pill search input, clear button, custom icon slot, parent-controlled dropdown — components/ui/
+- Loader — 5 sizes (lg/md/sm/xs/xxs), SVG dot-ring spinner with animated comet-tail — components/ui/feedback/
+- ProgressBar — linear (value 0–100, optional label, pill track), ProgressCircle (2 sizes: default 64px/sm 48px, center label, SVG arc) — components/ui/feedback/
+- Snackbar — 5 variants (default/success/error/warning/info), icon slot, title+body+action, close button, progress bar — components/ui/feedback/
+- AccordionProgressive — controlled collapsible panel, 2 states (expanded/collapsed), 3 status states (default/hover/disabled), progressive border (2px T/L/R header + B/L/R content, seamless joint), ChevronDown/ChevronTop, aria-expanded — components/ui/navigation/
+- Breadcrumb — navigation trail, last item as current page (underlined span), optional icon per item, ChevronRight separator — components/ui/navigation/
+- TabBar — TabBar (tablist, arrow key navigation) + TabItem (2 states: selected/unselected, disabled, optional icon) — components/ui/navigation/
+- ButtonGroup — ButtonGroup container (segmented control, role=group) + ButtonGroupItem (4 states: default/hover/selected/disabled), 2 variants (button-group, icon-group) — components/ui/navigation/
+- Carousel — CarouselItem nav button (2 directions, 2 shapes, 2 sizes, 4 states) + Carousel container (slides, nav, pagination, disabled) — components/ui/navigation/
+- Expander — controlled accordion disclosure, 2 sizes (lg/sm), 3 states (default/hover/disabled), collapsed/expanded with chevron flip + semibold label — components/ui/navigation/
+- Pagination — dot-style page indicator, 1 status variant (disabled), interactive totalPages/page/onChange props — components/ui/navigation/
 
 ## Important
 This app copies files from tripon-ai.

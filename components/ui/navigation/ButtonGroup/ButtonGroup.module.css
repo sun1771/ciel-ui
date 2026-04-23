@@ -1,0 +1,96 @@
+/* ============================================
+   ButtonGroup styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Button Group
+   ============================================ */
+
+/* ─── Group container ───────────────────────────────────────────────────────── */
+
+.group {
+  display: inline-flex;
+  align-items: center;
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  border-radius: var(--ds-alias-border-radius-md);
+  overflow: hidden;
+}
+
+/* ─── Item base ─────────────────────────────────────────────────────────────── */
+
+.item {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ds-alias-spacing-xs);
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
+  flex-shrink: 0;
+  /* Typography */
+  font-family: var(--ds-brand-font-family-body), sans-serif;
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  white-space: nowrap;
+  /* Colors — default state */
+  background-color: var(--ds-mapped-surface-default);
+  color: var(--ds-mapped-text-body);
+  /* Separator — right border only; container provides outer border */
+  border: 0;
+  border-right: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  /* Interaction */
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.item:last-child {
+  border-right: none;
+}
+
+/* ─── Item hover ────────────────────────────────────────────────────────────── */
+
+.item:hover:not(:disabled):not(.selected) {
+  background-color: var(--ds-mapped-surface-action-hover-light);
+  border-right-color: var(--ds-mapped-border-action-hover);
+  color: var(--ds-mapped-text-action-hover);
+}
+
+/* ─── Item focus-visible ────────────────────────────────────────────────────── */
+
+.item:focus-visible {
+  outline: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
+  outline-offset: -2px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Item selected ─────────────────────────────────────────────────────────── */
+
+.selected {
+  background-color: var(--ds-mapped-surface-action);
+  border-right-color: var(--ds-mapped-border-action);
+  color: var(--ds-mapped-text-on-action);
+}
+
+/* ─── Item disabled ─────────────────────────────────────────────────────────── */
+
+.item:disabled,
+.item.disabled {
+  background-color: var(--ds-mapped-surface-disabled);
+  border-right-color: var(--ds-mapped-border-disabled);
+  color: var(--ds-mapped-text-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ─── Icon slot ─────────────────────────────────────────────────────────────── */
+
+.iconSlot {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: inherit;
+}

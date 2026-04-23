@@ -1,0 +1,76 @@
+/* ============================================
+   Breadcrumb styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Breadcrumb (814:1221)
+   ============================================ */
+
+/* Container — the <nav> element */
+.nav {
+  display: inline-flex;
+}
+
+/* <ol> list strip */
+.list {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Each <li> item */
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+}
+
+/* Icon slot (optional, wraps a ReactNode) */
+.iconSlot {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--ds-mapped-icon-default);
+}
+
+/* Clickable link items */
+.link {
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-body);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: var(--ds-mapped-text-action-hover);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--ds-mapped-border-focus);
+  outline-offset: 2px;
+  border-radius: var(--ds-alias-border-radius-sm);
+}
+
+/* Current page (last item) — non-interactive, underlined */
+.current {
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-body);
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+/* ChevronRight separator icon */
+.separator {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--ds-mapped-icon-default);
+}

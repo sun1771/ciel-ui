@@ -22,6 +22,18 @@ const navLinks = [
   { href: '/preview/field-picker', label: 'FieldPicker' },
   { href: '/preview/numeric-up-down', label: 'NumericUpDown' },
   { href: '/preview/search-box', label: 'SearchBox' },
+  // Feedback
+  { href: '/preview/loader', label: 'Loader' },
+  { href: '/preview/progress-bar', label: 'ProgressBar' },
+  { href: '/preview/snack-bar', label: 'Snackbar' },
+  // Navigation
+  { href: '/preview/accordion-progressive', label: 'AccordionProgressive' },
+  { href: '/preview/breadcrumb', label: 'Breadcrumb' },
+  { href: '/preview/button-group', label: 'ButtonGroup' },
+  { href: '/preview/carousel', label: 'Carousel' },
+  { href: '/preview/expander', label: 'Expander' },
+  { href: '/preview/pagination', label: 'Pagination' },
+  { href: '/preview/tab-bar', label: 'TabBar' },
 ]
 
 export default function PreviewLayout({ children }: { children: React.ReactNode }) {

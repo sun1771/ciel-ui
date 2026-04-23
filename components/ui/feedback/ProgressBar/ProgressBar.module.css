@@ -1,0 +1,74 @@
+/* ============================================
+   ProgressBar + ProgressCircle styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Progress Bar
+   ============================================ */
+
+/* ---- ProgressBar ---- */
+
+.progressBar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-xxs);
+  width: 100%;
+}
+
+.label {
+  font-family: var(--ds-typography-body-sm-font-family);
+  font-weight: var(--ds-typography-body-sm-font-weight);
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: var(--ds-typography-body-sm-line-height);
+  color: var(--ds-mapped-text-body);
+  width: 100%;
+}
+
+.track {
+  position: relative;
+  width: 100%;
+  height: var(--ds-alias-spacing-xxs);
+  background: var(--ds-mapped-surface-action-hover-light);
+  border-radius: var(--ds-alias-border-radius-round);
+  overflow: hidden;
+}
+
+.fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--ds-mapped-surface-action);
+  border-radius: var(--ds-alias-border-radius-round);
+  transition: width 0.3s ease;
+}
+
+/* ---- ProgressCircle ---- */
+
+.progressCircle {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.progressCircle.sizeDefault {
+  width: 64px;
+  height: 64px;
+}
+
+.progressCircle.sizeSm {
+  width: 48px;
+  height: 48px;
+}
+
+.circleLabel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--ds-typography-body-sm-font-family);
+  font-weight: var(--ds-typography-body-sm-font-weight);
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: var(--ds-typography-body-sm-line-height);
+  color: var(--ds-mapped-text-body);
+  text-align: center;
+  pointer-events: none;
+  white-space: nowrap;
+}

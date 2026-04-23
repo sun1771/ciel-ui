@@ -1,0 +1,140 @@
+/* ============================================
+   AccordionProgressive styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Accordion Progressive
+   ============================================ */
+
+/* Root container */
+.root {
+  width: 100%;
+  position: relative;
+}
+
+/* ---- Header button — collapsed default ---- */
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
+  background-color: var(--ds-mapped-surface-default);
+  border-style: solid;
+  border-top-width: var(--ds-alias-border-width-sm);
+  border-right-width: var(--ds-alias-border-width-sm);
+  border-bottom-width: var(--ds-alias-border-width-sm);
+  border-left-width: var(--ds-alias-border-width-sm);
+  border-color: var(--ds-mapped-border-default);
+  border-radius: var(--ds-alias-border-radius-lg);
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--ds-brand-font-family-body);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  font-weight: var(--ds-brand-font-weight-regular);
+  color: var(--ds-mapped-text-body);
+}
+
+/* Focus ring */
+.header:focus-visible {
+  outline: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
+  outline-offset: 2px;
+}
+
+/* ---- Collapsed hover — fires on root hover so both label + chevron update ---- */
+.root:not(.disabled):hover .header:not(.headerExpanded) {
+  background-color: var(--ds-mapped-surface-action-hover-light);
+  border-color: var(--ds-mapped-border-action-hover);
+  color: var(--ds-mapped-text-action-hover);
+}
+
+.root:not(.disabled):hover .header:not(.headerExpanded) .chevron {
+  color: var(--ds-mapped-icon-action-hover);
+}
+
+/* ---- Collapsed disabled ---- */
+.header:disabled {
+  border-color: var(--ds-mapped-border-disabled);
+  color: var(--ds-mapped-text-disabled);
+  cursor: not-allowed;
+}
+
+.header:disabled .chevron {
+  color: var(--ds-mapped-icon-disabled);
+}
+
+/* ---- Label text span ---- */
+.label {
+  flex: 1 0 0;
+  min-width: 1px;
+}
+
+/* ---- Chevron icon wrapper ---- */
+.chevron {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ds-mapped-icon-default);
+}
+
+/* ---- Expanded header — overrides collapsed border/radius/weight ---- */
+.headerExpanded {
+  border-top-width: var(--ds-alias-border-width-md);
+  border-right-width: var(--ds-alias-border-width-md);
+  border-bottom-width: var(--ds-alias-border-width-none);
+  border-left-width: var(--ds-alias-border-width-md);
+  border-color: var(--ds-mapped-border-action);
+  border-radius: var(--ds-alias-border-radius-lg) var(--ds-alias-border-radius-lg) 0 0;
+  font-weight: var(--ds-brand-font-weight-semi-bold);
+}
+
+/* ---- Expanded hover — root hover affects both header and content ---- */
+.root:not(.disabled):hover .headerExpanded {
+  background-color: var(--ds-mapped-surface-action-hover-light);
+  border-color: var(--ds-mapped-border-action-hover);
+  color: var(--ds-mapped-text-action-hover);
+}
+
+.root:not(.disabled):hover .headerExpanded .chevron {
+  color: var(--ds-mapped-icon-action-hover);
+}
+
+/* ---- Expanded disabled header ---- */
+/* Figma: bg=surface/disabled, 1px all-around border/disabled (not the split 2px style) */
+.headerExpanded:disabled {
+  background-color: var(--ds-mapped-surface-disabled);
+  border-top-width: var(--ds-alias-border-width-sm);
+  border-right-width: var(--ds-alias-border-width-sm);
+  border-bottom-width: var(--ds-alias-border-width-sm);
+  border-left-width: var(--ds-alias-border-width-sm);
+  border-color: var(--ds-mapped-border-disabled);
+  color: var(--ds-mapped-text-disabled);
+  cursor: not-allowed;
+}
+
+.headerExpanded:disabled .chevron {
+  color: var(--ds-mapped-icon-disabled);
+}
+
+/* ---- Content panel ---- */
+.content {
+  background-color: var(--ds-mapped-surface-default);
+  border-style: solid;
+  border-top-width: var(--ds-alias-border-width-none);
+  border-right-width: var(--ds-alias-border-width-md);
+  border-bottom-width: var(--ds-alias-border-width-md);
+  border-left-width: var(--ds-alias-border-width-md);
+  border-color: var(--ds-mapped-border-action);
+  border-radius: 0 0 var(--ds-alias-border-radius-lg) var(--ds-alias-border-radius-lg);
+  padding: var(--ds-alias-spacing-sm);
+}
+
+/* ---- Content hover ---- */
+.root:not(.disabled):hover .content {
+  border-color: var(--ds-mapped-border-action-hover);
+}
+
+/* ---- Content disabled ---- */
+.root.disabled .content {
+  border-color: var(--ds-mapped-border-disabled);
+}
