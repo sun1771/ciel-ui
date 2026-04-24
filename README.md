@@ -68,7 +68,11 @@ Visit http://localhost:3000/preview
 - Expander — controlled accordion disclosure, 2 sizes (lg/sm), 3 states (default/hover/disabled), collapsed/expanded with chevron flip + semibold label — components/ui/navigation/
 - Pagination — dot-style page indicator, 1 status variant (disabled), interactive totalPages/page/onChange props — components/ui/navigation/
 - Card — layout container, 4 states (default/hover/selected/loading), image slot, carousel nav overlay (CarouselItem + Pagination), skeleton shimmer, children body slot — components/layout/
+- DialogBox — modal dialog, portal rendering, focus trap, Escape key, backdrop click, heading icon slot, primary + optional secondary action buttons — components/layout/
 - PackageCard — 2 variants (default: prev/next, itinerary: prev/"Day N"/next), heading, TripOn AI action button, children slot — components/layout/
+- NavigationPanel — 2 expand states (expanded/collapsed), NavigationMenuGroup container, NavigationMenuItem (4 states: default/hover/selected/disabled), 4px right-border selection indicator — components/layout/
+- AIChat — floating chat input panel, 4 status variants (default/selected/filled/thinking), disabled state, Tag chip slot, auto-derived status from focus + value — components/layout/
+- Table — data table, 3 cell types (copy/link/action), optional title bar + action buttons, row hover, semantic HTML — components/layout/
 
 ## Important
 This app copies files from tripon-ai.

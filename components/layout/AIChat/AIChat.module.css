@@ -1,0 +1,132 @@
+/* ============================================
+   AIChat styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → AI Chat
+   ============================================ */
+
+/* Base container — top border only, top corners rounded */
+.container {
+  background-color: var(--ds-mapped-surface-default);
+  border-top: var(--ds-alias-border-width-md) solid;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  border-top-left-radius: var(--ds-alias-border-radius-xl);
+  border-top-right-radius: var(--ds-alias-border-radius-xl);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  padding: var(--ds-alias-spacing-sm);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Status — border + shadow */
+.statusDefault,
+.statusThinking {
+  border-top-color: var(--ds-mapped-border-default);
+  box-shadow: var(--ds-effect-shadow);
+}
+
+.statusSelected,
+.statusFilled {
+  border-top-color: var(--ds-mapped-border-action);
+  box-shadow: var(--ds-effect-shadow-on);
+}
+
+.statusDisabled {
+  border-top-color: var(--ds-mapped-border-disabled);
+  box-shadow: var(--ds-effect-shadow);
+}
+
+/* Chat field — vertical stack */
+.chatField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-xs);
+  align-items: flex-end;
+  width: 100%;
+}
+
+/* Textarea */
+.textarea {
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: var(--ds-typography-body-sm-line-height);
+  color: var(--ds-mapped-text-body);
+  padding: 0;
+  overflow: hidden;
+  field-sizing: content;
+  min-height: var(--ds-typography-body-sm-line-height);
+}
+
+.textarea::placeholder {
+  color: var(--ds-mapped-text-body);
+}
+
+.textarea:disabled {
+  color: var(--ds-mapped-text-disabled);
+  cursor: not-allowed;
+}
+
+.textarea:disabled::placeholder {
+  color: var(--ds-mapped-text-disabled);
+}
+
+/* Bottom row — tag slot + button */
+.bottomRow {
+  display: flex;
+  gap: var(--ds-alias-spacing-xs);
+  align-items: center;
+  width: 100%;
+}
+
+.tagContainer {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Action button (send / mic / pause) */
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ds-alias-spacing-xs);
+  border-radius: var(--ds-alias-border-radius-lg);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  background-color: var(--ds-mapped-surface-default);
+  color: var(--ds-mapped-icon-action);
+  cursor: pointer;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.button:hover:not(:disabled) {
+  background-color: var(--ds-mapped-surface-action-hover-light);
+}
+
+/* Filled state — send button becomes solid blue */
+.buttonFilled {
+  background-color: var(--ds-mapped-surface-action);
+  border-color: var(--ds-mapped-surface-action);
+  color: var(--ds-mapped-icon-on-action);
+}
+
+.buttonFilled:hover:not(:disabled) {
+  background-color: var(--ds-mapped-surface-action-hover);
+  border-color: var(--ds-mapped-surface-action-hover);
+}
+
+/* Disabled button */
+.buttonDisabled {
+  border-color: var(--ds-mapped-border-disabled);
+  color: var(--ds-mapped-icon-disabled);
+  cursor: not-allowed;
+}

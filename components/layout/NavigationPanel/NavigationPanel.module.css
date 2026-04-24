@@ -1,0 +1,123 @@
+/* ============================================
+   NavigationPanel + NavigationMenuItem styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → NavigationPanel
+   ============================================ */
+
+/* ---- NavigationPanel ---- */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--ds-mapped-surface-default);
+  padding: var(--ds-alias-spacing-md) var(--ds-alias-spacing-none);
+  box-shadow: var(--ds-effect-shadow);
+  overflow: hidden;
+}
+
+/* TODO: 155px has no alias/mapped token — flagged in figma.md */
+.panelExpanded {
+  width: 155px;
+}
+
+/* ---- MenuGroup ---- */
+
+.menuGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-xs);
+}
+
+/* ---- NavigationMenuItem ---- */
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
+  background: var(--ds-mapped-surface-default);
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  /* Reserve 4px on the right so selected border never causes layout shift */
+  border: none;
+  border-right: 4px solid transparent;
+}
+
+.item:hover:not(.selected):not(:disabled) {
+  background: var(--ds-mapped-surface-action-hover-light);
+  border-right: 1px solid var(--ds-mapped-border-action-hover);
+}
+
+.item:hover:not(.selected):not(:disabled) .itemText {
+  color: var(--ds-mapped-text-action-hover);
+}
+
+.item:hover:not(.selected):not(:disabled) .itemIcon {
+  color: var(--ds-mapped-icon-action-hover);
+}
+
+.item.selected {
+  border-right: 4px solid var(--ds-mapped-border-action);
+}
+
+.item.selected .itemText {
+  /* icon/action and text/action resolve to the same #001bcc — use text/action */
+  color: var(--ds-mapped-text-action);
+}
+
+.item.selected .itemIcon {
+  color: var(--ds-mapped-icon-action);
+}
+
+.item:disabled,
+.item.disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+.item:disabled .itemText,
+.item.disabled .itemText {
+  color: var(--ds-mapped-text-disabled);
+}
+
+.item:disabled .itemIcon,
+.item.disabled .itemIcon {
+  color: var(--ds-mapped-icon-disabled);
+}
+
+/* Focus ring */
+.item:focus-visible {
+  outline: 2px solid var(--ds-mapped-border-focus);
+  outline-offset: -2px;
+}
+
+/* ---- Icon slot ---- */
+
+.itemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--ds-mapped-icon-default);
+}
+
+/* ---- Label text ---- */
+
+.itemText {
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-body);
+  white-space: nowrap;
+  flex: 1;
+}
+
+/* When panel is collapsed, hide all item labels */
+.panelCollapsed .itemText {
+  display: none;
+}

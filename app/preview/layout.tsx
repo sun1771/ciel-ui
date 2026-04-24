@@ -35,8 +35,12 @@ const navLinks = [
   { href: '/preview/pagination', label: 'Pagination' },
   { href: '/preview/tab-bar', label: 'TabBar' },
   // Layout
+  { href: '/preview/ai-chat', label: 'AIChat' },
   { href: '/preview/card', label: 'Card' },
+  { href: '/preview/dialog-box', label: 'DialogBox' },
+  { href: '/preview/navigation-panel', label: 'NavigationPanel' },
   { href: '/preview/package-card', label: 'PackageCard' },
+  { href: '/preview/table', label: 'Table' },
 ]
 
 export default function PreviewLayout({ children }: { children: React.ReactNode }) {
