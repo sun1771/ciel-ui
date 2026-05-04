@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { AccordionProgressive } from '@/components/ui/navigation/AccordionProgressive'
+import { AccordionProgressive } from '@/components/navigation/AccordionProgressive'
 
 export default function AccordionProgressivePage() {
   const [expanded1, setExpanded1] = useState(false)
@@ -39,7 +39,7 @@ export default function AccordionProgressivePage() {
           marginTop: 'var(--ds-alias-spacing-xxxs)',
           fontFamily: 'monospace'
         }}>
-          import {'{'} AccordionProgressive {'}'} from &apos;@/components/ui/navigation/AccordionProgressive&apos;
+          import {'{'} AccordionProgressive {'}'} from &apos;@/components/navigation/AccordionProgressive&apos;
         </p>
       </div>
 

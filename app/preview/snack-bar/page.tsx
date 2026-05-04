@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Snackbar } from '@/components/ui/feedback/Snackbar'
+import { Snackbar } from '@/components/feedback/Snackbar'
 import { Info } from '@/design-system/icons/components/Info'
 import { Check } from '@/design-system/icons/components/Check'
 import { X } from '@/design-system/icons/components/X'
@@ -43,7 +43,7 @@ export default function SnackbarPreviewPage() {
           marginTop: 'var(--ds-alias-spacing-xxxs)',
           fontFamily: 'monospace'
         }}>
-          {`import { Snackbar } from '@/components/ui/feedback/Snackbar'`}
+          {`import { Snackbar } from '@/components/feedback/Snackbar'`}
         </p>
       </div>
 

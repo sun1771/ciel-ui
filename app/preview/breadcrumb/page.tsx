@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Breadcrumb } from '@/components/ui/navigation/Breadcrumb'
+import { Breadcrumb } from '@/components/navigation/Breadcrumb'
 import { MapPin } from '@/icons'
 
 export default function BreadcrumbPreview() {
@@ -44,7 +44,7 @@ export default function BreadcrumbPreview() {
             fontFamily: 'monospace',
           }}
         >
-          {`import { Breadcrumb } from '@/components/ui/navigation/Breadcrumb'`}
+          {`import { Breadcrumb } from '@/components/navigation/Breadcrumb'`}
         </p>
       </div>
 

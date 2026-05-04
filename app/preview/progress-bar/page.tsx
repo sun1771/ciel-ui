@@ -1,7 +1,7 @@
 'use client'
 
-import { ProgressBar } from '@/components/ui/feedback/ProgressBar'
-import { ProgressCircle } from '@/components/ui/feedback/ProgressBar'
+import { ProgressBar } from '@/components/feedback/ProgressBar'
+import { ProgressCircle } from '@/components/feedback/ProgressBar'
 
 export default function ProgressBarPreviewPage() {
   return (
@@ -36,7 +36,7 @@ export default function ProgressBarPreviewPage() {
           marginTop: 'var(--ds-alias-spacing-xxxs)',
           fontFamily: 'monospace',
         }}>
-          {'import { ProgressBar, ProgressCircle } from \'@/components/ui/feedback/ProgressBar\''}
+          {'import { ProgressBar, ProgressCircle } from \'@/components/feedback/ProgressBar\''}
         </p>
       </div>
 

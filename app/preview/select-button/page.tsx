@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { SelectButton } from '@/components/ui/SelectButton'
+import { SelectButton } from '@/components/primitives/SelectButton'
 
 const sectionStyle: React.CSSProperties = {
   marginBottom: '48px',
@@ -96,7 +96,7 @@ export default function SelectButtonPreview() {
           Figma: PRIMITIVES / Select Button — node 1748:7209
         </p>
         <p style={{ fontSize: '12px', color: 'var(--ds-mapped-text-placeholder)', marginTop: '4px', fontFamily: 'monospace' }}>
-          {`import { SelectButton } from '@/components/ui/SelectButton'`}
+          {`import { SelectButton } from '@/components/primitives/SelectButton'`}
         </p>
       </div>
 

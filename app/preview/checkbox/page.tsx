@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Checkbox } from '@/components/ui/Checkbox'
+import { Checkbox } from '@/components/primitives/Checkbox'
 
 const sectionStyle: React.CSSProperties = {
   marginBottom: '48px',
@@ -89,7 +89,7 @@ export default function CheckboxPreview() {
           Figma: PRIMITIVES / Checkbox — nodes 307:1445, 307:1536
         </p>
         <p style={{ fontSize: '12px', color: 'var(--ds-mapped-text-placeholder)', marginTop: '4px', fontFamily: 'monospace' }}>
-          {`import { Checkbox } from '@/components/ui/Checkbox'`}
+          {`import { Checkbox } from '@/components/primitives/Checkbox'`}
         </p>
       </div>
 

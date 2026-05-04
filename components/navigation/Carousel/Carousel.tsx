@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Pagination } from '@/components/ui/navigation/Pagination'
+import { Pagination } from '@/components/navigation/Pagination'
 import { cn } from '@/lib/utils'
 import { CarouselItem } from './CarouselItem'
 import type { CarouselProps } from './types'

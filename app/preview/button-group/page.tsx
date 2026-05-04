@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { ButtonGroup, ButtonGroupItem } from '@/components/ui/navigation/ButtonGroup'
+import { ButtonGroup, ButtonGroupItem } from '@/components/navigation/ButtonGroup'
 import { Info } from '@/icons'
 import { Calendar } from '@/icons'
 import { MapPin } from '@/icons'
@@ -42,7 +42,7 @@ export default function ButtonGroupPreviewPage() {
           marginTop: '4px',
           fontFamily: 'monospace',
         }}>
-          import &#123; ButtonGroup, ButtonGroupItem &#125; from &apos;@/components/ui/navigation/ButtonGroup&apos;
+          import &#123; ButtonGroup, ButtonGroupItem &#125; from &apos;@/components/navigation/ButtonGroup&apos;
         </p>
       </div>
 

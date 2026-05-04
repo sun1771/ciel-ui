@@ -1,6 +1,6 @@
 'use client'
 
-import { Loader } from '@/components/ui/feedback/Loader'
+import { Loader } from '@/components/feedback/Loader'
 
 export default function LoaderPreviewPage() {
   return (
@@ -37,7 +37,7 @@ export default function LoaderPreviewPage() {
           marginTop: 'var(--ds-alias-spacing-xxxs)',
           marginBottom: 0,
         }}>
-          {'import { Loader } from \'@/components/ui/feedback/Loader\''}
+          {'import { Loader } from \'@/components/feedback/Loader\''}
         </p>
       </div>
 

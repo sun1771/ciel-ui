@@ -2,8 +2,8 @@
 
 import React, { useId } from 'react'
 import { cn } from '@/lib/utils'
-import { Label } from '@/components/ui/Label'
-import { Field } from '@/components/ui/Field'
+import { Label } from '@/components/primitives/Label'
+import { Field } from '@/components/primitives/Field'
 import type { InputProps } from './types'
 import styles from './Input.module.css'
 

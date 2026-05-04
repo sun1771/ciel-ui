@@ -3,7 +3,7 @@
 import React from 'react'
 import { cn } from '@/lib/utils'
 import { Mic, Pause, ArrowUp } from '@/icons'
-import { Tag } from '@/components/ui/Tag'
+import { Tag } from '@/components/primitives/Tag'
 import type { AIChatProps, AIChatStatus } from './types'
 import styles from './AIChat.module.css'
 

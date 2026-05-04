@@ -1,8 +1,8 @@
 'use client'
 
 import React from 'react'
-import { Chip } from '@/components/ui/Chip'
-import type { ChipColor } from '@/components/ui/Chip'
+import { Chip } from '@/components/primitives/Chip'
+import type { ChipColor } from '@/components/primitives/Chip'
 import { Award } from '@/icons'
 
 const colors: ChipColor[] = ['brand', 'blue', 'green', 'orange', 'red']
@@ -87,7 +87,7 @@ export default function ChipPreviewPage() {
           fontFamily: 'monospace',
           marginBottom: 0
         }}>
-          import &#123; Chip &#125; from &apos;@/components/ui/Chip&apos;
+          import &#123; Chip &#125; from &apos;@/components/primitives/Chip&apos;
         </p>
       </div>
 

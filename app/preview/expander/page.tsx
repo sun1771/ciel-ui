@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Expander } from '@/components/ui/navigation/Expander'
+import { Expander } from '@/components/navigation/Expander'
 
 export default function ExpanderPreviewPage() {
   const [expanded1, setExpanded1] = useState(false)
@@ -39,7 +39,7 @@ export default function ExpanderPreviewPage() {
           marginTop: 'var(--ds-alias-spacing-xxs)',
           fontFamily: 'monospace'
         }}>
-          {'import { Expander } from \'@/components/ui/navigation/Expander\''}
+          {'import { Expander } from \'@/components/navigation/Expander\''}
         </p>
       </div>
 

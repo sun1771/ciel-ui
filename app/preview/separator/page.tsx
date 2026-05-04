@@ -1,6 +1,6 @@
 'use client'
 
-import { Separator } from '@/components/ui/Separator'
+import { Separator } from '@/components/primitives/Separator'
 
 export default function SeparatorPreview() {
   return (
@@ -33,7 +33,7 @@ export default function SeparatorPreview() {
           marginTop: 'var(--ds-alias-spacing-xxs)',
           fontFamily: 'monospace',
         }}>
-          {'import { Separator } from \'@/components/ui/Separator\''}
+          {'import { Separator } from \'@/components/primitives/Separator\''}
         </p>
       </div>
 

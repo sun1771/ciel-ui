@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Tag } from '@/components/ui/Tag'
+import { Tag } from '@/components/primitives/Tag'
 
 export default function TagPreviewPage() {
   const [dismissed, setDismissed] = useState<Record<string, boolean>>({})
@@ -42,7 +42,7 @@ export default function TagPreviewPage() {
           fontFamily: 'monospace',
           marginBottom: 0
         }}>
-          import &#123; Tag &#125; from &apos;@/components/ui/Tag&apos;
+          import &#123; Tag &#125; from &apos;@/components/primitives/Tag&apos;
         </p>
       </div>
 

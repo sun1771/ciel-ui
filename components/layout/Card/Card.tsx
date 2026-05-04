@@ -2,8 +2,8 @@
 
 import React from 'react'
 import { cn } from '@/lib/utils'
-import { CarouselItem } from '@/components/ui/navigation/Carousel'
-import { Pagination } from '@/components/ui/navigation/Pagination'
+import { CarouselItem } from '@/components/navigation/Carousel'
+import { Pagination } from '@/components/navigation/Pagination'
 import styles from './Card.module.css'
 import type { CardProps } from './types'
 

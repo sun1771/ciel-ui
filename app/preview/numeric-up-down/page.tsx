@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { NumericUpDown } from '@/components/ui/NumericUpDown'
+import { NumericUpDown } from '@/components/primitives/NumericUpDown'
 
 export default function NumericUpDownPreviewPage() {
   const [value1, setValue1] = useState(1)
@@ -56,7 +56,7 @@ export default function NumericUpDownPreviewPage() {
             fontFamily: 'monospace',
           }}
         >
-          {`import { NumericUpDown } from '@/components/ui/NumericUpDown'`}
+          {`import { NumericUpDown } from '@/components/primitives/NumericUpDown'`}
         </p>
       </div>
 

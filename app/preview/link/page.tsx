@@ -1,6 +1,6 @@
 'use client'
 
-import { Link } from '@/components/ui/Link'
+import { Link } from '@/components/primitives/Link'
 import { ArrowRight } from '@/icons'
 import { Info } from '@/icons'
 
@@ -35,7 +35,7 @@ export default function LinkPreviewPage() {
           marginTop: 'var(--ds-alias-spacing-xxxs)',
           fontFamily: 'monospace'
         }}>
-          import &#123; Link &#125; from &apos;@/components/ui/Link&apos;
+          import &#123; Link &#125; from &apos;@/components/primitives/Link&apos;
         </p>
       </div>
 

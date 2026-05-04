@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Menu, MenuItem } from '@/components/ui/Menu'
+import { Menu, MenuItem } from '@/components/primitives/Menu'
 import { ArrowRight } from '@/design-system/icons/components/ArrowRight'
 import { MapPin } from '@/design-system/icons/components/MapPin'
 import { Settings } from '@/design-system/icons/components/Settings'
@@ -108,7 +108,7 @@ export default function MenuPreviewPage() {
           Figma: PRIMITIVES / Menu — nodes 282:1143 (.menuitem) / 1748:4388 (Menu)
         </p>
         <p style={monoStyle}>
-          import &#123; Menu, MenuItem &#125; from &apos;@/components/ui/Menu&apos;
+          import &#123; Menu, MenuItem &#125; from &apos;@/components/primitives/Menu&apos;
         </p>
       </div>
 

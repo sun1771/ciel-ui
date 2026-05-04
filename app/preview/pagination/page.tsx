@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Pagination } from '@/components/ui/navigation/Pagination'
+import { Pagination } from '@/components/navigation/Pagination'
 
 export default function PaginationPreviewPage() {
   const [activePage3, setActivePage3] = useState(1)
@@ -38,7 +38,7 @@ export default function PaginationPreviewPage() {
           marginTop: 'var(--ds-alias-spacing-xxxs)',
           fontFamily: 'monospace'
         }}>
-          {`import { Pagination } from '@/components/ui/navigation/Pagination'`}
+          {`import { Pagination } from '@/components/navigation/Pagination'`}
         </p>
       </div>
 

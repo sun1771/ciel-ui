@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Label } from '@/components/ui/Label'
+import { Label } from '@/components/primitives/Label'
 import { Info } from '@/design-system/icons/components/Info'
 
 /* ─── Shared scaffolding styles ─────────────────────────────────────────────── */
@@ -98,7 +98,7 @@ export default function LabelPreviewPage() {
         <h1 style={h1Style}>Label</h1>
         <p style={subtitleStyle}>Figma: PRIMITIVES / Label — node 56:186</p>
         <p style={monoStyle}>
-          {`import { Label } from '@/components/ui/Label'`}
+          {`import { Label } from '@/components/primitives/Label'`}
         </p>
       </div>
 

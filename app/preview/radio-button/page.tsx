@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { RadioButton } from '@/components/ui/RadioButton'
+import { RadioButton } from '@/components/primitives/RadioButton'
 
 const sectionStyle: React.CSSProperties = {
   marginBottom: '48px',
@@ -128,7 +128,7 @@ export default function RadioButtonPreview() {
             fontFamily: 'monospace',
           }}
         >
-          {'import { RadioButton } from \'@/components/ui/RadioButton\''}
+          {'import { RadioButton } from \'@/components/primitives/RadioButton\''}
         </p>
       </div>
 

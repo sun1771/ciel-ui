@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { SearchBox } from '@/components/ui/SearchBox'
+import { SearchBox } from '@/components/primitives/SearchBox'
 import { MapPin } from '@/icons'
 
 function Label({ children }: { children: React.ReactNode }) {
@@ -149,7 +149,7 @@ export default function SearchBoxPreviewPage() {
           Figma: PRIMITIVES / Search Box — node 1360:1829
         </p>
         <p style={{ fontFamily: 'monospace', fontSize: 'var(--ds-typography-body-sm-font-size)', color: 'var(--ds-mapped-text-disabled)', marginTop: 'var(--ds-alias-spacing-xxs)', marginBottom: 0 }}>
-          {`import { SearchBox } from '@/components/ui/SearchBox'`}
+          {`import { SearchBox } from '@/components/primitives/SearchBox'`}
         </p>
       </div>
 

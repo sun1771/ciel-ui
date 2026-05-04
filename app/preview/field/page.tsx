@@ -1,9 +1,9 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Field } from '@/components/ui/Field'
-import { Input } from '@/components/ui/Input'
-import { Label } from '@/components/ui/Label'
+import { Field } from '@/components/primitives/Field'
+import { Input } from '@/components/primitives/Input'
+import { Label } from '@/components/primitives/Label'
 
 export default function FieldPreviewPage() {
   const [value1, setValue1] = useState('')
@@ -72,7 +72,7 @@ export default function FieldPreviewPage() {
           Figma: PRIMITIVES / Field (63:939) · PRIMITIVES / Input (165:1110)
         </p>
         <p style={{ fontSize: '12px', color: 'var(--ds-mapped-text-disabled)', marginTop: '4px', fontFamily: 'monospace' }}>
-          {'import { Field, Input } from \'@/components/ui/Field\''}
+          {'import { Field, Input } from \'@/components/primitives/Field\''}
         </p>
       </div>
 

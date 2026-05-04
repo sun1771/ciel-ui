@@ -1,10 +1,10 @@
 'use client'
 
-import { Button } from '@/components/ui/Button'
-import { ButtonVertical } from '@/components/ui/Button'
-import { ButtonIcon } from '@/components/ui/Button'
+import { Button } from '@/components/primitives/Button'
+import { ButtonVertical } from '@/components/primitives/Button'
+import { ButtonIcon } from '@/components/primitives/Button'
 import { Search, MapPin, Plus } from '@/icons'
-import type { ButtonVariant, ButtonSize } from '@/components/ui/Button'
+import type { ButtonVariant, ButtonSize } from '@/components/primitives/Button'
 
 const variants: ButtonVariant[] = ['default', 'outline', 'transparent']
 const sizes: ButtonSize[] = ['lg', 'sm']

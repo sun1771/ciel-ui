@@ -1,6 +1,6 @@
 'use client'
 
-import { Avatar } from '@/components/ui/Avatar'
+import { Avatar } from '@/components/primitives/Avatar'
 
 export default function AvatarPreviewPage() {
   const sampleImage = 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=128&h=128&fit=crop&crop=face'
@@ -44,7 +44,7 @@ export default function AvatarPreviewPage() {
             marginTop: 'var(--ds-alias-spacing-xxs)',
           }}
         >
-          {`import { Avatar } from '@/components/ui/Avatar'`}
+          {`import { Avatar } from '@/components/primitives/Avatar'`}
         </p>
       </div>
 

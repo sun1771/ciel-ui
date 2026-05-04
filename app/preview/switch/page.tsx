@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Switch } from '@/components/ui/Switch'
+import { Switch } from '@/components/primitives/Switch'
 
 export default function SwitchPreview() {
   const [checked1, setChecked1] = useState(false)
@@ -50,7 +50,7 @@ export default function SwitchPreview() {
             fontFamily: 'monospace',
           }}
         >
-          {'import { Switch } from \'@/components/ui/Switch\''}
+          {'import { Switch } from \'@/components/primitives/Switch\''}
         </p>
       </div>
 

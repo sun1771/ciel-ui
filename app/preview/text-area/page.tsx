@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { TextArea } from '@/components/ui/TextArea'
+import { TextArea } from '@/components/primitives/TextArea'
 import { Info } from '@/icons'
 
 export default function TextAreaPreviewPage() {
@@ -54,7 +54,7 @@ export default function TextAreaPreviewPage() {
           Figma: PRIMITIVES / Text Area (.textarea 317:206 · Text Area 318:1216)
         </p>
         <p style={{ fontSize: '12px', color: 'var(--ds-mapped-text-disabled)', marginTop: '4px', fontFamily: 'monospace' }}>
-          {"import { TextArea } from '@/components/ui/TextArea'"}
+          {"import { TextArea } from '@/components/primitives/TextArea'"}
         </p>
       </div>
 

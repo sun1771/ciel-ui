@@ -1,6 +1,6 @@
 'use client'
 
-import { Badge } from '@/components/ui/Badge'
+import { Badge } from '@/components/primitives/Badge'
 
 export default function BadgePreviewPage() {
   return (
@@ -34,7 +34,7 @@ export default function BadgePreviewPage() {
           marginTop: '4px',
           fontFamily: 'monospace',
         }}>
-          import &#123; Badge &#125; from &apos;@/components/ui/Badge&apos;
+          import &#123; Badge &#125; from &apos;@/components/primitives/Badge&apos;
         </p>
       </div>
 

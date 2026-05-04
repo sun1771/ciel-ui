@@ -4,7 +4,7 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 import { Minus } from '@/design-system/icons/components/Minus'
 import { Plus } from '@/design-system/icons/components/Plus'
-import { Separator } from '@/components/ui/Separator'
+import { Separator } from '@/components/primitives/Separator'
 import type { TravelerPanelProps, FieldPickerTravelerCounts } from './types'
 import styles from './FieldPicker.module.css'
 

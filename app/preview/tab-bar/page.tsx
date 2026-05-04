@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { TabBar, TabItem } from '@/components/ui/navigation/TabBar'
+import { TabBar, TabItem } from '@/components/navigation/TabBar'
 import { Calendar, MapPin, Bed, Users, Info } from '@/icons'
 
 export default function TabBarPreviewPage() {
@@ -47,7 +47,7 @@ export default function TabBarPreviewPage() {
           marginTop: 'var(--ds-alias-spacing-xxs)',
           fontFamily: 'monospace'
         }}>
-          {`import { TabBar, TabItem } from '@/components/ui/navigation/TabBar'`}
+          {`import { TabBar, TabItem } from '@/components/navigation/TabBar'`}
         </p>
       </div>
 

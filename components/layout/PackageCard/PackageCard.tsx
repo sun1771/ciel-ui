@@ -1,5 +1,7 @@
 import React from 'react'
-import { ChevronLeft, ChevronRight, TripOnChatIcon } from '@/icons'
+import { TripOnChatIcon } from '@/icons'
+import { ButtonIcon } from '@/components/primitives/Button'
+import { CarouselItem } from '@/components/navigation/Carousel'
 import { cn } from '@/lib/utils'
 import styles from './PackageCard.module.css'
 import type { PackageCardProps } from './types'
@@ -40,26 +42,24 @@ export const PackageCard = React.forwardRef<HTMLDivElement, PackageCardProps>(
           <span className={styles.heading}>{heading ?? ''}</span>
 
           {/* TripOn AI action button */}
-          <button
-            type="button"
-            className={styles.actionBtn}
+          <ButtonIcon
+            icon={<TripOnChatIcon size={16} />}
+            label="TripOn AI action"
             onClick={onAction}
-            aria-label="TripOn AI action"
-          >
-            <TripOnChatIcon size={16} />
-          </button>
+            variant="transparent"
+            size="sm"
+            shape="default"
+          />
 
           {/* Navigation group */}
           <div className={styles.nav} role="group" aria-label="Page navigation">
-            <button
-              type="button"
-              className={styles.navBtn}
-              onClick={onPrevPage}
+            <CarouselItem
+              direction="left"
+              size="sm"
+              label="Previous page"
               disabled={isPrevDisabled}
-              aria-label="Previous page"
-            >
-              <ChevronLeft size={16} />
-            </button>
+              onClick={onPrevPage}
+            />
 
             {variant === 'itinerary' && (
               <span className={styles.dayLabel} aria-live="polite">
@@ -67,15 +67,13 @@ export const PackageCard = React.forwardRef<HTMLDivElement, PackageCardProps>(
               </span>
             )}
 
-            <button
-              type="button"
-              className={styles.navBtn}
-              onClick={onNextPage}
+            <CarouselItem
+              direction="right"
+              size="sm"
+              label="Next page"
               disabled={isNextDisabled}
-              aria-label="Next page"
-            >
-              <ChevronRight size={16} />
-            </button>
+              onClick={onNextPage}
+            />
           </div>
         </div>
 

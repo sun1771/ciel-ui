@@ -5,7 +5,7 @@ import {
   FieldPicker,
   FieldPickerDateRange,
   FieldPickerTravelerCounts,
-} from '@/components/ui/FieldPicker'
+} from '@/components/primitives/FieldPicker'
 
 const defaultTravelers: FieldPickerTravelerCounts = {
   adults: 2,
@@ -75,7 +75,7 @@ export default function FieldPickerPreviewPage() {
           marginTop: '4px',
           fontFamily: 'monospace',
         }}>
-          import &#123; FieldPicker &#125; from &apos;@/components/ui/FieldPicker&apos;
+          import &#123; FieldPicker &#125; from &apos;@/components/primitives/FieldPicker&apos;
         </p>
       </div>
 

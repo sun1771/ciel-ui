@@ -1,7 +1,7 @@
 'use client'
 
-import { Carousel } from '@/components/ui/navigation/Carousel'
-import { CarouselItem } from '@/components/ui/navigation/Carousel'
+import { Carousel } from '@/components/navigation/Carousel'
+import { CarouselItem } from '@/components/navigation/Carousel'
 
 export default function CarouselPreviewPage() {
   return (
@@ -36,7 +36,7 @@ export default function CarouselPreviewPage() {
           marginTop: 'var(--ds-alias-spacing-xxs)',
           fontFamily: 'monospace',
         }}>
-          {'import { Carousel, CarouselItem } from \'@/components/ui/navigation/Carousel\''}
+          {'import { Carousel, CarouselItem } from \'@/components/navigation/Carousel\''}
         </p>
       </div>
 

@@ -2,7 +2,7 @@
 
 import React, { useId } from 'react'
 import { cn } from '@/lib/utils'
-import { Label } from '@/components/ui/Label'
+import { Label } from '@/components/primitives/Label'
 import type { TextAreaProps } from './types'
 import styles from './TextArea.module.css'
 

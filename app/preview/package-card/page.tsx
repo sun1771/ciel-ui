@@ -184,28 +184,22 @@ export default function PackageCardPreviewPage() {
           fontSize: 'var(--ds-typography-body-sm-font-size)',
           color: 'var(--ds-mapped-text-body)'
         }}>
-          <strong>Tokens used:</strong>
+          <strong>Tokens used (PackageCard.module.css):</strong>
           <ul style={{ marginTop: '8px', paddingLeft: '16px', lineHeight: '1.8' }}>
             <li>--ds-mapped-surface-default — card background</li>
-            <li>--ds-mapped-surface-default-transparent — nav button bg</li>
-            <li>--ds-mapped-surface-action-hover-light — hover bg</li>
             <li>--ds-mapped-border-default — card border</li>
-            <li>--ds-mapped-border-focus — focus ring</li>
             <li>--ds-mapped-text-heading — heading + day label</li>
-            <li>--ds-mapped-icon-default — nav icon (active)</li>
-            <li>--ds-mapped-icon-disabled — nav icon (disabled)</li>
-            <li>--ds-alias-border-radius-lg — card + action btn radius</li>
-            <li>--ds-alias-border-radius-round — nav button radius</li>
+            <li>--ds-alias-border-radius-lg — card corner radius</li>
             <li>--ds-alias-border-width-sm — card border (1px)</li>
-            <li>--ds-alias-border-width-md — focus ring (2px)</li>
             <li>--ds-alias-spacing-sm — header/content vertical padding</li>
             <li>--ds-alias-spacing-md — horizontal padding + header gap</li>
-            <li>--ds-alias-spacing-xs — nav button gap</li>
-            <li>--ds-alias-spacing-xxs — nav button padding</li>
-            <li>--ds-alias-spacing-lg — nav button size (24px)</li>
+            <li>--ds-alias-spacing-xs — nav group gap</li>
             <li>--ds-typography-heading-h8-* — heading typography</li>
             <li>--ds-typography-body-md-* — day label typography</li>
           </ul>
+          <p style={{ marginTop: '8px', fontSize: 'inherit' }}>
+            <strong>Composed from:</strong> ButtonIcon (action btn tokens via Button.module.css) + CarouselItem (nav btn tokens via Carousel.module.css)
+          </p>
         </div>
       </section>
     </div>

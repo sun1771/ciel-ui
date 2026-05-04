@@ -39,29 +39,6 @@
   text-overflow: ellipsis;
 }
 
-/* TripOn Chat Icon action button */
-.actionBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--ds-alias-spacing-xxs);
-  border-radius: var(--ds-alias-border-radius-lg);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  flex-shrink: 0;
-  color: var(--ds-mapped-icon-default);
-}
-
-.actionBtn:hover {
-  background-color: var(--ds-mapped-surface-action-hover-light);
-}
-
-.actionBtn:focus-visible {
-  outline: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
-  outline-offset: 2px;
-}
-
 /* Navigation group (prev/next) */
 .nav {
   display: flex;
@@ -78,38 +55,6 @@
   line-height: var(--ds-typography-body-md-line-height);
   color: var(--ds-mapped-text-heading);
   white-space: nowrap;
-}
-
-/* Round nav button — 24px circle, transparent glassmorphism */
-/* TODO: no dedicated 24px dimension token — using --ds-alias-spacing-lg (24px) */
-.navBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--ds-alias-spacing-lg);
-  height: var(--ds-alias-spacing-lg);
-  padding: var(--ds-alias-spacing-xxs);
-  border-radius: var(--ds-alias-border-radius-round);
-  background-color: var(--ds-mapped-surface-default-transparent);
-  border: none;
-  cursor: pointer;
-  flex-shrink: 0;
-  color: var(--ds-mapped-icon-default);
-  overflow: hidden;
-}
-
-.navBtn:disabled {
-  color: var(--ds-mapped-icon-disabled);
-  cursor: default;
-}
-
-.navBtn:hover:not(:disabled) {
-  background-color: var(--ds-mapped-surface-action-hover-light);
-}
-
-.navBtn:focus-visible {
-  outline: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
-  outline-offset: 2px;
 }
 
 /* Content area — children slot */
