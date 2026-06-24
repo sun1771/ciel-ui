@@ -72,3 +72,22 @@ export interface ButtonIconProps
   /** Border radius shape. 'round' produces a pill/circle shape. Default: 'default'. */
   shape?: ButtonShape
 }
+
+/**
+ * Props for the icon-only ButtonIconSwitching.
+ * Same affordance as ButtonIcon (transparent base) but the displayed icon
+ * swaps on hover/focus — e.g. a collapsed nav logo that reveals an expand
+ * arrow on hover, combining two controls into one.
+ */
+export interface ButtonIconSwitchingProps
+  extends ButtonBaseProps,
+    React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Required — becomes the button's aria-label. Never omit. */
+  label: string
+  /** Icon shown at rest (e.g. the app logo). Recommended sizes: 16 (sm), 20 (lg). */
+  icon: React.ReactNode
+  /** Icon revealed on hover/focus (e.g. an expand arrow). Match `icon`'s size. */
+  hoverIcon: React.ReactNode
+  /** Border radius shape. 'round' produces a pill/circle shape. Default: 'default'. */
+  shape?: ButtonShape
+}

@@ -3,7 +3,8 @@
 import { Button } from '@/components/primitives/Button'
 import { ButtonVertical } from '@/components/primitives/Button'
 import { ButtonIcon } from '@/components/primitives/Button'
-import { Search, MapPin, Plus } from '@/icons'
+import { ButtonIconSwitching } from '@/components/primitives/Button'
+import { Search, MapPin, Plus, ArrowRight, Expand, TripOnChatIcon } from '@/icons'
 import type { ButtonVariant, ButtonSize } from '@/components/primitives/Button'
 
 const variants: ButtonVariant[] = ['default', 'outline', 'transparent']
@@ -353,6 +354,94 @@ export default function ButtonsPreviewPage() {
         <p style={tokenCalloutStyle}>
           Tokens: background uses <code>var(--ds-mapped-surface-action)</code>,
           icon color uses <code>var(--ds-mapped-icon-on-action)</code>
+        </p>
+      </section>
+
+      {/* ─── SECTION 4: ButtonIconSwitching ────────────────────────────────── */}
+      <section style={sectionStyle}>
+        <h2 style={headingStyle}>Button Icon Switching</h2>
+
+        <p style={{ ...tokenCalloutStyle, marginTop: 0, marginBottom: 'var(--ds-alias-spacing-md)' }}>
+          Hover (or keyboard-focus) each button — the icon swaps from{' '}
+          <code>icon</code> to <code>hoverIcon</code>. Built on the transparent
+          ButtonIcon base.
+        </p>
+
+        {/* Primary use case: logo → expand */}
+        <h3 style={subHeadingStyle}>Use case: collapsed nav logo → expand</h3>
+        <div style={rowStyle}>
+          <div style={labelStyle}>
+            <ButtonIconSwitching
+              size="lg"
+              label="Expand navigation"
+              icon={<TripOnChatIcon size={20} />}
+              hoverIcon={<Expand size={20} />}
+            />
+            <code style={codeStyle}>logo → Expand</code>
+          </div>
+          <div style={labelStyle}>
+            <ButtonIconSwitching
+              size="lg"
+              label="Open"
+              icon={<TripOnChatIcon size={20} />}
+              hoverIcon={<ArrowRight size={20} />}
+            />
+            <code style={codeStyle}>logo → ArrowRight (Figma)</code>
+          </div>
+        </div>
+
+        {/* Sizes */}
+        <h3 style={subHeadingStyle}>Sizes</h3>
+        <div style={rowStyle}>
+          <div style={labelStyle}>
+            <ButtonIconSwitching
+              size="sm"
+              label="Open — sm"
+              icon={<TripOnChatIcon size={16} />}
+              hoverIcon={<ArrowRight size={16} />}
+            />
+            <code style={codeStyle}>size="sm" · 16px icons</code>
+          </div>
+          <div style={labelStyle}>
+            <ButtonIconSwitching
+              size="lg"
+              label="Open — lg"
+              icon={<TripOnChatIcon size={20} />}
+              hoverIcon={<ArrowRight size={20} />}
+            />
+            <code style={codeStyle}>size="lg" · 20px icons</code>
+          </div>
+          <div style={labelStyle}>
+            <ButtonIconSwitching
+              size="lg"
+              shape="round"
+              label="Open — round"
+              icon={<TripOnChatIcon size={20} />}
+              hoverIcon={<ArrowRight size={20} />}
+            />
+            <code style={codeStyle}>shape="round"</code>
+          </div>
+        </div>
+
+        {/* States */}
+        <h3 style={subHeadingStyle}>States</h3>
+        <div style={rowStyle}>
+          <div style={labelStyle}>
+            <ButtonIconSwitching
+              size="lg"
+              disabled
+              label="Open — disabled"
+              icon={<TripOnChatIcon size={20} />}
+              hoverIcon={<ArrowRight size={20} />}
+            />
+            <code style={codeStyle}>disabled (no swap)</code>
+          </div>
+        </div>
+
+        <p style={tokenCalloutStyle}>
+          Both icons are rendered and stacked in one grid cell; the swap is
+          CSS-driven via <code>:hover</code> / <code>:focus-visible</code> with an
+          opacity crossfade — no layout shift, no JS state.
         </p>
       </section>
     </div>

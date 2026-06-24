@@ -249,3 +249,35 @@
 /* ─── Icon color inheritance by variant ─────────────────────────────────────── */
 /* Icons inherit currentColor from the button. The text color rules above
    drive icon color automatically — no extra rules needed. */
+
+/* ─── ButtonIconSwitching ────────────────────────────────────────────────────── */
+/* Two icons stacked in one grid cell; default shown at rest, swapped to the
+   hover icon on :hover / :focus-visible. Visibility never affects layout. */
+
+.switchIconWrap {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.switchIcon {
+  grid-area: 1 / 1;
+  display: inline-flex;
+  color: inherit;
+  transition: opacity 150ms ease;
+}
+
+.switchIconHover {
+  opacity: 0;
+}
+
+.base:hover:not(:disabled):not(.loading) .switchIconDefault,
+.base:focus-visible:not(:disabled):not(.loading) .switchIconDefault {
+  opacity: 0;
+}
+
+.base:hover:not(:disabled):not(.loading) .switchIconHover,
+.base:focus-visible:not(:disabled):not(.loading) .switchIconHover {
+  opacity: 1;
+}
