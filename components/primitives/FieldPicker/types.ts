@@ -36,6 +36,7 @@ export type FieldPickerTripLength =
   | '2-3 nights'
   | '4-5 nights'
   | 'week'
+  | '2 week'
   | 'month'
 
 /**

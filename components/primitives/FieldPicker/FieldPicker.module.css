@@ -65,6 +65,9 @@
   position: absolute;
   top: calc(100% + var(--ds-alias-spacing-xxs));
   left: 0;
+  /* Size to the panel's own content (calendar ~604px / traveler 260px) instead
+     of being shrink-to-fit-capped at the trigger's width. */
+  width: max-content;
   z-index: 10;
   background: var(--ds-mapped-surface-default);
   border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
@@ -86,6 +89,25 @@
 .tabItem {
   flex-grow: 1;
   flex-basis: 0;
+}
+
+/* ── Tab panels ────────────────────────────────────────── */
+/* Both panels are stacked in one grid cell so the panel keeps a constant
+   width + height across tabs (cell sizes to the taller/wider panel). The
+   inactive panel is hidden but still occupies the cell — no layout shift. */
+.tabPanels {
+  display: grid;
+}
+
+.tabPanel {
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+}
+
+.tabPanelHidden {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 /* ── Calendar tab: months + flexibility row ────────────── */

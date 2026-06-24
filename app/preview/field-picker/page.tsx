@@ -196,7 +196,7 @@ export default function FieldPickerPreviewPage() {
 
         <div style={{ marginBottom: '24px' }}>
           <h3 style={subheading}>Interactive — uncontrolled, with onSelectionChange readout</h3>
-          <div style={{ width: '320px' }}>
+          <div style={{ width: '260px' }}>
             <FieldPicker type="date" onSelectionChange={setDateSelection} />
           </div>
           <p style={{ fontSize: '12px', color: 'var(--ds-mapped-text-body)', marginTop: '12px', fontFamily: 'monospace' }}>
@@ -273,7 +273,7 @@ export default function FieldPickerPreviewPage() {
 
         <div style={{ marginBottom: '32px' }}>
           <h3 style={subheading}>Controlled date range</h3>
-          <div style={{ width: '320px' }}>
+          <div style={{ width: '260px' }}>
             <FieldPicker
               type="date"
               startDate={dateRange.start}
@@ -289,7 +289,7 @@ export default function FieldPickerPreviewPage() {
 
         <div style={{ marginBottom: '32px' }}>
           <h3 style={subheading}>Disabled</h3>
-          <div style={{ width: '320px' }}>
+          <div style={{ width: '260px' }}>
             <FieldPicker type="date" disabled />
           </div>
         </div>

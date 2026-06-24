@@ -7,7 +7,8 @@ import { ChevronRight } from '@/design-system/icons/components/ChevronRight'
 import { Info } from '@/design-system/icons/components/Info'
 import { Calendar as CalendarIcon } from '@/design-system/icons/components/Calendar'
 import { ButtonGroup, ButtonGroupItem } from '@/components/navigation/ButtonGroup'
-import { Button, ButtonVertical, ButtonIcon } from '@/components/primitives/Button'
+import { Button, ButtonVertical } from '@/components/primitives/Button'
+import { CarouselItem } from '@/components/navigation/Carousel'
 import { Checkbox } from '@/components/primitives/Checkbox'
 import type {
   CalendarPanelProps,
@@ -32,10 +33,11 @@ export const TRIP_LENGTH_OPTIONS: readonly FieldPickerTripLength[] = [
   '2-3 nights',
   '4-5 nights',
   'week',
+  '2 week',
   'month',
 ]
 
-/** Full month names for the "When?" month picker grid + trigger label. */
+/** Full month names — used for the trigger label, e.g. "4-5 nights in June". */
 export const MONTH_NAMES = [
   'January',
   'February',
@@ -49,6 +51,22 @@ export const MONTH_NAMES = [
   'October',
   'November',
   'December',
+]
+
+/** Abbreviated month names — used for the compact "When?" month-grid cells. */
+const MONTH_ABBR = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
 ]
 
 /**
@@ -247,9 +265,19 @@ export function FieldPickerCalendar({
         </ButtonGroupItem>
       </ButtonGroup>
 
-      {/* ── Tab 1: DatePicker=Calendar ─────────────────────── */}
-      {activeTab === 'Calendar' && (
-        <div className={styles.calendarTab}>
+      {/* Both panels are always rendered, stacked in one grid cell so the panel
+          keeps a constant width + height across tabs; the inactive one is
+          hidden (no layout shift, removed from a11y + tab order). */}
+      <div className={styles.tabPanels}>
+        {/* ── Tab 1: DatePicker=Calendar ─────────────────────── */}
+        <div
+          className={cn(
+            styles.tabPanel,
+            styles.calendarTab,
+            activeTab !== 'Calendar' && styles.tabPanelHidden
+          )}
+          aria-hidden={activeTab !== 'Calendar'}
+        >
           <div className={styles.calendarMonths}>
             {/* Left month */}
             <div className={styles.calendarMonth}>
@@ -320,11 +348,16 @@ export function FieldPickerCalendar({
             ))}
           </div>
         </div>
-      )}
 
-      {/* ── Tab 2: DatePicker=Flexible ─────────────────────── */}
-      {activeTab === 'Flexible' && (
-        <div className={styles.flexibleTab}>
+        {/* ── Tab 2: DatePicker=Flexible ─────────────────────── */}
+        <div
+          className={cn(
+            styles.tabPanel,
+            styles.flexibleTab,
+            activeTab !== 'Flexible' && styles.tabPanelHidden
+          )}
+          aria-hidden={activeTab !== 'Flexible'}
+        >
           {/* "How long?" — trip length options + include-weekend checkbox */}
           <div className={styles.flexGroup}>
             <span className={styles.flexHeading}>How long?</span>
@@ -350,39 +383,37 @@ export function FieldPickerCalendar({
             </Checkbox>
           </div>
 
-          {/* "When?" — month picker: year nav (ButtonIcon) + month grid (ButtonVertical) */}
+          {/* "When?" — month picker: CarouselItem year nav + abbreviated month grid */}
           <div className={styles.flexGroup}>
             <span className={styles.flexHeading}>When?</span>
             <div className={styles.monthNav}>
-              <ButtonIcon
-                label="Previous year"
-                variant="transparent"
-                size="sm"
+              <CarouselItem
+                direction="left"
                 shape="round"
-                icon={<ChevronLeft size={16} />}
+                size="sm"
+                label="Previous year"
                 onClick={() => onYearChange(displayYear - 1)}
               />
               <span className={styles.monthNavYear} aria-live="polite" aria-atomic="true">
                 {displayYear}
               </span>
-              <ButtonIcon
-                label="Next year"
-                variant="transparent"
-                size="sm"
+              <CarouselItem
+                direction="right"
                 shape="round"
-                icon={<ChevronRight size={16} />}
+                size="sm"
+                label="Next year"
                 onClick={() => onYearChange(displayYear + 1)}
               />
             </div>
             <div className={styles.monthGrid}>
-              {MONTH_NAMES.map((month, idx) => (
+              {MONTH_ABBR.map((month, idx) => (
                 <ButtonVertical
                   key={month}
                   variant="outline"
                   size="lg"
                   iconTop={<CalendarIcon size={20} />}
-                  supportText={String(displayYear)}
                   aria-pressed={selectedMonth === idx}
+                  aria-label={MONTH_NAMES[idx]}
                   className={cn(
                     styles.monthCell,
                     selectedMonth === idx && styles.optionSelected
@@ -395,7 +426,7 @@ export function FieldPickerCalendar({
             </div>
           </div>
         </div>
-      )}
+      </div>
     </div>
   )
 }
