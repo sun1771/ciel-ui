@@ -73,31 +73,26 @@
   padding: var(--ds-alias-spacing-md);
 }
 
-/* ── Date/Flexible tab group ───────────────────────────── */
-.tabGroup {
-  display: flex;
-  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
-  border-radius: var(--ds-alias-border-radius-md);
-  overflow: hidden;
+/* ── Date/Flexible tab switcher (ButtonGroup) ──────────── */
+/* Applied to the ButtonGroup root so the segmented control spans full width. */
+.tabSwitcher {
+  width: 100%;
   margin-bottom: var(--ds-alias-spacing-md);
 }
 
-.tab {
-  flex: 1;
-  padding: var(--ds-alias-spacing-xxs) var(--ds-alias-spacing-sm);
-  background: var(--ds-mapped-surface-default);
-  border: none;
-  cursor: pointer;
-  font-family: var(--ds-typography-body-md-font-family);
-  font-weight: var(--ds-typography-body-md-font-weight);
-  font-size: var(--ds-typography-body-md-font-size);
-  line-height: var(--ds-typography-body-md-line-height);
-  color: var(--ds-mapped-text-body);
+/* Applied to each ButtonGroupItem so the two tabs share width equally
+   (mirrors Figma flex-[1_0_0]). Only sets grow/basis to avoid clashing
+   with ButtonGroupItem's own flex-shrink. */
+.tabItem {
+  flex-grow: 1;
+  flex-basis: 0;
 }
 
-.tabActive {
-  background: var(--ds-mapped-surface-action);
-  color: var(--ds-mapped-text-on-action);
+/* ── Calendar tab: months + flexibility row ────────────── */
+.calendarTab {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-md);
 }
 
 /* ── Calendar: two-month layout ────────────────────────── */
@@ -227,43 +222,71 @@
   pointer-events: none;
 }
 
-/* ── Flexibility chips ─────────────────────────────────── */
-.flexSection {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ds-alias-spacing-xs);
-}
-
-.flexTitle {
-  font-family: var(--ds-typography-body-md-font-family);
-  font-weight: var(--ds-typography-body-md-font-weight);
-  font-size: var(--ds-typography-body-md-font-size);
-  line-height: var(--ds-typography-body-md-line-height);
-  color: var(--ds-mapped-text-body);
-}
-
-.flexChips {
+/* ── Option button rows (flexibility + trip length) ────── */
+/* Wraps a horizontal row of Button components (gap 8px = Figma gap-8). */
+.optionRow {
   display: flex;
   flex-wrap: wrap;
   gap: var(--ds-alias-spacing-xs);
 }
 
-.flexChip {
-  padding: var(--ds-alias-spacing-xxs) var(--ds-alias-spacing-sm);
-  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
-  border-radius: var(--ds-alias-border-radius-lg);
-  background: var(--ds-mapped-surface-default);
-  cursor: pointer;
-  font-family: var(--ds-typography-body-md-font-family);
-  font-weight: var(--ds-typography-body-md-font-weight);
-  font-size: var(--ds-typography-body-md-font-size);
-  line-height: var(--ds-typography-body-md-line-height);
+/* Selected option (flexibility chip + month cell). Doubled selector raises
+   specificity above Button's single-class .variantOutline so the override
+   wins regardless of stylesheet source order. Border + text → action-hover
+   (#667aff border, #001499 text) per Figma selected state. */
+.optionSelected.optionSelected {
+  border-color: var(--ds-mapped-border-action-hover);
+  color: var(--ds-mapped-text-action-hover);
+}
+
+/* ── Flexible tab ──────────────────────────────────────── */
+.flexibleTab {
+  display: flex;
+  flex-direction: column;
+  /* 32px between "Stay length" and "Stay month" groups (Figma gap-32). */
+  gap: var(--ds-alias-spacing-xl);
+}
+
+.flexGroup {
+  display: flex;
+  flex-direction: column;
+  /* 16px between heading / options / checkbox (Figma gap-16). */
+  gap: var(--ds-alias-spacing-md);
+}
+
+/* "How long?" / "When?" section heading — Heading/H8, Text/body. */
+.flexHeading {
+  font-family: var(--ds-typography-heading-h8-font-family);
+  font-weight: var(--ds-typography-heading-h8-font-weight);
+  font-size: var(--ds-typography-heading-h8-font-size);
+  line-height: var(--ds-typography-heading-h8-line-height);
   color: var(--ds-mapped-text-body);
 }
 
-.flexChipSelected {
-  border-color: var(--ds-mapped-border-action-hover);
-  color: var(--ds-mapped-text-action-hover);
+/* ── Month picker ──────────────────────────────────────── */
+.monthNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.monthNavYear {
+  font-family: var(--ds-typography-heading-h8-font-family);
+  font-weight: var(--ds-typography-heading-h8-font-weight);
+  font-size: var(--ds-typography-heading-h8-font-size);
+  line-height: var(--ds-typography-heading-h8-line-height);
+  color: var(--ds-mapped-text-body);
+}
+
+.monthGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--ds-alias-spacing-xs);
+}
+
+/* ButtonVertical month cell fills its grid track (Figma flex-[1_0_0]). */
+.monthCell {
+  width: 100%;
 }
 
 /* ── Traveler panel ────────────────────────────────────── */

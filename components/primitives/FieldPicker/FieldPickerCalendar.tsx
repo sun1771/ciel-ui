@@ -4,12 +4,62 @@ import React, { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { ChevronLeft } from '@/design-system/icons/components/ChevronLeft'
 import { ChevronRight } from '@/design-system/icons/components/ChevronRight'
-import type { CalendarPanelProps, FieldPickerDateRange } from './types'
+import { Info } from '@/design-system/icons/components/Info'
+import { Calendar as CalendarIcon } from '@/design-system/icons/components/Calendar'
+import { ButtonGroup, ButtonGroupItem } from '@/components/navigation/ButtonGroup'
+import { Button, ButtonVertical, ButtonIcon } from '@/components/primitives/Button'
+import { Checkbox } from '@/components/primitives/Checkbox'
+import type {
+  CalendarPanelProps,
+  FieldPickerFlexibility,
+  FieldPickerTripLength,
+} from './types'
 import styles from './FieldPicker.module.css'
 
-type CalendarTab = 'date' | 'flexible'
+/** Tab 1 flexibility options — exact Figma `DatePicker=Calendar` labels. */
+export const FLEX_OPTIONS: readonly FieldPickerFlexibility[] = [
+  'Exact date',
+  '+- 1 day',
+  '+- 2 day',
+  '+- 3 day',
+  '+- 7 day',
+  '+- 14 day',
+]
 
-const FLEX_OPTIONS = ['Exact', '±1 day', '±2 days', '±3 days', '±1 week']
+/** Tab 2 "How long?" trip-length options — exact Figma `DatePicker=Flexible` labels. */
+export const TRIP_LENGTH_OPTIONS: readonly FieldPickerTripLength[] = [
+  '1 night',
+  '2-3 nights',
+  '4-5 nights',
+  'week',
+  'month',
+]
+
+/** Full month names for the "When?" month picker grid + trigger label. */
+export const MONTH_NAMES = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+]
+
+/**
+ * Number of ± days a flexibility option represents, or null for "Exact date".
+ * Used to render the trigger suffix, e.g. "… (+- 1)".
+ */
+export function flexibilityDays(flex: FieldPickerFlexibility): number | null {
+  if (flex === 'Exact date') return null
+  const match = flex.match(/\d+/)
+  return match ? Number(match[0]) : null
+}
 
 const DAY_LABELS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
 
@@ -115,16 +165,28 @@ function MonthGrid({
 }
 
 export function FieldPickerCalendar({
+  activeTab,
+  onTabChange,
   startDate,
   endDate,
   onDateChange,
+  flexibility,
+  onFlexibilityChange,
+  tripLength,
+  onTripLengthChange,
+  includeWeekend,
+  onIncludeWeekendChange,
+  selectedMonth,
+  displayYear,
+  onMonthSelect,
+  onYearChange,
 }: CalendarPanelProps) {
-  const now = new Date()
-  const [tab, setTab] = useState<CalendarTab>('date')
-  const [flexibility, setFlexibility] = useState('Exact')
-  const [viewYear, setViewYear] = useState(now.getFullYear())
-  const [viewMonth, setViewMonth] = useState(now.getMonth())
-  const [selectingEnd, setSelectingEnd] = useState(false)
+  // Two-month view state is pure interaction — kept local. Initialised to the
+  // selected start month (if any) so reopening lands on the chosen range.
+  const base = startDate ?? new Date()
+  const [viewYear, setViewYear] = useState(base.getFullYear())
+  const [viewMonth, setViewMonth] = useState(base.getMonth())
+  const [selectingEnd, setSelectingEnd] = useState(startDate !== null && endDate === null)
   const [hoverDate, setHoverDate] = useState<Date | null>(null)
 
   const nextYear = viewMonth === 11 ? viewYear + 1 : viewYear
@@ -165,99 +227,172 @@ export function FieldPickerCalendar({
 
   return (
     <div>
-      <div className={styles.tabGroup} role="tablist">
-        <button
-          type="button"
-          role="tab"
-          aria-selected={tab === 'date'}
-          className={cn(styles.tab, tab === 'date' && styles.tabActive)}
-          onClick={() => setTab('date')}
+      {/* Tab switcher — Figma "Button Group" (Date | Flexible, Info icon each) */}
+      <ButtonGroup className={styles.tabSwitcher} aria-label="Date picker mode">
+        <ButtonGroupItem
+          className={styles.tabItem}
+          isSelected={activeTab === 'Calendar'}
+          icon={<Info size={20} />}
+          onClick={() => onTabChange('Calendar')}
         >
           Date
-        </button>
-        <button
-          type="button"
-          role="tab"
-          aria-selected={tab === 'flexible'}
-          className={cn(styles.tab, tab === 'flexible' && styles.tabActive)}
-          onClick={() => setTab('flexible')}
+        </ButtonGroupItem>
+        <ButtonGroupItem
+          className={styles.tabItem}
+          isSelected={activeTab === 'Flexible'}
+          icon={<Info size={20} />}
+          onClick={() => onTabChange('Flexible')}
         >
           Flexible
-        </button>
-      </div>
+        </ButtonGroupItem>
+      </ButtonGroup>
 
-      <div className={styles.calendarMonths}>
-        {/* Left month */}
-        <div className={styles.calendarMonth}>
-          <div className={styles.monthHeader}>
-            <button
-              type="button"
-              aria-label="Previous month"
-              className={cn(styles.monthNavBtn, styles.monthNavPrev)}
-              onClick={navigatePrev}
-            >
-              <ChevronLeft size={16} />
-            </button>
-            <span className={styles.monthTitle}>
-              {formatMonthYear(viewYear, viewMonth)}
-            </span>
+      {/* ── Tab 1: DatePicker=Calendar ─────────────────────── */}
+      {activeTab === 'Calendar' && (
+        <div className={styles.calendarTab}>
+          <div className={styles.calendarMonths}>
+            {/* Left month */}
+            <div className={styles.calendarMonth}>
+              <div className={styles.monthHeader}>
+                <button
+                  type="button"
+                  aria-label="Previous month"
+                  className={cn(styles.monthNavBtn, styles.monthNavPrev)}
+                  onClick={navigatePrev}
+                >
+                  <ChevronLeft size={16} />
+                </button>
+                <span className={styles.monthTitle}>
+                  {formatMonthYear(viewYear, viewMonth)}
+                </span>
+              </div>
+              <MonthGrid
+                year={viewYear}
+                month={viewMonth}
+                startDate={startDate}
+                endDate={endDate}
+                hoverDate={hoverDate}
+                onDayClick={handleDayClick}
+                onDayHover={setHoverDate}
+              />
+            </div>
+
+            {/* Right month */}
+            <div className={styles.calendarMonth}>
+              <div className={styles.monthHeader}>
+                <span className={styles.monthTitle}>
+                  {formatMonthYear(nextYear, nextMonth)}
+                </span>
+                <button
+                  type="button"
+                  aria-label="Next month"
+                  className={cn(styles.monthNavBtn, styles.monthNavNext)}
+                  onClick={navigateNext}
+                >
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+              <MonthGrid
+                year={nextYear}
+                month={nextMonth}
+                startDate={startDate}
+                endDate={endDate}
+                hoverDate={hoverDate}
+                onDayClick={handleDayClick}
+                onDayHover={setHoverDate}
+              />
+            </div>
           </div>
-          <MonthGrid
-            year={viewYear}
-            month={viewMonth}
-            startDate={startDate}
-            endDate={endDate}
-            hoverDate={hoverDate}
-            onDayClick={handleDayClick}
-            onDayHover={setHoverDate}
-          />
-        </div>
 
-        {/* Right month */}
-        <div className={styles.calendarMonth}>
-          <div className={styles.monthHeader}>
-            <span className={styles.monthTitle}>
-              {formatMonthYear(nextYear, nextMonth)}
-            </span>
-            <button
-              type="button"
-              aria-label="Next month"
-              className={cn(styles.monthNavBtn, styles.monthNavNext)}
-              onClick={navigateNext}
-            >
-              <ChevronRight size={16} />
-            </button>
-          </div>
-          <MonthGrid
-            year={nextYear}
-            month={nextMonth}
-            startDate={startDate}
-            endDate={endDate}
-            hoverDate={hoverDate}
-            onDayClick={handleDayClick}
-            onDayHover={setHoverDate}
-          />
-        </div>
-      </div>
-
-      {tab === 'flexible' && (
-        <div className={styles.flexSection}>
-          <span className={styles.flexTitle}>Flexibility</span>
-          <div className={styles.flexChips}>
+          {/* Flexibility options — Button (outline); selected = action-hover */}
+          <div className={styles.optionRow}>
             {FLEX_OPTIONS.map((option) => (
-              <button
+              <Button
                 key={option}
-                type="button"
-                className={cn(
-                  styles.flexChip,
-                  flexibility === option && styles.flexChipSelected
-                )}
-                onClick={() => setFlexibility(option)}
+                variant="outline"
+                size="lg"
                 aria-pressed={flexibility === option}
+                className={cn(flexibility === option && styles.optionSelected)}
+                onClick={() => onFlexibilityChange(option)}
               >
                 {option}
-              </button>
+              </Button>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* ── Tab 2: DatePicker=Flexible ─────────────────────── */}
+      {activeTab === 'Flexible' && (
+        <div className={styles.flexibleTab}>
+          {/* "How long?" — trip length options + include-weekend checkbox */}
+          <div className={styles.flexGroup}>
+            <span className={styles.flexHeading}>How long?</span>
+            <div className={styles.optionRow}>
+              {TRIP_LENGTH_OPTIONS.map((option) => (
+                <Button
+                  key={option}
+                  variant="outline"
+                  size="lg"
+                  aria-pressed={tripLength === option}
+                  className={cn(tripLength === option && styles.optionSelected)}
+                  onClick={() => onTripLengthChange(option)}
+                >
+                  {option}
+                </Button>
+              ))}
+            </div>
+            <Checkbox
+              checked={includeWeekend}
+              onChange={(e) => onIncludeWeekendChange(e.target.checked)}
+            >
+              Include weekend
+            </Checkbox>
+          </div>
+
+          {/* "When?" — month picker: year nav (ButtonIcon) + month grid (ButtonVertical) */}
+          <div className={styles.flexGroup}>
+            <span className={styles.flexHeading}>When?</span>
+            <div className={styles.monthNav}>
+              <ButtonIcon
+                label="Previous year"
+                variant="transparent"
+                size="sm"
+                shape="round"
+                icon={<ChevronLeft size={16} />}
+                onClick={() => onYearChange(displayYear - 1)}
+              />
+              <span className={styles.monthNavYear} aria-live="polite" aria-atomic="true">
+                {displayYear}
+              </span>
+              <ButtonIcon
+                label="Next year"
+                variant="transparent"
+                size="sm"
+                shape="round"
+                icon={<ChevronRight size={16} />}
+                onClick={() => onYearChange(displayYear + 1)}
+              />
+            </div>
+            <div className={styles.monthGrid}>
+              {MONTH_NAMES.map((month, idx) => (
+                <ButtonVertical
+                  key={month}
+                  variant="outline"
+                  size="lg"
+                  iconTop={<CalendarIcon size={20} />}
+                  supportText={String(displayYear)}
+                  aria-pressed={selectedMonth === idx}
+                  className={cn(
+                    styles.monthCell,
+                    selectedMonth === idx && styles.optionSelected
+                  )}
+                  onClick={() => onMonthSelect(idx)}
+                >
+                  {month}
+                </ButtonVertical>
+              ))}
+            </div>
           </div>
         </div>
       )}

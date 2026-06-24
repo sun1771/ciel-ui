@@ -4,4 +4,8 @@ export type {
   FieldPickerType,
   FieldPickerDateRange,
   FieldPickerTravelerCounts,
+  FieldPickerDateSelection,
+  FieldPickerFlexibility,
+  FieldPickerTripLength,
+  CalendarDatePickerTab,
 } from './types'
