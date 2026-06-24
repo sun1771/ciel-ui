@@ -68,7 +68,7 @@ Visit http://localhost:3000/preview
 - Carousel — CarouselItem nav button (2 directions, 2 shapes, 2 sizes, 4 states) + Carousel container (slides, nav, pagination, disabled) — components/ui/navigation/
 - Expander — controlled accordion disclosure, 2 sizes (lg/sm), 3 states (default/hover/disabled), collapsed/expanded with chevron flip + semibold label — components/ui/navigation/
 - Pagination — dot-style page indicator, 1 status variant (disabled), interactive totalPages/page/onChange props — components/ui/navigation/
-- Card — layout container, 4 states (default/hover/selected/loading), image slot, carousel nav overlay (CarouselItem + Pagination), skeleton shimmer, children body slot — components/layout/
+- Card — travel result card, 3 types (hotel/rental car/flight) × 4 statuses (recommended/normal/loading/more) + isSelected border. Composes Chip (recommended + green chips), Button (Details/Discover more), CarouselItem + Pagination (hotel carousel), DS icons & graphics — components/layout/
 - DialogBox — modal dialog, portal rendering, focus trap, Escape key, backdrop click, heading icon slot, primary + optional secondary action buttons — components/layout/
 - PackageCard — 2 variants (default: prev/next, itinerary: prev/"Day N"/next), heading, TripOn AI action button (ButtonIcon), nav buttons (CarouselItem), children slot — components/layout/
 - NavigationPanel — 2 expand states (expanded/collapsed), NavigationMenuGroup container, NavigationMenuItem (4 states: default/hover/selected/disabled), 4px right-border selection indicator — components/layout/

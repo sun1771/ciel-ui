@@ -1,10 +1,11 @@
 /* ============================================
    Card styles
    Tokens: docs/design-system.md
-   Figma:  design-system/figma.md → Card
+   Figma:  design-system/figma.md → Card (1818:1037) + .Card Content (3455:3491)
    ============================================ */
 
-/* Base — applied to every instance */
+/* ---- Base container (Figma Card State) ---- */
+
 .card {
   background: var(--ds-mapped-surface-default);
   border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
@@ -13,39 +14,144 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  /* TODO: 230px/220px — no --ds- token for card width; Figma spec */
+  box-sizing: content-box;
+  /* TODO: 230px — no --ds- token for .Card Content width; Figma spec */
   width: 230px;
-  min-width: 220px;
 }
 
-/* Hover — CSS only, no prop needed */
+/* Hover — CSS only (Figma Card State=hover) */
 .card:hover {
   border-width: var(--ds-alias-border-width-md);
   border-color: var(--ds-mapped-border-action-hover);
 }
 
-/* Selected state */
+/* Selected (Figma Card State=selected) — border/action, no bg change */
 .selected {
   border-width: var(--ds-alias-border-width-md);
   border-color: var(--ds-mapped-border-action);
 }
 
-/* Selected+hover: keep action border, not action-hover */
 .selected:hover {
   border-color: var(--ds-mapped-border-action);
 }
 
-/* ---- Image area ---- */
+/* "more" status centers the graphic container vertically */
+.cardMore {
+  align-items: center;
+}
 
-.imageArea {
+/* ============================================
+   .Headline Item (1708:1796)
+   ============================================ */
+
+.headlineItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-xxxs);
+  padding: var(--ds-alias-spacing-sm) var(--ds-alias-spacing-sm) var(--ds-alias-spacing-none);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.headlineRow {
+  display: flex;
+  gap: var(--ds-alias-spacing-xxs);
+  align-items: flex-start;
+  width: 100%;
+  /* TODO: 24px row min-height — no --ds- token; Figma spec */
+  min-height: 24px;
+}
+
+.headline {
+  flex: 1 0 0;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--ds-typography-body-md-semibold-font-family);
+  font-weight: var(--ds-typography-body-md-semibold-font-weight);
+  font-size: var(--ds-typography-body-md-semibold-font-size);
+  line-height: var(--ds-typography-body-md-semibold-line-height);
+  color: var(--ds-mapped-text-heading);
+  word-break: break-word;
+}
+
+/* Second row — chips / rating / airline logos */
+.headlineChips {
+  display: flex;
+  gap: var(--ds-alias-spacing-xxs);
+  align-items: center;
+}
+
+/* Rental car rating (star + value), no pill background */
+.rating {
+  display: flex;
+  gap: var(--ds-alias-spacing-xxs);
+  align-items: center;
+  color: var(--ds-mapped-text-body);
+}
+
+.ratingText {
+  margin: 0;
+  font-family: var(--ds-typography-body-xsm-font-family);
+  font-weight: var(--ds-typography-body-xsm-font-weight);
+  font-size: var(--ds-typography-body-xsm-font-size);
+  line-height: var(--ds-typography-body-xsm-line-height);
+  color: var(--ds-mapped-text-body);
+  white-space: nowrap;
+}
+
+/* Flight airline logos — two overlapping round images */
+.airlineLogos {
+  display: flex;
+  align-items: center;
+  /* TODO: 24px logo height — no --ds- token; Figma spec */
+  height: 24px;
+}
+
+.airlineLogo {
   position: relative;
-  /* TODO: 102px — no --ds- token for image area height; Figma spec */
+  width: 24px;
+  height: 24px;
+  border-radius: var(--ds-alias-border-radius-round);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--ds-mapped-surface-disabled);
+}
+
+.airlineLogo:not(:first-child) {
+  /* overlap previous logo by Spacing/xs */
+  margin-left: calc(-1 * var(--ds-alias-spacing-xs));
+}
+
+.airlineLogo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============================================
+   .Image Item (3455:3325)
+   ============================================ */
+
+.imageItem {
+  position: relative;
+  /* TODO: 102px image height — no --ds- token; Figma spec */
   height: 102px;
+  width: 100%;
   flex-shrink: 0;
   overflow: hidden;
 }
 
-/* Carousel nav arrows — absolute overlay on top of image */
+.imageItem > img,
+.imageSlide,
+.imageSlide > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Carousel nav arrows — absolute overlay on the image */
 .carouselNav {
   position: absolute;
   top: 50%;
@@ -64,7 +170,7 @@
   pointer-events: auto;
 }
 
-/* Pagination dots overlay — bottom-center of image */
+/* Pagination dots — bottom-center overlay */
 .paginationOverlay {
   position: absolute;
   bottom: var(--ds-alias-spacing-xxs);
@@ -73,10 +179,140 @@
   z-index: 1;
 }
 
-/* ---- Loading skeleton ---- */
+/* ============================================
+   .Body Item (1262:2394)
+   ============================================ */
+
+.bodyItem {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* hotel body gap = Spacing/xxs */
+.bodyHotel {
+  gap: var(--ds-alias-spacing-xxs);
+}
+
+/* rental body gap = Spacing/xs */
+.bodyRental {
+  gap: var(--ds-alias-spacing-xs);
+}
+
+/* flight body = two flexible columns */
+.bodyFlight {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-alias-spacing-xs);
+  align-items: flex-start;
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bodyMetric {
+  display: flex;
+  gap: var(--ds-alias-spacing-xxs);
+  align-items: center;
+}
+
+.metricIcon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--ds-mapped-icon-default);
+}
+
+.bodyText {
+  margin: 0;
+  font-family: var(--ds-typography-body-sm-font-family);
+  font-weight: var(--ds-typography-body-sm-font-weight);
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: var(--ds-typography-body-sm-line-height);
+  color: var(--ds-mapped-text-body);
+  white-space: nowrap;
+}
+
+.flightLeg {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-xxs);
+  justify-content: center;
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+/* ============================================
+   .Price and details Item (3455:3427)
+   ============================================ */
+
+.priceItem {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-alias-spacing-xs);
+  align-items: center;
+  background: var(--ds-mapped-surface-default);
+  padding: var(--ds-alias-spacing-none) var(--ds-alias-spacing-sm) var(--ds-alias-spacing-xs);
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* "more" status centers the Discover more button */
+.priceItemMore {
+  justify-content: center;
+}
+
+.price {
+  display: flex;
+  gap: var(--ds-alias-spacing-xxxs);
+  align-items: center;
+  flex: 1 0 0;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.priceValue {
+  margin: 0;
+  font-family: var(--ds-typography-body-md-semibold-font-family);
+  font-weight: var(--ds-typography-body-md-semibold-font-weight);
+  font-size: var(--ds-typography-body-md-semibold-font-size);
+  line-height: var(--ds-typography-body-md-semibold-line-height);
+  color: var(--ds-mapped-text-heading);
+}
+
+.priceSuffix {
+  margin: 0;
+  font-family: var(--ds-typography-body-xsm-font-family);
+  font-weight: var(--ds-typography-body-xsm-font-weight);
+  font-size: var(--ds-typography-body-xsm-font-size);
+  line-height: var(--ds-typography-body-xsm-line-height);
+  color: var(--ds-mapped-text-body);
+}
+
+/* ============================================
+   Graphic Container (3465:1972) — "more" status
+   ============================================ */
+
+.graphicContainer {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ds-alias-spacing-sm);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   Loading skeleton
+   ============================================ */
 
 .skeletonImageArea {
-  /* TODO: 102px — same as imageArea, no --ds- token */
+  /* TODO: 102px — same as imageItem, no --ds- token */
   height: 102px;
   flex-shrink: 0;
   background: var(--ds-mapped-surface-disabled);

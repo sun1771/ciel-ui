@@ -3,17 +3,16 @@
 import React, { useState } from 'react'
 import { Card } from '@/components/layout/Card'
 
-/* ------------------------------------------------------------------ */
-/* Shared placeholder image element — gradient stand-in for real photo  */
-/* ------------------------------------------------------------------ */
-function PlaceholderImage({ label = 'Hotel photo' }: { label?: string }) {
+/* Gradient stand-in for a real photo */
+function PlaceholderImage({ label = 'Photo' }: { label?: string }) {
   return (
     <div
       aria-label={label}
       style={{
         width: '100%',
         height: '100%',
-        background: 'linear-gradient(135deg, var(--ds-mapped-surface-action-hover-light) 0%, var(--ds-mapped-surface-action-hover) 100%)',
+        background:
+          'linear-gradient(135deg, var(--ds-mapped-surface-action-hover-light) 0%, var(--ds-mapped-surface-action-hover) 100%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -27,121 +26,11 @@ function PlaceholderImage({ label = 'Hotel photo' }: { label?: string }) {
   )
 }
 
-/* ------------------------------------------------------------------ */
-/* Reusable sample card body content                                     */
-/* ------------------------------------------------------------------ */
-function SampleCardBody({ title = 'Grand Hyatt Tokyo', subtitle = '8.8  Cheapest', detail = '1 room, king bed', price = '$2,124.42' }: {
-  title?: string
-  subtitle?: string
-  detail?: string
-  price?: string
-}) {
-  return (
-    <>
-      {/* Headline */}
-      <div
-        style={{
-          padding: 'var(--ds-alias-spacing-sm) var(--ds-alias-spacing-sm) var(--ds-alias-spacing-none)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '2px',
-        }}
-      >
-        <p
-          style={{
-            margin: 0,
-            fontFamily: 'var(--ds-brand-font-family-body)',
-            fontWeight: 'var(--ds-brand-font-weight-semi-bold)',
-            fontSize: 'var(--ds-typography-body-md-semibold-font-size)',
-            lineHeight: 'var(--ds-typography-body-md-semibold-line-height)',
-            color: 'var(--ds-mapped-text-heading)',
-          }}
-        >
-          {title}
-        </p>
-        <p
-          style={{
-            margin: 0,
-            fontFamily: 'var(--ds-brand-font-family-body)',
-            fontWeight: 'var(--ds-brand-font-weight-regular)',
-            fontSize: 'var(--ds-typography-body-xsm-font-size)',
-            lineHeight: 'var(--ds-typography-body-xsm-line-height)',
-            color: 'var(--ds-mapped-text-body)',
-          }}
-        >
-          {subtitle}
-        </p>
-      </div>
-      {/* Body */}
-      <div
-        style={{
-          padding: 'var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm)',
-          fontFamily: 'var(--ds-brand-font-family-body)',
-          fontWeight: 'var(--ds-brand-font-weight-regular)',
-          fontSize: 'var(--ds-typography-body-sm-font-size)',
-          lineHeight: 'var(--ds-typography-body-sm-line-height)',
-          color: 'var(--ds-mapped-text-body)',
-        }}
-      >
-        {detail}
-      </div>
-      {/* Price + action */}
-      <div
-        style={{
-          padding: 'var(--ds-alias-spacing-none) var(--ds-alias-spacing-sm) var(--ds-alias-spacing-xs)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
-          <span
-            style={{
-              fontFamily: 'var(--ds-brand-font-family-body)',
-              fontWeight: 'var(--ds-brand-font-weight-semi-bold)',
-              fontSize: 'var(--ds-typography-body-md-semibold-font-size)',
-              lineHeight: 'var(--ds-typography-body-md-semibold-line-height)',
-              color: 'var(--ds-mapped-text-heading)',
-            }}
-          >
-            {price}
-          </span>
-          <span
-            style={{
-              fontFamily: 'var(--ds-brand-font-family-body)',
-              fontWeight: 'var(--ds-brand-font-weight-regular)',
-              fontSize: 'var(--ds-typography-body-xsm-font-size)',
-              lineHeight: 'var(--ds-typography-body-xsm-line-height)',
-              color: 'var(--ds-mapped-text-body)',
-            }}
-          >
-            Total
-          </span>
-        </div>
-        <button
-          type="button"
-          style={{
-            background: 'none',
-            border: 'none',
-            padding: '0',
-            fontFamily: 'var(--ds-brand-font-family-body)',
-            fontWeight: 'var(--ds-brand-font-weight-regular)',
-            fontSize: 'var(--ds-typography-body-sm-font-size)',
-            lineHeight: 'var(--ds-typography-body-sm-line-height)',
-            color: 'var(--ds-mapped-text-action)',
-            cursor: 'pointer',
-          }}
-        >
-          Details →
-        </button>
-      </div>
-    </>
-  )
+/* Round airline logo stand-in */
+function LogoCircle({ color }: { color: string }) {
+  return <div style={{ width: '100%', height: '100%', background: color }} />
 }
 
-/* ------------------------------------------------------------------ */
-/* Preview page                                                          */
-/* ------------------------------------------------------------------ */
 function CodeLabel({ code }: { code: string }) {
   return (
     <div
@@ -175,10 +64,38 @@ function SectionHeader({ title }: { title: string }) {
   )
 }
 
+function H2({ children }: { children: React.ReactNode }) {
+  return (
+    <h2
+      style={{
+        fontSize: '24px',
+        fontWeight: 600,
+        color: 'var(--ds-mapped-text-heading)',
+        marginBottom: '24px',
+        marginTop: 0,
+      }}
+    >
+      {children}
+    </h2>
+  )
+}
+
+const row: React.CSSProperties = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '16px',
+  alignItems: 'flex-start',
+}
+
+const hotelImages = [
+  <PlaceholderImage key="1" label="Hotel 1 / 4" />,
+  <PlaceholderImage key="2" label="Hotel 2 / 4" />,
+  <PlaceholderImage key="3" label="Hotel 3 / 4" />,
+  <PlaceholderImage key="4" label="Hotel 4 / 4" />,
+]
+
 export default function CardPreviewPage() {
-  const [carouselPage, setCarouselPage] = useState(0)
-  const carouselTotal = 4
-  const [isSelected, setIsSelected] = useState(false)
+  const [selected, setSelected] = useState<number | null>(0)
 
   return (
     <div style={{ maxWidth: '900px' }}>
@@ -201,205 +118,177 @@ export default function CardPreviewPage() {
         >
           Card
         </h1>
-        <p
-          style={{
-            fontSize: '14px',
-            color: 'var(--ds-mapped-text-body)',
-            marginTop: '8px',
-            marginBottom: '4px',
-          }}
-        >
-          Figma: ↴ LAYOUT / Card — node 1818:1037
+        <p style={{ fontSize: '14px', color: 'var(--ds-mapped-text-body)', marginTop: '8px', marginBottom: '4px' }}>
+          Figma: ↴ LAYOUT / Card — node 1818:1037 + .Card Content 3455:3491 (Type × Status)
         </p>
-        <p
-          style={{
-            fontSize: '12px',
-            color: 'var(--ds-mapped-text-disabled)',
-            marginTop: 0,
-            fontFamily: 'monospace',
-          }}
-        >
+        <p style={{ fontSize: '12px', color: 'var(--ds-mapped-text-disabled)', marginTop: 0, fontFamily: 'monospace' }}>
           import {'{ Card }'} from &apos;@/components/layout/Card&apos;
         </p>
       </div>
 
-      {/* States */}
+      {/* Hotel */}
       <section style={{ marginBottom: '48px' }}>
-        <h2
-          style={{
-            fontSize: '24px',
-            fontWeight: 600,
-            color: 'var(--ds-mapped-text-heading)',
-            marginBottom: '24px',
-            marginTop: 0,
-          }}
-        >
-          States
-        </h2>
-        <SectionHeader title="Default / Hover / Selected / Loading" />
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'flex-start' }}>
-
-          {/* Default */}
-          <div>
-            <Card image={<PlaceholderImage label="Photo 1" />}>
-              <SampleCardBody />
-            </Card>
-            <CodeLabel code="state=default" />
-          </div>
-
-          {/* Hover note (hover is CSS-only) */}
+        <H2>Hotel</H2>
+        <SectionHeader title="recommended / normal / loading / more" />
+        <div style={row}>
           <div>
             <Card
-              image={<PlaceholderImage label="Photo 1" />}
-              style={{ borderWidth: 'var(--ds-alias-border-width-md)', borderColor: 'var(--ds-mapped-border-action-hover)' } as React.CSSProperties}
-            >
-              <SampleCardBody title="Hover state (simulated)" />
-            </Card>
-            <CodeLabel code="state=hover (CSS only)" />
-          </div>
-
-          {/* Selected */}
-          <div>
-            <Card
-              image={<PlaceholderImage label="Photo 1" />}
-              isSelected
-            >
-              <SampleCardBody title="Selected card" />
-            </Card>
-            <CodeLabel code="isSelected" />
-          </div>
-
-          {/* Loading */}
-          <div>
-            <Card isLoading aria-label="Loading hotel card" />
-            <CodeLabel code="isLoading" />
-          </div>
-        </div>
-      </section>
-
-      {/* No image */}
-      <section style={{ marginBottom: '48px' }}>
-        <h2
-          style={{
-            fontSize: '24px',
-            fontWeight: 600,
-            color: 'var(--ds-mapped-text-heading)',
-            marginBottom: '24px',
-            marginTop: 0,
-          }}
-        >
-          Content Only (no image)
-        </h2>
-        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
-          <div>
-            <Card>
-              <SampleCardBody title="No image slot" subtitle="Content only card" />
-            </Card>
-            <CodeLabel code="<Card> (no image prop)" />
-          </div>
-          <div>
-            <Card isSelected>
-              <SampleCardBody title="Selected, no image" subtitle="Border: action blue" />
-            </Card>
-            <CodeLabel code="isSelected (no image)" />
-          </div>
-        </div>
-      </section>
-
-      {/* With carousel */}
-      <section style={{ marginBottom: '48px' }}>
-        <h2
-          style={{
-            fontSize: '24px',
-            fontWeight: 600,
-            color: 'var(--ds-mapped-text-heading)',
-            marginBottom: '24px',
-            marginTop: 0,
-          }}
-        >
-          With Carousel
-        </h2>
-        <SectionHeader title="showCarousel + carouselPage / carouselTotal" />
-        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
-          <div>
-            <Card
-              image={
-                <PlaceholderImage label={`Photo ${carouselPage + 1} of ${carouselTotal}`} />
-              }
-              showCarousel
-              carouselPage={carouselPage}
-              carouselTotal={carouselTotal}
-              onCarouselPrev={carouselPage > 0 ? () => setCarouselPage((p) => p - 1) : undefined}
-              onCarouselNext={
-                carouselPage < carouselTotal - 1
-                  ? () => setCarouselPage((p) => p + 1)
-                  : undefined
-              }
-            >
-              <SampleCardBody title={`Photo ${carouselPage + 1} of ${carouselTotal}`} />
-            </Card>
-            <CodeLabel
-              code={`showCarousel carouselPage={${carouselPage}} carouselTotal={${carouselTotal}}`}
+              type="hotel"
+              status="recommended"
+              headline="Grand Hyatt Tokyo"
+              ratingScore="8.8"
+              tagLabel="Cheapest"
+              roomInfo="1 room, king bed"
+              price="$2,124.42"
+              images={hotelImages}
             />
+            <CodeLabel code='type="hotel" status="recommended"' />
           </div>
-
-          {/* showCarousel no callbacks — nav disabled */}
           <div>
             <Card
-              image={<PlaceholderImage label="No handlers" />}
-              showCarousel
-            >
-              <SampleCardBody title="Carousel arrows disabled" subtitle="No onCarouselPrev/Next" />
-            </Card>
-            <CodeLabel code="showCarousel (no callbacks → disabled arrows)" />
+              type="hotel"
+              status="normal"
+              headline="Park Hyatt Tokyo"
+              ratingScore="8.8"
+              tagLabel="Cheapest"
+              roomInfo="1 room, king bed"
+              price="$2,124.42"
+              images={hotelImages}
+            />
+            <CodeLabel code='type="hotel" status="normal"' />
+          </div>
+          <div>
+            <Card type="hotel" status="loading" aria-label="Loading hotel card" />
+            <CodeLabel code='type="hotel" status="loading"' />
+          </div>
+          <div>
+            <Card type="hotel" status="more" onDiscoverMore={() => {}} />
+            <CodeLabel code='type="hotel" status="more"' />
           </div>
         </div>
       </section>
 
-      {/* Interactive selected toggle */}
+      {/* Rental car */}
       <section style={{ marginBottom: '48px' }}>
-        <h2
-          style={{
-            fontSize: '24px',
-            fontWeight: 600,
-            color: 'var(--ds-mapped-text-heading)',
-            marginBottom: '24px',
-            marginTop: 0,
-          }}
-        >
-          Interactive — Click to Select
-        </h2>
-        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+        <H2>Rental car</H2>
+        <SectionHeader title="recommended / normal / loading / more" />
+        <div style={row}>
+          <div>
+            <Card
+              type="rental car"
+              status="recommended"
+              headline="Toyota Corolla"
+              rating="4.4/5"
+              tagLabel="Cheapest"
+              carSpecs={{ fuel: 'Gasoline', seats: 5, doors: 4, bags: 2 }}
+              price="$2,124.42"
+              image={<PlaceholderImage label="Car photo" />}
+            />
+            <CodeLabel code='type="rental car" status="recommended"' />
+          </div>
+          <div>
+            <Card
+              type="rental car"
+              status="normal"
+              headline="Nissan Leaf"
+              rating="4.4/5"
+              tagLabel="Cheapest"
+              carSpecs={{ fuel: 'Gasoline', seats: 5, doors: 4, bags: 2 }}
+              price="$2,124.42"
+              image={<PlaceholderImage label="Car photo" />}
+            />
+            <CodeLabel code='type="rental car" status="normal"' />
+          </div>
+          <div>
+            <Card type="rental car" status="loading" aria-label="Loading rental car card" />
+            <CodeLabel code='type="rental car" status="loading"' />
+          </div>
+          <div>
+            <Card type="rental car" status="more" onDiscoverMore={() => {}} />
+            <CodeLabel code='type="rental car" status="more"' />
+          </div>
+        </div>
+      </section>
+
+      {/* Flight */}
+      <section style={{ marginBottom: '48px' }}>
+        <H2>Flight</H2>
+        <SectionHeader title="recommended / normal / loading / more — no image" />
+        <div style={row}>
+          <div>
+            <Card
+              type="flight"
+              status="recommended"
+              headline="ANA"
+              tagLabel="Cheapest"
+              airlineLogos={[<LogoCircle key="a" color="#0022ff" />, <LogoCircle key="b" color="#667aff" />]}
+              flightLegs={[
+                { route: 'SFO→NRT', stops: 'Nonstop' },
+                { route: 'NRT→SFO', stops: 'Nonstop' },
+              ]}
+              price="$2,124.42"
+            />
+            <CodeLabel code='type="flight" status="recommended"' />
+          </div>
+          <div>
+            <Card
+              type="flight"
+              status="normal"
+              headline="JAL"
+              tagLabel="Cheapest"
+              airlineLogos={[<LogoCircle key="a" color="#0022ff" />, <LogoCircle key="b" color="#667aff" />]}
+              flightLegs={[
+                { route: 'SFO→NRT', stops: 'Nonstop' },
+                { route: 'NRT→SFO', stops: 'Nonstop' },
+              ]}
+              price="$2,124.42"
+            />
+            <CodeLabel code='type="flight" status="normal"' />
+          </div>
+          <div>
+            <Card type="flight" status="loading" aria-label="Loading flight card" />
+            <CodeLabel code='type="flight" status="loading"' />
+          </div>
+          <div>
+            <Card type="flight" status="more" onDiscoverMore={() => {}} />
+            <CodeLabel code='type="flight" status="more"' />
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive selection */}
+      <section style={{ marginBottom: '48px' }}>
+        <H2>Interactive — Click to Select</H2>
+        <div style={row}>
           {['Hotel Okura', 'Grand Hyatt', 'Park Hyatt'].map((name, i) => (
             <div key={name}>
               <Card
-                image={<PlaceholderImage label={name} />}
-                isSelected={isSelected && i === 0}
-                onClick={() => setIsSelected((v) => !v)}
+                type="hotel"
+                status={i === 0 ? 'recommended' : 'normal'}
+                headline={name}
+                ratingScore="8.8"
+                tagLabel="Cheapest"
+                roomInfo="1 room, king bed"
+                price={`$${(1200 + i * 340).toFixed(2)}`}
+                images={hotelImages}
+                isSelected={selected === i}
+                onClick={() => setSelected((v) => (v === i ? null : i))}
                 style={{ cursor: 'pointer' }}
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault()
-                    setIsSelected((v) => !v)
+                    setSelected((v) => (v === i ? null : i))
                   }
                 }}
-              >
-                <SampleCardBody title={name} price={`$${(1200 + i * 340).toFixed(2)}`} />
-              </Card>
-              <CodeLabel code={`isSelected={${isSelected && i === 0}}`} />
+              />
+              <CodeLabel code={`isSelected={${selected === i}}`} />
             </div>
           ))}
         </div>
-        <p
-          style={{
-            fontSize: '12px',
-            color: 'var(--ds-mapped-text-disabled)',
-            marginTop: '12px',
-          }}
-        >
-          Click the first card to toggle selection
+        <p style={{ fontSize: '12px', color: 'var(--ds-mapped-text-disabled)', marginTop: '12px' }}>
+          Click a card to toggle selection
         </p>
       </section>
 
@@ -416,19 +305,16 @@ export default function CardPreviewPage() {
         }}
       >
         <strong style={{ display: 'block', marginBottom: '8px', fontFamily: 'var(--ds-brand-font-family-body)' }}>
-          Tokens used:
+          Composes: Chip (recommended + green chips), Button (Details / Discover more), CarouselItem + Pagination
+          (hotel carousel), icons (Award, Star, Bed, Gasoline, Users, Car, Baggage, ArrowRight), graphics (Hotel /
+          Flight / CarRental).
         </strong>
         --ds-mapped-surface-default — card background<br />
-        --ds-mapped-border-default — default 1px border<br />
-        --ds-mapped-border-action-hover — hover 2px border<br />
-        --ds-mapped-border-action — selected 2px border<br />
-        --ds-mapped-surface-disabled — skeleton placeholders<br />
-        --ds-alias-border-radius-lg — card corner radius (8px)<br />
-        --ds-alias-border-width-sm — default border (1px)<br />
-        --ds-alias-border-width-md — hover/selected border (2px)<br />
-        --ds-alias-spacing-sm — content padding-x (12px)<br />
-        --ds-alias-spacing-xs — content padding-y (8px)<br />
-        --ds-alias-spacing-xxs — carousel nav padding (4px)
+        --ds-mapped-border-default / -action-hover / -action — default / hover / selected border<br />
+        --ds-mapped-text-heading — headline + price value<br />
+        --ds-mapped-text-body — body / chips / suffix<br />
+        --ds-mapped-icon-default — body metric icons<br />
+        --ds-typography-body-md-semibold — headline + price · body-sm — body · body-xsm — chips / suffix
       </div>
     </div>
   )
