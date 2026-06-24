@@ -17,14 +17,14 @@ import type {
 } from './types'
 import styles from './FieldPicker.module.css'
 
-/** Tab 1 flexibility options — exact Figma `DatePicker=Calendar` labels. */
+/** Tab 1 flexibility options. Figma source uses "+-"; displayed as "±" per design. */
 export const FLEX_OPTIONS: readonly FieldPickerFlexibility[] = [
   'Exact date',
-  '+- 1 day',
-  '+- 2 day',
-  '+- 3 day',
-  '+- 7 day',
-  '+- 14 day',
+  '± 1 day',
+  '± 2 day',
+  '± 3 day',
+  '± 7 day',
+  '± 14 day',
 ]
 
 /** Tab 2 "How long?" trip-length options — exact Figma `DatePicker=Flexible` labels. */
@@ -53,8 +53,8 @@ export const MONTH_NAMES = [
   'December',
 ]
 
-/** Abbreviated month names — used for the compact "When?" month-grid cells. */
-const MONTH_ABBR = [
+/** Abbreviated month names — used for the compact "When?" grid cells + trigger label. */
+export const MONTH_ABBR = [
   'Jan',
   'Feb',
   'Mar',
@@ -71,7 +71,7 @@ const MONTH_ABBR = [
 
 /**
  * Number of ± days a flexibility option represents, or null for "Exact date".
- * Used to render the trigger suffix, e.g. "… (+- 1)".
+ * Used to render the trigger suffix, e.g. "… (± 1)".
  */
 export function flexibilityDays(flex: FieldPickerFlexibility): number | null {
   if (flex === 'Exact date') return null

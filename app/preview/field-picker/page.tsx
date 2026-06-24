@@ -15,6 +15,7 @@ import {
 import {
   FieldPickerCalendar,
   MONTH_NAMES,
+  MONTH_ABBR,
   flexibilityDays,
 } from '@/components/primitives/FieldPicker/FieldPickerCalendar'
 
@@ -27,7 +28,7 @@ const defaultTravelers: FieldPickerTravelerCounts = {
 
 function formatDateRange(start: Date | null, end: Date | null): string | null {
   if (start === null) return null
-  const opts: Intl.DateTimeFormatOptions = { weekday: 'short', month: 'short', day: 'numeric' }
+  const opts: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric' }
   const s = start.toLocaleString('en-US', opts)
   return end === null ? s : `${s} – ${end.toLocaleString('en-US', opts)}`
 }
@@ -35,15 +36,15 @@ function formatDateRange(start: Date | null, end: Date | null): string | null {
 /** Mirrors FieldPicker's trigger label so the demo can show what the field reflects. */
 function labelFor(sel: FieldPickerDateSelection): string {
   if (sel.tab === 'Flexible') {
-    if (sel.tripLength && sel.month !== null) return `${sel.tripLength} in ${MONTH_NAMES[sel.month]}`
+    if (sel.tripLength && sel.month !== null) return `${sel.tripLength} in ${MONTH_ABBR[sel.month]} ${sel.year}`
     if (sel.tripLength) return sel.tripLength
-    if (sel.month !== null) return `${MONTH_NAMES[sel.month]} ${sel.year}`
+    if (sel.month !== null) return `${MONTH_ABBR[sel.month]} ${sel.year}`
     return '— nothing selected —'
   }
   const base = formatDateRange(sel.start, sel.end)
   if (base === null) return '— nothing selected —'
   const days = flexibilityDays(sel.flexibility)
-  return days !== null ? `${base} (+- ${days})` : base
+  return days !== null ? `${base} (± ${days})` : base
 }
 
 /**
@@ -213,9 +214,9 @@ export default function FieldPickerPreviewPage() {
           <h3 style={subheading}>Expected label examples</h3>
         </div>
         <div style={tokenBox}>
-          <strong style={{ fontFamily: 'inherit' }}>Calendar, exact:</strong> Tue, May 9 – Sat, May 13<br />
-          <strong style={{ fontFamily: 'inherit' }}>Calendar, +- 1 day:</strong> Tue, May 9 – Sat, May 13 (+- 1)<br />
-          <strong style={{ fontFamily: 'inherit' }}>Flexible:</strong> 4-5 nights in June
+          <strong style={{ fontFamily: 'inherit' }}>Calendar, exact:</strong> May 9 – May 13<br />
+          <strong style={{ fontFamily: 'inherit' }}>Calendar, ± 1 day:</strong> May 9 – May 13 (± 1)<br />
+          <strong style={{ fontFamily: 'inherit' }}>Flexible:</strong> 4-5 nights in Jun 2026
         </div>
       </section>
 

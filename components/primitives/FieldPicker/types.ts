@@ -21,14 +21,14 @@ export type FieldPickerType = 'date' | 'traveler'
  */
 export type CalendarDatePickerTab = 'Calendar' | 'Flexible'
 
-/** Tab 1 flexibility options — exact Figma `DatePicker=Calendar` labels. */
+/** Tab 1 flexibility options. Figma source labels use "+-"; rendered as "±" per design. */
 export type FieldPickerFlexibility =
   | 'Exact date'
-  | '+- 1 day'
-  | '+- 2 day'
-  | '+- 3 day'
-  | '+- 7 day'
-  | '+- 14 day'
+  | '± 1 day'
+  | '± 2 day'
+  | '± 3 day'
+  | '± 7 day'
+  | '± 14 day'
 
 /** Tab 2 "How long?" trip-length options — exact Figma `DatePicker=Flexible` labels. */
 export type FieldPickerTripLength =

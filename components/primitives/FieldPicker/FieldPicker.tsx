@@ -6,7 +6,7 @@ import { Calendar } from '@/design-system/icons/components/Calendar'
 import { Users } from '@/design-system/icons/components/Users'
 import {
   FieldPickerCalendar,
-  MONTH_NAMES,
+  MONTH_ABBR,
   flexibilityDays,
 } from './FieldPickerCalendar'
 import { FieldPickerTraveler } from './FieldPickerTraveler'
@@ -30,7 +30,6 @@ const DEFAULT_TRAVELERS: FieldPickerTravelerCounts = {
 function formatDateRange(start: Date | null, end: Date | null): string | null {
   if (start === null) return null
   const opts: Intl.DateTimeFormatOptions = {
-    weekday: 'short',
     month: 'short',
     day: 'numeric',
   }
@@ -39,7 +38,7 @@ function formatDateRange(start: Date | null, end: Date | null): string | null {
   return `${startStr} – ${end.toLocaleString('en-US', opts)}`
 }
 
-/** Calendar tab label, e.g. "Tue, May 9 – Sat, May 13" or "… (+- 1)". */
+/** Calendar tab label, e.g. "Jan 9 – Jan 13" or "Jan 9 – Jan 13 (± 1)". */
 function formatCalendarLabel(
   start: Date | null,
   end: Date | null,
@@ -48,20 +47,20 @@ function formatCalendarLabel(
   const base = formatDateRange(start, end)
   if (base === null) return null
   const days = flexibilityDays(flexibility)
-  return days !== null ? `${base} (+- ${days})` : base
+  return days !== null ? `${base} (± ${days})` : base
 }
 
-/** Flexible tab label, e.g. "4-5 nights in June". */
+/** Flexible tab label, e.g. "4-5 nights in Jan 2026". */
 function formatFlexibleLabel(
   tripLength: FieldPickerTripLength | null,
   month: number | null,
   year: number
 ): string | null {
   if (tripLength !== null && month !== null) {
-    return `${tripLength} in ${MONTH_NAMES[month]}`
+    return `${tripLength} in ${MONTH_ABBR[month]} ${year}`
   }
   if (tripLength !== null) return tripLength
-  if (month !== null) return `${MONTH_NAMES[month]} ${year}`
+  if (month !== null) return `${MONTH_ABBR[month]} ${year}`
   return null
 }
 
