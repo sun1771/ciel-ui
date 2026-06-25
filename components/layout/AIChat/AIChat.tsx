@@ -2,16 +2,27 @@
 
 import React from 'react'
 import { cn } from '@/lib/utils'
-import { Mic, Pause, ArrowUp } from '@/icons'
-import { Tag } from '@/components/primitives/Tag'
-import type { AIChatProps, AIChatStatus } from './types'
+import { TripOnChatIcon, ArrowLeft, ArrowRight } from '@/icons'
+import { ButtonIcon, ButtonIconSwitching } from '@/components/primitives/Button'
+import { ChatInput } from './ChatInput'
+import type { AIChatProps } from './types'
 import styles from './AIChat.module.css'
 
 /**
- * AIChat — floating chat input panel.
- * Renders a bottom-attached input with a send/mic/pause button and optional tag chip.
- * Status controls border, shadow, and button icon. If status is omitted, it is
- * derived from textarea focus and value.
+ * AIChat — the assembled chat panel (Figma node 3814:5013).
+ * Composes the full conversational UI:
+ *   Header (TripOn sparkle + title + collapse arrow)
+ *   → Conversation area (UserBubble / AgentBubble children, scrollable)
+ *   → ChatInput (bottom-attached)
+ *
+ * Figma "State" property → `state`:
+ *   - 'default'   (320px)  full panel
+ *   - 'wide'      (708px)  full panel, wider
+ *   - 'collapsed' (60px)   logo-only rail; the ButtonIconSwitching logo reveals
+ *                          an expand arrow on hover and calls `onExpand`
+ *
+ * Reuses ButtonIcon (header controls), ButtonIconSwitching (collapsed logo),
+ * and the ChatInput / UserBubble / AgentBubble pieces.
  *
  * @see design-system/figma.md → AI Chat
  * @see docs/components.md for usage examples
@@ -19,120 +30,93 @@ import styles from './AIChat.module.css'
 export const AIChat = React.forwardRef<HTMLDivElement, AIChatProps>(
   (
     {
-      status,
-      disabled = false,
-      size = 'sm',
-      showTag = false,
-      tagLabel = 'Flight',
-      onRemoveTag,
-      value = '',
-      onChange,
+      state = 'default',
+      title = 'TripOn Agent',
+      onCollapse,
+      onExpand,
+      children,
+      inputValue,
+      onInputChange,
       onSubmit,
-      placeholder = "Let's plan a trip...",
+      inputStatus,
+      inputDisabled = false,
+      showTag = false,
+      tagLabel,
+      onRemoveTag,
+      placeholder,
       className,
       ...props
     },
-    ref
+    ref,
   ) => {
-    const [isFocused, setIsFocused] = React.useState(false)
+    const isCollapsed = state === 'collapsed'
 
-    const effectiveStatus: AIChatStatus = React.useMemo(() => {
-      if (status !== undefined) return status
-      if (value && value.trim().length > 0) return 'filled'
-      if (isFocused) return 'selected'
-      return 'default'
-    }, [status, value, isFocused])
+    const panelClass =
+      state === 'collapsed'
+        ? styles.panelCollapsed
+        : state === 'wide'
+          ? styles.panelWide
+          : styles.panelDefault
 
-    const isFilled = effectiveStatus === 'filled'
-    const isThinking = effectiveStatus === 'thinking'
-
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault()
-        if (isFilled && onSubmit) {
-          onSubmit(value)
-        }
-      }
+    if (isCollapsed) {
+      return (
+        <div ref={ref} className={cn(styles.panel, panelClass, className)} {...props}>
+          <div className={cn(styles.header, styles.headerCollapsed)}>
+            <div className={styles.headerInner} style={{ flex: '0 0 auto' }}>
+              <ButtonIconSwitching
+                variant="transparent"
+                size="lg"
+                label="Expand chat"
+                icon={<TripOnChatIcon size={20} />}
+                hoverIcon={<ArrowRight size={20} />}
+                onClick={onExpand}
+              />
+            </div>
+          </div>
+          <div className={styles.chatContainer} />
+        </div>
+      )
     }
-
-    const handleButtonClick = () => {
-      if (isFilled && onSubmit) {
-        onSubmit(value)
-      }
-    }
-
-    const statusClass = disabled
-      ? styles.statusDisabled
-      : effectiveStatus === 'selected'
-      ? styles.statusSelected
-      : effectiveStatus === 'filled'
-      ? styles.statusFilled
-      : effectiveStatus === 'thinking'
-      ? styles.statusThinking
-      : styles.statusDefault
-
-    const buttonClass = disabled
-      ? cn(styles.button, styles.buttonDisabled)
-      : isFilled
-      ? cn(styles.button, styles.buttonFilled)
-      : styles.button
-
-    const buttonIcon = isThinking
-      ? <Pause size={20} />
-      : isFilled
-      ? <ArrowUp size={20} />
-      : <Mic size={20} />
-
-    const buttonLabel = isThinking
-      ? 'Thinking — pause'
-      : isFilled
-      ? 'Send message'
-      : 'Voice input'
 
     return (
-      <div
-        ref={ref}
-        className={cn(styles.container, statusClass, className)}
-        {...props}
-      >
-        <div className={styles.chatField}>
-          <textarea
-            rows={1}
-            value={value}
-            onChange={onChange}
-            onKeyDown={handleKeyDown}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-            placeholder={placeholder}
-            disabled={disabled || isThinking}
-            aria-label="Chat input"
-            aria-multiline="true"
-            className={styles.textarea}
-          />
-          <div className={styles.bottomRow}>
-            <div className={styles.tagContainer}>
-              {isFilled && showTag && (
-                <Tag size="sm" onDismiss={onRemoveTag}>
-                  {tagLabel}
-                </Tag>
-              )}
-            </div>
-            <button
-              type="button"
-              className={buttonClass}
-              onClick={handleButtonClick}
-              disabled={disabled}
-              aria-label={buttonLabel}
-            >
-              <span aria-hidden="true">
-                {buttonIcon}
-              </span>
-            </button>
+      <div ref={ref} className={cn(styles.panel, panelClass, className)} {...props}>
+        <div className={styles.header}>
+          <div className={styles.headerInner}>
+            <ButtonIcon
+              variant="transparent"
+              size="lg"
+              label="TripOn Agent"
+              icon={<TripOnChatIcon size={20} />}
+            />
+            <p className={styles.headerTitle}>{title}</p>
+            <ButtonIcon
+              variant="transparent"
+              size="lg"
+              label="Collapse chat"
+              icon={<ArrowLeft size={20} />}
+              onClick={onCollapse}
+            />
           </div>
         </div>
+
+        <div className={styles.chatContainer}>
+          <div className={styles.conversation}>{children}</div>
+        </div>
+
+        <ChatInput
+          status={inputStatus}
+          disabled={inputDisabled}
+          value={inputValue}
+          onChange={onInputChange}
+          onSubmit={onSubmit}
+          showTag={showTag}
+          tagLabel={tagLabel}
+          onRemoveTag={onRemoveTag}
+          placeholder={placeholder}
+        />
       </div>
     )
-  }
+  },
 )
 
 AIChat.displayName = 'AIChat'

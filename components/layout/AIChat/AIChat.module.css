@@ -1,8 +1,14 @@
 /* ============================================
-   AIChat styles
-   Tokens: docs/design-system.md
-   Figma:  design-system/figma.md → AI Chat
+   AI Chat component set styles
+   Tokens: app/design-system/tokens/tokens.css
+   Figma:  AI Chat set (node 1250:2549)
+   Every value references a --ds- token except component-specific
+   panel widths (320 / 60 / 708px) which have no token equivalent.
    ============================================ */
+
+/* ════════════════════════════════════════════
+   .AI Chat Piece / Chat input  (node 1263:537)
+   ════════════════════════════════════════════ */
 
 /* Base container — top border only, top corners rounded */
 .container {
@@ -93,40 +99,327 @@
   align-items: center;
 }
 
-/* Action button (send / mic / pause) */
-.button {
+/* ════════════════════════════════════════════
+   .Response Content item  (node 2087:3575)
+   .Response Content       (node 2090:3602)
+   ════════════════════════════════════════════ */
+
+.responseContent {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--ds-alias-spacing-xs);
-  border-radius: var(--ds-alias-border-radius-lg);
-  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
-  background-color: var(--ds-mapped-surface-default);
-  color: var(--ds-mapped-icon-action);
-  cursor: pointer;
-  flex-shrink: 0;
-  line-height: 0;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-xs);
+  align-items: flex-start;
+  width: 100%;
 }
 
-.button:hover:not(:disabled) {
+.responseContentItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-xs);
+  align-items: flex-start;
+  width: 100%;
+}
+
+.responseTitle {
+  margin: 0;
+  width: 100%;
+  word-break: break-word;
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-semi-bold);
+  font-size: var(--ds-typography-body-md-semibold-font-size);
+  line-height: var(--ds-typography-body-md-semibold-line-height);
+  color: var(--ds-mapped-text-body);
+}
+
+.responseBody {
+  margin: 0;
+  width: 100%;
+  word-break: break-word;
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: var(--ds-typography-body-sm-line-height);
+  color: var(--ds-mapped-text-body);
+}
+
+/* Separator wrapper — matches Figma py xs around the divider line */
+.separatorWrap {
+  width: 100%;
+  padding-top: var(--ds-alias-spacing-xs);
+  padding-bottom: var(--ds-alias-spacing-xs);
+}
+
+/* ════════════════════════════════════════════
+   .Action suggestions  (node 2090:3636)
+   ════════════════════════════════════════════ */
+
+.actionSuggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-alias-spacing-xxs);
+  align-items: center;
+  align-content: center;
+  width: 100%;
+}
+
+/* ════════════════════════════════════════════
+   .Response reaction bar  (node 2090:3670)
+   .AI Chat Piece / User Bubble action bar
+   ════════════════════════════════════════════ */
+
+.reactionBar {
+  display: flex;
+  gap: var(--ds-alias-spacing-xxs);
+  align-items: center;
+}
+
+/* ════════════════════════════════════════════
+   .Agent Response Mode  (node 2078:3215)
+   ════════════════════════════════════════════ */
+
+.agentResponseMode {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Thinking mode adds an 8px gap before the trailing separator */
+.agentResponseModeThinking {
+  gap: var(--ds-alias-spacing-xs);
+}
+
+.responseModeRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ds-alias-spacing-xs);
+  width: 100%;
+}
+
+/* Sparkle holder — fixed 28px height to align with the row */
+.sparkle {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  flex-shrink: 0;
+  color: var(--ds-mapped-icon-action);
+}
+
+/* Loading status row — loader (+ "Thinking…" label in thinking mode) */
+.thinkingStatus {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+  height: 28px;
+  padding: var(--ds-alias-spacing-xxs) var(--ds-alias-spacing-xs);
+}
+
+.thinkingStatusText {
+  margin: 0;
+  white-space: nowrap;
+  word-break: break-word;
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: var(--ds-typography-body-sm-line-height);
+  color: var(--ds-mapped-text-body);
+}
+
+/* "Show Thinking" disclosure button */
+.expander {
+  display: flex;
+  flex: 1 0 0;
+  min-width: 0;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+  padding: var(--ds-alias-spacing-xxs) var(--ds-alias-spacing-xs);
+  border: none;
+  border-radius: var(--ds-alias-border-radius-lg);
+  background-color: var(--ds-mapped-surface-default);
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: var(--ds-typography-body-sm-line-height);
+  color: var(--ds-mapped-text-body);
+  cursor: pointer;
+  text-align: left;
+  outline: none;
+}
+
+.expander:hover {
   background-color: var(--ds-mapped-surface-action-hover-light);
 }
 
-/* Filled state — send button becomes solid blue */
-.buttonFilled {
-  background-color: var(--ds-mapped-surface-action);
-  border-color: var(--ds-mapped-surface-action);
-  color: var(--ds-mapped-icon-on-action);
+.expander:focus-visible {
+  outline: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
+  outline-offset: 2px;
 }
 
-.buttonFilled:hover:not(:disabled) {
-  background-color: var(--ds-mapped-surface-action-hover);
-  border-color: var(--ds-mapped-surface-action-hover);
+.expanderChevron {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--ds-mapped-icon-default);
+  transition: transform 150ms ease;
 }
 
-/* Disabled button */
-.buttonDisabled {
-  border-color: var(--ds-mapped-border-disabled);
-  color: var(--ds-mapped-icon-disabled);
-  cursor: not-allowed;
+.expanderChevronOpen {
+  transform: rotate(180deg);
+}
+
+/* ════════════════════════════════════════════
+   .AI Chat Piece / Agent Bubble  (node 2092:4258)
+   ════════════════════════════════════════════ */
+
+.agentBubble {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ds-alias-spacing-xs);
+  width: 100%;
+}
+
+.agentContentArea {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ds-alias-spacing-md);
+  width: 100%;
+}
+
+/* ════════════════════════════════════════════
+   .AI Chat Piece / User Bubble  (node 2132:1446)
+   ════════════════════════════════════════════ */
+
+.userBubble {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--ds-alias-spacing-xs);
+  width: 100%;
+}
+
+/* Speech bubble — rounded on three corners (flat bottom-right) */
+.userBubbleBox {
+  display: flex;
+  align-items: center;
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
+  background-color: var(--ds-mapped-surface-action-hover-light);
+  border-top-left-radius: var(--ds-alias-border-radius-lg);
+  border-top-right-radius: var(--ds-alias-border-radius-lg);
+  border-bottom-left-radius: var(--ds-alias-border-radius-lg);
+  border-bottom-right-radius: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* sm / lg reference widths from Figma (264 / 440px bubble) */
+.userBubbleBoxSm {
+  max-width: 264px;
+}
+
+.userBubbleBoxLg {
+  max-width: 440px;
+}
+
+.userBubbleText {
+  margin: 0;
+  flex: 1 0 0;
+  min-width: 0;
+  word-break: break-word;
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: var(--ds-typography-body-sm-line-height);
+  color: var(--ds-mapped-text-body);
+}
+
+/* ════════════════════════════════════════════
+   AI Chat panel  (node 3814:5013)
+   ════════════════════════════════════════════ */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: var(--ds-mapped-surface-default);
+  border-top: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-action);
+  border-radius: var(--ds-alias-border-radius-xl);
+  box-shadow: var(--ds-effect-shadow-on);
+}
+
+/* Component-specific widths — no --ds- token exists for these panel sizes. */
+.panelDefault {
+  width: 320px;
+}
+
+.panelCollapsed {
+  width: 60px;
+}
+
+.panelWide {
+  width: 708px;
+}
+
+/* Header — TripOn Agent */
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--ds-alias-spacing-md) var(--ds-alias-spacing-sm);
+  box-sizing: border-box;
+}
+
+.headerInner {
+  display: flex;
+  flex: 1 0 0;
+  min-width: 0;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+  height: 40px;
+}
+
+.headerTitle {
+  margin: 0;
+  flex: 1 0 0;
+  min-width: 0;
+  word-break: break-word;
+  font-family: var(--ds-brand-font-family-heading);
+  font-weight: var(--ds-brand-font-weight-semi-bold);
+  font-size: var(--ds-typography-heading-h7-font-size);
+  line-height: var(--ds-typography-heading-h7-line-height);
+  color: var(--ds-mapped-text-heading);
+}
+
+/* Collapsed header — only the switching logo button, left-aligned */
+.headerCollapsed {
+  justify-content: flex-start;
+}
+
+/* Chat container — fills remaining height above the input */
+.chatContainer {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 var(--ds-alias-spacing-sm) var(--ds-alias-spacing-xxl);
+}
+
+/* Conversation — messages stacked, anchored to the bottom, scrollable */
+.conversation {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-sm);
+  align-items: stretch;
+  justify-content: flex-end;
+  min-height: 0;
+  width: 100%;
+  overflow-y: auto;
 }

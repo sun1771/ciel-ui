@@ -1,12 +1,36 @@
 'use client'
 
 import React from 'react'
-import { AIChat } from '@/components/layout/AIChat'
+import {
+  AIChat,
+  ChatInput,
+  UserBubble,
+  AgentBubble,
+  AgentResponseMode,
+  ResponseContent,
+  ActionSuggestions,
+  ResponseReactionBar,
+} from '@/components/layout/AIChat'
+
+const SECTIONS = [
+  { title: 'Flights', content: 'Round-trip from London to Tokyo, departing May 9.' },
+  { title: 'Where to stay', content: 'Boutique hotel in Shinjuku, walkable to transit.' },
+  { title: 'Day 1', content: 'Arrive, settle in, evening stroll through Omoide Yokocho.' },
+]
+
+const SUGGESTIONS = [
+  { label: 'Add more days' },
+  { label: 'Change hotel' },
+  { label: 'Cheaper flights' },
+  { label: 'Add activities' },
+]
 
 export default function AIChatPreviewPage() {
+  const [chatState, setChatState] = React.useState<'default' | 'collapsed' | 'wide'>('default')
   const [value, setValue] = React.useState('')
-  const [value2, setValue2] = React.useState('Plan me a trip to Tokyo')
-  const [tagVisible2, setTagVisible2] = React.useState(true)
+  const [filledValue, setFilledValue] = React.useState('Plan me a trip to Tokyo')
+  const [tagVisible, setTagVisible] = React.useState(true)
+  const [thinkingExpanded, setThinkingExpanded] = React.useState(false)
 
   const sectionStyle: React.CSSProperties = { marginBottom: '48px' }
   const h2Style: React.CSSProperties = {
@@ -24,22 +48,29 @@ export default function AIChatPreviewPage() {
     letterSpacing: '0.08em',
     marginBottom: '12px',
   }
-  const rowStyle: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '24px',
-    marginBottom: '24px',
-  }
   const codeStyle: React.CSSProperties = {
     marginTop: '6px',
     fontFamily: 'monospace',
     fontSize: '11px',
     color: 'var(--ds-mapped-text-disabled)',
   }
-  const wrapperStyle: React.CSSProperties = {
-    maxWidth: '440px',
+  const panelFrame: React.CSSProperties = { height: '640px' }
+  const pieceFrame: React.CSSProperties = {
+    maxWidth: '320px',
     width: '100%',
+    padding: '16px',
+    border: '1px solid var(--ds-mapped-border-default)',
+    borderRadius: '8px',
   }
+
+  const conversation = (
+    <>
+      <UserBubble onCopy={() => {}} onEdit={() => {}}>
+        Generate my travel package
+      </UserBubble>
+      <AgentBubble sections={SECTIONS} suggestions={SUGGESTIONS} />
+    </>
+  )
 
   return (
     <div style={{ padding: '32px' }}>
@@ -58,12 +89,8 @@ export default function AIChatPreviewPage() {
         }}>
           AIChat
         </h1>
-        <p style={{
-          fontSize: '16px',
-          color: 'var(--ds-mapped-text-body)',
-          marginTop: '8px',
-        }}>
-          Figma: LAYOUT / AI Chat — node 1263:537
+        <p style={{ fontSize: '16px', color: 'var(--ds-mapped-text-body)', marginTop: '8px' }}>
+          Figma: AI Chat set — node 1250:2549 (panel 3814:5013)
         </p>
         <p style={{
           fontSize: '12px',
@@ -71,143 +98,153 @@ export default function AIChatPreviewPage() {
           marginTop: '4px',
           fontFamily: 'monospace',
         }}>
-          {"import { AIChat } from '@/components/layout/AIChat'"}
+          {"import { AIChat, ChatInput, UserBubble, AgentBubble, ... } from '@/components/layout/AIChat'"}
         </p>
       </div>
 
-      {/* Status variants */}
+      {/* Assembled panel — states */}
       <section style={sectionStyle}>
-        <h2 style={h2Style}>Status variants</h2>
-
-        <div style={rowStyle}>
-          <div>
-            <h3 style={h3Style}>default</h3>
-            <div style={wrapperStyle}>
-              <AIChat status="default" placeholder="Let's plan a trip..." />
-            </div>
-            <div style={codeStyle}>{'status="default"'}</div>
-          </div>
-
-          <div>
-            <h3 style={h3Style}>selected (focused)</h3>
-            <div style={wrapperStyle}>
-              <AIChat status="selected" placeholder="Let's plan a trip..." />
-            </div>
-            <div style={codeStyle}>{'status="selected"'}</div>
-          </div>
-
-          <div>
-            <h3 style={h3Style}>filled — controlled with value + showTag</h3>
-            <div style={wrapperStyle}>
-              <AIChat
-                value={value2}
-                onChange={e => setValue2(e.target.value)}
-                status="filled"
-                showTag={tagVisible2}
-                tagLabel="Flight"
-                onRemoveTag={() => setTagVisible2(false)}
-                onSubmit={text => alert(`Submitted: ${text}`)}
-              />
-            </div>
-            <div style={codeStyle}>{'status="filled" value="Plan me a trip to Tokyo" showTag tagLabel="Flight"'}</div>
-          </div>
-
-          <div>
-            <h3 style={h3Style}>thinking</h3>
-            <div style={wrapperStyle}>
-              <AIChat status="thinking" placeholder="Let's plan a trip..." />
-            </div>
-            <div style={codeStyle}>{'status="thinking"'}</div>
-          </div>
-
-          <div>
-            <h3 style={h3Style}>disabled</h3>
-            <div style={wrapperStyle}>
-              <AIChat disabled placeholder="Let's plan a trip..." />
-            </div>
-            <div style={codeStyle}>{'disabled'}</div>
-          </div>
+        <h2 style={h2Style}>AI Chat panel — State</h2>
+        <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
+          {(['default', 'wide', 'collapsed'] as const).map((s) => (
+            <button
+              key={s}
+              onClick={() => setChatState(s)}
+              style={{
+                padding: '6px 12px',
+                borderRadius: '8px',
+                border: '1px solid var(--ds-mapped-border-default)',
+                background: chatState === s ? 'var(--ds-mapped-surface-action-hover-light)' : 'var(--ds-mapped-surface-default)',
+                fontSize: '12px',
+                cursor: 'pointer',
+              }}
+            >
+              {s}
+            </button>
+          ))}
         </div>
-      </section>
-
-      {/* Sizes */}
-      <section style={sectionStyle}>
-        <h2 style={h2Style}>Sizes (default status)</h2>
-
-        <div style={rowStyle}>
-          <div>
-            <h3 style={h3Style}>sm (default) — 320px reference width</h3>
-            <div style={{ maxWidth: '320px' }}>
-              <AIChat size="sm" placeholder="Let's plan a trip..." />
-            </div>
-            <div style={codeStyle}>{'size="sm"'}</div>
-          </div>
-
-          <div>
-            <h3 style={h3Style}>lg — 440px reference width</h3>
-            <div style={{ maxWidth: '440px' }}>
-              <AIChat size="lg" placeholder="Let's plan a trip..." />
-            </div>
-            <div style={codeStyle}>{'size="lg"'}</div>
-          </div>
-        </div>
-      </section>
-
-      {/* Auto-derived status (interactive demo) */}
-      <section style={sectionStyle}>
-        <h2 style={h2Style}>Auto-derived status (interactive)</h2>
-        <p style={{ fontSize: '14px', color: 'var(--ds-mapped-text-body)', marginBottom: '16px' }}>
-          Status derived from focus + value — no explicit status prop. Type something to see filled state.
-        </p>
-        <div style={{ maxWidth: '440px' }}>
+        <div style={panelFrame}>
           <AIChat
-            value={value}
-            onChange={e => setValue(e.target.value)}
-            onSubmit={text => { alert(`Submitted: ${text}`); setValue('') }}
-            showTag={value.toLowerCase().includes('flight')}
-            tagLabel="Flight"
-            onRemoveTag={() => setValue(value.replace(/flight/gi, '').trim())}
-          />
+            state={chatState}
+            inputValue={value}
+            onInputChange={(e) => setValue(e.target.value)}
+            onSubmit={(t) => { alert(`Submitted: ${t}`); setValue('') }}
+            onCollapse={() => setChatState('collapsed')}
+            onExpand={() => setChatState('default')}
+          >
+            {conversation}
+          </AIChat>
         </div>
-        <div style={codeStyle}>{'<AIChat value={value} onChange={...} onSubmit={...} />'}</div>
+        <div style={codeStyle}>{`state="${chatState}"`}</div>
       </section>
 
-      {/* Token reference */}
+      {/* Side-by-side default + wide */}
       <section style={sectionStyle}>
-        <h2 style={h2Style}>Tokens used</h2>
-        <div style={{
-          padding: '16px',
-          background: 'var(--ds-mapped-surface-action-hover-light)',
-          borderRadius: '8px',
-          fontSize: '12px',
-          fontFamily: 'monospace',
-          color: 'var(--ds-mapped-text-body)',
-          lineHeight: '20px',
-        }}>
-          <div>--ds-mapped-surface-default — container + button bg</div>
-          <div>--ds-mapped-surface-action — send button bg (filled)</div>
-          <div>--ds-mapped-surface-action-hover — send button hover bg</div>
-          <div>--ds-mapped-surface-action-hover-light — button hover bg (default)</div>
-          <div>--ds-mapped-border-default — container + button border (default)</div>
-          <div>--ds-mapped-border-action — container border (selected/filled)</div>
-          <div>--ds-mapped-border-disabled — container + button border (disabled)</div>
-          <div>--ds-mapped-text-body — input text + placeholder</div>
-          <div>--ds-mapped-text-disabled — disabled text + placeholder</div>
-          <div>--ds-mapped-icon-action — mic/pause icon color</div>
-          <div>--ds-mapped-icon-on-action — arrow-up icon color (filled)</div>
-          <div>--ds-mapped-icon-disabled — mic icon color (disabled)</div>
-          <div>--ds-effect-shadow — shadow (default/thinking/disabled)</div>
-          <div>--ds-effect-shadow-on — shadow (selected/filled)</div>
-          <div>--ds-alias-border-radius-xl — top-left/right corner radius (16px)</div>
-          <div>--ds-alias-border-radius-lg — button corner radius (8px)</div>
-          <div>--ds-alias-border-width-md — top border thickness (2px)</div>
-          <div>--ds-alias-border-width-sm — button border thickness (1px)</div>
-          <div>--ds-alias-spacing-sm — container padding (12px)</div>
-          <div>--ds-alias-spacing-xs — chatField gap + bottomRow gap + button padding (8px)</div>
-          <div>--ds-brand-font-family-body — Inter</div>
-          <div>--ds-brand-font-weight-regular — 400</div>
-          <div>--ds-typography-body-sm-font-size — 14px</div>
-          <div>--ds-typography-body-sm-line-height — 20px</div>
+        <h2 style={h2Style}>Panel — default & wide</h2>
+        <div style={{ display: 'flex', gap: '24px', height: '560px', alignItems: 'stretch' }}>
+          <AIChat state="default">{conversation}</AIChat>
+          <AIChat state="wide">{conversation}</AIChat>
+        </div>
+      </section>
+
+      {/* User bubble */}
+      <section style={sectionStyle}>
+        <h2 style={h2Style}>UserBubble</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={pieceFrame}>
+            <h3 style={h3Style}>size=sm</h3>
+            <UserBubble size="sm" onCopy={() => {}} onEdit={() => {}}>
+              Generate my travel package
+            </UserBubble>
+          </div>
+          <div style={{ ...pieceFrame, maxWidth: '480px' }}>
+            <h3 style={h3Style}>size=lg</h3>
+            <UserBubble size="lg" onCopy={() => {}} onEdit={() => {}}>
+              Generate my travel package
+            </UserBubble>
+          </div>
+        </div>
+      </section>
+
+      {/* Agent bubble */}
+      <section style={sectionStyle}>
+        <h2 style={h2Style}>AgentBubble — Mode × Response Loaded</h2>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px' }}>
+          <div style={pieceFrame}>
+            <h3 style={h3Style}>normal · loaded</h3>
+            <AgentBubble sections={SECTIONS} suggestions={SUGGESTIONS} />
+          </div>
+          <div style={pieceFrame}>
+            <h3 style={h3Style}>normal · loading</h3>
+            <AgentBubble responseLoaded={false} />
+          </div>
+          <div style={pieceFrame}>
+            <h3 style={h3Style}>thinking · loaded</h3>
+            <AgentBubble
+              mode="thinking"
+              sections={SECTIONS}
+              suggestions={SUGGESTIONS}
+              thinkingExpanded={thinkingExpanded}
+              onToggleThinking={() => setThinkingExpanded((v) => !v)}
+            />
+          </div>
+          <div style={pieceFrame}>
+            <h3 style={h3Style}>thinking · loading</h3>
+            <AgentBubble mode="thinking" responseLoaded={false} />
+          </div>
+        </div>
+      </section>
+
+      {/* Agent response mode */}
+      <section style={sectionStyle}>
+        <h2 style={h2Style}>AgentResponseMode</h2>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px' }}>
+          <div style={pieceFrame}><h3 style={h3Style}>normal · loaded</h3><AgentResponseMode /></div>
+          <div style={pieceFrame}><h3 style={h3Style}>normal · loading</h3><AgentResponseMode status="loading" /></div>
+          <div style={pieceFrame}><h3 style={h3Style}>thinking · loaded</h3><AgentResponseMode thinkingMode /></div>
+          <div style={pieceFrame}><h3 style={h3Style}>thinking · loading</h3><AgentResponseMode thinkingMode status="loading" /></div>
+        </div>
+      </section>
+
+      {/* Response content / action suggestions / reaction bar */}
+      <section style={sectionStyle}>
+        <h2 style={h2Style}>ResponseContent / ActionSuggestions / ResponseReactionBar</h2>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px' }}>
+          <div style={pieceFrame}>
+            <h3 style={h3Style}>ResponseContent</h3>
+            <ResponseContent sections={SECTIONS} />
+          </div>
+          <div style={pieceFrame}>
+            <h3 style={h3Style}>ActionSuggestions</h3>
+            <ActionSuggestions suggestions={SUGGESTIONS} />
+          </div>
+          <div style={pieceFrame}>
+            <h3 style={h3Style}>ResponseReactionBar</h3>
+            <ResponseReactionBar onCopy={() => {}} onThumbsUp={() => {}} onThumbsDown={() => {}} onShare={() => {}} onMore={() => {}} />
+          </div>
+        </div>
+      </section>
+
+      {/* Chat input piece */}
+      <section style={sectionStyle}>
+        <h2 style={h2Style}>ChatInput — Status</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '440px' }}>
+          <div><h3 style={h3Style}>default</h3><ChatInput status="default" /></div>
+          <div><h3 style={h3Style}>selected</h3><ChatInput status="selected" /></div>
+          <div>
+            <h3 style={h3Style}>filled — value + showTag</h3>
+            <ChatInput
+              value={filledValue}
+              onChange={(e) => setFilledValue(e.target.value)}
+              status="filled"
+              showTag={tagVisible}
+              tagLabel="Flight"
+              onRemoveTag={() => setTagVisible(false)}
+              onSubmit={(t) => alert(`Submitted: ${t}`)}
+            />
+          </div>
+          <div><h3 style={h3Style}>thinking</h3><ChatInput status="thinking" /></div>
+          <div><h3 style={h3Style}>disabled</h3><ChatInput disabled /></div>
         </div>
       </section>
     </div>

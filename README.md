@@ -41,7 +41,7 @@ Visit http://localhost:3000/preview
 ## Currently previewed
 - Avatar — 3 types (icon, image, initials), 3 sizes (lg/md/sm) — components/ui/
 - Badge — 5 variants (default, error, success, information, warning), 2 types (pill, dot) — components/ui/
-- Buttons — Button, ButtonVertical, ButtonIcon
+- Buttons — Button, ButtonVertical, ButtonIcon, ButtonIconSwitching (icon swaps on hover/focus, e.g. logo → expand arrow) — components/primitives/
 - Icons — 46 total
 - Menu — MenuItem (2 sizes, 4 states) + Menu container (scrollable) — components/ui/
 - Label — 2 variants (default, required), icon slot — components/ui/
@@ -72,7 +72,7 @@ Visit http://localhost:3000/preview
 - DialogBox — modal dialog, portal rendering, focus trap, Escape key, backdrop click, heading icon slot, primary + optional secondary action buttons — components/layout/
 - PackageCard — 2 variants (default: prev/next, itinerary: prev/"Day N"/next), heading, TripOn AI action button (ButtonIcon), nav buttons (CarouselItem), children slot — components/layout/
 - NavigationPanel — 2 expand states (expanded/collapsed), NavigationMenuGroup container, NavigationMenuItem (4 states: default/hover/selected/disabled), 4px right-border selection indicator — components/layout/
-- AIChat — floating chat input panel, 4 status variants (default/selected/filled/thinking), disabled state, Tag chip slot, auto-derived status from focus + value — components/layout/
+- AIChat (set) — full assembled chat panel (State default/collapsed/wide) + nested pieces: ChatInput, UserBubble, AgentBubble, AgentResponseMode, ResponseContent, ActionSuggestions, ResponseReactionBar — components/layout/
 - Table — data table, 3 cell types (copy/link/action), optional title bar + action buttons, row hover, semantic HTML — components/layout/
 
 ## Important

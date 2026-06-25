@@ -99,6 +99,16 @@
   color: var(--ds-mapped-text-action);
 }
 
+/* Transparent ButtonIcon (icon-only) default/resting state uses the icon/default
+   token instead of text/action. Scoped to .iconOnly so Button + ButtonVertical
+   transparent variants are unchanged. Covers both lg + sm (size doesn't affect
+   color). Specificity (0,2,0) loses to hover/focus rules above (0,4,0) and — by
+   appearing before the disabled rules in source order — also loses to disabled,
+   so only the resting state changes. */
+.iconOnly.variantTransparent {
+  color: var(--ds-mapped-icon-default);
+}
+
 /* Transparent focus ring is tighter (no border to push against) */
 .variantTransparent:focus-visible::after {
   inset: -4px;
