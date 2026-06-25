@@ -104,6 +104,7 @@ export const AIChat = React.forwardRef<HTMLDivElement, AIChatProps>(
         </div>
 
         <ChatInput
+          className={styles.containerFluid}
           status={inputStatus}
           disabled={inputDisabled}
           value={inputValue}

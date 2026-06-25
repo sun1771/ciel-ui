@@ -71,6 +71,8 @@ export const ChatInput = React.forwardRef<HTMLDivElement, ChatInputProps>(
             ? styles.statusThinking
             : styles.statusDefault
 
+    const sizeClass = size === 'lg' ? styles.containerLg : styles.containerSm
+
     const buttonIcon = isThinking ? (
       <Pause size={20} />
     ) : isFilled ? (
@@ -86,7 +88,7 @@ export const ChatInput = React.forwardRef<HTMLDivElement, ChatInputProps>(
         : 'Voice input'
 
     return (
-      <div ref={ref} className={cn(styles.container, statusClass, className)} {...props}>
+      <div ref={ref} className={cn(styles.container, sizeClass, statusClass, className)} {...props}>
         <div className={styles.chatField}>
           <textarea
             rows={1}

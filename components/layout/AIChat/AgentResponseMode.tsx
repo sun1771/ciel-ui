@@ -2,9 +2,10 @@
 
 import React from 'react'
 import { cn } from '@/lib/utils'
-import { TripOnChatIcon, ChevronDown } from '@/icons'
+import { TripOnChatIcon } from '@/icons'
 import { Separator } from '@/components/primitives/Separator'
 import { Loader } from '@/components/feedback/Loader'
+import { Expander } from '@/components/navigation/Expander'
 import type { AgentResponseModeProps } from './types'
 import styles from './AIChat.module.css'
 
@@ -12,6 +13,11 @@ import styles from './AIChat.module.css'
  * AgentResponseMode — `.Agent Response Mode` (Figma node 2078:3215).
  * The agent identity row: the TripOn sparkle icon, plus — in thinking mode — a
  * "Show Thinking" disclosure (loaded) or a "Thinking…" loading status (loading).
+ *
+ * The disclosure reuses the navigation `Expander` (size="sm"); its children are
+ * the model's train of thought (`thinkingContent`). Collapsed, the Expander hugs
+ * its header; expanded, it grows to fill the row so the revealed content fills
+ * the width.
  *
  * Figma variants → props:
  *   Thinking Mode=False/True → `thinkingMode`
@@ -26,6 +32,7 @@ export const AgentResponseMode = React.forwardRef<HTMLDivElement, AgentResponseM
       status = 'loaded',
       thinkingExpanded = false,
       onToggleThinking,
+      thinkingContent,
       className,
       ...props
     },
@@ -56,23 +63,15 @@ export const AgentResponseMode = React.forwardRef<HTMLDivElement, AgentResponseM
           )}
 
           {thinkingMode && !isLoading && (
-            <button
-              type="button"
-              className={styles.expander}
-              aria-expanded={thinkingExpanded}
-              onClick={onToggleThinking}
+            <Expander
+              label="Show Thinking"
+              size="sm"
+              isExpanded={thinkingExpanded}
+              onToggle={onToggleThinking}
+              className={thinkingExpanded ? styles.showThinkingFill : styles.showThinkingHug}
             >
-              {thinkingExpanded ? 'Hide Thinking' : 'Show Thinking'}
-              <span
-                className={cn(
-                  styles.expanderChevron,
-                  thinkingExpanded && styles.expanderChevronOpen,
-                )}
-                aria-hidden="true"
-              >
-                <ChevronDown size={16} />
-              </span>
-            </button>
+              {thinkingContent}
+            </Expander>
           )}
         </div>
 

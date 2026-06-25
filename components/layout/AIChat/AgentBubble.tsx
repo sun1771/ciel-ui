@@ -24,6 +24,10 @@ import styles from './AIChat.module.css'
  * When `responseLoaded` is false, only the AgentResponseMode header renders
  * (sparkle, plus a loader / "Thinking…" in thinking mode).
  *
+ * In thinking mode the final response is ALWAYS shown once loaded; the
+ * "Show Thinking" disclosure only reveals the separate `thinkingContent`
+ * (the model's train of thought) — it never hides the final result.
+ *
  * @see design-system/figma.md → AI Chat
  */
 export const AgentBubble = React.forwardRef<HTMLDivElement, AgentBubbleProps>(
@@ -33,6 +37,7 @@ export const AgentBubble = React.forwardRef<HTMLDivElement, AgentBubbleProps>(
       responseLoaded = true,
       thinkingExpanded = false,
       onToggleThinking,
+      thinkingContent,
       sections,
       children,
       suggestions,
@@ -48,19 +53,21 @@ export const AgentBubble = React.forwardRef<HTMLDivElement, AgentBubbleProps>(
     ref,
   ) => {
     const thinking = mode === 'thinking'
-    // In thinking mode, response content is only shown once expanded.
-    const showContent = responseLoaded && (!thinking || thinkingExpanded)
 
     return (
       <div ref={ref} className={cn(styles.agentBubble, className)} {...props}>
+        {/* The "Show Thinking" disclosure (with the train of thought as its
+            content) lives inside AgentResponseMode. The final response below
+            always stays visible — expanding only reveals the reasoning. */}
         <AgentResponseMode
           thinkingMode={thinking}
           status={responseLoaded ? 'loaded' : 'loading'}
           thinkingExpanded={thinkingExpanded}
           onToggleThinking={onToggleThinking}
+          thinkingContent={thinkingContent}
         />
 
-        {showContent && (
+        {responseLoaded && (
           <div className={styles.agentContentArea}>
             <ResponseContent sections={sections}>{children}</ResponseContent>
             {suggestions && suggestions.length > 0 && (

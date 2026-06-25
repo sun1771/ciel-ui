@@ -25,6 +25,12 @@ const SUGGESTIONS = [
   { label: 'Add activities' },
 ]
 
+const THINKING_STEPS = [
+  { title: 'Understanding the request', content: 'User wants a Tokyo trip; inferring ~5 days, mid-range budget.' },
+  { title: 'Comparing options', content: 'Weighing Shinjuku vs Shibuya for transit access and nightlife.' },
+  { title: 'Finalising', content: 'Picked Shinjuku — best rail links for the planned day trips.' },
+]
+
 export default function AIChatPreviewPage() {
   const [chatState, setChatState] = React.useState<'default' | 'collapsed' | 'wide'>('default')
   const [value, setValue] = React.useState('')
@@ -149,16 +155,16 @@ export default function AIChatPreviewPage() {
 
       {/* User bubble */}
       <section style={sectionStyle}>
-        <h2 style={h2Style}>UserBubble</h2>
+        <h2 style={h2Style}>UserBubble — fills container, 48px left indent (both sizes)</h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          <div style={pieceFrame}>
-            <h3 style={h3Style}>size=sm</h3>
+          <div style={{ ...pieceFrame, maxWidth: '320px' }}>
+            <h3 style={h3Style}>size=sm — in a 320px container</h3>
             <UserBubble size="sm" onCopy={() => {}} onEdit={() => {}}>
               Generate my travel package
             </UserBubble>
           </div>
-          <div style={{ ...pieceFrame, maxWidth: '480px' }}>
-            <h3 style={h3Style}>size=lg</h3>
+          <div style={{ ...pieceFrame, maxWidth: '600px' }}>
+            <h3 style={h3Style}>size=lg — in a 600px container</h3>
             <UserBubble size="lg" onCopy={() => {}} onEdit={() => {}}>
               Generate my travel package
             </UserBubble>
@@ -179,13 +185,14 @@ export default function AIChatPreviewPage() {
             <AgentBubble responseLoaded={false} />
           </div>
           <div style={pieceFrame}>
-            <h3 style={h3Style}>thinking · loaded</h3>
+            <h3 style={h3Style}>thinking · loaded (toggle Show Thinking — final response stays)</h3>
             <AgentBubble
               mode="thinking"
               sections={SECTIONS}
               suggestions={SUGGESTIONS}
               thinkingExpanded={thinkingExpanded}
               onToggleThinking={() => setThinkingExpanded((v) => !v)}
+              thinkingContent={<ResponseContent sections={THINKING_STEPS} />}
             />
           </div>
           <div style={pieceFrame}>
@@ -225,15 +232,25 @@ export default function AIChatPreviewPage() {
         </div>
       </section>
 
+      {/* Chat input — sizes */}
+      <section style={sectionStyle}>
+        <h2 style={h2Style}>ChatInput — Size (sm 320px · lg 440px)</h2>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', alignItems: 'flex-start' }}>
+          <div><h3 style={h3Style}>size=sm — 320px</h3><ChatInput size="sm" status="default" /></div>
+          <div><h3 style={h3Style}>size=lg — 440px</h3><ChatInput size="lg" status="default" /></div>
+        </div>
+      </section>
+
       {/* Chat input piece */}
       <section style={sectionStyle}>
-        <h2 style={h2Style}>ChatInput — Status</h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', maxWidth: '440px' }}>
-          <div><h3 style={h3Style}>default</h3><ChatInput status="default" /></div>
-          <div><h3 style={h3Style}>selected</h3><ChatInput status="selected" /></div>
+        <h2 style={h2Style}>ChatInput — Status (size=lg)</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'flex-start' }}>
+          <div><h3 style={h3Style}>default</h3><ChatInput size="lg" status="default" /></div>
+          <div><h3 style={h3Style}>selected</h3><ChatInput size="lg" status="selected" /></div>
           <div>
             <h3 style={h3Style}>filled — value + showTag</h3>
             <ChatInput
+              size="lg"
               value={filledValue}
               onChange={(e) => setFilledValue(e.target.value)}
               status="filled"
@@ -243,8 +260,8 @@ export default function AIChatPreviewPage() {
               onSubmit={(t) => alert(`Submitted: ${t}`)}
             />
           </div>
-          <div><h3 style={h3Style}>thinking</h3><ChatInput status="thinking" /></div>
-          <div><h3 style={h3Style}>disabled</h3><ChatInput disabled /></div>
+          <div><h3 style={h3Style}>thinking</h3><ChatInput size="lg" status="thinking" /></div>
+          <div><h3 style={h3Style}>disabled</h3><ChatInput size="lg" disabled /></div>
         </div>
       </section>
     </div>

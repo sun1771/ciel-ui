@@ -97,6 +97,8 @@ export interface AgentResponseModeProps extends React.HTMLAttributes<HTMLDivElem
   thinkingExpanded?: boolean
   /** Called when the "Show Thinking" disclosure is toggled. */
   onToggleThinking?: () => void
+  /** The model's train of thought, rendered inside the "Show Thinking" Expander. */
+  thinkingContent?: React.ReactNode
 }
 
 /** .AI Chat Piece / Agent Bubble — a full agent message. */
@@ -109,9 +111,15 @@ export interface AgentBubbleProps extends React.HTMLAttributes<HTMLDivElement> {
   thinkingExpanded?: boolean
   /** Called when the "Show Thinking" disclosure is toggled. */
   onToggleThinking?: () => void
-  /** Response sections. Ignored when `children` is provided. */
+  /**
+   * The model's train of thought, revealed when the "Show Thinking" disclosure
+   * is expanded (thinking mode only). This is separate from the final response,
+   * which always stays visible.
+   */
+  thinkingContent?: React.ReactNode
+  /** Final-response sections. Ignored when `children` is provided. */
   sections?: ResponseSection[]
-  /** Custom response content (overrides `sections`). */
+  /** Custom final-response content (overrides `sections`). */
   children?: React.ReactNode
   /** Suggested follow-up actions. When empty, the suggestion row is omitted. */
   suggestions?: ActionSuggestion[]

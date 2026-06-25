@@ -22,8 +22,16 @@
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   padding: var(--ds-alias-spacing-sm);
-  width: 100%;
   box-sizing: border-box;
+}
+
+/* Size — fixed reference widths per Figma (sm 320 / lg 440). */
+.containerSm {
+  width: 320px;
+}
+
+.containerLg {
+  width: 440px;
 }
 
 /* Status — border + shadow */
@@ -225,45 +233,15 @@
   color: var(--ds-mapped-text-body);
 }
 
-/* "Show Thinking" disclosure button */
-.expander {
-  display: flex;
-  flex: 1 0 0;
+/* "Show Thinking" — reuses the navigation Expander (sm). Collapsed it hugs the
+   header; expanded it grows to fill the row so the revealed content fills width. */
+.showThinkingHug {
+  width: fit-content;
+}
+
+.showThinkingFill {
+  flex: 1 1 0;
   min-width: 0;
-  align-items: center;
-  gap: var(--ds-alias-spacing-xs);
-  padding: var(--ds-alias-spacing-xxs) var(--ds-alias-spacing-xs);
-  border: none;
-  border-radius: var(--ds-alias-border-radius-lg);
-  background-color: var(--ds-mapped-surface-default);
-  font-family: var(--ds-brand-font-family-body);
-  font-weight: var(--ds-brand-font-weight-regular);
-  font-size: var(--ds-typography-body-sm-font-size);
-  line-height: var(--ds-typography-body-sm-line-height);
-  color: var(--ds-mapped-text-body);
-  cursor: pointer;
-  text-align: left;
-  outline: none;
-}
-
-.expander:hover {
-  background-color: var(--ds-mapped-surface-action-hover-light);
-}
-
-.expander:focus-visible {
-  outline: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
-  outline-offset: 2px;
-}
-
-.expanderChevron {
-  display: inline-flex;
-  flex-shrink: 0;
-  color: var(--ds-mapped-icon-default);
-  transition: transform 150ms ease;
-}
-
-.expanderChevronOpen {
-  transform: rotate(180deg);
 }
 
 /* ════════════════════════════════════════════
@@ -286,10 +264,13 @@
   width: 100%;
 }
 
+
 /* ════════════════════════════════════════════
    .AI Chat Piece / User Bubble  (node 2132:1446)
    ════════════════════════════════════════════ */
 
+/* User bubble fills the container with a 48px (spacing/xxl) left indent so the
+   message is offset from the left edge. Applies to both sm and lg sizes. */
 .userBubble {
   display: flex;
   flex-direction: column;
@@ -297,12 +278,15 @@
   justify-content: center;
   gap: var(--ds-alias-spacing-xs);
   width: 100%;
+  box-sizing: border-box;
+  padding-left: var(--ds-alias-spacing-xxl);
 }
 
-/* Speech bubble — rounded on three corners (flat bottom-right) */
+/* Speech bubble — fills the padded width, rounded on three corners (flat BR) */
 .userBubbleBox {
   display: flex;
   align-items: center;
+  width: 100%;
   padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
   background-color: var(--ds-mapped-surface-action-hover-light);
   border-top-left-radius: var(--ds-alias-border-radius-lg);
@@ -313,13 +297,9 @@
   box-sizing: border-box;
 }
 
-/* sm / lg reference widths from Figma (264 / 440px bubble) */
-.userBubbleBoxSm {
-  max-width: 264px;
-}
-
+/* lg caps at 400px so it doesn't span end-to-end in the wide (708px) panel. */
 .userBubbleBoxLg {
-  max-width: 440px;
+  max-width: 400px;
 }
 
 .userBubbleText {
@@ -422,4 +402,12 @@
   min-height: 0;
   width: 100%;
   overflow-y: auto;
+}
+
+/* Embedded chat input fills the panel width but caps at 400px so it doesn't
+   span end-to-end in the wide (708px) panel. Defined after .containerSm/.containerLg
+   so it wins on equal specificity. */
+.containerFluid {
+  width: 100%;
+  max-width: 400px;
 }

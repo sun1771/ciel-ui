@@ -13,20 +13,17 @@ import styles from './AIChat.module.css'
  * corner) with a Copy / Edit action bar below. Each action is a reused
  * ButtonIcon (transparent, sm).
  *
- * Figma "Size" property → `size` ('sm' | 'lg', bubble max-width 264 / 440px).
+ * Both Figma "Size" values fill their container, with a 48px (spacing/xxl) left
+ * indent so the message is offset from the left edge. `lg` additionally caps the
+ * bubble at 400px so it doesn't span end-to-end in the wide (708px) panel.
  *
  * @see design-system/figma.md → AI Chat
  */
 export const UserBubble = React.forwardRef<HTMLDivElement, UserBubbleProps>(
   ({ size = 'sm', children, showActions = true, onCopy, onEdit, className, ...props }, ref) => {
     return (
-      <div ref={ref} className={cn(styles.userBubble, className)} {...props}>
-        <div
-          className={cn(
-            styles.userBubbleBox,
-            size === 'lg' ? styles.userBubbleBoxLg : styles.userBubbleBoxSm,
-          )}
-        >
+      <div ref={ref} data-size={size} className={cn(styles.userBubble, className)} {...props}>
+        <div className={cn(styles.userBubbleBox, size === 'lg' && styles.userBubbleBoxLg)}>
           <p className={styles.userBubbleText}>{children}</p>
         </div>
 
