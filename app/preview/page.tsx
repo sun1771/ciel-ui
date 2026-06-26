@@ -2,6 +2,7 @@ export default function PreviewIndexPage() {
   const cards = [
     { label: 'Buttons →', href: '/preview/buttons' },
     { label: 'Icons →', href: '/preview/icons' },
+    { label: 'Logo →', href: '/preview/logo' },
   ]
 
   return (

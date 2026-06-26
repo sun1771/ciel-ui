@@ -34,6 +34,12 @@ Visit http://localhost:3000/preview
      ./design-system/icons/index.ts
    ```
 
+   Re-copy the brand logo if it changed (raw SVGs + module are repo-agnostic):
+   ```bash
+   cp /Users/sanazkhanali/dev/tripon-ai/app/design-system/logo/* \
+     ./design-system/logo/
+   ```
+
 4. Create app/preview/[component-name]/page.tsx
 
 5. Add a nav link in app/preview/layout.tsx
@@ -43,6 +49,7 @@ Visit http://localhost:3000/preview
 - Badge — 5 variants (default, error, success, information, warning), 2 types (pill, dot) — components/ui/
 - Buttons — Button, ButtonVertical, ButtonIcon, ButtonIconSwitching (icon swaps on hover/focus, e.g. logo → expand arrow) — components/primitives/
 - Icons — 46 total
+- Logo — TripOn AI brand mark, 4 sizes (16/20/24/32), raw SVGs loaded as <img> — design-system/logo/
 - Menu — MenuItem (2 sizes, 4 states) + Menu container (scrollable) — components/ui/
 - Label — 2 variants (default, required), icon slot — components/ui/
 - SelectButton — 3 variants (default, outline, transparent), 2 sizes, disabled, isSelected toggle — components/ui/
@@ -71,7 +78,7 @@ Visit http://localhost:3000/preview
 - Card — travel result card, 3 types (hotel/rental car/flight) × 4 statuses (recommended/normal/loading/more) + isSelected border. Composes Chip (recommended + green chips), Button (Details/Discover more), CarouselItem + Pagination (hotel carousel), DS icons & graphics — components/layout/
 - DialogBox — modal dialog, portal rendering, focus trap, Escape key, backdrop click, heading icon slot, primary + optional secondary action buttons — components/layout/
 - PackageCard — 2 variants (default: prev/next, itinerary: prev/"Day N"/next), heading, TripOn AI action button (ButtonIcon), nav buttons (CarouselItem), children slot — components/layout/
-- NavigationPanel — 2 expand states (expanded/collapsed), NavigationMenuGroup container, NavigationMenuItem (4 states: default/hover/selected/disabled), 4px right-border selection indicator — components/layout/
+- NavigationPanel — 2 expand states (expanded/collapsed), NavigationLogoItem (logo + collapse ButtonIcon when expanded; logo→Expand ButtonIconSwitching toggle when collapsed), NavigationMenuGroup (gap none/md), NavigationMenuItem (4 states: default/hover/selected/disabled; selected = filled-blue pill) — components/layout/
 - AIChat (set) — full assembled chat panel (State default/collapsed/wide) + nested pieces: ChatInput, UserBubble, AgentBubble, AgentResponseMode, ResponseContent, ActionSuggestions, ResponseReactionBar — components/layout/
 - Table — data table, 3 cell types (copy/link/action), optional title bar + action buttons, row hover, semantic HTML — components/layout/
 

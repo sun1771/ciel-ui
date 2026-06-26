@@ -3,12 +3,15 @@
 import React from 'react'
 import { cn } from '@/lib/utils'
 import type { NavigationMenuItemProps } from './types'
+import { useNavigationPanel } from './NavigationPanel'
 import styles from './NavigationPanel.module.css'
 
 /**
  * NavigationMenuItem
- * A single clickable item inside a NavigationPanel. Shows an icon and an
- * optional label (hidden automatically when the parent panel is collapsed).
+ * A single clickable item (Type=regular) inside a NavigationPanel. Shows an
+ * icon and an optional label. When the parent panel is collapsed it renders as
+ * a square icon-only button (the label is hidden). The selected state is a
+ * filled blue pill.
  *
  * @see design-system/figma.md → NavigationPanel
  * @see docs/components.md for usage examples
@@ -30,6 +33,8 @@ export const NavigationMenuItem = React.forwardRef<
     },
     ref
   ) => {
+    const { isExpanded } = useNavigationPanel()
+
     return (
       <button
         ref={ref}
@@ -44,6 +49,7 @@ export const NavigationMenuItem = React.forwardRef<
           styles.item,
           isSelected && styles.selected,
           disabled && styles.disabled,
+          !isExpanded && styles.itemCollapsed,
           className
         )}
         {...props}
@@ -53,9 +59,7 @@ export const NavigationMenuItem = React.forwardRef<
             {icon}
           </span>
         )}
-        {children && (
-          <span className={styles.itemText}>{children}</span>
-        )}
+        {children && <span className={styles.itemText}>{children}</span>}
       </button>
     )
   }

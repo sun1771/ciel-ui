@@ -1,7 +1,8 @@
 /* ============================================
-   NavigationPanel + NavigationMenuItem styles
+   NavigationPanel + NavigationMenuItem + NavigationLogoItem styles
    Tokens: docs/design-system.md
    Figma:  design-system/figma.md → NavigationPanel
+           .NavigationMenuItem 1345:3878 / Navigation Panel 1348:4669
    ============================================ */
 
 /* ---- NavigationPanel ---- */
@@ -11,14 +12,21 @@
   flex-direction: column;
   justify-content: space-between;
   background: var(--ds-mapped-surface-default);
-  padding: var(--ds-alias-spacing-md) var(--ds-alias-spacing-none);
+  padding: var(--ds-alias-spacing-md) var(--ds-alias-spacing-xxxs);
   box-shadow: var(--ds-effect-shadow);
   overflow: hidden;
+  box-sizing: border-box;
 }
 
-/* TODO: 155px has no alias/mapped token — flagged in figma.md */
+/* Widths derive from the item box (154 / 48) + 2px (Spacing/xxxs) padding each
+   side. No --ds- token exists for these container dimensions — component-
+   specific, flagged in figma.md (same precedent as Switch/Avatar). */
 .panelExpanded {
-  width: 155px;
+  width: 158px;
+}
+
+.panelCollapsed {
+  width: 52px;
 }
 
 /* ---- MenuGroup ---- */
@@ -26,28 +34,40 @@
 .menuGroup {
   display: flex;
   flex-direction: column;
-  gap: var(--ds-alias-spacing-xs);
+  /* Default item lists touch (primary + supporting groups). */
+  gap: var(--ds-alias-spacing-none);
 }
 
-/* ---- NavigationMenuItem ---- */
+/* Top wrapper that separates the logo item from the primary item group. */
+.menuGroupGapMd {
+  gap: var(--ds-alias-spacing-md);
+}
+
+/* ---- NavigationMenuItem (Type=regular) ---- */
 
 .item {
   display: flex;
   align-items: center;
   gap: var(--ds-alias-spacing-xs);
+  width: 154px;
+  height: 48px;
   padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
   background: var(--ds-mapped-surface-default);
-  width: 100%;
+  border: none;
+  border-radius: var(--ds-alias-border-radius-lg);
   text-align: left;
   cursor: pointer;
-  /* Reserve 4px on the right so selected border never causes layout shift */
-  border: none;
-  border-right: 4px solid transparent;
+  box-sizing: border-box;
+}
+
+/* Collapsed: square icon button, label hidden, icon centered. */
+.itemCollapsed {
+  width: 48px;
+  justify-content: center;
 }
 
 .item:hover:not(.selected):not(:disabled) {
   background: var(--ds-mapped-surface-action-hover-light);
-  border-right: 1px solid var(--ds-mapped-border-action-hover);
 }
 
 .item:hover:not(.selected):not(:disabled) .itemText {
@@ -58,17 +78,21 @@
   color: var(--ds-mapped-icon-action-hover);
 }
 
+/* Selected: filled blue pill with white icon + label. */
 .item.selected {
-  border-right: 4px solid var(--ds-mapped-border-action);
+  background: var(--ds-mapped-surface-action);
 }
 
 .item.selected .itemText {
-  /* icon/action and text/action resolve to the same #001bcc — use text/action */
-  color: var(--ds-mapped-text-action);
+  color: var(--ds-mapped-text-on-action);
 }
 
 .item.selected .itemIcon {
-  color: var(--ds-mapped-icon-action);
+  color: var(--ds-mapped-icon-on-action);
+}
+
+.item.selected:hover:not(:disabled) {
+  background: var(--ds-mapped-surface-action-hover);
 }
 
 .item:disabled,
@@ -117,7 +141,38 @@
   flex: 1;
 }
 
-/* When panel is collapsed, hide all item labels */
-.panelCollapsed .itemText {
+/* Collapsed items never show their label. */
+.itemCollapsed .itemText {
   display: none;
+}
+
+/* ---- NavigationLogoItem (Type=logo) ---- */
+
+/* Expanded: brand logo on the left, collapse ButtonIcon on the right. */
+.logoItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 154px;
+  height: 48px;
+  /* pl Spacing/xs, pr Spacing/xxs, py Spacing/xs (per Figma 3860:1918). */
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-xxs)
+    var(--ds-alias-spacing-xs) var(--ds-alias-spacing-xs);
+  background: var(--ds-mapped-surface-default);
+  border-radius: var(--ds-alias-border-radius-lg);
+  box-sizing: border-box;
+}
+
+.logoMark {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Collapsed: the logo IS the toggle (ButtonIconSwitching renders its own
+   48px box), so the wrapper only needs to center it. */
+.logoItemCollapsed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

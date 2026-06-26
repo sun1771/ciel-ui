@@ -9,6 +9,7 @@ const navLinks = [
   { href: '/preview/chip', label: 'Chip' },
   { href: '/preview/checkbox', label: 'Checkbox' },
   { href: '/preview/icons', label: 'Icons' },
+  { href: '/preview/logo', label: 'Logo' },
   { href: '/preview/menu', label: 'Menu' },
   { href: '/preview/label', label: 'Label' },
   { href: '/preview/field', label: 'Field + Input' },
