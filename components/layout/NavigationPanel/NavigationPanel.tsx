@@ -77,7 +77,7 @@ NavigationPanel.displayName = 'NavigationPanel'
  * NavigationMenuGroup
  * Groups a set of navigation items within a NavigationPanel. The panel uses
  * justify-between so a top group and a bottom group are pushed to opposite
- * ends. Pass `gap="md"` for the top wrapper that separates the logo item from
+ * ends. Pass `gap="lg"` for the top wrapper that separates the logo item from
  * the primary item group; the default `gap="none"` matches stacked item lists.
  */
 export const NavigationMenuGroup = React.forwardRef<
@@ -90,7 +90,9 @@ export const NavigationMenuGroup = React.forwardRef<
       role="group"
       className={cn(
         styles.menuGroup,
+        gap === 'xxs' && styles.menuGroupGapXxs,
         gap === 'md' && styles.menuGroupGapMd,
+        gap === 'lg' && styles.menuGroupGapLg,
         className
       )}
       {...props}

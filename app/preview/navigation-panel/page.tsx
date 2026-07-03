@@ -6,12 +6,13 @@ import {
   NavigationMenuGroup,
   NavigationMenuItem,
   NavigationLogoItem,
+  NavigationProfileItem,
 } from '@/components/layout/NavigationPanel'
-import { Calendar, Bag, Map, Info, Settings, User } from '@/icons'
+import { Calendar, Bag, Map, Info } from '@/icons'
 
-/** A full sidebar: logo item + primary group on top, supporting group at the
- *  bottom. `selected` / `onSelect` drive the active item; the logo item toggles
- *  the panel via the panel's `onToggle`. */
+/** A full sidebar: logo item + primary group on top, and the Setting & Profile
+ *  row at the bottom (auto gap fills the height between them). `selected` /
+ *  `onSelect` drive the active item; the logo item toggles the panel. */
 function DemoPanel({
   expanded,
   onToggle,
@@ -25,10 +26,11 @@ function DemoPanel({
 }) {
   return (
     <NavigationPanel isExpanded={expanded} onToggle={onToggle}>
-      {/* Part 1 — logo item separated (gap=md) from the primary item group */}
-      <NavigationMenuGroup gap="md">
+      {/* Part 1 — logo item separated (gap="lg") from the primary item group */}
+      <NavigationMenuGroup gap="lg">
         <NavigationLogoItem />
-        <NavigationMenuGroup>
+        {/* Main group — 4px (xxs) gap between items; long labels truncate to … */}
+        <NavigationMenuGroup gap="xxs">
           <NavigationMenuItem
             icon={<Calendar size={20} />}
             isSelected={selected === 'trips'}
@@ -56,25 +58,23 @@ function DemoPanel({
         </NavigationMenuGroup>
       </NavigationMenuGroup>
 
-      {/* Part 2 — supporting items pinned to the bottom */}
-      <NavigationMenuGroup>
-        <NavigationMenuItem
-          icon={<Settings size={20} />}
-          isSelected={selected === 'settings'}
-          onClick={() => onSelect('settings')}
-        >
-          Settings
-        </NavigationMenuItem>
-        <NavigationMenuItem
-          icon={<User size={20} />}
-          isSelected={selected === 'profile'}
-          onClick={() => onSelect('profile')}
-        >
-          Profile
-        </NavigationMenuItem>
-      </NavigationMenuGroup>
+      {/* Part 2 — Setting & Profile row pinned to the bottom (auto gap above) */}
+      <NavigationProfileItem
+        userName="Sanaz K."
+        avatarInitials="SK"
+        onProfileClick={() => onSelect('profile')}
+        onSettingsClick={() => onSelect('settings')}
+      />
     </NavigationPanel>
   )
+}
+
+const H2: React.CSSProperties = {
+  fontFamily: 'var(--ds-brand-font-family-heading)',
+  fontWeight: 'var(--ds-brand-font-weight-semi-bold)',
+  fontSize: 'var(--ds-responsive-h6-font-size)',
+  color: 'var(--ds-mapped-text-heading)',
+  marginBottom: 'var(--ds-alias-spacing-lg)',
 }
 
 export default function NavigationPanelPreviewPage() {
@@ -130,38 +130,30 @@ export default function NavigationPanelPreviewPage() {
           }}
         >
           {
-            "import { NavigationPanel, NavigationMenuGroup, NavigationMenuItem, NavigationLogoItem } from '@/components/layout/NavigationPanel'"
+            "import { NavigationPanel, NavigationMenuGroup, NavigationMenuItem, NavigationLogoItem, NavigationProfileItem } from '@/components/layout/NavigationPanel'"
           }
         </p>
       </div>
 
       {/* Section: Interactive toggle (logo item collapses/expands the panel) */}
       <section style={{ marginBottom: 'var(--ds-alias-spacing-xxl)' }}>
-        <h2
-          style={{
-            fontFamily: 'var(--ds-brand-font-family-heading)',
-            fontWeight: 'var(--ds-brand-font-weight-semi-bold)',
-            fontSize: 'var(--ds-responsive-h6-font-size)',
-            color: 'var(--ds-mapped-text-heading)',
-            marginBottom: 'var(--ds-alias-spacing-lg)',
-          }}
-        >
-          Interactive — the logo item toggles the panel
-        </h2>
+        <h2 style={H2}>Interactive — the logo item toggles the panel</h2>
         <div
           style={{
             display: 'flex',
             gap: 'var(--ds-alias-spacing-xl)',
             alignItems: 'flex-start',
-            minHeight: '520px',
           }}
         >
-          <DemoPanel
-            expanded={expanded}
-            onToggle={() => setExpanded((v) => !v)}
-            selected={interactiveSelected}
-            onSelect={setInteractiveSelected}
-          />
+          {/* Definite height so the auto gap pushes the profile row to the bottom */}
+          <div style={{ height: '560px' }}>
+            <DemoPanel
+              expanded={expanded}
+              onToggle={() => setExpanded((v) => !v)}
+              selected={interactiveSelected}
+              onSelect={setInteractiveSelected}
+            />
+          </div>
           <div
             style={{
               fontFamily: 'monospace',
@@ -169,27 +161,19 @@ export default function NavigationPanelPreviewPage() {
               color: 'var(--ds-mapped-text-disabled)',
             }}
           >
-            Expanded: click the collapse button (right of the logo).
+            Expanded: click the collapse button (right of the logo); Settings sits
+            to the right of the avatar.
             <br />
-            Collapsed: hover the logo — it swaps to an expand arrow — then click.
+            Collapsed: hover the logo to reveal the expand arrow; Settings stacks
+            on top of the avatar.
           </div>
         </div>
       </section>
 
       {/* Section: Expanded (static) */}
       <section style={{ marginBottom: 'var(--ds-alias-spacing-xxl)' }}>
-        <h2
-          style={{
-            fontFamily: 'var(--ds-brand-font-family-heading)',
-            fontWeight: 'var(--ds-brand-font-weight-semi-bold)',
-            fontSize: 'var(--ds-responsive-h6-font-size)',
-            color: 'var(--ds-mapped-text-heading)',
-            marginBottom: 'var(--ds-alias-spacing-lg)',
-          }}
-        >
-          Expanded (isExpanded=true)
-        </h2>
-        <div style={{ minHeight: '520px' }}>
+        <h2 style={H2}>Expanded (isExpanded=true)</h2>
+        <div style={{ height: '560px' }}>
           <DemoPanel
             expanded
             onToggle={() => {}}
@@ -201,18 +185,8 @@ export default function NavigationPanelPreviewPage() {
 
       {/* Section: Collapsed (static) */}
       <section style={{ marginBottom: 'var(--ds-alias-spacing-xxl)' }}>
-        <h2
-          style={{
-            fontFamily: 'var(--ds-brand-font-family-heading)',
-            fontWeight: 'var(--ds-brand-font-weight-semi-bold)',
-            fontSize: 'var(--ds-responsive-h6-font-size)',
-            color: 'var(--ds-mapped-text-heading)',
-            marginBottom: 'var(--ds-alias-spacing-lg)',
-          }}
-        >
-          Collapsed (isExpanded=false)
-        </h2>
-        <div style={{ minHeight: '520px' }}>
+        <h2 style={H2}>Collapsed (isExpanded=false)</h2>
+        <div style={{ height: '560px' }}>
           <DemoPanel
             expanded={false}
             onToggle={() => {}}
@@ -224,17 +198,7 @@ export default function NavigationPanelPreviewPage() {
 
       {/* Section: All NavigationMenuItem states */}
       <section style={{ marginBottom: 'var(--ds-alias-spacing-xxl)' }}>
-        <h2
-          style={{
-            fontFamily: 'var(--ds-brand-font-family-heading)',
-            fontWeight: 'var(--ds-brand-font-weight-semi-bold)',
-            fontSize: 'var(--ds-responsive-h6-font-size)',
-            color: 'var(--ds-mapped-text-heading)',
-            marginBottom: 'var(--ds-alias-spacing-lg)',
-          }}
-        >
-          NavigationMenuItem — all states
-        </h2>
+        <h2 style={H2}>NavigationMenuItem — all states</h2>
         <NavigationPanel isExpanded>
           <NavigationMenuGroup>
             <NavigationMenuItem icon={<Info size={20} />}>
@@ -263,17 +227,7 @@ export default function NavigationPanelPreviewPage() {
 
       {/* Token reference */}
       <section>
-        <h2
-          style={{
-            fontFamily: 'var(--ds-brand-font-family-heading)',
-            fontWeight: 'var(--ds-brand-font-weight-semi-bold)',
-            fontSize: 'var(--ds-responsive-h6-font-size)',
-            color: 'var(--ds-mapped-text-heading)',
-            marginBottom: 'var(--ds-alias-spacing-md)',
-          }}
-        >
-          Tokens used
-        </h2>
+        <h2 style={H2}>Tokens used</h2>
         <div
           style={{
             padding: 'var(--ds-alias-spacing-md)',
@@ -285,26 +239,30 @@ export default function NavigationPanelPreviewPage() {
             lineHeight: '1.8',
           }}
         >
-          --ds-mapped-surface-default — panel bg, item default bg<br />
+          --ds-mapped-surface-default — panel bg, item/logo/profile default bg
+          <br />
           --ds-mapped-surface-action — selected item bg (filled blue)<br />
           --ds-mapped-surface-action-hover — selected item hover bg<br />
           --ds-mapped-surface-action-hover-light — item hover bg<br />
           --ds-mapped-text-on-action — selected item label (white)<br />
           --ds-mapped-text-action-hover — hover item label<br />
-          --ds-mapped-text-body — default item label<br />
+          --ds-mapped-text-body — default item + profile name label<br />
           --ds-mapped-text-disabled — disabled item label<br />
           --ds-mapped-icon-on-action — selected item icon (white)<br />
           --ds-mapped-icon-action-hover — hover item icon<br />
           --ds-mapped-icon-default — default item icon<br />
           --ds-mapped-icon-disabled — disabled item icon<br />
           --ds-mapped-border-focus — keyboard focus ring<br />
-          --ds-effect-shadow — panel drop shadow<br />
-          --ds-alias-border-radius-lg — item + logo radius (8px)<br />
-          --ds-alias-spacing-md — panel padding-y + top-group gap<br />
-          --ds-alias-spacing-xxxs — panel padding-x (2px)<br />
-          --ds-alias-spacing-sm — item padding-x<br />
-          --ds-alias-spacing-xs — item padding-y + logo padding<br />
-          --ds-alias-spacing-xxs — logo item right padding<br />
+          --ds-effect-shadow — panel drop shadow (= Figma Token=shadow)<br />
+          --ds-alias-border-radius-lg — item / logo / profile radius (8px)<br />
+          --ds-alias-border-radius-round — profile avatar button focus radius
+          <br />
+          --ds-alias-spacing-lg — panel padding-y + top-group gap (24px)<br />
+          --ds-alias-spacing-xxs — panel padding-x (4px) + logo/profile edge
+          padding<br />
+          --ds-alias-spacing-sm — item padding-x (12px)<br />
+          --ds-alias-spacing-xs — item padding-y + logo/profile padding + gaps
+          <br />
           --ds-alias-spacing-none — item-list gap (0)<br />
           --ds-brand-font-family-body — label font family<br />
           --ds-brand-font-weight-regular — label font weight<br />

@@ -35,6 +35,22 @@ export const NavigationMenuItem = React.forwardRef<
   ) => {
     const { isExpanded } = useNavigationPanel()
 
+    // When a string label is truncated to an ellipsis, expose the full text as
+    // a native tooltip (title) — but only while it actually overflows.
+    const textRef = React.useRef<HTMLSpanElement>(null)
+    const [overflowTitle, setOverflowTitle] = React.useState<string | undefined>(
+      undefined
+    )
+
+    React.useEffect(() => {
+      const el = textRef.current
+      if (!el || typeof children !== 'string') {
+        setOverflowTitle(undefined)
+        return
+      }
+      setOverflowTitle(el.scrollWidth > el.clientWidth ? children : undefined)
+    }, [children, isExpanded])
+
     return (
       <button
         ref={ref}
@@ -43,6 +59,7 @@ export const NavigationMenuItem = React.forwardRef<
         disabled={disabled}
         aria-disabled={disabled || undefined}
         aria-current={isSelected ? 'page' : undefined}
+        title={overflowTitle}
         onClick={onClick}
         onKeyDown={onKeyDown}
         className={cn(
@@ -59,7 +76,11 @@ export const NavigationMenuItem = React.forwardRef<
             {icon}
           </span>
         )}
-        {children && <span className={styles.itemText}>{children}</span>}
+        {children && (
+          <span ref={textRef} className={styles.itemText}>
+            {children}
+          </span>
+        )}
       </button>
     )
   }

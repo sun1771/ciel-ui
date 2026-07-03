@@ -1,10 +1,12 @@
 import React from 'react'
 
 /** Vertical gap between a NavigationMenuGroup's direct children.
- *  - `none` (default) — items touch, matching the primary/supporting item lists
- *  - `md` — 16px, matching the top wrapper that separates the logo item from
+ *  - `none` (default) — items touch
+ *  - `xxs` — 4px, spacing between items in the main menu group
+ *  - `md` — 16px
+ *  - `lg` — 24px, matching the top wrapper that separates the logo item from
  *    the primary item group */
-export type NavigationMenuGroupGap = 'none' | 'md'
+export type NavigationMenuGroupGap = 'none' | 'xxs' | 'md' | 'lg'
 
 /** Props for a single clickable navigation menu item (Type=regular). */
 export interface NavigationMenuItemProps
@@ -29,6 +31,31 @@ export interface NavigationLogoItemProps
   collapseLabel?: string
   /** aria-label for the expand control shown when the panel is collapsed. */
   expandLabel?: string
+  className?: string
+}
+
+/** Props for the "Setting and Profile" row (composes Avatar + a Settings
+ *  ButtonIcon). It reads the panel's expanded state from context:
+ *  - expanded: Avatar + name on the left, Settings button on the right
+ *  - collapsed: Settings button stacked on top of the Avatar */
+export interface NavigationProfileItemProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+  /** User name shown next to the avatar when expanded. Default "User". */
+  userName?: string
+  /** Avatar image URL. When set, the avatar renders as an image. */
+  avatarSrc?: string
+  /** Avatar initials. Used when no `avatarSrc` is provided. */
+  avatarInitials?: string
+  /** Alt text for the avatar image (falls back to `userName`). */
+  avatarAlt?: string
+  /** aria-label for the settings control. Default "Settings". */
+  settingsLabel?: string
+  /** aria-label for the profile control (falls back to `userName`). */
+  profileLabel?: string
+  /** When provided, the settings control becomes clickable. */
+  onSettingsClick?: () => void
+  /** When provided, the avatar + name cluster becomes a clickable button. */
+  onProfileClick?: () => void
   className?: string
 }
 
