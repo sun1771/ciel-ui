@@ -57,6 +57,20 @@
   white-space: nowrap;
 }
 
+/* Dimmed "Day N" label — Loaded=False (Figma text/disabled) */
+.dayLabelDisabled {
+  color: var(--ds-mapped-text-disabled);
+}
+
+/* Loaded=False action button — the TripOn sparkle uses hardcoded brand-blue
+   fills (not currentColor), so the disabled button's text color can't gray it.
+   Grayscale + reduced opacity matches Figma's dimmed disabled sparkle without
+   hardcoding a color. */
+.actionDisabled :global(svg) {
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+
 /* Content area — children slot */
 .content {
   padding: 0 var(--ds-alias-spacing-md) var(--ds-alias-spacing-sm);
@@ -64,4 +78,15 @@
   flex-direction: column;
   align-items: stretch;
   width: 100%;
+}
+
+/* Placeholder body text — Loaded=False ("Not curated yet.")
+   Body/md Inter Regular 16px/20px, text/placeholder */
+.emptyText {
+  font-family: var(--ds-typography-body-md-font-family);
+  font-weight: var(--ds-typography-body-md-font-weight);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-placeholder);
+  margin: 0;
 }

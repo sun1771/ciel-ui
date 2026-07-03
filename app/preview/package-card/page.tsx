@@ -30,7 +30,7 @@ export default function PackageCardPreviewPage() {
           color: 'var(--ds-mapped-text-body)',
           marginTop: '8px'
         }}>
-          Figma: ↴ LAYOUT / Package Card — node 2566:1725
+          Figma: ↴ LAYOUT / Package Card — set node 2181:1455 (Loaded × Type)
         </p>
         <p style={{
           fontSize: 'var(--ds-typography-body-sm-font-size)',
@@ -118,6 +118,57 @@ export default function PackageCardPreviewPage() {
         </div>
       </section>
 
+      {/* Section: loaded=false (Not curated yet.) */}
+      <section style={{ marginBottom: '48px' }}>
+        <h2 style={{
+          fontFamily: 'var(--ds-brand-font-family-heading)',
+          fontSize: 'var(--ds-responsive-h6-font-size)',
+          fontWeight: 'var(--ds-brand-font-weight-semi-bold)',
+          color: 'var(--ds-mapped-text-heading)',
+          marginBottom: '24px'
+        }}>
+          loaded=&#123;false&#125; — not curated yet
+        </h2>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div>
+            <PackageCard
+              variant="default"
+              loaded={false}
+              heading="Package Card"
+              onAction={() => alert('should not fire')}
+            />
+            <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '11px', color: 'var(--ds-mapped-text-disabled)' }}>
+              variant=&quot;default&quot; loaded=&#123;false&#125; — action + nav disabled, placeholder body
+            </div>
+          </div>
+
+          <div>
+            <PackageCard
+              variant="itinerary"
+              loaded={false}
+              heading="Day-by-Day Itinerary"
+              page={1}
+            />
+            <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '11px', color: 'var(--ds-mapped-text-disabled)' }}>
+              variant=&quot;itinerary&quot; loaded=&#123;false&#125; — dimmed &quot;Day 1&quot; label, placeholder body
+            </div>
+          </div>
+
+          <div>
+            <PackageCard
+              variant="default"
+              loaded={false}
+              heading="Custom placeholder"
+              emptyText="No plan generated yet — ask TripOn AI to build one."
+            />
+            <div style={{ marginTop: '8px', fontFamily: 'monospace', fontSize: '11px', color: 'var(--ds-mapped-text-disabled)' }}>
+              emptyText=&quot;…&quot; — custom placeholder text
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Section: Nav button states */}
       <section style={{ marginBottom: '48px' }}>
         <h2 style={{
@@ -188,7 +239,9 @@ export default function PackageCardPreviewPage() {
           <ul style={{ marginTop: '8px', paddingLeft: '16px', lineHeight: '1.8' }}>
             <li>--ds-mapped-surface-default — card background</li>
             <li>--ds-mapped-border-default — card border</li>
-            <li>--ds-mapped-text-heading — heading + day label</li>
+            <li>--ds-mapped-text-heading — heading + day label (loaded)</li>
+            <li>--ds-mapped-text-disabled — day label (loaded=false)</li>
+            <li>--ds-mapped-text-placeholder — &quot;Not curated yet.&quot; body (loaded=false)</li>
             <li>--ds-alias-border-radius-lg — card corner radius</li>
             <li>--ds-alias-border-width-sm — card border (1px)</li>
             <li>--ds-alias-spacing-sm — header/content vertical padding</li>

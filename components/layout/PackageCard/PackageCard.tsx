@@ -11,6 +11,8 @@ import type { PackageCardProps } from './types'
  * Card container with a heading, TripOn AI action button, and built-in page navigation.
  * variant="default" — prev/next arrows only.
  * variant="itinerary" — prev / "Day N" / next in the header.
+ * loaded=false — content not yet generated: shows the `emptyText` placeholder and
+ * disables the action button, nav buttons, and dims the "Day N" label.
  *
  * @see design-system/figma.md for Figma mapping
  * @see docs/components.md for usage examples
@@ -19,6 +21,8 @@ export const PackageCard = React.forwardRef<HTMLDivElement, PackageCardProps>(
   (
     {
       variant = 'default',
+      loaded = true,
+      emptyText = 'Not curated yet.',
       heading,
       page = 1,
       totalPages = 1,
@@ -31,8 +35,9 @@ export const PackageCard = React.forwardRef<HTMLDivElement, PackageCardProps>(
     },
     ref
   ) => {
-    const isPrevDisabled = page <= 1
-    const isNextDisabled = page >= totalPages
+    // When not loaded, all interactive controls are disabled (Figma `Loaded=False`).
+    const isPrevDisabled = !loaded || page <= 1
+    const isNextDisabled = !loaded || page >= totalPages
 
     return (
       <div ref={ref} className={cn(styles.card, className)} {...props}>
@@ -46,6 +51,8 @@ export const PackageCard = React.forwardRef<HTMLDivElement, PackageCardProps>(
             icon={<TripOnChatIcon size={16} />}
             label="TripOn AI action"
             onClick={onAction}
+            disabled={!loaded}
+            className={!loaded ? styles.actionDisabled : undefined}
             variant="transparent"
             size="sm"
             shape="default"
@@ -62,7 +69,10 @@ export const PackageCard = React.forwardRef<HTMLDivElement, PackageCardProps>(
             />
 
             {variant === 'itinerary' && (
-              <span className={styles.dayLabel} aria-live="polite">
+              <span
+                className={cn(styles.dayLabel, !loaded && styles.dayLabelDisabled)}
+                aria-live="polite"
+              >
                 Day {page}
               </span>
             )}
@@ -77,8 +87,10 @@ export const PackageCard = React.forwardRef<HTMLDivElement, PackageCardProps>(
           </div>
         </div>
 
-        {/* Content area */}
-        <div className={styles.content}>{children}</div>
+        {/* Content area — children when loaded, placeholder text otherwise */}
+        <div className={styles.content}>
+          {loaded ? children : <p className={styles.emptyText}>{emptyText}</p>}
+        </div>
       </div>
     )
   }
