@@ -42,7 +42,16 @@ const preview: Preview = {
     controls: { expanded: true, sort: 'requiredFirst' },
     // Fail story tests (Vitest addon) on any axe accessibility violation,
     // including colour contrast.
-    a11y: { test: 'error' },
+    a11y: {
+      test: 'error',
+      // Include WCAG 2.1 and 2.2 AA rules (e.g. 2.5.8 target size), not just 2.0.
+      options: {
+        runOnly: {
+          type: 'tag',
+          values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'],
+        },
+      },
+    },
   },
 }
 

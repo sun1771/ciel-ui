@@ -5,7 +5,10 @@
  * (see packages/ui/DESIGN-CHANGES.md).
  *
  * Usage:
- *   node scripts/design-screenshots.mjs <storybook-static dir> <output dir>
+ *   node scripts/design-screenshots.mjs <storybook-static dir> <output dir> [story-id,story-id]
+ *
+ * The optional third argument captures only those stories, so earlier
+ * "before" shots aren't overwritten when you record a new change.
  *
  * Build Storybook first: pnpm --filter @acme/ui build-storybook
  */
@@ -18,7 +21,8 @@ const root = path.resolve(import.meta.dirname, '..')
 const require = createRequire(path.join(root, 'packages/ui/package.json'))
 const { chromium } = require('playwright')
 
-const [staticDir, outDir] = process.argv.slice(2).map((p) => path.resolve(p))
+const [staticDir, outDir] = process.argv.slice(2, 4).map((p) => path.resolve(p))
+const only = process.argv[4]?.split(',').filter(Boolean)
 if (!staticDir || !outDir) {
   console.error('usage: design-screenshots.mjs <storybook-static> <out-dir>')
   process.exit(1)
@@ -42,6 +46,8 @@ export const STORIES = [
   'primitives-daterangecalendar--single-month',
   'feedback-snackbar--variants',
   'feedback-snackbar--with-progress',
+  'navigation-pagination--default',
+  'layout-card--media-carousel',
 ]
 const THEMES = ['light', 'dark']
 
@@ -71,7 +77,7 @@ const browser = await chromium.launch()
 const page = await browser.newPage({ viewport: { width: 900, height: 700 }, deviceScaleFactor: 1 })
 let count = 0
 try {
-  for (const id of STORIES) {
+  for (const id of only ?? STORIES) {
     for (const theme of THEMES) {
       // Story args/play run as normal; the theme comes from the toolbar global.
       await page.goto(`${base}/iframe.html?id=${id}&viewMode=story&globals=theme:${theme}`)

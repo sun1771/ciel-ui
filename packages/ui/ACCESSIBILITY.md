@@ -2,12 +2,13 @@
 
 ## What is tested
 
-| Layer                    | Command             | What it checks                                                                                                                                |
-| ------------------------ | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| Story tests, light theme | `pnpm test:stories` | Every story in real Chromium. axe-core fails on any violation, colour contrast included. `play` functions cover keyboard and focus behaviour. |
-| Story tests, dark theme  | `pnpm test:stories` | The same stories again with `data-theme="dark"`                                                                                               |
-| Token contrast audit     | `pnpm test:unit`    | `src/test/tokenContrast.test.ts` reads `tokens.css` and checks every text, icon and fill pairing the components use, in both themes           |
-| Unit tests               | `pnpm test:unit`    | State logic (controlled and uncontrolled), calendar grids for every `weekStartsOn`, `ref` forwarding                                          |
+| Layer                    | Command                         | What it checks                                                                                                                                                                                                                   |
+| ------------------------ | ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Story tests, light theme | `pnpm test:stories`             | Every story in real Chromium. axe-core runs the WCAG 2.0, 2.1 and 2.2 A/AA rules plus best practices, colour contrast and target size included, and fails on any violation. `play` functions cover keyboard and focus behaviour. |
+| Story tests, dark theme  | `pnpm test:stories`             | The same stories again with `data-theme="dark"`                                                                                                                                                                                  |
+| Token contrast audit     | `pnpm test:unit`                | `src/test/tokenContrast.test.ts` reads `tokens.css` and checks every text, icon and fill pairing the components use, in both themes                                                                                              |
+| Unit tests               | `pnpm test:unit`                | State logic (controlled and uncontrolled), calendar grids for every `weekStartsOn`, `ref` forwarding                                                                                                                             |
+| Docs site audit          | `pnpm --filter docs audit:a11y` | axe on every docs page (45 routes) in both themes, with code panels expanded. Start the site first.                                                                                                                              |
 
 The interaction tests cover:
 

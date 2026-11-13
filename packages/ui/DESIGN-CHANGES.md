@@ -21,6 +21,7 @@ Every changed token carries a `was #xxxxxx` comment in `packages/tokens/tokens.c
 | `398c348` | Text colours (placeholder, error, success, warning, information), brand Chip fill, calendar headers, Tag `aria-disabled` |
 | `0ecfe23` | Icon colours, Badge status fills, all dark-theme changes (links, focus ring, sharp Chip fills)                           |
 | `cd43a5f` | Form-control outlines (`border-input`, `border-input-error`) and the Checkbox error cue                                  |
+| _Pagination commit_ | Pagination dots get 24×24px targets (WCAG 2.2 SC 2.5.8). Was 12×12px, so the dots were closer together                   |
 
 Reverting a commit brings back the matching accessibility failures, and the tests will fail again (`src/test/tokenContrast.test.ts` and the story axe checks).
 
@@ -200,3 +201,19 @@ Progress fills darkened to ≥3:1 on their tracks
 | ----- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | Light | ![before](design-changes/before/feedback-snackbar--with-progress--light.png) | ![after](design-changes/after/feedback-snackbar--with-progress--light.png) |
 | Dark  | ![before](design-changes/before/feedback-snackbar--with-progress--dark.png)  | ![after](design-changes/after/feedback-snackbar--with-progress--dark.png)  |
+
+### Pagination: target size (WCAG 2.2 SC 2.5.8)
+
+Each dot is now a 24×24px click and tap target. The visible dot is unchanged (8px, or the 20px pill when active), but the dots sit further apart. Was a 12×12px target (8px dot + 2px padding). To go back, restore `width`, `height` and `padding` in `Pagination.module.css` from the comment there. The CSS-only alternative, invisible enlarged hit areas, would overlap neighbouring dots.
+
+|       | Before                                                                     | After                                                                    |
+| ----- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Light | ![before](design-changes/before/navigation-pagination--default--light.png) | ![after](design-changes/after/navigation-pagination--default--light.png) |
+| Dark  | ![before](design-changes/before/navigation-pagination--default--dark.png)  | ![after](design-changes/after/navigation-pagination--default--dark.png)  |
+
+In a Card image carousel:
+
+|       | Before                                                                  | After                                                                 |
+| ----- | ----------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Light | ![before](design-changes/before/layout-card--media-carousel--light.png) | ![after](design-changes/after/layout-card--media-carousel--light.png) |
+| Dark  | ![before](design-changes/before/layout-card--media-carousel--dark.png)  | ![after](design-changes/after/layout-card--media-carousel--dark.png)  |

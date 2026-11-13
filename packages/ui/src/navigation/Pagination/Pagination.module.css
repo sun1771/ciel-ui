@@ -17,10 +17,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Inactive: 12px × 12px (8px dot + 2px padding per side) */
-  width: var(--ds-alias-spacing-sm);
-  height: var(--ds-alias-spacing-sm);
-  padding: var(--ds-alias-spacing-xxxs);
+  /* a11y (WCAG 2.2 SC 2.5.8 target size): every dot is a 24px × 24px target;
+     the visible dot inside is unchanged. Was 12px × 12px (8px dot + 2px
+     padding), so the dots now sit further apart. Before/after:
+     packages/ui/DESIGN-CHANGES.md. */
+  width: var(--ds-alias-spacing-lg);
+  height: var(--ds-alias-spacing-lg);
+  padding: 0;
   overflow: hidden;
   flex-shrink: 0;
   background: transparent;
@@ -35,9 +38,8 @@
   outline-offset: 2px;
 }
 
-/* Active button is wider: 24px × 12px */
+/* Active button holds the 20px pill (same 24px × 24px target). Was 24px × 12px. */
 .dotButtonActive {
-  width: var(--ds-alias-spacing-lg);
   cursor: default;
 }
 
