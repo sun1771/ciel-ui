@@ -1,0 +1,32 @@
+.search {
+  max-width: 360px;
+}
+
+.count {
+  font-size: 14px;
+  color: var(--ds-mapped-text-placeholder);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 16px 8px;
+  border: 1px solid var(--ds-mapped-border-default);
+  border-radius: var(--site-radius);
+  color: var(--ds-mapped-text-heading);
+}
+
+.item code {
+  font-size: 12px;
+  color: var(--ds-mapped-text-body);
+}

@@ -1,0 +1,66 @@
+export const metadata = { title: 'Getting started' }
+
+# Getting started
+
+Ciel UI is a React 19 component library: 37 components and 47 icons, built on design tokens, accessible in light and dark themes, and ready for React Server Components.
+
+## Install
+
+```bash
+npm install @acme/ui @acme/icons @acme/tokens
+```
+
+React 19 is a peer dependency. The packages are **ESM only**.
+
+## Add the styles
+
+Import the design tokens and the component styles **once**, at the root of your app:
+
+```tsx
+// app/layout.tsx (Next.js) or src/main.tsx (Vite)
+import '@acme/tokens/tokens.css'
+import '@acme/ui/styles.css'
+```
+
+Components read `--ds-*` CSS custom properties from the tokens, so the tokens stylesheet must load first.
+
+## Use a component
+
+```tsx
+import { Button, Card, CardHeader, CardFooter } from '@acme/ui'
+import { ArrowRight } from '@acme/icons'
+
+export function TripCard() {
+  return (
+    <Card>
+      <CardHeader title="Kyoto, 3 nights" titleAs="h3" />
+      <CardFooter action={<Button iconRight={<ArrowRight size={16} />}>Book</Button>} />
+    </Card>
+  )
+}
+```
+
+## Server Components
+
+Interactive components ship with `'use client'`, so you can render them from a Server Component (for example, a Next.js App Router page) without writing wrappers. Static parts, like the `Card` pieces, stay server-rendered.
+
+## Tree-shaking
+
+Each component is its own module, so bundlers only include what you import. A page that imports only `Button` doesn't download the AI chat code. Our release tests check this.
+
+## Fonts
+
+The tokens name **Inter** (body) and **Poppins** (headings). Load them however you prefer, for example with Google Fonts, or point the font tokens at your own fonts:
+
+```css
+:root {
+  --ds-brand-font-family-body: 'Your Sans', system-ui, sans-serif;
+  --ds-brand-font-family-heading: 'Your Display', system-ui, sans-serif;
+}
+```
+
+## Next steps
+
+- [Theming](/docs/theming): dark mode, rebranding and localising text
+- [Accessibility](/docs/accessibility): what's built in and how it's tested
+- [Components](/docs): every component with live examples and props

@@ -26,15 +26,24 @@ pnpm dev          # docs site at http://localhost:3000/preview
 
 | Command               | Does                                                                                                                                          |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pnpm dev`            | Run the docs site (uses package **source**, so edits hot-reload)                                                                              |
+| `pnpm dev`            | Run the docs site at http://localhost:3000 (uses package **source**, so edits hot-reload)                                                     |
 | `pnpm build`          | Build every package (`packages/*/dist`) and the docs site                                                                                     |
 | `pnpm lint`           | ESLint (incl. `jsx-a11y`, `react-hooks`)                                                                                                      |
 | `pnpm typecheck`      | `tsc --noEmit` in every package                                                                                                               |
 | `pnpm check:packages` | Pack each package as it would be published and run [publint](https://publint.dev) + [Are The Types Wrong](https://arethetypeswrong.github.io) |
 | `pnpm smoke`          | Install the packed packages into a fresh Next.js app, build it, and check SSR, CSS, types and tree-shaking                                    |
+| `pnpm test`           | Unit tests + every story in Chromium (light and dark), with axe and coverage                                                                  |
+| `pnpm storybook`      | Storybook at http://localhost:6006                                                                                                            |
 | `pnpm format`         | Prettier                                                                                                                                      |
 
 Run `pnpm build` before `check:packages` and `smoke`.
+
+## Docs site (`apps/docs`)
+
+The docs site has a landing page, guides (Getting started, Theming, Accessibility), design tokens, an icon gallery, a page per component with live examples and generated props tables, and the travel recipes.
+
+- **Add a component page:** add an entry to `apps/docs/content/registry.ts` and its examples to `apps/docs/examples/<slug>/`. `scripts/codegen.mjs` (run automatically by `dev` and `build`) pairs examples with their source code, generates props tables from the TypeScript types, and fails if the registry and the files disagree.
+- **Accessibility audit:** `pnpm --filter docs build && pnpm --filter docs start`, then `pnpm --filter docs audit:a11y`.
 
 ## Using the library
 

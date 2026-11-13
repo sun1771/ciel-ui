@@ -21,7 +21,7 @@ Every changed token carries a `was #xxxxxx` comment in `packages/tokens/tokens.c
 | `398c348` | Text colours (placeholder, error, success, warning, information), brand Chip fill, calendar headers, Tag `aria-disabled` |
 | `0ecfe23` | Icon colours, Badge status fills, all dark-theme changes (links, focus ring, sharp Chip fills)                           |
 | `cd43a5f` | Form-control outlines (`border-input`, `border-input-error`) and the Checkbox error cue                                  |
-| _Pagination commit_ | Pagination dots get 24×24px targets (WCAG 2.2 SC 2.5.8). Was 12×12px, so the dots were closer together                   |
+| `c84bd9a` | Pagination dots get 24×24px targets (WCAG 2.2 SC 2.5.8). Was 12×12px, so the dots were closer together                   |
 
 Reverting a commit brings back the matching accessibility failures, and the tests will fail again (`src/test/tokenContrast.test.ts` and the story axe checks).
 

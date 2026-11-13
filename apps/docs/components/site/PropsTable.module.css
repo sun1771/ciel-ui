@@ -1,0 +1,68 @@
+.section {
+  margin: 24px 0 32px;
+}
+
+.name {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.scroll {
+  overflow-x: auto;
+  border: 1px solid var(--ds-mapped-border-default);
+  border-radius: var(--site-radius);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.table th,
+.table td {
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--ds-mapped-border-default);
+}
+
+.table thead th {
+  font-weight: 600;
+  color: var(--ds-mapped-text-heading);
+  background: color-mix(
+    in srgb,
+    var(--ds-mapped-surface-disabled) 35%,
+    var(--ds-mapped-surface-default)
+  );
+}
+
+.table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+.table tbody th {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.type {
+  color: var(--ds-mapped-text-action);
+  overflow-wrap: anywhere;
+}
+
+/* Keep types readable: give the Type column room before it wraps. */
+.table td:nth-child(2) {
+  min-width: 180px;
+}
+
+.required {
+  font-size: 12px;
+  color: var(--ds-mapped-text-error);
+}
+
+.note {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: var(--ds-mapped-text-placeholder);
+}

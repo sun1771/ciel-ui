@@ -1,26 +1,88 @@
-@import 'tailwindcss';
+/* Ciel UI docs — global styles. Everything is driven by the library's tokens. */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --site-max: 1200px;
+  --site-header-h: 64px;
+  --site-sidebar-w: 248px;
+  --site-radius: var(--ds-alias-border-radius-lg);
+  color-scheme: light;
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-padding-top: calc(var(--site-header-h) + 16px);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--ds-mapped-surface-page);
+  color: var(--ds-mapped-text-body);
+  font-family: var(--ds-brand-font-family-body), system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--ds-brand-font-family-heading), system-ui, sans-serif;
+  color: var(--ds-mapped-text-heading);
+  line-height: 1.25;
+}
+
+a {
+  color: var(--ds-mapped-text-action);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ds-mapped-border-focus);
+  outline-offset: 2px;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.875em;
+}
+
+/* Shiki dual themes: light by default, dark when the site is dark. */
+.shiki,
+.shiki span {
+  background-color: transparent !important;
+}
+:root[data-theme='dark'] .shiki,
+:root[data-theme='dark'] .shiki span {
+  color: var(--shiki-dark) !important;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -48px;
+  z-index: 100;
+  padding: 8px 16px;
+  border-radius: var(--site-radius);
+  background: var(--ds-mapped-surface-action);
+  color: var(--ds-mapped-text-on-action);
+}
+.skip-link:focus {
+  top: 12px;
 }

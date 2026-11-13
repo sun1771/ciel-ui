@@ -1,0 +1,38 @@
+export const metadata = { title: 'Accessibility' }
+
+# Accessibility
+
+Ciel UI targets **WCAG 2.2 AA** in both the light and dark themes. Accessibility is built into the components and enforced by automated tests on every change.
+
+## What the components do for you
+
+- **Semantic HTML first.** Buttons are `<button>`, checkboxes are native inputs, tables are `<table>`, and navigation is a `<nav>` landmark.
+- **Keyboard support** follows the WAI-ARIA patterns:
+  - **Tabs and Menu:** arrow keys move between items (and wrap), Home and End jump to the ends, and only one item is in the Tab order.
+  - **DialogBox:** focus moves into the dialog, Tab is trapped inside it, Escape closes it, and focus returns to the button that opened it.
+  - **Popover:** Escape closes it and returns focus to the trigger.
+- **Accessible names everywhere.** Icon-only buttons require a `label`, and built-in screen-reader text is localisable through `labels`.
+- **State is never shown by colour alone.** For example, a checkbox in an error state gets a heavier outline as well as turning red, and sets `aria-invalid`.
+- **Contrast.** Text meets 4.5:1. Icons, form outlines and the focus ring meet 3:1. Both apply in both themes.
+
+## How it's tested
+
+| Layer                    | What runs                                                                                                                                                                      |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Story tests, light theme | Every Storybook story runs in real Chromium. **axe-core** fails the build on any violation, and interaction tests check keyboard and focus behaviour.                          |
+| Story tests, dark theme  | The same stories again with `data-theme="dark"`                                                                                                                                |
+| Token contrast audit     | Reads the design tokens and checks every text, icon and fill pairing the components use, in both themes. This covers what axe can't see, such as icons and one-character text. |
+| Unit tests               | State logic, calendar grids for every week start, `ref` forwarding                                                                                                             |
+
+That's 340 tests, run on every change.
+
+## Your part
+
+The components can't know your content. A few things are up to you:
+
+- Give icon-only controls, images and icon-only chips meaningful labels.
+- Use `titleAs` on `CardHeader` so card titles fit your page's heading structure.
+- Pair status colours with text. For example, say “12 unread”, not just a red dot.
+- If you rebrand, keep the contrast ratios above (see [Theming](/docs/theming)).
+
+> The history of colour changes made for accessibility, with before/after screenshots and the original values, is kept in the repository (`packages/ui/DESIGN-CHANGES.md`).
