@@ -1,0 +1,22 @@
+/* Popover — wrapper + floating panel (moved from FieldPicker) */
+
+.wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + var(--ds-alias-spacing-xxs));
+  left: 0;
+  /* Size to the panel's own content instead of being shrink-to-fit-capped at
+     the trigger's width. */
+  width: max-content;
+  z-index: 10;
+  background: var(--ds-mapped-surface-default);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  border-radius: var(--ds-alias-border-radius-lg);
+  box-shadow: var(--ds-effect-shadow-overlay-light);
+  padding: var(--ds-alias-spacing-md);
+}

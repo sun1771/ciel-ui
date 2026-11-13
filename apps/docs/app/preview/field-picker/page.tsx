@@ -1,20 +1,24 @@
 'use client'
 
 import React, { useState } from 'react'
+import { TravelDatePicker } from '@/recipes/travel/TravelDatePicker'
+import { TravelerPicker } from '@/recipes/travel/TravelerPicker'
 import {
-  FieldPicker,
-  FieldPickerDateRange,
-  FieldPickerDateSelection,
-  FieldPickerFlexibility,
-  FieldPickerTripLength,
-  FieldPickerTravelerCounts,
-  CalendarDatePickerTab,
-} from '@acme/ui'
-// Internal panel (not re-exported from index) + shared helpers — imported
-// directly so the preview can show the open calendar with both DatePicker tabs.
-import { FieldPickerCalendar, MONTH_NAMES, MONTH_ABBR, flexibilityDays } from '@acme/ui'
+  TravelDatePanel,
+  MONTH_NAMES,
+  MONTH_ABBR,
+  flexibilityDays,
+} from '@/recipes/travel/TravelDatePanel'
+import type {
+  DateRange,
+  TravelDateSelection,
+  DateFlexibility,
+  TripLength,
+  TravelerCounts,
+  DatePickerTab,
+} from '@/recipes/travel/travelPickerTypes'
 
-const defaultTravelers: FieldPickerTravelerCounts = {
+const defaultTravelers: TravelerCounts = {
   adults: 2,
   children: 0,
   pets: 0,
@@ -29,7 +33,7 @@ function formatDateRange(start: Date | null, end: Date | null): string | null {
 }
 
 /** Mirrors FieldPicker's trigger label so the demo can show what the field reflects. */
-function labelFor(sel: FieldPickerDateSelection): string {
+function labelFor(sel: TravelDateSelection): string {
   if (sel.tab === 'Flexible') {
     if (sel.tripLength && sel.month !== null)
       return `${sel.tripLength} in ${MONTH_ABBR[sel.month]} ${sel.year}`
@@ -48,18 +52,18 @@ function labelFor(sel: FieldPickerDateSelection): string {
  * tabs + a selected month render inline, and shows the resulting trigger label.
  */
 function OpenCalendarDemo() {
-  const [activeTab, setActiveTab] = useState<CalendarDatePickerTab>('Calendar')
-  const [range, setRange] = useState<FieldPickerDateRange>({
+  const [activeTab, setActiveTab] = useState<DatePickerTab>('Calendar')
+  const [range, setRange] = useState<DateRange>({
     start: new Date(2026, 4, 9), // Tue, May 9 2026
     end: new Date(2026, 4, 13), // Sat, May 13 2026
   })
-  const [flexibility, setFlexibility] = useState<FieldPickerFlexibility>('Exact date')
-  const [tripLength, setTripLength] = useState<FieldPickerTripLength | null>('4-5 nights')
+  const [flexibility, setFlexibility] = useState<DateFlexibility>('Exact date')
+  const [tripLength, setTripLength] = useState<TripLength | null>('4-5 nights')
   const [includeWeekend, setIncludeWeekend] = useState(false)
   const [selectedMonth, setSelectedMonth] = useState<number | null>(5) // June
   const [displayYear, setDisplayYear] = useState(2026)
 
-  const selection: FieldPickerDateSelection = {
+  const selection: TravelDateSelection = {
     tab: activeTab,
     start: range.start,
     end: range.end,
@@ -82,7 +86,7 @@ function OpenCalendarDemo() {
   return (
     <div>
       <div style={panelShell}>
-        <FieldPickerCalendar
+        <TravelDatePanel
           activeTab={activeTab}
           onTabChange={setActiveTab}
           startDate={range.start}
@@ -109,9 +113,9 @@ function OpenCalendarDemo() {
 }
 
 export default function FieldPickerPreviewPage() {
-  const [dateRange, setDateRange] = useState<FieldPickerDateRange>({ start: null, end: null })
-  const [dateSelection, setDateSelection] = useState<FieldPickerDateSelection | null>(null)
-  const [travelers, setTravelers] = useState<FieldPickerTravelerCounts>(defaultTravelers)
+  const [dateRange, setDateRange] = useState<DateRange>({ start: null, end: null })
+  const [dateSelection, setDateSelection] = useState<TravelDateSelection | null>(null)
+  const [travelers, setTravelers] = useState<TravelerCounts>(defaultTravelers)
 
   const sectionTitle: React.CSSProperties = {
     fontFamily: 'var(--ds-brand-font-family-heading)',
@@ -181,7 +185,8 @@ export default function FieldPickerPreviewPage() {
             fontFamily: 'monospace',
           }}
         >
-          import &#123; FieldPicker &#125; from &apos;@acme/ui&apos;
+          Recipes: TravelDatePicker / TravelerPicker (apps/docs/recipes/travel), built on
+          FieldPicker + Popover + DateRangeCalendar from &apos;@acme/ui&apos;
         </p>
       </div>
 
@@ -200,7 +205,7 @@ export default function FieldPickerPreviewPage() {
         <div style={{ marginBottom: '24px' }}>
           <h3 style={subheading}>Interactive — uncontrolled, with onSelectionChange readout</h3>
           <div style={{ width: '260px' }}>
-            <FieldPicker type="date" onSelectionChange={setDateSelection} />
+            <TravelDatePicker onSelectionChange={setDateSelection} />
           </div>
           <p
             style={{
@@ -319,8 +324,7 @@ export default function FieldPickerPreviewPage() {
         <div style={{ marginBottom: '32px' }}>
           <h3 style={subheading}>Controlled date range</h3>
           <div style={{ width: '260px' }}>
-            <FieldPicker
-              type="date"
+            <TravelDatePicker
               startDate={dateRange.start}
               endDate={dateRange.end}
               onDateChange={setDateRange}
@@ -342,7 +346,7 @@ export default function FieldPickerPreviewPage() {
         <div style={{ marginBottom: '32px' }}>
           <h3 style={subheading}>Disabled</h3>
           <div style={{ width: '260px' }}>
-            <FieldPicker type="date" disabled />
+            <TravelDatePicker disabled />
           </div>
         </div>
       </section>
@@ -354,14 +358,14 @@ export default function FieldPickerPreviewPage() {
         <div style={{ marginBottom: '32px' }}>
           <h3 style={subheading}>Default (2 adults, 1 room)</h3>
           <div style={{ width: '260px' }}>
-            <FieldPicker type="traveler" />
+            <TravelerPicker />
           </div>
         </div>
 
         <div style={{ marginBottom: '32px' }}>
           <h3 style={subheading}>Controlled — interactive</h3>
           <div style={{ width: '260px' }}>
-            <FieldPicker type="traveler" travelers={travelers} onTravelerChange={setTravelers} />
+            <TravelerPicker travelers={travelers} onTravelerChange={setTravelers} />
           </div>
           <p
             style={{
@@ -379,7 +383,7 @@ export default function FieldPickerPreviewPage() {
         <div style={{ marginBottom: '32px' }}>
           <h3 style={subheading}>Disabled</h3>
           <div style={{ width: '260px' }}>
-            <FieldPicker type="traveler" disabled />
+            <TravelerPicker disabled />
           </div>
         </div>
 
