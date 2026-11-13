@@ -15,8 +15,8 @@
   flex-direction: column;
   position: relative;
   box-sizing: content-box;
-  /* TODO: 230px — no --ds- token for .Card Content width; Figma spec */
-  width: 230px;
+  /* 230px Figma default (no --ds- token); override with --card-width. */
+  width: var(--card-width, 230px);
 }
 
 /* Hover — CSS only (Figma Card State=hover) */
@@ -33,11 +33,6 @@
 
 .selected:hover {
   border-color: var(--ds-mapped-border-action);
-}
-
-/* "more" status centers the graphic container vertically */
-.cardMore {
-  align-items: center;
 }
 
 /* ============================================
@@ -74,59 +69,11 @@
   word-break: break-word;
 }
 
-/* Second row — chips / rating / airline logos */
+/* Meta row under the title (CardHeader children) */
 .headlineChips {
   display: flex;
   gap: var(--ds-alias-spacing-xxs);
   align-items: center;
-}
-
-/* Rental car rating (star + value), no pill background */
-.rating {
-  display: flex;
-  gap: var(--ds-alias-spacing-xxs);
-  align-items: center;
-  color: var(--ds-mapped-text-body);
-}
-
-.ratingText {
-  margin: 0;
-  font-family: var(--ds-typography-body-xsm-font-family);
-  font-weight: var(--ds-typography-body-xsm-font-weight);
-  font-size: var(--ds-typography-body-xsm-font-size);
-  line-height: var(--ds-typography-body-xsm-line-height);
-  color: var(--ds-mapped-text-body);
-  white-space: nowrap;
-}
-
-/* Flight airline logos — two overlapping round images */
-.airlineLogos {
-  display: flex;
-  align-items: center;
-  /* TODO: 24px logo height — no --ds- token; Figma spec */
-  height: 24px;
-}
-
-.airlineLogo {
-  position: relative;
-  width: 24px;
-  height: 24px;
-  border-radius: var(--ds-alias-border-radius-round);
-  overflow: hidden;
-  flex-shrink: 0;
-  background: var(--ds-mapped-surface-disabled);
-}
-
-.airlineLogo:not(:first-child) {
-  /* overlap previous logo by Spacing/xs */
-  margin-left: calc(-1 * var(--ds-alias-spacing-xs));
-}
-
-.airlineLogo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
 /* ============================================
@@ -192,25 +139,17 @@
   box-sizing: border-box;
 }
 
-/* hotel body gap = Spacing/xxs */
-.bodyHotel {
+/* CardBody gap / align props */
+.gapXxs {
   gap: var(--ds-alias-spacing-xxs);
 }
 
-/* rental body gap = Spacing/xs */
-.bodyRental {
+.gapXs {
   gap: var(--ds-alias-spacing-xs);
 }
 
-/* flight body = two flexible columns */
-.bodyFlight {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--ds-alias-spacing-xs);
+.alignStart {
   align-items: flex-start;
-  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
-  width: 100%;
-  box-sizing: border-box;
 }
 
 .bodyMetric {
@@ -236,15 +175,6 @@
   white-space: nowrap;
 }
 
-.flightLeg {
-  display: flex;
-  flex-direction: column;
-  gap: var(--ds-alias-spacing-xxs);
-  justify-content: center;
-  flex: 1 0 0;
-  min-width: 0;
-}
-
 /* ============================================
    .Price and details Item (3455:3427)
    ============================================ */
@@ -252,6 +182,7 @@
 .priceItem {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   gap: var(--ds-alias-spacing-xs);
   align-items: center;
   background: var(--ds-mapped-surface-default);
@@ -261,8 +192,8 @@
   overflow: hidden;
 }
 
-/* "more" status centers the Discover more button */
-.priceItemMore {
+/* CardFooter justify="center" */
+.priceItemCenter {
   justify-content: center;
 }
 
@@ -296,16 +227,6 @@
 /* ============================================
    Graphic Container (3465:1972) — "more" status
    ============================================ */
-
-.graphicContainer {
-  display: flex;
-  flex: 1 0 0;
-  align-items: center;
-  justify-content: center;
-  padding: var(--ds-alias-spacing-sm);
-  width: 100%;
-  box-sizing: border-box;
-}
 
 /* ============================================
    Loading skeleton

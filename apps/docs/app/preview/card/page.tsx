@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Card } from '@acme/ui'
+import { TravelResultCard } from '@/recipes/travel/TravelResultCard'
 
 /* Gradient stand-in for a real photo */
 function PlaceholderImage({ label = 'Photo' }: { label?: string }) {
@@ -136,7 +136,8 @@ export default function CardPreviewPage() {
             fontFamily: 'monospace',
           }}
         >
-          import {'{ Card }'} from &apos;@acme/ui&apos;
+          Recipe built from Card, CardMedia, CardHeader, CardBody, CardMetric, CardFooter, CardPrice
+          — see recipes/travel/TravelResultCard.tsx
         </p>
       </div>
 
@@ -146,7 +147,7 @@ export default function CardPreviewPage() {
         <SectionHeader title="recommended / normal / loading / more" />
         <div style={row}>
           <div>
-            <Card
+            <TravelResultCard
               type="hotel"
               status="recommended"
               headline="Grand Hyatt Tokyo"
@@ -159,7 +160,7 @@ export default function CardPreviewPage() {
             <CodeLabel code='type="hotel" status="recommended"' />
           </div>
           <div>
-            <Card
+            <TravelResultCard
               type="hotel"
               status="normal"
               headline="Park Hyatt Tokyo"
@@ -172,11 +173,11 @@ export default function CardPreviewPage() {
             <CodeLabel code='type="hotel" status="normal"' />
           </div>
           <div>
-            <Card type="hotel" status="loading" aria-label="Loading hotel card" />
+            <TravelResultCard type="hotel" status="loading" aria-label="Loading hotel card" />
             <CodeLabel code='type="hotel" status="loading"' />
           </div>
           <div>
-            <Card type="hotel" status="more" onDiscoverMore={() => {}} />
+            <TravelResultCard type="hotel" status="more" onDiscoverMore={() => {}} />
             <CodeLabel code='type="hotel" status="more"' />
           </div>
         </div>
@@ -188,7 +189,7 @@ export default function CardPreviewPage() {
         <SectionHeader title="recommended / normal / loading / more" />
         <div style={row}>
           <div>
-            <Card
+            <TravelResultCard
               type="rental car"
               status="recommended"
               headline="Toyota Corolla"
@@ -201,7 +202,7 @@ export default function CardPreviewPage() {
             <CodeLabel code='type="rental car" status="recommended"' />
           </div>
           <div>
-            <Card
+            <TravelResultCard
               type="rental car"
               status="normal"
               headline="Nissan Leaf"
@@ -214,11 +215,15 @@ export default function CardPreviewPage() {
             <CodeLabel code='type="rental car" status="normal"' />
           </div>
           <div>
-            <Card type="rental car" status="loading" aria-label="Loading rental car card" />
+            <TravelResultCard
+              type="rental car"
+              status="loading"
+              aria-label="Loading rental car card"
+            />
             <CodeLabel code='type="rental car" status="loading"' />
           </div>
           <div>
-            <Card type="rental car" status="more" onDiscoverMore={() => {}} />
+            <TravelResultCard type="rental car" status="more" onDiscoverMore={() => {}} />
             <CodeLabel code='type="rental car" status="more"' />
           </div>
         </div>
@@ -230,7 +235,7 @@ export default function CardPreviewPage() {
         <SectionHeader title="recommended / normal / loading / more — no image" />
         <div style={row}>
           <div>
-            <Card
+            <TravelResultCard
               type="flight"
               status="recommended"
               headline="ANA"
@@ -248,7 +253,7 @@ export default function CardPreviewPage() {
             <CodeLabel code='type="flight" status="recommended"' />
           </div>
           <div>
-            <Card
+            <TravelResultCard
               type="flight"
               status="normal"
               headline="JAL"
@@ -266,11 +271,11 @@ export default function CardPreviewPage() {
             <CodeLabel code='type="flight" status="normal"' />
           </div>
           <div>
-            <Card type="flight" status="loading" aria-label="Loading flight card" />
+            <TravelResultCard type="flight" status="loading" aria-label="Loading flight card" />
             <CodeLabel code='type="flight" status="loading"' />
           </div>
           <div>
-            <Card type="flight" status="more" onDiscoverMore={() => {}} />
+            <TravelResultCard type="flight" status="more" onDiscoverMore={() => {}} />
             <CodeLabel code='type="flight" status="more"' />
           </div>
         </div>
@@ -282,7 +287,7 @@ export default function CardPreviewPage() {
         <div style={row}>
           {['Hotel Okura', 'Grand Hyatt', 'Park Hyatt'].map((name, i) => (
             <div key={name}>
-              <Card
+              <TravelResultCard
                 type="hotel"
                 status={i === 0 ? 'recommended' : 'normal'}
                 headline={name}
@@ -331,9 +336,10 @@ export default function CardPreviewPage() {
             fontFamily: 'var(--ds-brand-font-family-body)',
           }}
         >
-          Composes: Chip (recommended + green chips), Button (Details / Discover more), CarouselItem
-          + Pagination (hotel carousel), icons (Award, Star, Bed, Gasoline, Users, Car, Baggage,
-          ArrowRight), graphics (Hotel / Flight / CarRental).
+          Recipe (apps/docs/recipes/travel) composing Card parts + Chip (recommended + green chips),
+          Button (Details / Discover more), CarouselItem + Pagination (hotel carousel), icons
+          (Award, Star, Bed, Gasoline, Users, Car, Baggage, ArrowRight), graphics (Hotel / Flight /
+          CarRental).
         </strong>
         --ds-mapped-surface-default — card background
         <br />
