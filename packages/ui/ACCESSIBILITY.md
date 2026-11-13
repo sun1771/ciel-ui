@@ -57,10 +57,14 @@ Every changed value is marked `a11y:` in `packages/tokens/tokens.css`.
 - **DateRangeCalendar:** weekday headers use `text-placeholder`, not `text-disabled` (they aren't disabled).
 - **Tag:** sets `aria-disabled` when disabled. Disabled components are exempt from contrast requirements.
 
+### Non-text contrast (WCAG 1.4.11 / 1.4.1)
+
+- **Form control outlines** use a new `border-input` token: `#8d9199` (3.16:1) in light, `#5a5e66` (3.23:1) in dark. Covers Field, Input, TextArea, SearchBox, FieldPicker, Checkbox and the Switch track. Cards, tables and dividers keep `border-default` (decorative, so exempt).
+- **Error outlines** use `border-input-error`: `#f04438` (3.76:1) in light, `#bb352c` (3.66:1) in dark. The pastel `border-*` status colours remain only as decorative accents (Chips), where text carries the meaning.
+- **Checkbox `error`** also doubles the outline weight, so the state doesn't rely on colour alone (WCAG 1.4.1).
+
+**Before/after screenshots and the original values are in [DESIGN-CHANGES.md](DESIGN-CHANGES.md)**, so any change can be compared or reverted.
+
 ## Follow-ups
 
 - **Token source.** `tokens.css` was edited by hand. Copy the `a11y:` values into the token source (`tokens.json`), or the next regeneration will revert them.
-- **Non-text contrast in the light theme (WCAG 1.4.11): needs a design decision.** These are visual changes, so they were left as they are:
-  - **Input outlines.** Field, Input, TextArea and SearchBox use `border-default` `#f0f1f2`, which is 1.13:1 on white. The field edges are hard to see. 1.4.11 asks for 3:1 when the boundary is needed to identify the control.
-  - **Status borders.** `border-{error,success,warning,information}` are pastels (1.4–1.7:1 on white). That's fine where text carries the state, as with Field's error message. It isn't fine on its own.
-  - **Checkbox `error`.** The error is shown only by colour (and `aria-invalid` for assistive tech). Pair it with an error message, or add a non-colour cue (WCAG 1.4.1).

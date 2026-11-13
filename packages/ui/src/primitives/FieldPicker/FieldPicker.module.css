@@ -7,7 +7,7 @@
   gap: var(--ds-alias-spacing-xs);
   width: 100%;
   padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
-  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-input);
   border-radius: var(--ds-alias-border-radius-lg);
   background: var(--ds-mapped-surface-default);
   cursor: pointer;

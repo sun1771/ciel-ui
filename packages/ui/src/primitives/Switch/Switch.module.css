@@ -25,7 +25,7 @@
   position: relative;
   /* Shape */
   border-radius: var(--ds-alias-border-radius-round);
-  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-input);
   /* Color — default unchecked state */
   background-color: var(--ds-mapped-surface-default);
   /* Interaction */

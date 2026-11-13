@@ -242,6 +242,13 @@
   --ds-mapped-surface-success-strong: #0d884f;
   --ds-mapped-border-focus: #0022ff;
   --ds-mapped-border-disabled: #e3e4e6;
+  /* a11y (WCAG 1.4.11): outlines of form controls — text fields, search,
+     picker, checkbox, switch. They used border-default #f0f1f2 (1.13:1 on
+     white), which stays for cards/dividers. Design reference: see
+     packages/ui/DESIGN-CHANGES.md. */
+  --ds-mapped-border-input: #8d9199; /* was border-default #f0f1f2 → 3.16:1 */
+  /* a11y: error outline of form controls. Was border-error #f9b4af (1.72:1). */
+  --ds-mapped-border-input-error: #f04438; /* → 3.76:1 */
   --ds-responsive-h1-font-size: 60px;
   --ds-responsive-h1-line-height: 72px;
   --ds-responsive-h1-paragraph-spacing: 64px;
@@ -403,6 +410,9 @@
   --ds-mapped-border-disabled: #5a5e66;
   /* a11y: the focus ring inherited light #0022ff (2.07:1 on black) → 3.01:1 */
   --ds-mapped-border-focus: #1736ff;
+  /* a11y: form control outlines on black (was border-default #2d2f33, 1.53:1) */
+  --ds-mapped-border-input: #5a5e66; /* → 3.23:1 */
+  --ds-mapped-border-input-error: #bb352c; /* → 3.66:1 */
 }
 
 @media (max-width: 440px) {

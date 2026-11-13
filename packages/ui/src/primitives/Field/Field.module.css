@@ -13,7 +13,7 @@
   width: 100%;
   position: relative;
   background-color: var(--ds-mapped-surface-default);
-  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-input);
   border-radius: var(--ds-alias-border-radius-lg);
   cursor: text;
   box-sizing: border-box;
@@ -32,13 +32,13 @@
 
 /* Error state */
 .error {
-  border-color: var(--ds-mapped-border-error);
+  border-color: var(--ds-mapped-border-input-error);
 }
 
 /* Error takes precedence over focus border on hover */
 .wrapper.error:hover:not(.disabled),
 .wrapper.error:focus-within:not(.disabled) {
-  border-color: var(--ds-mapped-border-error);
+  border-color: var(--ds-mapped-border-input-error);
 }
 
 /* Disabled state */

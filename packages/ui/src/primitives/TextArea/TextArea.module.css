@@ -39,7 +39,7 @@
   min-height: 108px; /* component-specific — no token equivalent */
   width: 100%;
   background-color: var(--ds-mapped-surface-default);
-  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-input);
   border-radius: var(--ds-alias-border-radius-lg);
   box-sizing: border-box;
   cursor: text;
@@ -58,13 +58,13 @@
 
 /* Error state */
 .fieldError {
-  border-color: var(--ds-mapped-border-error);
+  border-color: var(--ds-mapped-border-input-error);
 }
 
 /* Error takes precedence over hover and focus borders */
 .field.fieldError:hover:not(.fieldDisabled),
 .field.fieldError:focus-within:not(.fieldDisabled) {
-  border-color: var(--ds-mapped-border-error);
+  border-color: var(--ds-mapped-border-input-error);
 }
 
 /* Disabled state */

@@ -28,5 +28,14 @@ export const Default: Story = {
   },
 }
 export const Checked: Story = { args: { defaultChecked: true } }
-export const Error: Story = { args: { error: true } }
+export const Error: Story = {
+  args: { error: true },
+  play: async ({ canvas }) => {
+    const box = canvas.getByRole('checkbox', { name: 'Include weekend' })
+    await expect(box).toHaveAttribute('aria-invalid', 'true')
+    // The error must not be shown by colour alone: the outline also gets heavier.
+    const visualBox = box.nextElementSibling as HTMLElement
+    await expect(getComputedStyle(visualBox).boxShadow).not.toBe('none')
+  },
+}
 export const Disabled: Story = { args: { disabled: true } }

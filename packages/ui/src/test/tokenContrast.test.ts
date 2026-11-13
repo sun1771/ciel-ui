@@ -91,6 +91,14 @@ const PAIRS: Pair[] = [
     GRAPHIC,
     'Snackbar progress fill',
   ]),
+  // Form control outlines identify the control (WCAG 1.4.11)
+  [
+    'mapped-border-input',
+    'mapped-surface-default',
+    GRAPHIC,
+    'input, search, picker, checkbox, switch outlines',
+  ],
+  ['mapped-border-input-error', 'mapped-surface-default', GRAPHIC, 'form control error outlines'],
   // Focus ring on the page
   ['mapped-border-focus', 'mapped-surface-default', GRAPHIC, 'focus outline'],
 ]

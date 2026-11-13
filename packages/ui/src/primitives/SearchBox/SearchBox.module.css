@@ -12,7 +12,7 @@
   gap: var(--ds-alias-spacing-xs);
   padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
   background-color: var(--ds-mapped-surface-default);
-  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-input);
   border-radius: var(--ds-alias-border-radius-lg);
   width: 100%;
   cursor: text;
