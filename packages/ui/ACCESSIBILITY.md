@@ -67,4 +67,4 @@ Every changed value is marked `a11y:` in `packages/tokens/tokens.css`.
 
 ## Follow-ups
 
-- **Token source.** `tokens.css` was edited by hand. Copy the `a11y:` values into the token source (`tokens.json`), or the next regeneration will revert them.
+- **Token source.** `packages/tokens/tokens.css` is currently the source of truth, edited by hand. The original `tokens.json` and Style Dictionary setup live in the tripon-ai repo and still have the old colours. Planned: move `tokens.json` and the generator into `packages/tokens` before the first publish (plan Phase 2), with the `a11y:` values applied. Until then, don't copy tripon-ai's `tokens.css` over this one; the token audit and story tests would fail if that happened.
