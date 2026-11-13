@@ -3,13 +3,22 @@
   "version": "0.0.0",
   "description": "Design tokens (CSS custom properties) for @acme/ui",
   "license": "MIT",
+  "keywords": [
+    "design-tokens",
+    "css-variables"
+  ],
+  "type": "module",
   "sideEffects": [
     "*.css"
   ],
   "exports": {
-    "./tokens.css": "./tokens.css"
+    "./tokens.css": "./tokens.css",
+    "./package.json": "./package.json"
   },
   "files": [
     "tokens.css"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

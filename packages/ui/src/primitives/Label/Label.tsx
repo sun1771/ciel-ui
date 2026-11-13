@@ -23,7 +23,7 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
               <span className={styles.asterisk} aria-hidden="true">
                 *
               </span>
-              <span className="sr-only">required</span>
+              <span className={styles.srOnly}>required</span>
             </>
           )}
           {children}

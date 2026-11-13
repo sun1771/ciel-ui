@@ -8,10 +8,14 @@
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "check:packages": "node scripts/check-packages.mjs",
+    "smoke": "node scripts/smoke-test.mjs"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
     "prettier": "^3.10.0",
+    "publint": "^0.3.25",
     "turbo": "^2.11.11",
     "typescript": "^5.9.3"
   }

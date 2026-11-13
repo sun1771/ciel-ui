@@ -1,0 +1,16 @@
+{
+  // Strictly type-check the published @acme declaration files (and only what
+  // they pull in), with skipLibCheck off and Node's strict ESM resolution.
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["dom", "esnext"],
+    "strict": true,
+    "noEmit": true,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "jsx": "react-jsx",
+    "skipLibCheck": false,
+    "types": []
+  },
+  "files": ["libcheck.mts"]
+}
