@@ -80,14 +80,41 @@ export default function DialogBoxPreviewPage() {
   return (
     <div style={{ maxWidth: '800px' }}>
       {/* Page header */}
-      <div style={{ marginBottom: 'var(--ds-alias-spacing-xl)', paddingBottom: 'var(--ds-alias-spacing-md)', borderBottom: '1px solid var(--ds-mapped-border-default)' }}>
-        <h1 style={{ fontSize: 'var(--ds-responsive-h4-font-size)', fontFamily: 'var(--ds-brand-font-family-heading)', fontWeight: 'var(--ds-brand-font-weight-semi-bold)', color: 'var(--ds-mapped-text-heading)', margin: 0 }}>
+      <div
+        style={{
+          marginBottom: 'var(--ds-alias-spacing-xl)',
+          paddingBottom: 'var(--ds-alias-spacing-md)',
+          borderBottom: '1px solid var(--ds-mapped-border-default)',
+        }}
+      >
+        <h1
+          style={{
+            fontSize: 'var(--ds-responsive-h4-font-size)',
+            fontFamily: 'var(--ds-brand-font-family-heading)',
+            fontWeight: 'var(--ds-brand-font-weight-semi-bold)',
+            color: 'var(--ds-mapped-text-heading)',
+            margin: 0,
+          }}
+        >
           DialogBox
         </h1>
-        <p style={{ fontSize: '14px', color: 'var(--ds-mapped-text-body)', marginTop: 'var(--ds-alias-spacing-xxs)' }}>
+        <p
+          style={{
+            fontSize: '14px',
+            color: 'var(--ds-mapped-text-body)',
+            marginTop: 'var(--ds-alias-spacing-xxs)',
+          }}
+        >
           Figma: LAYOUT / Dialog Box — node 1396:4050
         </p>
-        <p style={{ fontSize: '12px', color: 'var(--ds-mapped-text-disabled)', marginTop: 'var(--ds-alias-spacing-xxxs)', fontFamily: 'monospace' }}>
+        <p
+          style={{
+            fontSize: '12px',
+            color: 'var(--ds-mapped-text-disabled)',
+            marginTop: 'var(--ds-alias-spacing-xxxs)',
+            fontFamily: 'monospace',
+          }}
+        >
           {`import { DialogBox } from '@acme/ui'`}
         </p>
       </div>
@@ -111,8 +138,16 @@ export default function DialogBoxPreviewPage() {
           onClose={close}
           onPrimary={close}
         >
-          <p style={{ margin: 0, fontSize: '14px', color: 'var(--ds-mapped-text-body)', lineHeight: '20px' }}>
-            This is the dialog body content. It can contain any React nodes — text, forms, lists, or other components.
+          <p
+            style={{
+              margin: 0,
+              fontSize: '14px',
+              color: 'var(--ds-mapped-text-body)',
+              lineHeight: '20px',
+            }}
+          >
+            This is the dialog body content. It can contain any React nodes — text, forms, lists, or
+            other components.
           </p>
         </DialogBox>
       </section>
@@ -141,8 +176,16 @@ export default function DialogBoxPreviewPage() {
           secondaryLabel="Cancel"
           onSecondary={close}
         >
-          <p style={{ margin: 0, fontSize: '14px', color: 'var(--ds-mapped-text-body)', lineHeight: '20px' }}>
-            This dialog matches the Figma reference exactly: info icon in heading, two action buttons, and body content.
+          <p
+            style={{
+              margin: 0,
+              fontSize: '14px',
+              color: 'var(--ds-mapped-text-body)',
+              lineHeight: '20px',
+            }}
+          >
+            This dialog matches the Figma reference exactly: info icon in heading, two action
+            buttons, and body content.
           </p>
         </DialogBox>
       </section>
@@ -153,10 +196,19 @@ export default function DialogBoxPreviewPage() {
         <h3 style={h3Style}>Warning icon, destructive pattern</h3>
         <div style={rowStyle}>
           <div>
-            <button style={{ ...triggerButtonStyle, backgroundColor: 'var(--ds-mapped-surface-error)', borderColor: 'var(--ds-mapped-border-error)' }} onClick={() => open('warning')}>
+            <button
+              style={{
+                ...triggerButtonStyle,
+                backgroundColor: 'var(--ds-mapped-surface-error)',
+                borderColor: 'var(--ds-mapped-border-error)',
+              }}
+              onClick={() => open('warning')}
+            >
               Open Warning Dialog
             </button>
-            <div style={labelStyle}>icon={`{<WarningIcon />}`} primaryLabel="Delete" showSecondary secondaryLabel="Cancel"</div>
+            <div style={labelStyle}>
+              icon={`{<WarningIcon />}`} primaryLabel="Delete" showSecondary secondaryLabel="Cancel"
+            </div>
           </div>
         </div>
 
@@ -171,7 +223,14 @@ export default function DialogBoxPreviewPage() {
           secondaryLabel="Cancel"
           onSecondary={close}
         >
-          <p style={{ margin: 0, fontSize: '14px', color: 'var(--ds-mapped-text-body)', lineHeight: '20px' }}>
+          <p
+            style={{
+              margin: 0,
+              fontSize: '14px',
+              color: 'var(--ds-mapped-text-body)',
+              lineHeight: '20px',
+            }}
+          >
             Are you sure you want to delete this item? This action cannot be undone.
           </p>
         </DialogBox>
@@ -186,7 +245,9 @@ export default function DialogBoxPreviewPage() {
             <button style={triggerButtonStyle} onClick={() => open('no-close')}>
               Open Forced Dialog
             </button>
-            <div style={labelStyle}>showClose=false showSecondary primaryLabel="Accept" secondaryLabel="Decline"</div>
+            <div style={labelStyle}>
+              showClose=false showSecondary primaryLabel="Accept" secondaryLabel="Decline"
+            </div>
           </div>
         </div>
 
@@ -200,8 +261,16 @@ export default function DialogBoxPreviewPage() {
           secondaryLabel="Decline"
           onSecondary={close}
         >
-          <p style={{ margin: 0, fontSize: '14px', color: 'var(--ds-mapped-text-body)', lineHeight: '20px' }}>
-            Please review and accept the terms before continuing. You must choose one of the actions below.
+          <p
+            style={{
+              margin: 0,
+              fontSize: '14px',
+              color: 'var(--ds-mapped-text-body)',
+              lineHeight: '20px',
+            }}
+          >
+            Please review and accept the terms before continuing. You must choose one of the actions
+            below.
           </p>
         </DialogBox>
       </section>
@@ -230,21 +299,63 @@ export default function DialogBoxPreviewPage() {
           secondaryLabel="Go Back"
           onSecondary={close}
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)', width: '100%' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '14px', color: 'var(--ds-mapped-text-body)' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--ds-alias-spacing-xs)',
+              width: '100%',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                fontSize: '14px',
+                color: 'var(--ds-mapped-text-body)',
+              }}
+            >
               <span>Destination</span>
               <span style={{ fontWeight: 500 }}>Tokyo, Japan</span>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '14px', color: 'var(--ds-mapped-text-body)' }}>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                fontSize: '14px',
+                color: 'var(--ds-mapped-text-body)',
+              }}
+            >
               <span>Dates</span>
               <span style={{ fontWeight: 500 }}>Apr 15 – Apr 22</span>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '14px', color: 'var(--ds-mapped-text-body)' }}>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                fontSize: '14px',
+                color: 'var(--ds-mapped-text-body)',
+              }}
+            >
               <span>Travelers</span>
               <span style={{ fontWeight: 500 }}>2 adults</span>
             </div>
-            <div style={{ height: '1px', backgroundColor: 'var(--ds-mapped-border-default)', margin: 'var(--ds-alias-spacing-xxs) 0' }} />
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '14px', fontWeight: 600, color: 'var(--ds-mapped-text-heading)' }}>
+            <div
+              style={{
+                height: '1px',
+                backgroundColor: 'var(--ds-mapped-border-default)',
+                margin: 'var(--ds-alias-spacing-xxs) 0',
+              }}
+            />
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                fontSize: '14px',
+                fontWeight: 600,
+                color: 'var(--ds-mapped-text-heading)',
+              }}
+            >
               <span>Total</span>
               <span>$3,240</span>
             </div>
@@ -253,29 +364,74 @@ export default function DialogBoxPreviewPage() {
       </section>
 
       {/* Token reference */}
-      <section style={{ marginTop: 'var(--ds-alias-spacing-xl)', padding: 'var(--ds-alias-spacing-md)', border: '1px solid var(--ds-mapped-border-default)', borderRadius: 'var(--ds-alias-border-radius-lg)', fontSize: '12px', color: 'var(--ds-mapped-text-body)', lineHeight: '20px' }}>
-        <strong style={{ display: 'block', marginBottom: 'var(--ds-alias-spacing-xxs)', color: 'var(--ds-mapped-text-heading)' }}>Tokens used</strong>
-        <div style={{ fontFamily: 'monospace', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px 16px' }}>
-          <span>--ds-mapped-surface-default</span><span>dialog background</span>
-          <span>--ds-mapped-border-default</span><span>dialog border</span>
-          <span>--ds-alias-border-radius-lg</span><span>corner radius</span>
-          <span>--ds-effect-shadow-overlay</span><span>dialog shadow</span>
-          <span>--ds-alias-neutral-black-transparent</span><span>backdrop</span>
-          <span>--ds-mapped-text-heading</span><span>dialog title</span>
-          <span>--ds-mapped-icon-default</span><span>close icon color</span>
-          <span>--ds-mapped-surface-action</span><span>primary button bg</span>
-          <span>--ds-mapped-border-action</span><span>primary button border</span>
-          <span>--ds-mapped-text-on-action</span><span>primary button label</span>
-          <span>--ds-mapped-surface-action-hover</span><span>primary btn hover bg</span>
-          <span>--ds-mapped-text-body</span><span>secondary button label</span>
-          <span>--ds-alias-spacing-lg</span><span>section horizontal padding</span>
-          <span>--ds-alias-spacing-md</span><span>section vertical padding</span>
-          <span>--ds-alias-spacing-xs</span><span>btn padding-y, gaps</span>
-          <span>--ds-alias-spacing-sm</span><span>btn padding-x</span>
-          <span>--ds-typography-heading-h6-*</span><span>title typography</span>
-          <span>--ds-typography-body-md-*</span><span>button label typography</span>
-          <span>--ds-alias-border-width-sm</span><span>1px borders</span>
-          <span>--ds-alias-border-width-md</span><span>focus ring width</span>
+      <section
+        style={{
+          marginTop: 'var(--ds-alias-spacing-xl)',
+          padding: 'var(--ds-alias-spacing-md)',
+          border: '1px solid var(--ds-mapped-border-default)',
+          borderRadius: 'var(--ds-alias-border-radius-lg)',
+          fontSize: '12px',
+          color: 'var(--ds-mapped-text-body)',
+          lineHeight: '20px',
+        }}
+      >
+        <strong
+          style={{
+            display: 'block',
+            marginBottom: 'var(--ds-alias-spacing-xxs)',
+            color: 'var(--ds-mapped-text-heading)',
+          }}
+        >
+          Tokens used
+        </strong>
+        <div
+          style={{
+            fontFamily: 'monospace',
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '2px 16px',
+          }}
+        >
+          <span>--ds-mapped-surface-default</span>
+          <span>dialog background</span>
+          <span>--ds-mapped-border-default</span>
+          <span>dialog border</span>
+          <span>--ds-alias-border-radius-lg</span>
+          <span>corner radius</span>
+          <span>--ds-effect-shadow-overlay</span>
+          <span>dialog shadow</span>
+          <span>--ds-alias-neutral-black-transparent</span>
+          <span>backdrop</span>
+          <span>--ds-mapped-text-heading</span>
+          <span>dialog title</span>
+          <span>--ds-mapped-icon-default</span>
+          <span>close icon color</span>
+          <span>--ds-mapped-surface-action</span>
+          <span>primary button bg</span>
+          <span>--ds-mapped-border-action</span>
+          <span>primary button border</span>
+          <span>--ds-mapped-text-on-action</span>
+          <span>primary button label</span>
+          <span>--ds-mapped-surface-action-hover</span>
+          <span>primary btn hover bg</span>
+          <span>--ds-mapped-text-body</span>
+          <span>secondary button label</span>
+          <span>--ds-alias-spacing-lg</span>
+          <span>section horizontal padding</span>
+          <span>--ds-alias-spacing-md</span>
+          <span>section vertical padding</span>
+          <span>--ds-alias-spacing-xs</span>
+          <span>btn padding-y, gaps</span>
+          <span>--ds-alias-spacing-sm</span>
+          <span>btn padding-x</span>
+          <span>--ds-typography-heading-h6-*</span>
+          <span>title typography</span>
+          <span>--ds-typography-body-md-*</span>
+          <span>button label typography</span>
+          <span>--ds-alias-border-width-sm</span>
+          <span>1px borders</span>
+          <span>--ds-alias-border-width-md</span>
+          <span>focus ring width</span>
         </div>
       </section>
     </div>

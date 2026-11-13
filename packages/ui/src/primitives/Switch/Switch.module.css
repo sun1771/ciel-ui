@@ -19,7 +19,7 @@
   align-items: center;
   justify-content: flex-start;
   flex-shrink: 0;
-  width: 64px;   /* Switch-specific fixed dimension */
+  width: 64px; /* Switch-specific fixed dimension */
   padding: var(--ds-alias-spacing-xxs);
   box-sizing: border-box;
   position: relative;

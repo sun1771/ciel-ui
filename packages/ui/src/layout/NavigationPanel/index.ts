@@ -1,8 +1,4 @@
-export {
-  NavigationPanel,
-  NavigationMenuGroup,
-  useNavigationPanel,
-} from './NavigationPanel'
+export { NavigationPanel, NavigationMenuGroup, useNavigationPanel } from './NavigationPanel'
 export { NavigationMenuItem } from './NavigationMenuItem'
 export { NavigationLogoItem } from './NavigationLogoItem'
 export { NavigationProfileItem } from './NavigationProfileItem'

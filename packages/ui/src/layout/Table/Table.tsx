@@ -4,12 +4,7 @@ import React from 'react'
 import { cn } from '../../lib/utils'
 import { ArrowRight } from '@acme/icons'
 import styles from './Table.module.css'
-import type {
-  TableProps,
-  TableCellType,
-  TableCellValue,
-  TableLinkCellValue,
-} from './types'
+import type { TableProps, TableCellType, TableCellValue, TableLinkCellValue } from './types'
 
 function isTableLinkCellValue(value: TableCellValue): value is TableLinkCellValue {
   if (typeof value !== 'object' || value === null || React.isValidElement(value)) {
@@ -41,11 +36,7 @@ function renderCell(value: TableCellValue, type?: TableCellType): React.ReactNod
   }
 
   if (type === 'action') {
-    return (
-      <div className={styles.cellAction}>
-        {value as React.ReactNode}
-      </div>
-    )
+    return <div className={styles.cellAction}>{value as React.ReactNode}</div>
   }
 
   return value as React.ReactNode
@@ -60,31 +51,15 @@ function renderCell(value: TableCellValue, type?: TableCellType): React.ReactNod
  * @see docs/components.md for usage examples
  */
 export const Table = React.forwardRef<HTMLDivElement, TableProps>(
-  (
-    {
-      title,
-      actions,
-      columns,
-      rows,
-      className,
-      ...props
-    },
-    ref
-  ) => {
+  ({ title, actions, columns, rows, className, ...props }, ref) => {
     const hasTitleBar = Boolean(title || actions)
 
     return (
-      <div
-        ref={ref}
-        className={cn(styles.container, className)}
-        {...props}
-      >
+      <div ref={ref} className={cn(styles.container, className)} {...props}>
         {hasTitleBar && (
           <div className={styles.titleBar}>
             {title && <h2 className={styles.title}>{title}</h2>}
-            {actions && (
-              <div className={styles.actions}>{actions}</div>
-            )}
+            {actions && <div className={styles.actions}>{actions}</div>}
           </div>
         )}
 
@@ -109,10 +84,7 @@ export const Table = React.forwardRef<HTMLDivElement, TableProps>(
               {rows.map((row) => (
                 <tr key={row.id} className={styles.tr}>
                   {columns.map((col) => (
-                    <td
-                      key={col.key}
-                      className={styles.td}
-                    >
+                    <td key={col.key} className={styles.td}>
                       {renderCell(row[col.key], col.type)}
                     </td>
                   ))}

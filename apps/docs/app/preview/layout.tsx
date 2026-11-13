@@ -92,7 +92,9 @@ export default function PreviewLayout({ children }: { children: React.ReactNode 
           tripon-ai preview
         </div>
 
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xxs)' }}>
+        <nav
+          style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xxs)' }}
+        >
           {navLinks.map((link) => {
             const isActive = pathname === link.href
             return (
@@ -109,9 +111,7 @@ export default function PreviewLayout({ children }: { children: React.ReactNode 
                   color: isActive
                     ? 'var(--ds-mapped-text-on-action)'
                     : 'var(--ds-mapped-text-body)',
-                  backgroundColor: isActive
-                    ? 'var(--ds-mapped-surface-action)'
-                    : 'transparent',
+                  backgroundColor: isActive ? 'var(--ds-mapped-surface-action)' : 'transparent',
                   transition: 'background-color 150ms ease, color 150ms ease',
                 }}
               >

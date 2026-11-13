@@ -81,9 +81,22 @@ export default function NumericUpDownPreviewPage() {
             alignItems: 'center',
           }}
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)', alignItems: 'flex-start' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--ds-alias-spacing-xs)',
+              alignItems: 'flex-start',
+            }}
+          >
             <NumericUpDown value={value1} onChange={setValue1} />
-            <code style={{ fontSize: '11px', color: 'var(--ds-mapped-text-placeholder)', fontFamily: 'monospace' }}>
+            <code
+              style={{
+                fontSize: '11px',
+                color: 'var(--ds-mapped-text-placeholder)',
+                fontFamily: 'monospace',
+              }}
+            >
               {`value={${value1}}`}
             </code>
           </div>
@@ -103,10 +116,30 @@ export default function NumericUpDownPreviewPage() {
         >
           With min=1 (decrement disabled at minimum)
         </h2>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--ds-alias-spacing-xl)', alignItems: 'center' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)', alignItems: 'flex-start' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 'var(--ds-alias-spacing-xl)',
+            alignItems: 'center',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--ds-alias-spacing-xs)',
+              alignItems: 'flex-start',
+            }}
+          >
             <NumericUpDown value={value3} min={1} onChange={setValue3} />
-            <code style={{ fontSize: '11px', color: 'var(--ds-mapped-text-placeholder)', fontFamily: 'monospace' }}>
+            <code
+              style={{
+                fontSize: '11px',
+                color: 'var(--ds-mapped-text-placeholder)',
+                fontFamily: 'monospace',
+              }}
+            >
               {`value={${value3}} min={1}`}
             </code>
           </div>
@@ -126,10 +159,30 @@ export default function NumericUpDownPreviewPage() {
         >
           With min=1 max=5 (both limits enforced)
         </h2>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--ds-alias-spacing-xl)', alignItems: 'center' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)', alignItems: 'flex-start' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 'var(--ds-alias-spacing-xl)',
+            alignItems: 'center',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--ds-alias-spacing-xs)',
+              alignItems: 'flex-start',
+            }}
+          >
             <NumericUpDown value={value2} min={1} max={5} onChange={setValue2} />
-            <code style={{ fontSize: '11px', color: 'var(--ds-mapped-text-placeholder)', fontFamily: 'monospace' }}>
+            <code
+              style={{
+                fontSize: '11px',
+                color: 'var(--ds-mapped-text-placeholder)',
+                fontFamily: 'monospace',
+              }}
+            >
               {`value={${value2}} min={1} max={5}`}
             </code>
           </div>
@@ -149,10 +202,30 @@ export default function NumericUpDownPreviewPage() {
         >
           At maximum (increment disabled)
         </h2>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--ds-alias-spacing-xl)', alignItems: 'center' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)', alignItems: 'flex-start' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 'var(--ds-alias-spacing-xl)',
+            alignItems: 'center',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--ds-alias-spacing-xs)',
+              alignItems: 'flex-start',
+            }}
+          >
             <NumericUpDown value={value4} min={1} max={5} onChange={setValue4} />
-            <code style={{ fontSize: '11px', color: 'var(--ds-mapped-text-placeholder)', fontFamily: 'monospace' }}>
+            <code
+              style={{
+                fontSize: '11px',
+                color: 'var(--ds-mapped-text-placeholder)',
+                fontFamily: 'monospace',
+              }}
+            >
               {`value={${value4}} min={1} max={5}`}
             </code>
           </div>
@@ -172,16 +245,49 @@ export default function NumericUpDownPreviewPage() {
         >
           Disabled
         </h2>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--ds-alias-spacing-xl)', alignItems: 'center' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)', alignItems: 'flex-start' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 'var(--ds-alias-spacing-xl)',
+            alignItems: 'center',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--ds-alias-spacing-xs)',
+              alignItems: 'flex-start',
+            }}
+          >
             <NumericUpDown value={value5} onChange={setValue5} disabled />
-            <code style={{ fontSize: '11px', color: 'var(--ds-mapped-text-placeholder)', fontFamily: 'monospace' }}>
+            <code
+              style={{
+                fontSize: '11px',
+                color: 'var(--ds-mapped-text-placeholder)',
+                fontFamily: 'monospace',
+              }}
+            >
               {'value={0} disabled'}
             </code>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)', alignItems: 'flex-start' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--ds-alias-spacing-xs)',
+              alignItems: 'flex-start',
+            }}
+          >
             <NumericUpDown value={3} min={1} max={5} disabled />
-            <code style={{ fontSize: '11px', color: 'var(--ds-mapped-text-placeholder)', fontFamily: 'monospace' }}>
+            <code
+              style={{
+                fontSize: '11px',
+                color: 'var(--ds-mapped-text-placeholder)',
+                fontFamily: 'monospace',
+              }}
+            >
               {'value={3} min={1} max={5} disabled'}
             </code>
           </div>

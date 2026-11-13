@@ -25,8 +25,7 @@ export interface MenuBaseProps {
  * figma.md listed Text/action for selected label; actual Figma uses Text/on-action (white). ✓
  */
 export interface MenuItemProps
-  extends MenuBaseProps,
-    React.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends MenuBaseProps, React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Marks this item as the currently selected entry. */
   isSelected?: boolean
   /** Icon rendered to the left of the label. Inherits text color via currentColor. */
@@ -43,9 +42,7 @@ export interface MenuItemProps
  *
  * Figma: PRIMITIVES / Menu — Menu node 1748:4388
  */
-export interface MenuProps
-  extends MenuBaseProps,
-    React.HTMLAttributes<HTMLDivElement> {
+export interface MenuProps extends MenuBaseProps, React.HTMLAttributes<HTMLDivElement> {
   /** When true, enables overflow-y: auto so the menu scrolls if taller than its container. */
   showScrollbar?: boolean
   /** One or more MenuItem components. */

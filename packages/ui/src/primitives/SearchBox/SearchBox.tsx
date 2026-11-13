@@ -15,18 +15,7 @@ import type { SearchBoxProps } from './types'
  * @see docs/components.md for usage examples
  */
 export const SearchBox = React.forwardRef<HTMLInputElement, SearchBoxProps>(
-  (
-    {
-      icon,
-      onClear,
-      children,
-      className,
-      disabled = false,
-      value,
-      ...props
-    },
-    ref
-  ) => {
+  ({ icon, onClear, children, className, disabled = false, value, ...props }, ref) => {
     const hasValue = typeof value === 'string' && value.length > 0
     const showClear = hasValue && !!onClear && !disabled
 
@@ -47,7 +36,6 @@ export const SearchBox = React.forwardRef<HTMLInputElement, SearchBoxProps>(
         <span className={styles.icon} aria-hidden="true">
           {icon ?? <MapPin size={20} />}
         </span>
-
         // Native input
         <input
           ref={ref}
@@ -57,7 +45,6 @@ export const SearchBox = React.forwardRef<HTMLInputElement, SearchBoxProps>(
           aria-disabled={disabled || undefined}
           {...props}
         />
-
         // Clear button — only when value is non-empty and onClear is provided
         {showClear && (
           <button
@@ -72,7 +59,6 @@ export const SearchBox = React.forwardRef<HTMLInputElement, SearchBoxProps>(
             <X size={20} aria-hidden="true" />
           </button>
         )}
-
         // Dropdown panel — parent controls visibility by passing children
         {children && (
           <div className={styles.dropdown} role="listbox">

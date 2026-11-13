@@ -48,31 +48,59 @@ export default function FieldPreviewPage() {
 
   const SearchIcon = () => (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="9" cy="9" r="5.5" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M13.5 13.5L17 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <circle cx="9" cy="9" r="5.5" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M13.5 13.5L17 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   )
 
   const InfoIcon = () => (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="10" cy="10" r="7.5" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M10 9v5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      <circle cx="10" cy="7" r="0.75" fill="currentColor"/>
+      <circle cx="10" cy="10" r="7.5" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M10 9v5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <circle cx="10" cy="7" r="0.75" fill="currentColor" />
     </svg>
   )
 
   return (
     <div style={{ padding: '40px', maxWidth: '900px' }}>
       {/* Page header */}
-      <div style={{ marginBottom: '40px', paddingBottom: '24px', borderBottom: '1px solid var(--ds-mapped-border-default)' }}>
-        <h1 style={{ fontSize: '40px', fontWeight: 600, color: 'var(--ds-mapped-text-heading)', margin: 0, fontFamily: 'var(--ds-brand-font-family-heading)' }}>
+      <div
+        style={{
+          marginBottom: '40px',
+          paddingBottom: '24px',
+          borderBottom: '1px solid var(--ds-mapped-border-default)',
+        }}
+      >
+        <h1
+          style={{
+            fontSize: '40px',
+            fontWeight: 600,
+            color: 'var(--ds-mapped-text-heading)',
+            margin: 0,
+            fontFamily: 'var(--ds-brand-font-family-heading)',
+          }}
+        >
           Field + Input
         </h1>
-        <p style={{ fontSize: '16px', color: 'var(--ds-mapped-text-body)', marginTop: '8px', fontFamily: 'var(--ds-brand-font-family-body)' }}>
+        <p
+          style={{
+            fontSize: '16px',
+            color: 'var(--ds-mapped-text-body)',
+            marginTop: '8px',
+            fontFamily: 'var(--ds-brand-font-family-body)',
+          }}
+        >
           Figma: PRIMITIVES / Field (63:939) · PRIMITIVES / Input (165:1110)
         </p>
-        <p style={{ fontSize: '12px', color: 'var(--ds-mapped-text-disabled)', marginTop: '4px', fontFamily: 'monospace' }}>
-          {'import { Field, Input } from \'@acme/ui\''}
+        <p
+          style={{
+            fontSize: '12px',
+            color: 'var(--ds-mapped-text-disabled)',
+            marginTop: '4px',
+            fontFamily: 'monospace',
+          }}
+        >
+          {"import { Field, Input } from '@acme/ui'"}
         </p>
       </div>
 
@@ -89,7 +117,11 @@ export default function FieldPreviewPage() {
               <span style={codeStyle}>default</span>
             </div>
             <div style={colStyle}>
-              <Field placeholder="Placeholder" value={value1} onChange={e => setValue1(e.target.value)} />
+              <Field
+                placeholder="Placeholder"
+                value={value1}
+                onChange={(e) => setValue1(e.target.value)}
+              />
               <span style={codeStyle}>hover (hover over it)</span>
             </div>
             <div style={colStyle}>
@@ -115,7 +147,7 @@ export default function FieldPreviewPage() {
               <Field
                 placeholder="Placeholder"
                 value={value2}
-                onChange={e => setValue2(e.target.value)}
+                onChange={(e) => setValue2(e.target.value)}
               />
               <span style={codeStyle}>value=&quot;Some filled value&quot;</span>
             </div>
@@ -148,11 +180,7 @@ export default function FieldPreviewPage() {
               <span style={codeStyle}>iconRight</span>
             </div>
             <div style={colStyle}>
-              <Field
-                placeholder="Placeholder"
-                iconLeft={<SearchIcon />}
-                iconRight={<InfoIcon />}
-              />
+              <Field placeholder="Placeholder" iconLeft={<SearchIcon />} iconRight={<InfoIcon />} />
               <span style={codeStyle}>iconLeft + iconRight</span>
             </div>
             <div style={colStyle}>
@@ -189,11 +217,7 @@ export default function FieldPreviewPage() {
               <span style={codeStyle}>label + hint</span>
             </div>
             <div style={colStyle}>
-              <Input
-                label="Label"
-                placeholder="Placeholder"
-                error="This field has an error"
-              />
+              <Input label="Label" placeholder="Placeholder" error="This field has an error" />
               <span style={codeStyle}>label + error (replaces hint)</span>
             </div>
             <div style={colStyle}>
@@ -208,30 +232,21 @@ export default function FieldPreviewPage() {
           <h3 style={h3Style}>States</h3>
           <div style={rowStyle}>
             <div style={colStyle}>
-              <Input
-                label="Default"
-                placeholder="Placeholder"
-                hint="Hint text"
-              />
+              <Input label="Default" placeholder="Placeholder" hint="Hint text" />
               <span style={codeStyle}>default</span>
             </div>
             <div style={colStyle}>
               <Input
                 label="Filled"
                 value={value3}
-                onChange={e => setValue3(e.target.value)}
+                onChange={(e) => setValue3(e.target.value)}
                 placeholder="Type something"
                 hint="Hint text"
               />
               <span style={codeStyle}>controlled (type to fill)</span>
             </div>
             <div style={colStyle}>
-              <Input
-                label="Disabled"
-                placeholder="Placeholder"
-                hint="Hint text"
-                disabled
-              />
+              <Input label="Disabled" placeholder="Placeholder" hint="Hint text" disabled />
               <span style={codeStyle}>disabled</span>
             </div>
             <div style={colStyle}>
@@ -275,7 +290,7 @@ export default function FieldPreviewPage() {
                 iconLeft={<SearchIcon />}
                 iconRight={<InfoIcon />}
                 value={value4}
-                onChange={e => setValue4(e.target.value)}
+                onChange={(e) => setValue4(e.target.value)}
                 hint="Type to see filled state"
               />
               <span style={codeStyle}>iconLeft + iconRight + controlled</span>
@@ -305,25 +320,27 @@ export default function FieldPreviewPage() {
 
       {/* Token reference */}
       <section>
-        <div style={{
-          padding: '16px',
-          background: 'var(--ds-mapped-surface-action-hover-light)',
-          borderRadius: 'var(--ds-alias-border-radius-lg)',
-          fontSize: '12px',
-          color: 'var(--ds-mapped-text-body)',
-          fontFamily: 'var(--ds-brand-font-family-body)',
-        }}>
-          <strong>Field tokens:</strong>{' '}
-          --ds-alias-border-radius-lg · --ds-alias-border-width-sm · --ds-alias-spacing-xs ·
-          --ds-alias-spacing-sm · --ds-brand-font-family-body · --ds-brand-font-weight-regular ·
-          --ds-mapped-border-action · --ds-mapped-border-action-hover · --ds-mapped-border-default ·
-          --ds-mapped-border-disabled · --ds-mapped-border-error · --ds-mapped-icon-default ·
-          --ds-mapped-icon-disabled · --ds-mapped-surface-default · --ds-mapped-surface-disabled ·
-          --ds-mapped-text-body · --ds-mapped-text-disabled · --ds-mapped-text-placeholder ·
+        <div
+          style={{
+            padding: '16px',
+            background: 'var(--ds-mapped-surface-action-hover-light)',
+            borderRadius: 'var(--ds-alias-border-radius-lg)',
+            fontSize: '12px',
+            color: 'var(--ds-mapped-text-body)',
+            fontFamily: 'var(--ds-brand-font-family-body)',
+          }}
+        >
+          <strong>Field tokens:</strong> --ds-alias-border-radius-lg · --ds-alias-border-width-sm ·
+          --ds-alias-spacing-xs · --ds-alias-spacing-sm · --ds-brand-font-family-body ·
+          --ds-brand-font-weight-regular · --ds-mapped-border-action ·
+          --ds-mapped-border-action-hover · --ds-mapped-border-default · --ds-mapped-border-disabled
+          · --ds-mapped-border-error · --ds-mapped-icon-default · --ds-mapped-icon-disabled ·
+          --ds-mapped-surface-default · --ds-mapped-surface-disabled · --ds-mapped-text-body ·
+          --ds-mapped-text-disabled · --ds-mapped-text-placeholder ·
           --ds-typography-body-md-font-size · --ds-typography-body-md-line-height
-          <br /><br />
-          <strong>Input adds:</strong>{' '}
-          --ds-mapped-text-error
+          <br />
+          <br />
+          <strong>Input adds:</strong> --ds-mapped-text-error
         </div>
       </section>
     </div>

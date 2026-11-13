@@ -23,10 +23,7 @@ import styles from './NavigationPanel.module.css'
  * @see design-system/figma.md → NavigationPanel
  * @see docs/components.md for usage examples
  */
-export const NavigationLogoItem = React.forwardRef<
-  HTMLDivElement,
-  NavigationLogoItemProps
->(
+export const NavigationLogoItem = React.forwardRef<HTMLDivElement, NavigationLogoItemProps>(
   (
     {
       logoAlt = 'TripOn AI',
@@ -41,11 +38,7 @@ export const NavigationLogoItem = React.forwardRef<
 
     if (!isExpanded) {
       return (
-        <div
-          ref={ref}
-          className={cn(styles.logoItemCollapsed, className)}
-          {...props}
-        >
+        <div ref={ref} className={cn(styles.logoItemCollapsed, className)} {...props}>
           <ButtonIconSwitching
             label={expandLabel}
             icon={<Logo size={32} alt="" />}

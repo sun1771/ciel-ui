@@ -28,14 +28,9 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
         aria-label={showLabel ? displayLabel : `Progress: ${clampedValue}%`}
         {...props}
       >
-        {showLabel && (
-          <span className={styles.label}>{displayLabel}</span>
-        )}
+        {showLabel && <span className={styles.label}>{displayLabel}</span>}
         <div className={styles.track}>
-          <div
-            className={styles.fill}
-            style={{ width: `${clampedValue}%` }}
-          />
+          <div className={styles.fill} style={{ width: `${clampedValue}%` }} />
         </div>
       </div>
     )

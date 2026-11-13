@@ -17,9 +17,7 @@ export const ResponseContentItem = React.forwardRef<HTMLDivElement, ResponseCont
   ({ title, separator = true, children, className, ...props }, ref) => {
     return (
       <div ref={ref} className={cn(styles.responseContentItem, className)} {...props}>
-        {title !== undefined && title !== null && (
-          <p className={styles.responseTitle}>{title}</p>
-        )}
+        {title !== undefined && title !== null && <p className={styles.responseTitle}>{title}</p>}
         <div className={styles.responseBody}>{children}</div>
         {separator && (
           <div className={styles.separatorWrap}>
@@ -28,7 +26,7 @@ export const ResponseContentItem = React.forwardRef<HTMLDivElement, ResponseCont
         )}
       </div>
     )
-  },
+  }
 )
 
 ResponseContentItem.displayName = 'ResponseContentItem'
@@ -52,7 +50,7 @@ export const ResponseContent = React.forwardRef<HTMLDivElement, ResponseContentP
           ))}
       </div>
     )
-  },
+  }
 )
 
 ResponseContent.displayName = 'ResponseContent'

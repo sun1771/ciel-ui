@@ -97,9 +97,7 @@ export default function LabelPreviewPage() {
       <div style={pageHeader}>
         <h1 style={h1Style}>Label</h1>
         <p style={subtitleStyle}>Figma: PRIMITIVES / Label — node 56:186</p>
-        <p style={monoStyle}>
-          {`import { Label } from '@acme/ui'`}
-        </p>
+        <p style={monoStyle}>{`import { Label } from '@acme/ui'`}</p>
       </div>
 
       {/* ── Variants ── */}
@@ -110,9 +108,7 @@ export default function LabelPreviewPage() {
           <h3 style={h3Style}>Variants</h3>
           <div style={rowStyle}>
             <div style={itemWrapStyle}>
-              <Label htmlFor="demo-default">
-                Label
-              </Label>
+              <Label htmlFor="demo-default">Label</Label>
               <span style={codeLabel}>variant=&quot;default&quot; (no icon)</span>
             </div>
 

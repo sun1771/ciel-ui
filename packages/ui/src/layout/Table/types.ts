@@ -30,13 +30,7 @@ export interface TableColumnDef {
  * - A TableLinkCellValue object (for link type)
  */
 export type TableCellValue =
-  | string
-  | number
-  | boolean
-  | React.ReactNode
-  | TableLinkCellValue
-  | null
-  | undefined
+  string | number | boolean | React.ReactNode | TableLinkCellValue | null | undefined
 
 /**
  * A single row of table data.

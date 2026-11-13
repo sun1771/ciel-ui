@@ -121,7 +121,9 @@
   color: var(--ds-mapped-text-on-action);
   cursor: pointer;
   white-space: nowrap;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .primaryButton:hover {

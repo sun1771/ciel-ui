@@ -17,20 +17,7 @@ import styles from './Input.module.css'
  * @see docs/components.md for usage examples
  */
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  (
-    {
-      label,
-      hint,
-      id,
-      error,
-      disabled,
-      iconLeft,
-      iconRight,
-      className,
-      ...inputProps
-    },
-    ref
-  ) => {
+  ({ label, hint, id, error, disabled, iconLeft, iconRight, className, ...inputProps }, ref) => {
     const generatedId = useId()
     const inputId = id ?? generatedId
     const hintId = hint && !error ? `${inputId}-hint` : undefined
@@ -38,11 +25,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <div className={cn(styles.wrapper, className)}>
-        {label && (
-          <Label htmlFor={inputId}>
-            {label}
-          </Label>
-        )}
+        {label && <Label htmlFor={inputId}>{label}</Label>}
 
         <Field
           ref={ref}

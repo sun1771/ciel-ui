@@ -16,10 +16,7 @@ import styles from './NavigationPanel.module.css'
  * @see design-system/figma.md → NavigationPanel
  * @see docs/components.md for usage examples
  */
-export const NavigationMenuItem = React.forwardRef<
-  HTMLButtonElement,
-  NavigationMenuItemProps
->(
+export const NavigationMenuItem = React.forwardRef<HTMLButtonElement, NavigationMenuItemProps>(
   (
     {
       isSelected = false,
@@ -38,9 +35,7 @@ export const NavigationMenuItem = React.forwardRef<
     // When a string label is truncated to an ellipsis, expose the full text as
     // a native tooltip (title) — but only while it actually overflows.
     const textRef = React.useRef<HTMLSpanElement>(null)
-    const [overflowTitle, setOverflowTitle] = React.useState<string | undefined>(
-      undefined
-    )
+    const [overflowTitle, setOverflowTitle] = React.useState<string | undefined>(undefined)
 
     React.useEffect(() => {
       const el = textRef.current

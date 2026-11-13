@@ -54,8 +54,10 @@ export interface ActionSuggestion {
 /* ── Component props ─────────────────────────────────────────────────────── */
 
 /** .Response Content item — a section title + body with an optional divider. */
-export interface ResponseContentItemProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
+export interface ResponseContentItemProps extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  'title'
+> {
   /** Bold section heading. Omit to render content only (sectionTitle=false). */
   title?: React.ReactNode
   /** Whether to render the trailing divider. Default: true. */
@@ -133,8 +135,7 @@ export interface AgentBubbleProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 /** .AI Chat Piece / User Bubble — a user message with copy/edit actions. */
-export interface UserBubbleProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+export interface UserBubbleProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /** Figma "Size" property. Default: 'sm'. */
   size?: UserBubbleSize
   /** Message text. */
@@ -146,8 +147,10 @@ export interface UserBubbleProps
 }
 
 /** .AI Chat Piece / Chat input — the bottom-attached input field. */
-export interface ChatInputProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onSubmit'> {
+export interface ChatInputProps extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  'onChange' | 'onSubmit'
+> {
   /** Visual status. If omitted, derived from textarea value + focus. */
   status?: ChatInputStatus
   /** Reference size — sm (320px) or lg (440px). Width is fluid (100%). */
@@ -171,8 +174,10 @@ export interface ChatInputProps
 }
 
 /** AI Chat — the full assembled chat panel. */
-export interface AIChatProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'onSubmit' | 'title'> {
+export interface AIChatProps extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  'onChange' | 'onSubmit' | 'title'
+> {
   /** Figma "State" property. Default: 'default'. */
   state?: AIChatState
   /** Header title. Default: 'TripOn Agent'. */

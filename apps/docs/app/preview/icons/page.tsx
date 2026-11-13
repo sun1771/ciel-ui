@@ -2,21 +2,51 @@
 
 import { useState } from 'react'
 import {
-  ArrowDown, ArrowDownLeft, ArrowDownRight, ArrowLeft, ArrowRight,
-  ArrowUp, ArrowUpLeft, ArrowUpRight,
+  ArrowDown,
+  ArrowDownLeft,
+  ArrowDownRight,
+  ArrowLeft,
+  ArrowRight,
+  ArrowUp,
+  ArrowUpLeft,
+  ArrowUpRight,
   Award,
-  Bag, Baggage, Bed,
-  Calendar, Car, Check,
-  ChevronDown, ChevronLeft, ChevronRight, ChevronTop,
-  Collapse, Copy,
-  Drag, Edit, Electric, Expand,
-  Gasoline, Hybrid,
+  Bag,
+  Baggage,
+  Bed,
+  Calendar,
+  Car,
+  Check,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronTop,
+  Collapse,
+  Copy,
+  Drag,
+  Edit,
+  Electric,
+  Expand,
+  Gasoline,
+  Hybrid,
   Info,
-  Map, MapPin, Mic, Minus, MoreVertical,
-  Pause, Plus,
-  Search, Settings, Share, Share2,
-  ThumbsDown, ThumbsUp, Trip, TripOnChatIcon,
-  User, Users,
+  Map,
+  MapPin,
+  Mic,
+  Minus,
+  MoreVertical,
+  Pause,
+  Plus,
+  Search,
+  Settings,
+  Share,
+  Share2,
+  ThumbsDown,
+  ThumbsUp,
+  Trip,
+  TripOnChatIcon,
+  User,
+  Users,
   X,
 } from '@acme/icons'
 import type { IconProps } from '@acme/icons'
@@ -74,7 +104,7 @@ const iconRegistry: Array<{ name: string; Component: IconComponent }> = [
 ]
 
 const allSizes = [16, 20, 24, 32] as const
-type IconSize = typeof allSizes[number]
+type IconSize = (typeof allSizes)[number]
 type SizeFilter = IconSize | 'all'
 
 const filterOptions: SizeFilter[] = ['all', 16, 20, 24, 32]
@@ -82,8 +112,7 @@ const filterOptions: SizeFilter[] = ['all', 16, 20, 24, 32]
 export default function IconsPreviewPage() {
   const [activeSize, setActiveSize] = useState<SizeFilter>('all')
 
-  const displaySizes: IconSize[] =
-    activeSize === 'all' ? [...allSizes] : [activeSize]
+  const displaySizes: IconSize[] = activeSize === 'all' ? [...allSizes] : [activeSize]
 
   return (
     <div>
@@ -117,9 +146,8 @@ export default function IconsPreviewPage() {
             borderLeft: '2px solid var(--ds-mapped-border-default)',
           }}
         >
-          Icons use <code>currentColor</code>. Color is controlled by the parent
-          element&apos;s CSS <code>color</code> property via{' '}
-          <code>var(--ds-color-text-primary)</code> etc.
+          Icons use <code>currentColor</code>. Color is controlled by the parent element&apos;s CSS{' '}
+          <code>color</code> property via <code>var(--ds-color-text-primary)</code> etc.
         </p>
       </div>
 
@@ -192,11 +220,7 @@ export default function IconsPreviewPage() {
               }}
             >
               {displaySizes.map((sz) => (
-                <Component
-                  key={sz}
-                  size={sz}
-                  color="currentColor"
-                />
+                <Component key={sz} size={sz} color="currentColor" />
               ))}
             </div>
 

@@ -47,7 +47,7 @@ export const UserBubble = React.forwardRef<HTMLDivElement, UserBubbleProps>(
         )}
       </div>
     )
-  },
+  }
 )
 
 UserBubble.displayName = 'UserBubble'

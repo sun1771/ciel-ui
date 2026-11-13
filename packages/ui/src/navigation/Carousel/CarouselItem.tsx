@@ -15,15 +15,7 @@ import styles from './Carousel.module.css'
  */
 export const CarouselItem = React.forwardRef<HTMLButtonElement, CarouselItemProps>(
   (
-    {
-      direction,
-      shape = 'round',
-      size = 'lg',
-      label,
-      disabled = false,
-      className,
-      ...props
-    },
+    { direction, shape = 'round', size = 'lg', label, disabled = false, className, ...props },
     ref
   ) => {
     const iconSize = size === 'lg' ? 24 : 20

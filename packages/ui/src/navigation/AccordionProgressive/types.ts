@@ -1,7 +1,10 @@
 import type React from 'react'
 
 /** AccordionProgressive — collapsible panel with progressive disclosure. Controlled via isExpanded + onToggle. */
-export interface AccordionProgressiveProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onToggle'> {
+export interface AccordionProgressiveProps extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  'onToggle'
+> {
   /** Header text displayed in the trigger row. Required. */
   label: string
   /** Controlled expansion state. Defaults to false (collapsed). */

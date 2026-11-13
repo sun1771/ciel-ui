@@ -17,43 +17,31 @@ import type { MenuProps } from './types'
  * @see app/design-system/figma.md for Figma mapping
  * @see app/docs/components.md for usage examples
  */
-export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
-  function Menu(
-    {
-      size = 'lg',
-      showScrollbar = false,
-      className,
-      children,
-      ...rest
-    },
-    ref,
-  ) {
-    return (
-      <div
-        ref={ref}
-        role="menu"
-        aria-orientation="vertical"
-        className={cn(
-          styles.menu,
-          showScrollbar && styles.scrollable,
-          className,
-        )}
-        {...rest}
-      >
-        {React.Children.map(children, (child) => {
-          if (!React.isValidElement(child)) return child
-          // Pass size down to MenuItem children that don't override it explicitly
-          const childProps = child.props as Record<string, unknown>
-          if (childProps.size === undefined) {
-            return React.cloneElement(child as React.ReactElement<{ size?: string }>, {
-              size,
-            })
-          }
-          return child
-        })}
-      </div>
-    )
-  },
-)
+export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(function Menu(
+  { size = 'lg', showScrollbar = false, className, children, ...rest },
+  ref
+) {
+  return (
+    <div
+      ref={ref}
+      role="menu"
+      aria-orientation="vertical"
+      className={cn(styles.menu, showScrollbar && styles.scrollable, className)}
+      {...rest}
+    >
+      {React.Children.map(children, (child) => {
+        if (!React.isValidElement(child)) return child
+        // Pass size down to MenuItem children that don't override it explicitly
+        const childProps = child.props as Record<string, unknown>
+        if (childProps.size === undefined) {
+          return React.cloneElement(child as React.ReactElement<{ size?: string }>, {
+            size,
+          })
+        }
+        return child
+      })}
+    </div>
+  )
+})
 
 Menu.displayName = 'Menu'

@@ -6,7 +6,14 @@ import { MapPin } from '@acme/icons'
 
 function Label({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ marginTop: 'var(--ds-alias-spacing-xxs)', fontFamily: 'monospace', fontSize: '11px', color: 'var(--ds-mapped-text-disabled)' }}>
+    <div
+      style={{
+        marginTop: 'var(--ds-alias-spacing-xxs)',
+        fontFamily: 'monospace',
+        fontSize: '11px',
+        color: 'var(--ds-mapped-text-disabled)',
+      }}
+    >
       {children}
     </div>
   )
@@ -15,14 +22,16 @@ function Label({ children }: { children: React.ReactNode }) {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section style={{ marginBottom: 'var(--ds-alias-spacing-xl)' }}>
-      <h2 style={{
-        fontFamily: 'var(--ds-brand-font-family-body)',
-        fontSize: 'var(--ds-typography-body-lg-font-size)',
-        fontWeight: 'var(--ds-brand-font-weight-semi-bold)',
-        color: 'var(--ds-mapped-text-heading)',
-        marginTop: 0,
-        marginBottom: 'var(--ds-alias-spacing-sm)'
-      }}>
+      <h2
+        style={{
+          fontFamily: 'var(--ds-brand-font-family-body)',
+          fontSize: 'var(--ds-typography-body-lg-font-size)',
+          fontWeight: 'var(--ds-brand-font-weight-semi-bold)',
+          color: 'var(--ds-mapped-text-heading)',
+          marginTop: 0,
+          marginBottom: 'var(--ds-alias-spacing-sm)',
+        }}
+      >
         {title}
       </h2>
       {children}
@@ -33,16 +42,18 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 function SubSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div style={{ marginBottom: 'var(--ds-alias-spacing-lg)' }}>
-      <h3 style={{
-        fontFamily: 'var(--ds-brand-font-family-body)',
-        fontSize: 'var(--ds-typography-body-sm-font-size)',
-        fontWeight: 'var(--ds-brand-font-weight-medium)',
-        color: 'var(--ds-mapped-text-disabled)',
-        textTransform: 'uppercase' as const,
-        letterSpacing: '0.08em',
-        marginTop: 0,
-        marginBottom: 'var(--ds-alias-spacing-xs)'
-      }}>
+      <h3
+        style={{
+          fontFamily: 'var(--ds-brand-font-family-body)',
+          fontSize: 'var(--ds-typography-body-sm-font-size)',
+          fontWeight: 'var(--ds-brand-font-weight-medium)',
+          color: 'var(--ds-mapped-text-disabled)',
+          textTransform: 'uppercase' as const,
+          letterSpacing: '0.08em',
+          marginTop: 0,
+          marginBottom: 'var(--ds-alias-spacing-xs)',
+        }}
+      >
         {title}
       </h3>
       {children}
@@ -52,7 +63,14 @@ function SubSection({ title, children }: { title: string; children: React.ReactN
 
 function Row({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--ds-alias-spacing-md)', alignItems: 'flex-start' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: 'var(--ds-alias-spacing-md)',
+        alignItems: 'flex-start',
+      }}
+    >
       {children}
     </div>
   )
@@ -60,7 +78,14 @@ function Row({ children }: { children: React.ReactNode }) {
 
 function Col({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xxs)', width: '260px' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 'var(--ds-alias-spacing-xxs)',
+        width: '260px',
+      }}
+    >
       {children}
     </div>
   )
@@ -85,31 +110,48 @@ function DropdownDemo() {
   const [value, setValue] = useState('')
   const [open, setOpen] = useState(false)
 
-  const suggestions = ['San Francisco, CA', 'New York, NY', 'Tokyo, Japan', 'Paris, France', 'London, UK']
+  const suggestions = [
+    'San Francisco, CA',
+    'New York, NY',
+    'Tokyo, Japan',
+    'Paris, France',
+    'London, UK',
+  ]
   const filtered = suggestions.filter((s) => s.toLowerCase().includes(value.toLowerCase()))
 
   return (
     <SearchBox
       value={value}
-      onChange={(e) => { setValue(e.target.value); setOpen(true) }}
-      onClear={() => { setValue(''); setOpen(false) }}
+      onChange={(e) => {
+        setValue(e.target.value)
+        setOpen(true)
+      }}
+      onClear={() => {
+        setValue('')
+        setOpen(false)
+      }}
       placeholder="Search destination..."
       onFocus={() => setOpen(true)}
       onBlur={() => setTimeout(() => setOpen(false), 150)}
     >
       {open && filtered.length > 0 && (
-        <div style={{
-          background: 'var(--ds-mapped-surface-default)',
-          border: '1px solid var(--ds-mapped-border-default)',
-          borderRadius: 'var(--ds-alias-border-radius-lg)',
-          overflow: 'hidden'
-        }}>
+        <div
+          style={{
+            background: 'var(--ds-mapped-surface-default)',
+            border: '1px solid var(--ds-mapped-border-default)',
+            borderRadius: 'var(--ds-alias-border-radius-lg)',
+            overflow: 'hidden',
+          }}
+        >
           {filtered.map((s) => (
             <button
               key={s}
               type="button"
               onMouseDown={(e) => e.preventDefault()}
-              onClick={() => { setValue(s); setOpen(false) }}
+              onClick={() => {
+                setValue(s)
+                setOpen(false)
+              }}
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -139,16 +181,45 @@ function DropdownDemo() {
 export default function SearchBoxPreviewPage() {
   return (
     <div style={{ padding: 'var(--ds-alias-spacing-xl)' }}>
-
       {/* Page header */}
-      <div style={{ marginBottom: 'var(--ds-alias-spacing-xl)', paddingBottom: 'var(--ds-alias-spacing-lg)', borderBottom: '1px solid var(--ds-mapped-border-default)' }}>
-        <h1 style={{ fontFamily: 'var(--ds-brand-font-family-heading)', fontSize: 'var(--ds-typography-heading-h4-font-size)', fontWeight: 'var(--ds-brand-font-weight-semi-bold)', color: 'var(--ds-mapped-text-heading)', margin: 0 }}>
+      <div
+        style={{
+          marginBottom: 'var(--ds-alias-spacing-xl)',
+          paddingBottom: 'var(--ds-alias-spacing-lg)',
+          borderBottom: '1px solid var(--ds-mapped-border-default)',
+        }}
+      >
+        <h1
+          style={{
+            fontFamily: 'var(--ds-brand-font-family-heading)',
+            fontSize: 'var(--ds-typography-heading-h4-font-size)',
+            fontWeight: 'var(--ds-brand-font-weight-semi-bold)',
+            color: 'var(--ds-mapped-text-heading)',
+            margin: 0,
+          }}
+        >
           SearchBox
         </h1>
-        <p style={{ fontFamily: 'var(--ds-brand-font-family-body)', fontSize: 'var(--ds-typography-body-md-font-size)', color: 'var(--ds-mapped-text-body)', marginTop: 'var(--ds-alias-spacing-xxs)', marginBottom: 0 }}>
+        <p
+          style={{
+            fontFamily: 'var(--ds-brand-font-family-body)',
+            fontSize: 'var(--ds-typography-body-md-font-size)',
+            color: 'var(--ds-mapped-text-body)',
+            marginTop: 'var(--ds-alias-spacing-xxs)',
+            marginBottom: 0,
+          }}
+        >
           Figma: PRIMITIVES / Search Box — node 1360:1829
         </p>
-        <p style={{ fontFamily: 'monospace', fontSize: 'var(--ds-typography-body-sm-font-size)', color: 'var(--ds-mapped-text-disabled)', marginTop: 'var(--ds-alias-spacing-xxs)', marginBottom: 0 }}>
+        <p
+          style={{
+            fontFamily: 'monospace',
+            fontSize: 'var(--ds-typography-body-sm-font-size)',
+            color: 'var(--ds-mapped-text-disabled)',
+            marginTop: 'var(--ds-alias-spacing-xxs)',
+            marginBottom: 0,
+          }}
+        >
           {`import { SearchBox } from '@acme/ui'`}
         </p>
       </div>
@@ -162,7 +233,12 @@ export default function SearchBoxPreviewPage() {
               <Label>default (empty)</Label>
             </Col>
             <Col>
-              <SearchBox value="San Francisco, CA" onChange={() => {}} onClear={() => {}} placeholder="Search destination..." />
+              <SearchBox
+                value="San Francisco, CA"
+                onChange={() => {}}
+                onClear={() => {}}
+                placeholder="Search destination..."
+              />
               <Label>filled (value + clear button)</Label>
             </Col>
             <Col>
@@ -170,7 +246,12 @@ export default function SearchBoxPreviewPage() {
               <Label>disabled={true} (empty)</Label>
             </Col>
             <Col>
-              <SearchBox value="San Francisco, CA" onChange={() => {}} disabled placeholder="Search destination..." />
+              <SearchBox
+                value="San Francisco, CA"
+                onChange={() => {}}
+                disabled
+                placeholder="Search destination..."
+              />
               <Label>disabled={true} (filled)</Label>
             </Col>
           </Row>
@@ -200,36 +281,71 @@ export default function SearchBoxPreviewPage() {
         </SubSection>
 
         <SubSection title="Tokens used">
-          <div style={{ padding: 'var(--ds-alias-spacing-sm)', background: 'var(--ds-mapped-surface-disabled)', borderRadius: 'var(--ds-alias-border-radius-lg)', fontSize: 'var(--ds-typography-body-sm-font-size)', fontFamily: 'monospace', color: 'var(--ds-mapped-text-body)', lineHeight: '1.8' }}>
-            <strong>Layout</strong><br />
-            --ds-alias-spacing-xs — padding-y, gap<br />
-            --ds-alias-spacing-sm — padding-x<br />
-            --ds-alias-spacing-xxs — dropdown offset<br />
-            --ds-alias-border-radius-lg — wrapper + dropdown<br />
-            --ds-alias-border-width-sm — border<br /><br />
-            <strong>Colors</strong><br />
-            --ds-mapped-surface-default — bg<br />
-            --ds-mapped-surface-disabled — bg disabled<br />
-            --ds-mapped-border-default — border default<br />
-            --ds-mapped-border-action-hover — border hover<br />
-            --ds-mapped-border-action — border focus<br />
-            --ds-mapped-border-disabled — border disabled<br />
-            --ds-mapped-text-body — input text<br />
-            --ds-mapped-text-placeholder — placeholder<br />
-            --ds-mapped-text-disabled — disabled text<br />
-            --ds-mapped-icon-default — icon<br />
-            --ds-mapped-icon-disabled — icon disabled<br />
-            --ds-mapped-icon-action-hover — clear icon hover<br />
-            --ds-effect-shadow-overlay-light — dropdown shadow<br /><br />
-            <strong>Typography</strong><br />
-            --ds-brand-font-family-body — Inter<br />
-            --ds-brand-font-weight-regular — 400<br />
-            --ds-typography-body-md-font-size — 16px<br />
+          <div
+            style={{
+              padding: 'var(--ds-alias-spacing-sm)',
+              background: 'var(--ds-mapped-surface-disabled)',
+              borderRadius: 'var(--ds-alias-border-radius-lg)',
+              fontSize: 'var(--ds-typography-body-sm-font-size)',
+              fontFamily: 'monospace',
+              color: 'var(--ds-mapped-text-body)',
+              lineHeight: '1.8',
+            }}
+          >
+            <strong>Layout</strong>
+            <br />
+            --ds-alias-spacing-xs — padding-y, gap
+            <br />
+            --ds-alias-spacing-sm — padding-x
+            <br />
+            --ds-alias-spacing-xxs — dropdown offset
+            <br />
+            --ds-alias-border-radius-lg — wrapper + dropdown
+            <br />
+            --ds-alias-border-width-sm — border
+            <br />
+            <br />
+            <strong>Colors</strong>
+            <br />
+            --ds-mapped-surface-default — bg
+            <br />
+            --ds-mapped-surface-disabled — bg disabled
+            <br />
+            --ds-mapped-border-default — border default
+            <br />
+            --ds-mapped-border-action-hover — border hover
+            <br />
+            --ds-mapped-border-action — border focus
+            <br />
+            --ds-mapped-border-disabled — border disabled
+            <br />
+            --ds-mapped-text-body — input text
+            <br />
+            --ds-mapped-text-placeholder — placeholder
+            <br />
+            --ds-mapped-text-disabled — disabled text
+            <br />
+            --ds-mapped-icon-default — icon
+            <br />
+            --ds-mapped-icon-disabled — icon disabled
+            <br />
+            --ds-mapped-icon-action-hover — clear icon hover
+            <br />
+            --ds-effect-shadow-overlay-light — dropdown shadow
+            <br />
+            <br />
+            <strong>Typography</strong>
+            <br />
+            --ds-brand-font-family-body — Inter
+            <br />
+            --ds-brand-font-weight-regular — 400
+            <br />
+            --ds-typography-body-md-font-size — 16px
+            <br />
             --ds-typography-body-md-line-height — 20px
           </div>
         </SubSection>
       </Section>
-
     </div>
   )
 }

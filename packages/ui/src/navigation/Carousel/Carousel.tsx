@@ -15,17 +15,7 @@ import styles from './Carousel.module.css'
  * @see design-system/figma.md for Figma mapping
  */
 export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
-  (
-    {
-      size = 'lg',
-      shape = 'round',
-      disabled = false,
-      children,
-      className,
-      ...props
-    },
-    ref
-  ) => {
+  ({ size = 'lg', shape = 'round', disabled = false, children, className, ...props }, ref) => {
     const slides = React.Children.toArray(children)
     const totalSlides = slides.length
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -41,15 +31,9 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
     if (totalSlides === 0) return null
 
     return (
-      <div
-        ref={ref}
-        className={cn(styles.root, className)}
-        {...props}
-      >
+      <div ref={ref} className={cn(styles.root, className)} {...props}>
         {/* Slide display area */}
-        <div className={styles.slideArea}>
-          {slides[currentIndex]}
-        </div>
+        <div className={styles.slideArea}>{slides[currentIndex]}</div>
 
         {/* Controls: nav row + pagination */}
         <div className={styles.controls}>

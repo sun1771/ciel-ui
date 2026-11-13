@@ -14,28 +14,13 @@ import styles from './Tag.module.css'
  * @see docs/components.md for usage examples
  */
 export const Tag = React.forwardRef<HTMLDivElement, TagProps>(
-  (
-    {
-      size = 'lg',
-      disabled = false,
-      onDismiss,
-      className,
-      children,
-      ...props
-    },
-    ref
-  ) => {
+  ({ size = 'lg', disabled = false, onDismiss, className, children, ...props }, ref) => {
     const iconSize = size === 'lg' ? 20 : 16
 
     return (
       <div
         ref={ref}
-        className={cn(
-          styles.base,
-          styles[size],
-          disabled && styles.disabled,
-          className
-        )}
+        className={cn(styles.base, styles[size], disabled && styles.disabled, className)}
         {...props}
       >
         <span>{children}</span>

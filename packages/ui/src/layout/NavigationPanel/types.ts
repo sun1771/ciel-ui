@@ -9,8 +9,7 @@ import React from 'react'
 export type NavigationMenuGroupGap = 'none' | 'xxs' | 'md' | 'lg'
 
 /** Props for a single clickable navigation menu item (Type=regular). */
-export interface NavigationMenuItemProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface NavigationMenuItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Marks this item as the currently active route (filled blue pill). */
   isSelected?: boolean
   /** Icon slot — a 20px icon from the design system, rendered with currentColor. */
@@ -23,8 +22,10 @@ export interface NavigationMenuItemProps
 /** Props for the special logo menu item (Type=logo). It reads the panel's
  *  expanded state + toggle handler from context, so no expand/onToggle props
  *  are needed here. */
-export interface NavigationLogoItemProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+export interface NavigationLogoItemProps extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  'children'
+> {
   /** Accessible name for the brand logo. Defaults to "TripOn AI". */
   logoAlt?: string
   /** aria-label for the collapse control shown when the panel is expanded. */
@@ -38,8 +39,10 @@ export interface NavigationLogoItemProps
  *  ButtonIcon). It reads the panel's expanded state from context:
  *  - expanded: Avatar + name on the left, Settings button on the right
  *  - collapsed: Settings button stacked on top of the Avatar */
-export interface NavigationProfileItemProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+export interface NavigationProfileItemProps extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  'children'
+> {
   /** User name shown next to the avatar when expanded. Default "User". */
   userName?: string
   /** Avatar image URL. When set, the avatar renders as an image. */
@@ -60,8 +63,7 @@ export interface NavigationProfileItemProps
 }
 
 /** Props for a group of navigation items inside a NavigationPanel. */
-export interface NavigationMenuGroupProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface NavigationMenuGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Vertical gap between children. Default `none`. Use `md` for the top
    *  wrapper that separates the logo item from the primary item group. */
   gap?: NavigationMenuGroupGap

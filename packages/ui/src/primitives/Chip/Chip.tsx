@@ -21,17 +21,7 @@ const colorVariantClasses: Record<ChipColor, Record<ChipVariant, string>> = {
  * @see docs/components.md for usage examples
  */
 export const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
-  (
-    {
-      color = 'brand',
-      variant = 'light',
-      icon,
-      children,
-      className,
-      ...props
-    },
-    ref,
-  ) => {
+  ({ color = 'brand', variant = 'light', icon, children, className, ...props }, ref) => {
     return (
       <div
         ref={ref}
@@ -46,7 +36,7 @@ export const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
         {children}
       </div>
     )
-  },
+  }
 )
 
 Chip.displayName = 'Chip'

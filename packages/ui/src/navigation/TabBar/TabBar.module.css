@@ -92,9 +92,7 @@
 
 /* When selected+focused the ring extends 2px lower to sit below the active indicator */
 .selected:focus-visible::after {
-  inset:
-    calc(-1 * var(--ds-alias-spacing-xxs))
-    calc(-1 * var(--ds-alias-spacing-xxs))
+  inset: calc(-1 * var(--ds-alias-spacing-xxs)) calc(-1 * var(--ds-alias-spacing-xxs))
     calc(-1 * var(--ds-alias-spacing-xxs) - var(--ds-alias-border-width-md))
     calc(-1 * var(--ds-alias-spacing-xxs));
 }

@@ -14,18 +14,7 @@ import type { TabItemProps } from './types'
  * @see docs/components.md for usage examples
  */
 export const TabItem = React.forwardRef<HTMLButtonElement, TabItemProps>(
-  (
-    {
-      isSelected = false,
-      disabled = false,
-      icon,
-      children,
-      className,
-      onClick,
-      ...props
-    },
-    ref
-  ) => {
+  ({ isSelected = false, disabled = false, icon, children, className, onClick, ...props }, ref) => {
     return (
       <button
         ref={ref}

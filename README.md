@@ -6,12 +6,12 @@ A React 19 component library (34 components, 47 icons, design tokens) with a Sto
 
 ## Repository layout
 
-| Path | Package | What |
-|---|---|---|
-| `packages/ui` | `@acme/ui` | Components (CSS Modules + `--ds-*` tokens) |
-| `packages/icons` | `@acme/icons` | Icon components |
-| `packages/tokens` | `@acme/tokens` | `tokens.css` — CSS custom properties, light + `[data-theme="dark"]` |
-| `apps/docs` | `docs` (private) | Next.js 16 preview / docs site |
+| Path              | Package          | What                                                                |
+| ----------------- | ---------------- | ------------------------------------------------------------------- |
+| `packages/ui`     | `@acme/ui`       | Components (CSS Modules + `--ds-*` tokens)                          |
+| `packages/icons`  | `@acme/icons`    | Icon components                                                     |
+| `packages/tokens` | `@acme/tokens`   | `tokens.css` — CSS custom properties, light + `[data-theme="dark"]` |
+| `apps/docs`       | `docs` (private) | Next.js 16 preview / docs site                                      |
 
 ## Getting started
 
@@ -24,13 +24,13 @@ pnpm dev          # docs site at http://localhost:3000/preview
 
 ## Scripts (run from the repo root via Turborepo)
 
-| Command | Does |
-|---|---|
-| `pnpm dev` | Run the docs site |
-| `pnpm build` | Build every package/app |
-| `pnpm lint` | ESLint (incl. `jsx-a11y`, `react-hooks`) |
-| `pnpm typecheck` | `tsc --noEmit` in every package |
-| `pnpm format` | Prettier |
+| Command          | Does                                     |
+| ---------------- | ---------------------------------------- |
+| `pnpm dev`       | Run the docs site                        |
+| `pnpm build`     | Build every package/app                  |
+| `pnpm lint`      | ESLint (incl. `jsx-a11y`, `react-hooks`) |
+| `pnpm typecheck` | `tsc --noEmit` in every package          |
+| `pnpm format`    | Prettier                                 |
 
 ## Using the library (preview)
 

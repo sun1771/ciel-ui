@@ -48,7 +48,15 @@ function Item({ label, children }: { label: string; children: React.ReactNode })
   )
 }
 
-function ToggleDemo({ variant, size, label }: { variant: 'default' | 'outline' | 'transparent'; size: 'lg' | 'sm'; label: string }) {
+function ToggleDemo({
+  variant,
+  size,
+  label,
+}: {
+  variant: 'default' | 'outline' | 'transparent'
+  size: 'lg' | 'sm'
+  label: string
+}) {
   const [open, setOpen] = useState(false)
   return (
     <Item label={label}>
@@ -95,7 +103,14 @@ export default function SelectButtonPreview() {
         >
           Figma: PRIMITIVES / Select Button — node 1748:7209
         </p>
-        <p style={{ fontSize: '12px', color: 'var(--ds-mapped-text-placeholder)', marginTop: '4px', fontFamily: 'monospace' }}>
+        <p
+          style={{
+            fontSize: '12px',
+            color: 'var(--ds-mapped-text-placeholder)',
+            marginTop: '4px',
+            fontFamily: 'monospace',
+          }}
+        >
           {`import { SelectButton } from '@acme/ui'`}
         </p>
       </div>
@@ -106,26 +121,38 @@ export default function SelectButtonPreview() {
         <p style={subheadingStyle}>All variants — size lg, isSelected=false (closed)</p>
         <div style={rowStyle}>
           <Item label='variant="default"'>
-            <SelectButton variant="default" size="lg">Region</SelectButton>
+            <SelectButton variant="default" size="lg">
+              Region
+            </SelectButton>
           </Item>
           <Item label='variant="outline"'>
-            <SelectButton variant="outline" size="lg">Region</SelectButton>
+            <SelectButton variant="outline" size="lg">
+              Region
+            </SelectButton>
           </Item>
           <Item label='variant="transparent"'>
-            <SelectButton variant="transparent" size="lg">Region</SelectButton>
+            <SelectButton variant="transparent" size="lg">
+              Region
+            </SelectButton>
           </Item>
         </div>
 
         <p style={subheadingStyle}>All variants — isSelected=true (open / chevron up)</p>
         <div style={rowStyle}>
           <Item label='variant="default" isSelected'>
-            <SelectButton variant="default" size="lg" isSelected>Region</SelectButton>
+            <SelectButton variant="default" size="lg" isSelected>
+              Region
+            </SelectButton>
           </Item>
           <Item label='variant="outline" isSelected'>
-            <SelectButton variant="outline" size="lg" isSelected>Region</SelectButton>
+            <SelectButton variant="outline" size="lg" isSelected>
+              Region
+            </SelectButton>
           </Item>
           <Item label='variant="transparent" isSelected'>
-            <SelectButton variant="transparent" size="lg" isSelected>Region</SelectButton>
+            <SelectButton variant="transparent" size="lg" isSelected>
+              Region
+            </SelectButton>
           </Item>
         </div>
       </section>
@@ -136,28 +163,40 @@ export default function SelectButtonPreview() {
         <p style={subheadingStyle}>Default variant, both sizes</p>
         <div style={rowStyle}>
           <Item label='size="lg"'>
-            <SelectButton variant="default" size="lg">Region</SelectButton>
+            <SelectButton variant="default" size="lg">
+              Region
+            </SelectButton>
           </Item>
           <Item label='size="sm"'>
-            <SelectButton variant="default" size="sm">Region</SelectButton>
+            <SelectButton variant="default" size="sm">
+              Region
+            </SelectButton>
           </Item>
         </div>
         <p style={subheadingStyle}>Outline variant, both sizes</p>
         <div style={rowStyle}>
           <Item label='variant="outline" size="lg"'>
-            <SelectButton variant="outline" size="lg">Region</SelectButton>
+            <SelectButton variant="outline" size="lg">
+              Region
+            </SelectButton>
           </Item>
           <Item label='variant="outline" size="sm"'>
-            <SelectButton variant="outline" size="sm">Region</SelectButton>
+            <SelectButton variant="outline" size="sm">
+              Region
+            </SelectButton>
           </Item>
         </div>
         <p style={subheadingStyle}>Transparent variant, both sizes</p>
         <div style={rowStyle}>
           <Item label='variant="transparent" size="lg"'>
-            <SelectButton variant="transparent" size="lg">Region</SelectButton>
+            <SelectButton variant="transparent" size="lg">
+              Region
+            </SelectButton>
           </Item>
           <Item label='variant="transparent" size="sm"'>
-            <SelectButton variant="transparent" size="sm">Region</SelectButton>
+            <SelectButton variant="transparent" size="sm">
+              Region
+            </SelectButton>
           </Item>
         </div>
       </section>
@@ -168,13 +207,19 @@ export default function SelectButtonPreview() {
         <p style={subheadingStyle}>All variants — disabled</p>
         <div style={rowStyle}>
           <Item label='variant="default" disabled'>
-            <SelectButton variant="default" size="lg" disabled>Region</SelectButton>
+            <SelectButton variant="default" size="lg" disabled>
+              Region
+            </SelectButton>
           </Item>
           <Item label='variant="outline" disabled'>
-            <SelectButton variant="outline" size="lg" disabled>Region</SelectButton>
+            <SelectButton variant="outline" size="lg" disabled>
+              Region
+            </SelectButton>
           </Item>
           <Item label='variant="transparent" disabled'>
-            <SelectButton variant="transparent" size="lg" disabled>Region</SelectButton>
+            <SelectButton variant="transparent" size="lg" disabled>
+              Region
+            </SelectButton>
           </Item>
         </div>
       </section>
@@ -184,14 +229,38 @@ export default function SelectButtonPreview() {
         <h2 style={headingStyle}>Interactive — click to toggle open/closed</h2>
         <p style={subheadingStyle}>isSelected state toggles chevron direction</p>
         <div style={rowStyle}>
-          <ToggleDemo variant="default" size="lg" label='variant="default" size="lg" (click to toggle)' />
-          <ToggleDemo variant="outline" size="lg" label='variant="outline" size="lg" (click to toggle)' />
-          <ToggleDemo variant="transparent" size="lg" label='variant="transparent" size="lg" (click to toggle)' />
+          <ToggleDemo
+            variant="default"
+            size="lg"
+            label='variant="default" size="lg" (click to toggle)'
+          />
+          <ToggleDemo
+            variant="outline"
+            size="lg"
+            label='variant="outline" size="lg" (click to toggle)'
+          />
+          <ToggleDemo
+            variant="transparent"
+            size="lg"
+            label='variant="transparent" size="lg" (click to toggle)'
+          />
         </div>
         <div style={rowStyle}>
-          <ToggleDemo variant="default" size="sm" label='variant="default" size="sm" (click to toggle)' />
-          <ToggleDemo variant="outline" size="sm" label='variant="outline" size="sm" (click to toggle)' />
-          <ToggleDemo variant="transparent" size="sm" label='variant="transparent" size="sm" (click to toggle)' />
+          <ToggleDemo
+            variant="default"
+            size="sm"
+            label='variant="default" size="sm" (click to toggle)'
+          />
+          <ToggleDemo
+            variant="outline"
+            size="sm"
+            label='variant="outline" size="sm" (click to toggle)'
+          />
+          <ToggleDemo
+            variant="transparent"
+            size="sm"
+            label='variant="transparent" size="sm" (click to toggle)'
+          />
         </div>
       </section>
 

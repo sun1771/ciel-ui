@@ -13,11 +13,26 @@
 }
 
 /* Sizes — exact Figma dimensions mapped to alias spacing tokens */
-.lg  { width: var(--ds-alias-spacing-xxxl); height: var(--ds-alias-spacing-xxxl); }
-.md  { width: var(--ds-alias-spacing-xxl);  height: var(--ds-alias-spacing-xxl);  }
-.sm  { width: var(--ds-alias-spacing-xl);   height: var(--ds-alias-spacing-xl);   }
-.xs  { width: var(--ds-alias-spacing-lg);   height: var(--ds-alias-spacing-lg);   }
-.xxs { width: var(--ds-alias-spacing-md);   height: var(--ds-alias-spacing-md);   }
+.lg {
+  width: var(--ds-alias-spacing-xxxl);
+  height: var(--ds-alias-spacing-xxxl);
+}
+.md {
+  width: var(--ds-alias-spacing-xxl);
+  height: var(--ds-alias-spacing-xxl);
+}
+.sm {
+  width: var(--ds-alias-spacing-xl);
+  height: var(--ds-alias-spacing-xl);
+}
+.xs {
+  width: var(--ds-alias-spacing-lg);
+  height: var(--ds-alias-spacing-lg);
+}
+.xxs {
+  width: var(--ds-alias-spacing-md);
+  height: var(--ds-alias-spacing-md);
+}
 
 /* SVG spinner — fills container and rotates */
 .spinner {
@@ -28,6 +43,10 @@
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

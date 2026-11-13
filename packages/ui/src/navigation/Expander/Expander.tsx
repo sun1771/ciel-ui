@@ -15,24 +15,13 @@ import styles from './Expander.module.css'
  */
 export const Expander = React.forwardRef<HTMLDivElement, ExpanderProps>(
   (
-    {
-      label,
-      isExpanded = false,
-      size = 'lg',
-      disabled = false,
-      onToggle,
-      children,
-      className,
-    },
+    { label, isExpanded = false, size = 'lg', disabled = false, onToggle, children, className },
     ref
   ) => {
     const iconSize = size === 'lg' ? 20 : 16
 
     return (
-      <div
-        ref={ref}
-        className={cn(styles.root, styles[size], className)}
-      >
+      <div ref={ref} className={cn(styles.root, styles[size], className)}>
         <button
           type="button"
           className={cn(
@@ -46,11 +35,7 @@ export const Expander = React.forwardRef<HTMLDivElement, ExpanderProps>(
         >
           <span>{label}</span>
           <span className={styles.chevron} aria-hidden="true">
-            {isExpanded ? (
-              <ChevronTop size={iconSize} />
-            ) : (
-              <ChevronDown size={iconSize} />
-            )}
+            {isExpanded ? <ChevronTop size={iconSize} /> : <ChevronDown size={iconSize} />}
           </span>
         </button>
 

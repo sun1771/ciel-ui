@@ -118,8 +118,8 @@ export default function NavigationPanelPreviewPage() {
             marginTop: 'var(--ds-alias-spacing-xs)',
           }}
         >
-          Figma: LAYOUT / Navigation Panel — .NavigationMenuItem 1345:3878 /
-          Navigation Panel 1348:4669
+          Figma: LAYOUT / Navigation Panel — .NavigationMenuItem 1345:3878 / Navigation Panel
+          1348:4669
         </p>
         <p
           style={{
@@ -161,11 +161,11 @@ export default function NavigationPanelPreviewPage() {
               color: 'var(--ds-mapped-text-disabled)',
             }}
           >
-            Expanded: click the collapse button (right of the logo); Settings sits
-            to the right of the avatar.
+            Expanded: click the collapse button (right of the logo); Settings sits to the right of
+            the avatar.
             <br />
-            Collapsed: hover the logo to reveal the expand arrow; Settings stacks
-            on top of the avatar.
+            Collapsed: hover the logo to reveal the expand arrow; Settings stacks on top of the
+            avatar.
           </div>
         </div>
       </section>
@@ -174,12 +174,7 @@ export default function NavigationPanelPreviewPage() {
       <section style={{ marginBottom: 'var(--ds-alias-spacing-xxl)' }}>
         <h2 style={H2}>Expanded (isExpanded=true)</h2>
         <div style={{ height: '560px' }}>
-          <DemoPanel
-            expanded
-            onToggle={() => {}}
-            selected={selectedA}
-            onSelect={setSelectedA}
-          />
+          <DemoPanel expanded onToggle={() => {}} selected={selectedA} onSelect={setSelectedA} />
         </div>
       </section>
 
@@ -201,9 +196,7 @@ export default function NavigationPanelPreviewPage() {
         <h2 style={H2}>NavigationMenuItem — all states</h2>
         <NavigationPanel isExpanded>
           <NavigationMenuGroup>
-            <NavigationMenuItem icon={<Info size={20} />}>
-              Default
-            </NavigationMenuItem>
+            <NavigationMenuItem icon={<Info size={20} />}>Default</NavigationMenuItem>
             <NavigationMenuItem icon={<Info size={20} />} isSelected>
               Selected
             </NavigationMenuItem>
@@ -220,8 +213,7 @@ export default function NavigationPanelPreviewPage() {
             color: 'var(--ds-mapped-text-disabled)',
           }}
         >
-          default / isSelected (filled blue) / disabled (hover state via CSS
-          :hover)
+          default / isSelected (filled blue) / disabled (hover state via CSS :hover)
         </div>
       </section>
 
@@ -241,32 +233,52 @@ export default function NavigationPanelPreviewPage() {
         >
           --ds-mapped-surface-default — panel bg, item/logo/profile default bg
           <br />
-          --ds-mapped-surface-action — selected item bg (filled blue)<br />
-          --ds-mapped-surface-action-hover — selected item hover bg<br />
-          --ds-mapped-surface-action-hover-light — item hover bg<br />
-          --ds-mapped-text-on-action — selected item label (white)<br />
-          --ds-mapped-text-action-hover — hover item label<br />
-          --ds-mapped-text-body — default item + profile name label<br />
-          --ds-mapped-text-disabled — disabled item label<br />
-          --ds-mapped-icon-on-action — selected item icon (white)<br />
-          --ds-mapped-icon-action-hover — hover item icon<br />
-          --ds-mapped-icon-default — default item icon<br />
-          --ds-mapped-icon-disabled — disabled item icon<br />
-          --ds-mapped-border-focus — keyboard focus ring<br />
-          --ds-effect-shadow — panel drop shadow (= Figma Token=shadow)<br />
-          --ds-alias-border-radius-lg — item / logo / profile radius (8px)<br />
+          --ds-mapped-surface-action — selected item bg (filled blue)
+          <br />
+          --ds-mapped-surface-action-hover — selected item hover bg
+          <br />
+          --ds-mapped-surface-action-hover-light — item hover bg
+          <br />
+          --ds-mapped-text-on-action — selected item label (white)
+          <br />
+          --ds-mapped-text-action-hover — hover item label
+          <br />
+          --ds-mapped-text-body — default item + profile name label
+          <br />
+          --ds-mapped-text-disabled — disabled item label
+          <br />
+          --ds-mapped-icon-on-action — selected item icon (white)
+          <br />
+          --ds-mapped-icon-action-hover — hover item icon
+          <br />
+          --ds-mapped-icon-default — default item icon
+          <br />
+          --ds-mapped-icon-disabled — disabled item icon
+          <br />
+          --ds-mapped-border-focus — keyboard focus ring
+          <br />
+          --ds-effect-shadow — panel drop shadow (= Figma Token=shadow)
+          <br />
+          --ds-alias-border-radius-lg — item / logo / profile radius (8px)
+          <br />
           --ds-alias-border-radius-round — profile avatar button focus radius
           <br />
-          --ds-alias-spacing-lg — panel padding-y + top-group gap (24px)<br />
-          --ds-alias-spacing-xxs — panel padding-x (4px) + logo/profile edge
-          padding<br />
-          --ds-alias-spacing-sm — item padding-x (12px)<br />
+          --ds-alias-spacing-lg — panel padding-y + top-group gap (24px)
+          <br />
+          --ds-alias-spacing-xxs — panel padding-x (4px) + logo/profile edge padding
+          <br />
+          --ds-alias-spacing-sm — item padding-x (12px)
+          <br />
           --ds-alias-spacing-xs — item padding-y + logo/profile padding + gaps
           <br />
-          --ds-alias-spacing-none — item-list gap (0)<br />
-          --ds-brand-font-family-body — label font family<br />
-          --ds-brand-font-weight-regular — label font weight<br />
-          --ds-typography-body-md-font-size — label font size<br />
+          --ds-alias-spacing-none — item-list gap (0)
+          <br />
+          --ds-brand-font-family-body — label font family
+          <br />
+          --ds-brand-font-weight-regular — label font weight
+          <br />
+          --ds-typography-body-md-font-size — label font size
+          <br />
           --ds-typography-body-md-line-height — label line height
         </div>
       </section>

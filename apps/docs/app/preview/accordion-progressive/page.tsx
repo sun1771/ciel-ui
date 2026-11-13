@@ -12,59 +12,71 @@ export default function AccordionProgressivePage() {
   return (
     <div style={{ padding: 'var(--ds-alias-spacing-xl)' }}>
       {/* Page header */}
-      <div style={{
-        marginBottom: 'var(--ds-alias-spacing-xl)',
-        paddingBottom: 'var(--ds-alias-spacing-lg)',
-        borderBottom: '1px solid var(--ds-mapped-border-default)'
-      }}>
-        <h1 style={{
-          fontFamily: 'var(--ds-brand-font-family-heading)',
-          fontSize: 'var(--ds-typography-heading-h4-font-size)',
-          fontWeight: 'var(--ds-typography-heading-h4-font-weight)',
-          color: 'var(--ds-mapped-text-heading)',
-          margin: 0
-        }}>
+      <div
+        style={{
+          marginBottom: 'var(--ds-alias-spacing-xl)',
+          paddingBottom: 'var(--ds-alias-spacing-lg)',
+          borderBottom: '1px solid var(--ds-mapped-border-default)',
+        }}
+      >
+        <h1
+          style={{
+            fontFamily: 'var(--ds-brand-font-family-heading)',
+            fontSize: 'var(--ds-typography-heading-h4-font-size)',
+            fontWeight: 'var(--ds-typography-heading-h4-font-weight)',
+            color: 'var(--ds-mapped-text-heading)',
+            margin: 0,
+          }}
+        >
           AccordionProgressive
         </h1>
-        <p style={{
-          fontSize: 'var(--ds-typography-body-md-font-size)',
-          color: 'var(--ds-mapped-text-body)',
-          marginTop: 'var(--ds-alias-spacing-xxs)'
-        }}>
+        <p
+          style={{
+            fontSize: 'var(--ds-typography-body-md-font-size)',
+            color: 'var(--ds-mapped-text-body)',
+            marginTop: 'var(--ds-alias-spacing-xxs)',
+          }}
+        >
           Figma: NAVIGATION / Accordion Progressive — node 1683:1582
         </p>
-        <p style={{
-          fontSize: 'var(--ds-typography-body-sm-font-size)',
-          color: 'var(--ds-mapped-text-disabled)',
-          marginTop: 'var(--ds-alias-spacing-xxxs)',
-          fontFamily: 'monospace'
-        }}>
+        <p
+          style={{
+            fontSize: 'var(--ds-typography-body-sm-font-size)',
+            color: 'var(--ds-mapped-text-disabled)',
+            marginTop: 'var(--ds-alias-spacing-xxxs)',
+            fontFamily: 'monospace',
+          }}
+        >
           import {'{'} AccordionProgressive {'}'} from &apos;@acme/ui&apos;
         </p>
       </div>
 
       {/* States — collapsed vs expanded side by side */}
       <section style={{ marginBottom: 'var(--ds-alias-spacing-xl)' }}>
-        <h2 style={{
-          fontFamily: 'var(--ds-brand-font-family-heading)',
-          fontSize: 'var(--ds-typography-heading-h6-font-size)',
-          fontWeight: 'var(--ds-typography-heading-h6-font-weight)',
-          color: 'var(--ds-mapped-text-heading)',
-          marginBottom: 'var(--ds-alias-spacing-lg)'
-        }}>
+        <h2
+          style={{
+            fontFamily: 'var(--ds-brand-font-family-heading)',
+            fontSize: 'var(--ds-typography-heading-h6-font-size)',
+            fontWeight: 'var(--ds-typography-heading-h6-font-weight)',
+            color: 'var(--ds-mapped-text-heading)',
+            marginBottom: 'var(--ds-alias-spacing-lg)',
+          }}
+        >
           States
         </h2>
 
         {/* Default — collapsed */}
         <div style={{ marginBottom: 'var(--ds-alias-spacing-lg)' }}>
-          <p style={{
-            fontSize: 'var(--ds-typography-body-sm-font-size)',
-            fontWeight: 600,
-            color: 'var(--ds-mapped-text-disabled)',
-            textTransform: 'uppercase',
-            letterSpacing: '0.08em',
-            marginBottom: 'var(--ds-alias-spacing-xs)'
-          }}>
+          <p
+            style={{
+              fontSize: 'var(--ds-typography-body-sm-font-size)',
+              fontWeight: 600,
+              color: 'var(--ds-mapped-text-disabled)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em',
+              marginBottom: 'var(--ds-alias-spacing-xs)',
+            }}
+          >
             Default — Collapsed
           </p>
           <div style={{ maxWidth: '320px' }}>
@@ -74,21 +86,30 @@ export default function AccordionProgressivePage() {
               onToggle={setExpanded1}
             />
           </div>
-          <div style={{ fontFamily: 'monospace', fontSize: '11px', color: 'var(--ds-mapped-text-disabled)', marginTop: 'var(--ds-alias-spacing-xxs)' }}>
+          <div
+            style={{
+              fontFamily: 'monospace',
+              fontSize: '11px',
+              color: 'var(--ds-mapped-text-disabled)',
+              marginTop: 'var(--ds-alias-spacing-xxs)',
+            }}
+          >
             isExpanded=false (click to expand)
           </div>
         </div>
 
         {/* Default — expanded */}
         <div style={{ marginBottom: 'var(--ds-alias-spacing-lg)' }}>
-          <p style={{
-            fontSize: 'var(--ds-typography-body-sm-font-size)',
-            fontWeight: 600,
-            color: 'var(--ds-mapped-text-disabled)',
-            textTransform: 'uppercase',
-            letterSpacing: '0.08em',
-            marginBottom: 'var(--ds-alias-spacing-xs)'
-          }}>
+          <p
+            style={{
+              fontSize: 'var(--ds-typography-body-sm-font-size)',
+              fontWeight: 600,
+              color: 'var(--ds-mapped-text-disabled)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em',
+              marginBottom: 'var(--ds-alias-spacing-xs)',
+            }}
+          >
             Default — Expanded
           </p>
           <div style={{ maxWidth: '320px' }}>
@@ -97,32 +118,43 @@ export default function AccordionProgressivePage() {
               isExpanded={expanded2}
               onToggle={setExpanded2}
             >
-              <div style={{
-                background: 'var(--ds-mapped-surface-action-hover-light)',
-                padding: '10px',
-                borderRadius: 'var(--ds-alias-border-radius-md)',
-                fontSize: 'var(--ds-typography-body-md-font-size)',
-                color: 'var(--ds-mapped-text-heading)'
-              }}>
+              <div
+                style={{
+                  background: 'var(--ds-mapped-surface-action-hover-light)',
+                  padding: '10px',
+                  borderRadius: 'var(--ds-alias-border-radius-md)',
+                  fontSize: 'var(--ds-typography-body-md-font-size)',
+                  color: 'var(--ds-mapped-text-heading)',
+                }}
+              >
                 Content Placeholder
               </div>
             </AccordionProgressive>
           </div>
-          <div style={{ fontFamily: 'monospace', fontSize: '11px', color: 'var(--ds-mapped-text-disabled)', marginTop: 'var(--ds-alias-spacing-xxs)' }}>
+          <div
+            style={{
+              fontFamily: 'monospace',
+              fontSize: '11px',
+              color: 'var(--ds-mapped-text-disabled)',
+              marginTop: 'var(--ds-alias-spacing-xxs)',
+            }}
+          >
             isExpanded=true (click to collapse)
           </div>
         </div>
 
         {/* Disabled — collapsed */}
         <div style={{ marginBottom: 'var(--ds-alias-spacing-lg)' }}>
-          <p style={{
-            fontSize: 'var(--ds-typography-body-sm-font-size)',
-            fontWeight: 600,
-            color: 'var(--ds-mapped-text-disabled)',
-            textTransform: 'uppercase',
-            letterSpacing: '0.08em',
-            marginBottom: 'var(--ds-alias-spacing-xs)'
-          }}>
+          <p
+            style={{
+              fontSize: 'var(--ds-typography-body-sm-font-size)',
+              fontWeight: 600,
+              color: 'var(--ds-mapped-text-disabled)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em',
+              marginBottom: 'var(--ds-alias-spacing-xs)',
+            }}
+          >
             Disabled — Collapsed
           </p>
           <div style={{ maxWidth: '320px' }}>
@@ -133,21 +165,30 @@ export default function AccordionProgressivePage() {
               disabled
             />
           </div>
-          <div style={{ fontFamily: 'monospace', fontSize: '11px', color: 'var(--ds-mapped-text-disabled)', marginTop: 'var(--ds-alias-spacing-xxs)' }}>
+          <div
+            style={{
+              fontFamily: 'monospace',
+              fontSize: '11px',
+              color: 'var(--ds-mapped-text-disabled)',
+              marginTop: 'var(--ds-alias-spacing-xxs)',
+            }}
+          >
             disabled isExpanded=false
           </div>
         </div>
 
         {/* Disabled — expanded */}
         <div style={{ marginBottom: 'var(--ds-alias-spacing-lg)' }}>
-          <p style={{
-            fontSize: 'var(--ds-typography-body-sm-font-size)',
-            fontWeight: 600,
-            color: 'var(--ds-mapped-text-disabled)',
-            textTransform: 'uppercase',
-            letterSpacing: '0.08em',
-            marginBottom: 'var(--ds-alias-spacing-xs)'
-          }}>
+          <p
+            style={{
+              fontSize: 'var(--ds-typography-body-sm-font-size)',
+              fontWeight: 600,
+              color: 'var(--ds-mapped-text-disabled)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em',
+              marginBottom: 'var(--ds-alias-spacing-xs)',
+            }}
+          >
             Disabled — Expanded
           </p>
           <div style={{ maxWidth: '320px' }}>
@@ -157,18 +198,27 @@ export default function AccordionProgressivePage() {
               onToggle={setExpanded4}
               disabled
             >
-              <div style={{
-                background: 'var(--ds-mapped-surface-action-hover-light)',
-                padding: '10px',
-                borderRadius: 'var(--ds-alias-border-radius-md)',
-                fontSize: 'var(--ds-typography-body-md-font-size)',
-                color: 'var(--ds-mapped-text-heading)'
-              }}>
+              <div
+                style={{
+                  background: 'var(--ds-mapped-surface-action-hover-light)',
+                  padding: '10px',
+                  borderRadius: 'var(--ds-alias-border-radius-md)',
+                  fontSize: 'var(--ds-typography-body-md-font-size)',
+                  color: 'var(--ds-mapped-text-heading)',
+                }}
+              >
                 Content Placeholder
               </div>
             </AccordionProgressive>
           </div>
-          <div style={{ fontFamily: 'monospace', fontSize: '11px', color: 'var(--ds-mapped-text-disabled)', marginTop: 'var(--ds-alias-spacing-xxs)' }}>
+          <div
+            style={{
+              fontFamily: 'monospace',
+              fontSize: '11px',
+              color: 'var(--ds-mapped-text-disabled)',
+              marginTop: 'var(--ds-alias-spacing-xxs)',
+            }}
+          >
             disabled isExpanded=true
           </div>
         </div>
@@ -176,31 +226,44 @@ export default function AccordionProgressivePage() {
 
       {/* Interactive demo — multiple accordions */}
       <section style={{ marginBottom: 'var(--ds-alias-spacing-xl)' }}>
-        <h2 style={{
-          fontFamily: 'var(--ds-brand-font-family-heading)',
-          fontSize: 'var(--ds-typography-heading-h6-font-size)',
-          fontWeight: 'var(--ds-typography-heading-h6-font-weight)',
-          color: 'var(--ds-mapped-text-heading)',
-          marginBottom: 'var(--ds-alias-spacing-lg)'
-        }}>
+        <h2
+          style={{
+            fontFamily: 'var(--ds-brand-font-family-heading)',
+            fontSize: 'var(--ds-typography-heading-h6-font-size)',
+            fontWeight: 'var(--ds-typography-heading-h6-font-weight)',
+            color: 'var(--ds-mapped-text-heading)',
+            marginBottom: 'var(--ds-alias-spacing-lg)',
+          }}
+        >
           Interactive group (click to toggle)
         </h2>
-        <div style={{ maxWidth: '320px', display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)' }}>
-          <AccordionProgressive
-            label="Flights"
-            isExpanded={expanded1}
-            onToggle={setExpanded1}
-          >
-            <p style={{ margin: 0, fontSize: 'var(--ds-typography-body-md-font-size)', color: 'var(--ds-mapped-text-body)' }}>
+        <div
+          style={{
+            maxWidth: '320px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 'var(--ds-alias-spacing-xs)',
+          }}
+        >
+          <AccordionProgressive label="Flights" isExpanded={expanded1} onToggle={setExpanded1}>
+            <p
+              style={{
+                margin: 0,
+                fontSize: 'var(--ds-typography-body-md-font-size)',
+                color: 'var(--ds-mapped-text-body)',
+              }}
+            >
               Search for the best flight deals across major airlines.
             </p>
           </AccordionProgressive>
-          <AccordionProgressive
-            label="Hotels"
-            isExpanded={expanded2}
-            onToggle={setExpanded2}
-          >
-            <p style={{ margin: 0, fontSize: 'var(--ds-typography-body-md-font-size)', color: 'var(--ds-mapped-text-body)' }}>
+          <AccordionProgressive label="Hotels" isExpanded={expanded2} onToggle={setExpanded2}>
+            <p
+              style={{
+                margin: 0,
+                fontSize: 'var(--ds-typography-body-md-font-size)',
+                color: 'var(--ds-mapped-text-body)',
+              }}
+            >
               Find accommodations from boutique stays to luxury resorts.
             </p>
           </AccordionProgressive>
@@ -215,24 +278,28 @@ export default function AccordionProgressivePage() {
 
       {/* Token reference */}
       <section>
-        <h2 style={{
-          fontFamily: 'var(--ds-brand-font-family-heading)',
-          fontSize: 'var(--ds-typography-heading-h6-font-size)',
-          fontWeight: 'var(--ds-typography-heading-h6-font-weight)',
-          color: 'var(--ds-mapped-text-heading)',
-          marginBottom: 'var(--ds-alias-spacing-md)'
-        }}>
+        <h2
+          style={{
+            fontFamily: 'var(--ds-brand-font-family-heading)',
+            fontSize: 'var(--ds-typography-heading-h6-font-size)',
+            fontWeight: 'var(--ds-typography-heading-h6-font-weight)',
+            color: 'var(--ds-mapped-text-heading)',
+            marginBottom: 'var(--ds-alias-spacing-md)',
+          }}
+        >
           Tokens used
         </h2>
-        <div style={{
-          padding: 'var(--ds-alias-spacing-md)',
-          background: 'var(--ds-mapped-surface-action-hover-light)',
-          borderRadius: 'var(--ds-alias-border-radius-lg)',
-          fontSize: 'var(--ds-typography-body-sm-font-size)',
-          color: 'var(--ds-mapped-text-body)',
-          fontFamily: 'monospace',
-          lineHeight: 1.8
-        }}>
+        <div
+          style={{
+            padding: 'var(--ds-alias-spacing-md)',
+            background: 'var(--ds-mapped-surface-action-hover-light)',
+            borderRadius: 'var(--ds-alias-border-radius-lg)',
+            fontSize: 'var(--ds-typography-body-sm-font-size)',
+            color: 'var(--ds-mapped-text-body)',
+            fontFamily: 'monospace',
+            lineHeight: 1.8,
+          }}
+        >
           <div>--ds-mapped-surface-default — panel background</div>
           <div>--ds-mapped-surface-action-hover-light — hover background</div>
           <div>--ds-mapped-surface-disabled — disabled expanded header bg</div>

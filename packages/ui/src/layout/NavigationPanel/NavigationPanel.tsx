@@ -15,9 +15,9 @@ import styles from './NavigationPanel.module.css'
  * adapt their layout without prop drilling. Defaults to expanded when an item
  * is rendered outside a NavigationPanel.
  */
-const NavigationPanelContext = React.createContext<NavigationPanelContextValue>(
-  { isExpanded: true }
-)
+const NavigationPanelContext = React.createContext<NavigationPanelContextValue>({
+  isExpanded: true,
+})
 
 export const useNavigationPanel = (): NavigationPanelContextValue =>
   React.useContext(NavigationPanelContext)
@@ -32,10 +32,7 @@ export const useNavigationPanel = (): NavigationPanelContextValue =>
  * @see design-system/figma.md → NavigationPanel
  * @see docs/components.md for usage examples
  */
-export const NavigationPanel = React.forwardRef<
-  HTMLElement,
-  NavigationPanelProps
->(
+export const NavigationPanel = React.forwardRef<HTMLElement, NavigationPanelProps>(
   (
     {
       isExpanded = true,
@@ -80,26 +77,25 @@ NavigationPanel.displayName = 'NavigationPanel'
  * ends. Pass `gap="lg"` for the top wrapper that separates the logo item from
  * the primary item group; the default `gap="none"` matches stacked item lists.
  */
-export const NavigationMenuGroup = React.forwardRef<
-  HTMLDivElement,
-  NavigationMenuGroupProps
->(({ gap = 'none', children, className, ...props }, ref) => {
-  return (
-    <div
-      ref={ref}
-      role="group"
-      className={cn(
-        styles.menuGroup,
-        gap === 'xxs' && styles.menuGroupGapXxs,
-        gap === 'md' && styles.menuGroupGapMd,
-        gap === 'lg' && styles.menuGroupGapLg,
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </div>
-  )
-})
+export const NavigationMenuGroup = React.forwardRef<HTMLDivElement, NavigationMenuGroupProps>(
+  ({ gap = 'none', children, className, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        role="group"
+        className={cn(
+          styles.menuGroup,
+          gap === 'xxs' && styles.menuGroupGapXxs,
+          gap === 'md' && styles.menuGroupGapMd,
+          gap === 'lg' && styles.menuGroupGapLg,
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </div>
+    )
+  }
+)
 
 NavigationMenuGroup.displayName = 'NavigationMenuGroup'

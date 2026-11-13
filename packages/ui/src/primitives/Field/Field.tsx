@@ -15,17 +15,7 @@ import styles from './Field.module.css'
  * @see docs/components.md for usage examples
  */
 export const Field = React.forwardRef<HTMLInputElement, FieldProps>(
-  (
-    {
-      disabled = false,
-      error,
-      iconLeft,
-      iconRight,
-      className,
-      ...inputProps
-    },
-    ref
-  ) => {
+  ({ disabled = false, error, iconLeft, iconRight, className, ...inputProps }, ref) => {
     return (
       <div
         className={cn(

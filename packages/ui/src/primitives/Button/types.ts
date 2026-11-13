@@ -31,8 +31,7 @@ export interface ButtonBaseProps {
  * Extends ButtonBaseProps and all native <button> HTML attributes.
  */
 export interface ButtonProps
-  extends ButtonBaseProps,
-    React.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends ButtonBaseProps, React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Icon rendered to the left of the label. */
   iconLeft?: React.ReactNode
   /** Icon rendered to the right of the label. */
@@ -46,8 +45,7 @@ export interface ButtonProps
  * Icon(s) appear above and/or below the label in column direction.
  */
 export interface ButtonVerticalProps
-  extends ButtonBaseProps,
-    React.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends ButtonBaseProps, React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Icon rendered above the label. */
   iconTop?: React.ReactNode
   /** Icon rendered below the label. */
@@ -63,8 +61,7 @@ export interface ButtonVerticalProps
  * No visible text — label is required as aria-label for accessibility.
  */
 export interface ButtonIconProps
-  extends ButtonBaseProps,
-    React.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends ButtonBaseProps, React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Required — becomes the button's aria-label. Never omit. */
   label: string
   /** The icon to render. Recommended sizes: 16 (sm), 20 (lg). */
@@ -80,8 +77,7 @@ export interface ButtonIconProps
  * arrow on hover, combining two controls into one.
  */
 export interface ButtonIconSwitchingProps
-  extends ButtonBaseProps,
-    React.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends ButtonBaseProps, React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Required — becomes the button's aria-label. Never omit. */
   label: string
   /** Icon shown at rest (e.g. the app logo). Recommended sizes: 16 (sm), 20 (lg). */

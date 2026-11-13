@@ -44,9 +44,9 @@ import { Logo } from '@acme/ui'
 
 ## Props (`LogoProps`)
 
-| Prop      | Type                       | Default       | Notes                                  |
-|-----------|----------------------------|---------------|----------------------------------------|
-| `size`    | `16 \| 20 \| 24 \| 32`     | `24`          | Picks the matching hand-tuned SVG.     |
-| `alt`     | `string`                   | `'TripOn AI'` | Accessible name; pass `''` if decorative. |
-| `className` | `string`                 | —             | Forwarded to the `<img>`.              |
-| …rest     | `<img>` attributes         | —             | `src` / `width` / `height` are managed. |
+| Prop        | Type                   | Default       | Notes                                     |
+| ----------- | ---------------------- | ------------- | ----------------------------------------- |
+| `size`      | `16 \| 20 \| 24 \| 32` | `24`          | Picks the matching hand-tuned SVG.        |
+| `alt`       | `string`               | `'TripOn AI'` | Accessible name; pass `''` if decorative. |
+| `className` | `string`               | —             | Forwarded to the `<img>`.                 |
+| …rest       | `<img>` attributes     | —             | `src` / `width` / `height` are managed.   |

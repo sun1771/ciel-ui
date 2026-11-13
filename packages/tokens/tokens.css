@@ -353,7 +353,7 @@
   --ds-effect-shadow-overlay-light: 2px 4px 16px -4px #00000059;
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   --ds-mapped-text-heading: #f0f1f2;
   --ds-mapped-text-body: #e3e4e6;
   --ds-mapped-text-action: #334eff;

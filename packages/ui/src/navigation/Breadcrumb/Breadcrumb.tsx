@@ -18,12 +18,7 @@ import type { BreadcrumbProps } from './types'
 export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
   ({ items, className, ...props }, ref) => {
     return (
-      <nav
-        ref={ref}
-        aria-label="Breadcrumb"
-        className={cn(styles.nav, className)}
-        {...props}
-      >
+      <nav ref={ref} aria-label="Breadcrumb" className={cn(styles.nav, className)} {...props}>
         {/* Explicit role keeps list semantics in Safari/VoiceOver when list-style is none. */}
         {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
         <ol className={styles.list} role="list">
@@ -43,10 +38,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                     {item.label}
                   </span>
                 ) : (
-                  <a
-                    href={item.href}
-                    className={styles.link}
-                  >
+                  <a href={item.href} className={styles.link}>
                     {item.label}
                   </a>
                 )}

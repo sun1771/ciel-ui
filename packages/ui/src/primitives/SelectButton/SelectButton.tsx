@@ -28,7 +28,7 @@ export const SelectButton = React.forwardRef<HTMLButtonElement, SelectButtonProp
       onClick,
       ...rest
     },
-    ref,
+    ref
   ) {
     const iconSize = size === 'sm' ? 16 : 20
 
@@ -54,21 +54,17 @@ export const SelectButton = React.forwardRef<HTMLButtonElement, SelectButtonProp
           size === 'lg' && styles.sizeLg,
           size === 'sm' && styles.sizeSm,
           disabled && styles.disabled,
-          className,
+          className
         )}
         {...rest}
       >
         {children}
         <span className={styles.chevron} aria-hidden="true">
-          {isSelected ? (
-            <ChevronTop size={iconSize} />
-          ) : (
-            <ChevronDown size={iconSize} />
-          )}
+          {isSelected ? <ChevronTop size={iconSize} /> : <ChevronDown size={iconSize} />}
         </span>
       </button>
     )
-  },
+  }
 )
 
 SelectButton.displayName = 'SelectButton'

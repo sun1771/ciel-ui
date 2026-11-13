@@ -26,26 +26,19 @@ export const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
           aria-checked={checked}
           aria-labelledby={children != null ? labelId : undefined}
           disabled={disabled}
-          className={cn(
-            styles.track,
-            checked && styles.checked,
-            disabled && styles.disabled,
-          )}
+          className={cn(styles.track, checked && styles.checked, disabled && styles.disabled)}
           {...props}
         >
           <span className={styles.knob} aria-hidden="true" />
         </button>
         {children != null && (
-          <span
-            id={labelId}
-            className={cn(styles.label, disabled && styles.labelDisabled)}
-          >
+          <span id={labelId} className={cn(styles.label, disabled && styles.labelDisabled)}>
             {children}
           </span>
         )}
       </div>
     )
-  },
+  }
 )
 
 Switch.displayName = 'Switch'

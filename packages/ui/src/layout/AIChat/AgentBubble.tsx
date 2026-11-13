@@ -50,7 +50,7 @@ export const AgentBubble = React.forwardRef<HTMLDivElement, AgentBubbleProps>(
       className,
       ...props
     },
-    ref,
+    ref
   ) => {
     const thinking = mode === 'thinking'
 
@@ -87,7 +87,7 @@ export const AgentBubble = React.forwardRef<HTMLDivElement, AgentBubbleProps>(
         )}
       </div>
     )
-  },
+  }
 )
 
 AgentBubble.displayName = 'AgentBubble'

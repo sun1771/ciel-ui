@@ -107,9 +107,7 @@ export default function MenuPreviewPage() {
         <p style={subtitleStyle}>
           Figma: PRIMITIVES / Menu — nodes 282:1143 (.menuitem) / 1748:4388 (Menu)
         </p>
-        <p style={monoStyle}>
-          import &#123; Menu, MenuItem &#125; from &apos;@acme/ui&apos;
-        </p>
+        <p style={monoStyle}>import &#123; Menu, MenuItem &#125; from &apos;@acme/ui&apos;</p>
       </div>
 
       {/* ─── Section 1 — MenuItem variants (lg) ─── */}
@@ -118,10 +116,15 @@ export default function MenuPreviewPage() {
 
         <div style={{ marginBottom: '32px' }}>
           <h3 style={h3Style}>States — lg size</h3>
-          <div style={{ width: '280px', border: '1px solid var(--ds-mapped-border-default)', borderRadius: 'var(--ds-alias-border-radius-lg)', overflow: 'hidden' }}>
-            <MenuItem size="lg">
-              Default
-            </MenuItem>
+          <div
+            style={{
+              width: '280px',
+              border: '1px solid var(--ds-mapped-border-default)',
+              borderRadius: 'var(--ds-alias-border-radius-lg)',
+              overflow: 'hidden',
+            }}
+          >
+            <MenuItem size="lg">Default</MenuItem>
             <MenuItem size="lg" isSelected>
               Selected
             </MenuItem>
@@ -136,10 +139,15 @@ export default function MenuPreviewPage() {
 
         <div style={{ marginBottom: '32px' }}>
           <h3 style={h3Style}>States — sm size</h3>
-          <div style={{ width: '220px', border: '1px solid var(--ds-mapped-border-default)', borderRadius: 'var(--ds-alias-border-radius-lg)', overflow: 'hidden' }}>
-            <MenuItem size="sm">
-              Default
-            </MenuItem>
+          <div
+            style={{
+              width: '220px',
+              border: '1px solid var(--ds-mapped-border-default)',
+              borderRadius: 'var(--ds-alias-border-radius-lg)',
+              overflow: 'hidden',
+            }}
+          >
+            <MenuItem size="sm">Default</MenuItem>
             <MenuItem size="sm" isSelected>
               Selected
             </MenuItem>
@@ -154,7 +162,14 @@ export default function MenuPreviewPage() {
 
         <div style={{ marginBottom: '32px' }}>
           <h3 style={h3Style}>With icon left — lg</h3>
-          <div style={{ width: '280px', border: '1px solid var(--ds-mapped-border-default)', borderRadius: 'var(--ds-alias-border-radius-lg)', overflow: 'hidden' }}>
+          <div
+            style={{
+              width: '280px',
+              border: '1px solid var(--ds-mapped-border-default)',
+              borderRadius: 'var(--ds-alias-border-radius-lg)',
+              overflow: 'hidden',
+            }}
+          >
             <MenuItem size="lg" iconLeft={<User size={20} />}>
               My Profile
             </MenuItem>
@@ -169,12 +184,15 @@ export default function MenuPreviewPage() {
 
         <div style={{ marginBottom: '32px' }}>
           <h3 style={h3Style}>With icon left + icon right — lg</h3>
-          <div style={{ width: '280px', border: '1px solid var(--ds-mapped-border-default)', borderRadius: 'var(--ds-alias-border-radius-lg)', overflow: 'hidden' }}>
-            <MenuItem
-              size="lg"
-              iconLeft={<User size={20} />}
-              iconRight={<ArrowRight size={20} />}
-            >
+          <div
+            style={{
+              width: '280px',
+              border: '1px solid var(--ds-mapped-border-default)',
+              borderRadius: 'var(--ds-alias-border-radius-lg)',
+              overflow: 'hidden',
+            }}
+          >
+            <MenuItem size="lg" iconLeft={<User size={20} />} iconRight={<ArrowRight size={20} />}>
               My Profile
             </MenuItem>
             <MenuItem
@@ -198,7 +216,14 @@ export default function MenuPreviewPage() {
 
         <div style={{ marginBottom: '32px' }}>
           <h3 style={h3Style}>Icon right only — sm</h3>
-          <div style={{ width: '220px', border: '1px solid var(--ds-mapped-border-default)', borderRadius: 'var(--ds-alias-border-radius-lg)', overflow: 'hidden' }}>
+          <div
+            style={{
+              width: '220px',
+              border: '1px solid var(--ds-mapped-border-default)',
+              borderRadius: 'var(--ds-alias-border-radius-lg)',
+              overflow: 'hidden',
+            }}
+          >
             <MenuItem size="sm" iconRight={<ArrowRight size={16} />}>
               Navigate
             </MenuItem>
@@ -219,7 +244,11 @@ export default function MenuPreviewPage() {
               <MenuItem iconLeft={<User size={20} />} iconRight={<ArrowRight size={20} />}>
                 My Profile
               </MenuItem>
-              <MenuItem iconLeft={<Search size={20} />} iconRight={<ArrowRight size={20} />} isSelected>
+              <MenuItem
+                iconLeft={<Search size={20} />}
+                iconRight={<ArrowRight size={20} />}
+                isSelected
+              >
                 Search
               </MenuItem>
               <MenuItem iconLeft={<Settings size={20} />} iconRight={<ArrowRight size={20} />}>
@@ -239,7 +268,11 @@ export default function MenuPreviewPage() {
               <MenuItem iconLeft={<User size={16} />} iconRight={<ArrowRight size={16} />}>
                 My Profile
               </MenuItem>
-              <MenuItem iconLeft={<Search size={16} />} iconRight={<ArrowRight size={16} />} isSelected>
+              <MenuItem
+                iconLeft={<Search size={16} />}
+                iconRight={<ArrowRight size={16} />}
+                isSelected
+              >
                 Search
               </MenuItem>
               <MenuItem iconLeft={<Settings size={16} />} iconRight={<ArrowRight size={16} />}>
@@ -259,7 +292,9 @@ export default function MenuPreviewPage() {
           <ItemWrap label='size="lg" showScrollbar={true} (overflow-y: auto)'>
             <Menu size="lg" showScrollbar style={{ width: '260px', maxHeight: '180px' }}>
               <MenuItem iconLeft={<User size={20} />}>Item 1</MenuItem>
-              <MenuItem iconLeft={<Search size={20} />} isSelected>Item 2 (selected)</MenuItem>
+              <MenuItem iconLeft={<Search size={20} />} isSelected>
+                Item 2 (selected)
+              </MenuItem>
               <MenuItem iconLeft={<Settings size={20} />}>Item 3</MenuItem>
               <MenuItem iconLeft={<MapPin size={20} />}>Item 4</MenuItem>
               <MenuItem iconLeft={<User size={20} />}>Item 5</MenuItem>
@@ -283,7 +318,8 @@ export default function MenuPreviewPage() {
         <h2 style={h2Style}>Token reference</h2>
         <div style={tokenBoxStyle}>
           <strong>Tokens used by MenuItem + Menu:</strong>
-          <br /><br />
+          <br />
+          <br />
           {[
             '--ds-alias-border-radius-lg       → menu corner radius (8px)',
             '--ds-alias-border-width-md        → focus ring thickness (2px)',
@@ -312,7 +348,9 @@ export default function MenuPreviewPage() {
             '--ds-typography-body-sm-font-size → sm font size (14px)',
             '--ds-typography-body-sm-line-height → sm line height (20px)',
           ].map((t) => (
-            <span key={t} style={{ display: 'block' }}>{t}</span>
+            <span key={t} style={{ display: 'block' }}>
+              {t}
+            </span>
           ))}
         </div>
       </section>

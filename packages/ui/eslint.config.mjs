@@ -12,7 +12,10 @@ export default tseslint.config(
   {
     rules: {
       // Destructuring a prop out of `...rest` so it isn't forwarded to the DOM is intentional.
-      '@typescript-eslint/no-unused-vars': ['error', { ignoreRestSiblings: true, varsIgnorePattern: '^_', argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { ignoreRestSiblings: true, varsIgnorePattern: '^_', argsIgnorePattern: '^_' },
+      ],
     },
-  },
+  }
 )

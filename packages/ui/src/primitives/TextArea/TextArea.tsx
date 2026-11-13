@@ -16,36 +16,16 @@ import styles from './TextArea.module.css'
  * @see docs/components.md for usage examples
  */
 export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
-  (
-    {
-      label,
-      hint,
-      error,
-      iconRight,
-      disabled,
-      id,
-      className,
-      ...textareaProps
-    },
-    ref
-  ) => {
+  ({ label, hint, error, iconRight, disabled, id, className, ...textareaProps }, ref) => {
     const generatedId = useId()
     const textareaId = id ?? generatedId
     const errorId = error ? `${textareaId}-error` : undefined
 
     return (
       <div className={cn(styles.wrapper, className)}>
-        {label && (
-          <Label htmlFor={textareaId}>
-            {label}
-          </Label>
-        )}
+        {label && <Label htmlFor={textareaId}>{label}</Label>}
 
-        {hint && (
-          <p className={styles.hint}>
-            {hint}
-          </p>
-        )}
+        {hint && <p className={styles.hint}>{hint}</p>}
 
         <div
           className={cn(

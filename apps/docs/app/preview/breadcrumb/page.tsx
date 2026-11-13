@@ -63,7 +63,9 @@ export default function BreadcrumbPreview() {
           Basic breadcrumb
         </h2>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-md)' }}>
+        <div
+          style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-md)' }}
+        >
           {/* 3-item */}
           <div>
             <Breadcrumb
@@ -87,12 +89,7 @@ export default function BreadcrumbPreview() {
 
           {/* 2-item */}
           <div>
-            <Breadcrumb
-              items={[
-                { label: 'Trips', href: '/trips' },
-                { label: 'Paris 2026' },
-              ]}
-            />
+            <Breadcrumb items={[{ label: 'Trips', href: '/trips' }, { label: 'Paris 2026' }]} />
             <div
               style={{
                 marginTop: 'var(--ds-alias-spacing-xxxs)',
@@ -107,11 +104,7 @@ export default function BreadcrumbPreview() {
 
           {/* Single item — current page only */}
           <div>
-            <Breadcrumb
-              items={[
-                { label: 'Dashboard' },
-              ]}
-            />
+            <Breadcrumb items={[{ label: 'Dashboard' }]} />
             <div
               style={{
                 marginTop: 'var(--ds-alias-spacing-xxxs)',
@@ -141,7 +134,9 @@ export default function BreadcrumbPreview() {
           With icon slot
         </h2>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-md)' }}>
+        <div
+          style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-md)' }}
+        >
           {/* Icon on first item */}
           <div>
             <Breadcrumb
@@ -236,15 +231,33 @@ export default function BreadcrumbPreview() {
             fontFamily: 'monospace',
           }}
         >
-          <div><strong>Text (all items):</strong> --ds-mapped-text-body</div>
-          <div><strong>Link hover:</strong> --ds-mapped-text-action-hover</div>
-          <div><strong>Icon / separator:</strong> --ds-mapped-icon-default</div>
-          <div><strong>Focus ring:</strong> --ds-mapped-border-focus</div>
-          <div><strong>Gap:</strong> --ds-alias-spacing-xs (8px)</div>
-          <div><strong>Font size:</strong> --ds-typography-body-md-font-size (16px)</div>
-          <div><strong>Line height:</strong> --ds-typography-body-md-line-height (20px)</div>
-          <div><strong>Font family:</strong> --ds-brand-font-family-body (Inter)</div>
-          <div><strong>Font weight:</strong> --ds-brand-font-weight-regular (400)</div>
+          <div>
+            <strong>Text (all items):</strong> --ds-mapped-text-body
+          </div>
+          <div>
+            <strong>Link hover:</strong> --ds-mapped-text-action-hover
+          </div>
+          <div>
+            <strong>Icon / separator:</strong> --ds-mapped-icon-default
+          </div>
+          <div>
+            <strong>Focus ring:</strong> --ds-mapped-border-focus
+          </div>
+          <div>
+            <strong>Gap:</strong> --ds-alias-spacing-xs (8px)
+          </div>
+          <div>
+            <strong>Font size:</strong> --ds-typography-body-md-font-size (16px)
+          </div>
+          <div>
+            <strong>Line height:</strong> --ds-typography-body-md-line-height (20px)
+          </div>
+          <div>
+            <strong>Font family:</strong> --ds-brand-font-family-body (Inter)
+          </div>
+          <div>
+            <strong>Font weight:</strong> --ds-brand-font-weight-regular (400)
+          </div>
         </div>
       </section>
     </div>

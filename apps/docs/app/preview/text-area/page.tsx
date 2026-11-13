@@ -6,7 +6,9 @@ import { Info } from '@acme/icons'
 
 export default function TextAreaPreviewPage() {
   const [value1, setValue1] = useState('')
-  const [value2, setValue2] = useState('This is some typed text that fills the textarea and shows the body text color.')
+  const [value2, setValue2] = useState(
+    'This is some typed text that fills the textarea and shows the body text color.'
+  )
 
   const sectionStyle: React.CSSProperties = { marginBottom: '48px' }
   const h2Style: React.CSSProperties = {
@@ -46,14 +48,42 @@ export default function TextAreaPreviewPage() {
   return (
     <div style={{ padding: '40px', maxWidth: '900px' }}>
       {/* Page header */}
-      <div style={{ marginBottom: '40px', paddingBottom: '24px', borderBottom: '1px solid var(--ds-mapped-border-default)' }}>
-        <h1 style={{ fontSize: '40px', fontWeight: 600, color: 'var(--ds-mapped-text-heading)', margin: 0, fontFamily: 'var(--ds-brand-font-family-heading)' }}>
+      <div
+        style={{
+          marginBottom: '40px',
+          paddingBottom: '24px',
+          borderBottom: '1px solid var(--ds-mapped-border-default)',
+        }}
+      >
+        <h1
+          style={{
+            fontSize: '40px',
+            fontWeight: 600,
+            color: 'var(--ds-mapped-text-heading)',
+            margin: 0,
+            fontFamily: 'var(--ds-brand-font-family-heading)',
+          }}
+        >
           TextArea
         </h1>
-        <p style={{ fontSize: '16px', color: 'var(--ds-mapped-text-body)', marginTop: '8px', fontFamily: 'var(--ds-brand-font-family-body)' }}>
+        <p
+          style={{
+            fontSize: '16px',
+            color: 'var(--ds-mapped-text-body)',
+            marginTop: '8px',
+            fontFamily: 'var(--ds-brand-font-family-body)',
+          }}
+        >
           Figma: PRIMITIVES / Text Area (.textarea 317:206 · Text Area 318:1216)
         </p>
-        <p style={{ fontSize: '12px', color: 'var(--ds-mapped-text-disabled)', marginTop: '4px', fontFamily: 'monospace' }}>
+        <p
+          style={{
+            fontSize: '12px',
+            color: 'var(--ds-mapped-text-disabled)',
+            marginTop: '4px',
+            fontFamily: 'monospace',
+          }}
+        >
           {"import { TextArea } from '@acme/ui'"}
         </p>
       </div>
@@ -78,7 +108,7 @@ export default function TextAreaPreviewPage() {
                 label="Label"
                 placeholder="Placeholder"
                 value={value1}
-                onChange={e => setValue1(e.target.value)}
+                onChange={(e) => setValue1(e.target.value)}
               />
               <span style={codeStyle}>hover (hover over it) · controlled</span>
             </div>
@@ -87,11 +117,7 @@ export default function TextAreaPreviewPage() {
               <span style={codeStyle}>disabled</span>
             </div>
             <div style={colStyle}>
-              <TextArea
-                label="Label"
-                placeholder="Placeholder"
-                error="This field is required"
-              />
+              <TextArea label="Label" placeholder="Placeholder" error="This field is required" />
               <span style={codeStyle}>error</span>
             </div>
           </div>
@@ -106,7 +132,7 @@ export default function TextAreaPreviewPage() {
                 label="Label"
                 placeholder="Placeholder"
                 value={value2}
-                onChange={e => setValue2(e.target.value)}
+                onChange={(e) => setValue2(e.target.value)}
               />
               <span style={codeStyle}>value filled (editable)</span>
             </div>
@@ -178,11 +204,7 @@ export default function TextAreaPreviewPage() {
           <h3 style={h3Style}>iconRight slot — top-right of field</h3>
           <div style={rowStyle}>
             <div style={colStyle}>
-              <TextArea
-                label="Label"
-                placeholder="Placeholder"
-                iconRight={<Info size={20} />}
-              />
+              <TextArea label="Label" placeholder="Placeholder" iconRight={<Info size={20} />} />
               <span style={codeStyle}>iconRight=Info/20 · default</span>
             </div>
             <div style={colStyle}>
@@ -246,37 +268,30 @@ export default function TextAreaPreviewPage() {
 
       {/* Token reference */}
       <section>
-        <div style={{
-          padding: '16px',
-          background: 'var(--ds-mapped-surface-action-hover-light)',
-          borderRadius: 'var(--ds-alias-border-radius-lg)',
-          fontSize: '12px',
-          color: 'var(--ds-mapped-text-body)',
-          fontFamily: 'var(--ds-brand-font-family-body)',
-          lineHeight: '20px',
-        }}>
-          <strong>Tokens used:</strong><br />
-          --ds-alias-border-radius-lg (8px corner radius) ·
-          --ds-alias-border-width-sm (1px border) ·
-          --ds-alias-spacing-xs (8px padding-y, gap) ·
-          --ds-alias-spacing-sm (12px padding-x) ·
-          --ds-brand-font-family-body (Inter) ·
-          --ds-brand-font-weight-regular (400) ·
-          --ds-mapped-border-action (focus border) ·
-          --ds-mapped-border-action-hover (hover border) ·
-          --ds-mapped-border-default (default border) ·
-          --ds-mapped-border-disabled (disabled border) ·
-          --ds-mapped-border-error (error border) ·
-          --ds-mapped-icon-default (icon default) ·
-          --ds-mapped-icon-disabled (icon disabled) ·
-          --ds-mapped-surface-default (bg default) ·
-          --ds-mapped-surface-disabled (bg disabled) ·
-          --ds-mapped-text-body (input text) ·
-          --ds-mapped-text-disabled (disabled text) ·
-          --ds-mapped-text-error (error message) ·
-          --ds-mapped-text-placeholder (placeholder, hint) ·
-          --ds-typography-body-md-font-size (16px) ·
-          --ds-typography-body-md-line-height (20px)
+        <div
+          style={{
+            padding: '16px',
+            background: 'var(--ds-mapped-surface-action-hover-light)',
+            borderRadius: 'var(--ds-alias-border-radius-lg)',
+            fontSize: '12px',
+            color: 'var(--ds-mapped-text-body)',
+            fontFamily: 'var(--ds-brand-font-family-body)',
+            lineHeight: '20px',
+          }}
+        >
+          <strong>Tokens used:</strong>
+          <br />
+          --ds-alias-border-radius-lg (8px corner radius) · --ds-alias-border-width-sm (1px border)
+          · --ds-alias-spacing-xs (8px padding-y, gap) · --ds-alias-spacing-sm (12px padding-x) ·
+          --ds-brand-font-family-body (Inter) · --ds-brand-font-weight-regular (400) ·
+          --ds-mapped-border-action (focus border) · --ds-mapped-border-action-hover (hover border)
+          · --ds-mapped-border-default (default border) · --ds-mapped-border-disabled (disabled
+          border) · --ds-mapped-border-error (error border) · --ds-mapped-icon-default (icon
+          default) · --ds-mapped-icon-disabled (icon disabled) · --ds-mapped-surface-default (bg
+          default) · --ds-mapped-surface-disabled (bg disabled) · --ds-mapped-text-body (input text)
+          · --ds-mapped-text-disabled (disabled text) · --ds-mapped-text-error (error message) ·
+          --ds-mapped-text-placeholder (placeholder, hint) · --ds-typography-body-md-font-size
+          (16px) · --ds-typography-body-md-line-height (20px)
         </div>
       </section>
     </div>

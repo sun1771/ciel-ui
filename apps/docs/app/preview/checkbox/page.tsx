@@ -48,15 +48,19 @@ function Item({ label, children }: { label: string; children: React.ReactNode })
   )
 }
 
-function ToggleDemo({ label, error, children }: { label: string; error?: boolean; children?: React.ReactNode }) {
+function ToggleDemo({
+  label,
+  error,
+  children,
+}: {
+  label: string
+  error?: boolean
+  children?: React.ReactNode
+}) {
   const [checked, setChecked] = useState(false)
   return (
     <Item label={label}>
-      <Checkbox
-        checked={checked}
-        onChange={(e) => setChecked(e.target.checked)}
-        error={error}
-      >
+      <Checkbox checked={checked} onChange={(e) => setChecked(e.target.checked)} error={error}>
         {children}
       </Checkbox>
     </Item>
@@ -85,10 +89,19 @@ export default function CheckboxPreview() {
         >
           Checkbox
         </h1>
-        <p style={{ fontSize: '14px', color: 'var(--ds-mapped-text-placeholder)', marginTop: '8px' }}>
+        <p
+          style={{ fontSize: '14px', color: 'var(--ds-mapped-text-placeholder)', marginTop: '8px' }}
+        >
           Figma: PRIMITIVES / Checkbox — nodes 307:1445, 307:1536
         </p>
-        <p style={{ fontSize: '12px', color: 'var(--ds-mapped-text-placeholder)', marginTop: '4px', fontFamily: 'monospace' }}>
+        <p
+          style={{
+            fontSize: '12px',
+            color: 'var(--ds-mapped-text-placeholder)',
+            marginTop: '4px',
+            fontFamily: 'monospace',
+          }}
+        >
           {`import { Checkbox } from '@acme/ui'`}
         </p>
       </div>
@@ -108,11 +121,15 @@ export default function CheckboxPreview() {
 
         <p style={subheadingStyle}>With label</p>
         <div style={rowStyle}>
-          <Item label='checked={false} — with label'>
-            <Checkbox checked={false} onChange={() => {}}>Checkbox Label</Checkbox>
+          <Item label="checked={false} — with label">
+            <Checkbox checked={false} onChange={() => {}}>
+              Checkbox Label
+            </Checkbox>
           </Item>
-          <Item label='checked={true} — with label'>
-            <Checkbox checked={true} onChange={() => {}}>Checkbox Label</Checkbox>
+          <Item label="checked={true} — with label">
+            <Checkbox checked={true} onChange={() => {}}>
+              Checkbox Label
+            </Checkbox>
           </Item>
         </div>
       </section>
@@ -122,24 +139,27 @@ export default function CheckboxPreview() {
         <h2 style={headingStyle}>Interactive — click to toggle</h2>
         <p style={subheadingStyle}>Click to toggle checked state</p>
         <div style={rowStyle}>
-          <ToggleDemo label="no label — click to toggle">
-          </ToggleDemo>
-          <ToggleDemo label="with label — click to toggle">
-            Checkbox Label
-          </ToggleDemo>
+          <ToggleDemo label="no label — click to toggle"></ToggleDemo>
+          <ToggleDemo label="with label — click to toggle">Checkbox Label</ToggleDemo>
         </div>
       </section>
 
       {/* Error states */}
       <section style={sectionStyle}>
         <h2 style={headingStyle}>Error state</h2>
-        <p style={subheadingStyle}>error prop — affects box border/background and icon color when checked</p>
+        <p style={subheadingStyle}>
+          error prop — affects box border/background and icon color when checked
+        </p>
         <div style={rowStyle}>
-          <Item label='error={true} checked={false}'>
-            <Checkbox error checked={false} onChange={() => {}}>Error unchecked</Checkbox>
+          <Item label="error={true} checked={false}">
+            <Checkbox error checked={false} onChange={() => {}}>
+              Error unchecked
+            </Checkbox>
           </Item>
-          <Item label='error={true} checked={true}'>
-            <Checkbox error checked={true} onChange={() => {}}>Error checked</Checkbox>
+          <Item label="error={true} checked={true}">
+            <Checkbox error checked={true} onChange={() => {}}>
+              Error checked
+            </Checkbox>
           </Item>
           <ToggleDemo label="error — click to toggle" error>
             Error checkbox
@@ -152,11 +172,15 @@ export default function CheckboxPreview() {
         <h2 style={headingStyle}>Disabled state</h2>
         <p style={subheadingStyle}>disabled prop — grey box, cursor not-allowed, muted label</p>
         <div style={rowStyle}>
-          <Item label='disabled checked={false}'>
-            <Checkbox disabled checked={false} onChange={() => {}}>Disabled unchecked</Checkbox>
+          <Item label="disabled checked={false}">
+            <Checkbox disabled checked={false} onChange={() => {}}>
+              Disabled unchecked
+            </Checkbox>
           </Item>
-          <Item label='disabled checked={true}'>
-            <Checkbox disabled checked={true} onChange={() => {}}>Disabled checked</Checkbox>
+          <Item label="disabled checked={true}">
+            <Checkbox disabled checked={true} onChange={() => {}}>
+              Disabled checked
+            </Checkbox>
           </Item>
         </div>
       </section>

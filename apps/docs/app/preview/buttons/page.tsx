@@ -113,15 +113,21 @@ export default function ButtonsPreviewPage() {
         <h3 style={subHeadingStyle}>States (variant="default" size="lg")</h3>
         <div style={rowStyle}>
           <div style={labelStyle}>
-            <Button variant="default" size="lg">Default</Button>
+            <Button variant="default" size="lg">
+              Default
+            </Button>
             <code style={codeStyle}>default</code>
           </div>
           <div style={labelStyle}>
-            <Button variant="default" size="lg" disabled>Disabled</Button>
+            <Button variant="default" size="lg" disabled>
+              Disabled
+            </Button>
             <code style={codeStyle}>disabled</code>
           </div>
           <div style={labelStyle}>
-            <Button variant="default" size="lg" isLoading>Loading</Button>
+            <Button variant="default" size="lg" isLoading>
+              Loading
+            </Button>
             <code style={codeStyle}>isLoading</code>
           </div>
         </div>
@@ -161,8 +167,8 @@ export default function ButtonsPreviewPage() {
         </div>
 
         <p style={tokenCalloutStyle}>
-          Tokens: background uses <code>var(--ds-mapped-surface-action)</code>,
-          text uses <code>var(--ds-mapped-text-on-action)</code>
+          Tokens: background uses <code>var(--ds-mapped-surface-action)</code>, text uses{' '}
+          <code>var(--ds-mapped-text-on-action)</code>
         </p>
       </section>
 
@@ -188,7 +194,11 @@ export default function ButtonsPreviewPage() {
         <div style={rowStyle}>
           {sizes.map((s) => (
             <div key={s} style={labelStyle}>
-              <ButtonVertical variant="default" size={s} iconTop={<Plus size={s === 'lg' ? 20 : 16} />}>
+              <ButtonVertical
+                variant="default"
+                size={s}
+                iconTop={<Plus size={s === 'lg' ? 20 : 16} />}
+              >
                 Button {s}
               </ButtonVertical>
               <code style={codeStyle}>size="{s}"</code>
@@ -259,8 +269,8 @@ export default function ButtonsPreviewPage() {
         </div>
 
         <p style={tokenCalloutStyle}>
-          Tokens: background uses <code>var(--ds-mapped-surface-action)</code>,
-          text uses <code>var(--ds-mapped-text-on-action)</code>
+          Tokens: background uses <code>var(--ds-mapped-surface-action)</code>, text uses{' '}
+          <code>var(--ds-mapped-text-on-action)</code>
         </p>
       </section>
 
@@ -298,21 +308,11 @@ export default function ButtonsPreviewPage() {
         <h3 style={subHeadingStyle}>Sizes (variant="default")</h3>
         <div style={rowStyle}>
           <div style={labelStyle}>
-            <ButtonIcon
-              variant="default"
-              size="sm"
-              icon={<Search size={16} />}
-              label="Search sm"
-            />
+            <ButtonIcon variant="default" size="sm" icon={<Search size={16} />} label="Search sm" />
             <code style={codeStyle}>size="sm" · 16px icon</code>
           </div>
           <div style={labelStyle}>
-            <ButtonIcon
-              variant="default"
-              size="lg"
-              icon={<Search size={20} />}
-              label="Search lg"
-            />
+            <ButtonIcon variant="default" size="lg" icon={<Search size={20} />} label="Search lg" />
             <code style={codeStyle}>size="lg" · 20px icon</code>
           </div>
         </div>
@@ -352,8 +352,8 @@ export default function ButtonsPreviewPage() {
         </div>
 
         <p style={tokenCalloutStyle}>
-          Tokens: background uses <code>var(--ds-mapped-surface-action)</code>,
-          icon color uses <code>var(--ds-mapped-icon-on-action)</code>
+          Tokens: background uses <code>var(--ds-mapped-surface-action)</code>, icon color uses{' '}
+          <code>var(--ds-mapped-icon-on-action)</code>
         </p>
       </section>
 
@@ -361,10 +361,11 @@ export default function ButtonsPreviewPage() {
       <section style={sectionStyle}>
         <h2 style={headingStyle}>Button Icon Switching</h2>
 
-        <p style={{ ...tokenCalloutStyle, marginTop: 0, marginBottom: 'var(--ds-alias-spacing-md)' }}>
-          Hover (or keyboard-focus) each button — the icon swaps from{' '}
-          <code>icon</code> to <code>hoverIcon</code>. Built on the transparent
-          ButtonIcon base.
+        <p
+          style={{ ...tokenCalloutStyle, marginTop: 0, marginBottom: 'var(--ds-alias-spacing-md)' }}
+        >
+          Hover (or keyboard-focus) each button — the icon swaps from <code>icon</code> to{' '}
+          <code>hoverIcon</code>. Built on the transparent ButtonIcon base.
         </p>
 
         {/* Primary use case: logo → expand */}
@@ -439,9 +440,9 @@ export default function ButtonsPreviewPage() {
         </div>
 
         <p style={tokenCalloutStyle}>
-          Both icons are rendered and stacked in one grid cell; the swap is
-          CSS-driven via <code>:hover</code> / <code>:focus-visible</code> with an
-          opacity crossfade — no layout shift, no JS state.
+          Both icons are rendered and stacked in one grid cell; the swap is CSS-driven via{' '}
+          <code>:hover</code> / <code>:focus-visible</code> with an opacity crossfade — no layout
+          shift, no JS state.
         </p>
       </section>
     </div>

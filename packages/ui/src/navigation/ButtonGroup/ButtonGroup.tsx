@@ -17,12 +17,7 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
   // TODO(Phase 1): `variant` is accepted but not applied to the markup yet.
   ({ variant: _variant, className, children, ...props }, ref) => {
     return (
-      <div
-        ref={ref}
-        role="group"
-        className={cn(styles.group, className)}
-        {...props}
-      >
+      <div ref={ref} role="group" className={cn(styles.group, className)} {...props}>
         {children}
       </div>
     )

@@ -26,8 +26,14 @@ const SUGGESTIONS = [
 ]
 
 const THINKING_STEPS = [
-  { title: 'Understanding the request', content: 'User wants a Tokyo trip; inferring ~5 days, mid-range budget.' },
-  { title: 'Comparing options', content: 'Weighing Shinjuku vs Shibuya for transit access and nightlife.' },
+  {
+    title: 'Understanding the request',
+    content: 'User wants a Tokyo trip; inferring ~5 days, mid-range budget.',
+  },
+  {
+    title: 'Comparing options',
+    content: 'Weighing Shinjuku vs Shibuya for transit access and nightlife.',
+  },
   { title: 'Finalising', content: 'Picked Shinjuku — best rail links for the planned day trips.' },
 ]
 
@@ -81,29 +87,35 @@ export default function AIChatPreviewPage() {
   return (
     <div style={{ padding: '32px' }}>
       {/* Header */}
-      <div style={{
-        marginBottom: '48px',
-        paddingBottom: '24px',
-        borderBottom: '1px solid var(--ds-mapped-border-default)',
-      }}>
-        <h1 style={{
-          fontSize: '32px',
-          fontWeight: 600,
-          color: 'var(--ds-mapped-text-heading)',
-          margin: 0,
-          fontFamily: 'var(--ds-brand-font-family-heading)',
-        }}>
+      <div
+        style={{
+          marginBottom: '48px',
+          paddingBottom: '24px',
+          borderBottom: '1px solid var(--ds-mapped-border-default)',
+        }}
+      >
+        <h1
+          style={{
+            fontSize: '32px',
+            fontWeight: 600,
+            color: 'var(--ds-mapped-text-heading)',
+            margin: 0,
+            fontFamily: 'var(--ds-brand-font-family-heading)',
+          }}
+        >
           AIChat
         </h1>
         <p style={{ fontSize: '16px', color: 'var(--ds-mapped-text-body)', marginTop: '8px' }}>
           Figma: AI Chat set — node 1250:2549 (panel 3814:5013)
         </p>
-        <p style={{
-          fontSize: '12px',
-          color: 'var(--ds-mapped-text-disabled)',
-          marginTop: '4px',
-          fontFamily: 'monospace',
-        }}>
+        <p
+          style={{
+            fontSize: '12px',
+            color: 'var(--ds-mapped-text-disabled)',
+            marginTop: '4px',
+            fontFamily: 'monospace',
+          }}
+        >
           {"import { AIChat, ChatInput, UserBubble, AgentBubble, ... } from '@acme/ui'"}
         </p>
       </div>
@@ -120,7 +132,10 @@ export default function AIChatPreviewPage() {
                 padding: '6px 12px',
                 borderRadius: '8px',
                 border: '1px solid var(--ds-mapped-border-default)',
-                background: chatState === s ? 'var(--ds-mapped-surface-action-hover-light)' : 'var(--ds-mapped-surface-default)',
+                background:
+                  chatState === s
+                    ? 'var(--ds-mapped-surface-action-hover-light)'
+                    : 'var(--ds-mapped-surface-default)',
                 fontSize: '12px',
                 cursor: 'pointer',
               }}
@@ -134,7 +149,10 @@ export default function AIChatPreviewPage() {
             state={chatState}
             inputValue={value}
             onInputChange={(e) => setValue(e.target.value)}
-            onSubmit={(t) => { alert(`Submitted: ${t}`); setValue('') }}
+            onSubmit={(t) => {
+              alert(`Submitted: ${t}`)
+              setValue('')
+            }}
             onCollapse={() => setChatState('collapsed')}
             onExpand={() => setChatState('default')}
           >
@@ -206,10 +224,22 @@ export default function AIChatPreviewPage() {
       <section style={sectionStyle}>
         <h2 style={h2Style}>AgentResponseMode</h2>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px' }}>
-          <div style={pieceFrame}><h3 style={h3Style}>normal · loaded</h3><AgentResponseMode /></div>
-          <div style={pieceFrame}><h3 style={h3Style}>normal · loading</h3><AgentResponseMode status="loading" /></div>
-          <div style={pieceFrame}><h3 style={h3Style}>thinking · loaded</h3><AgentResponseMode thinkingMode /></div>
-          <div style={pieceFrame}><h3 style={h3Style}>thinking · loading</h3><AgentResponseMode thinkingMode status="loading" /></div>
+          <div style={pieceFrame}>
+            <h3 style={h3Style}>normal · loaded</h3>
+            <AgentResponseMode />
+          </div>
+          <div style={pieceFrame}>
+            <h3 style={h3Style}>normal · loading</h3>
+            <AgentResponseMode status="loading" />
+          </div>
+          <div style={pieceFrame}>
+            <h3 style={h3Style}>thinking · loaded</h3>
+            <AgentResponseMode thinkingMode />
+          </div>
+          <div style={pieceFrame}>
+            <h3 style={h3Style}>thinking · loading</h3>
+            <AgentResponseMode thinkingMode status="loading" />
+          </div>
         </div>
       </section>
 
@@ -227,7 +257,13 @@ export default function AIChatPreviewPage() {
           </div>
           <div style={pieceFrame}>
             <h3 style={h3Style}>ResponseReactionBar</h3>
-            <ResponseReactionBar onCopy={() => {}} onThumbsUp={() => {}} onThumbsDown={() => {}} onShare={() => {}} onMore={() => {}} />
+            <ResponseReactionBar
+              onCopy={() => {}}
+              onThumbsUp={() => {}}
+              onThumbsDown={() => {}}
+              onShare={() => {}}
+              onMore={() => {}}
+            />
           </div>
         </div>
       </section>
@@ -236,17 +272,36 @@ export default function AIChatPreviewPage() {
       <section style={sectionStyle}>
         <h2 style={h2Style}>ChatInput — Size (sm 320px · lg 440px)</h2>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', alignItems: 'flex-start' }}>
-          <div><h3 style={h3Style}>size=sm — 320px</h3><ChatInput size="sm" status="default" /></div>
-          <div><h3 style={h3Style}>size=lg — 440px</h3><ChatInput size="lg" status="default" /></div>
+          <div>
+            <h3 style={h3Style}>size=sm — 320px</h3>
+            <ChatInput size="sm" status="default" />
+          </div>
+          <div>
+            <h3 style={h3Style}>size=lg — 440px</h3>
+            <ChatInput size="lg" status="default" />
+          </div>
         </div>
       </section>
 
       {/* Chat input piece */}
       <section style={sectionStyle}>
         <h2 style={h2Style}>ChatInput — Status (size=lg)</h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'flex-start' }}>
-          <div><h3 style={h3Style}>default</h3><ChatInput size="lg" status="default" /></div>
-          <div><h3 style={h3Style}>selected</h3><ChatInput size="lg" status="selected" /></div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '24px',
+            alignItems: 'flex-start',
+          }}
+        >
+          <div>
+            <h3 style={h3Style}>default</h3>
+            <ChatInput size="lg" status="default" />
+          </div>
+          <div>
+            <h3 style={h3Style}>selected</h3>
+            <ChatInput size="lg" status="selected" />
+          </div>
           <div>
             <h3 style={h3Style}>filled — value + showTag</h3>
             <ChatInput
@@ -260,8 +315,14 @@ export default function AIChatPreviewPage() {
               onSubmit={(t) => alert(`Submitted: ${t}`)}
             />
           </div>
-          <div><h3 style={h3Style}>thinking</h3><ChatInput size="lg" status="thinking" /></div>
-          <div><h3 style={h3Style}>disabled</h3><ChatInput size="lg" disabled /></div>
+          <div>
+            <h3 style={h3Style}>thinking</h3>
+            <ChatInput size="lg" status="thinking" />
+          </div>
+          <div>
+            <h3 style={h3Style}>disabled</h3>
+            <ChatInput size="lg" disabled />
+          </div>
         </div>
       </section>
     </div>

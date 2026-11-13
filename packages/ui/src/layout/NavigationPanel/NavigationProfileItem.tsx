@@ -23,10 +23,7 @@ import styles from './NavigationPanel.module.css'
  * @see design-system/figma.md → NavigationPanel
  * @see docs/components.md for usage examples
  */
-export const NavigationProfileItem = React.forwardRef<
-  HTMLDivElement,
-  NavigationProfileItemProps
->(
+export const NavigationProfileItem = React.forwardRef<HTMLDivElement, NavigationProfileItemProps>(
   (
     {
       userName = 'User',
@@ -66,11 +63,7 @@ export const NavigationProfileItem = React.forwardRef<
 
     if (!isExpanded) {
       return (
-        <div
-          ref={ref}
-          className={cn(styles.profileItemCollapsed, className)}
-          {...props}
-        >
+        <div ref={ref} className={cn(styles.profileItemCollapsed, className)} {...props}>
           {settingsButton}
           {onProfileClick ? (
             <button

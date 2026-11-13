@@ -4,11 +4,7 @@ import React, { useRef, useState, useEffect, useCallback } from 'react'
 import { cn } from '../../lib/utils'
 import { Calendar } from '@acme/icons'
 import { Users } from '@acme/icons'
-import {
-  FieldPickerCalendar,
-  MONTH_ABBR,
-  flexibilityDays,
-} from './FieldPickerCalendar'
+import { FieldPickerCalendar, MONTH_ABBR, flexibilityDays } from './FieldPickerCalendar'
 import { FieldPickerTraveler } from './FieldPickerTraveler'
 import type {
   FieldPickerProps,
@@ -109,8 +105,8 @@ export const FieldPicker = React.forwardRef<HTMLDivElement, FieldPickerProps>(
       start: null,
       end: null,
     })
-    const rangeStart = isDateControlled ? startDate ?? null : internalRange.start
-    const rangeEnd = isDateControlled ? endDate ?? null : internalRange.end
+    const rangeStart = isDateControlled ? (startDate ?? null) : internalRange.start
+    const rangeEnd = isDateControlled ? (endDate ?? null) : internalRange.end
 
     // Remaining date-mode selection state — always owned here so it persists
     // across open/close (FieldPicker stays mounted; the panel does not).
@@ -136,10 +132,7 @@ export const FieldPicker = React.forwardRef<HTMLDivElement, FieldPickerProps>(
       if (!isOpen) return
 
       function handleClickOutside(event: MouseEvent) {
-        if (
-          internalRef.current &&
-          !internalRef.current.contains(event.target as Node)
-        ) {
+        if (internalRef.current && !internalRef.current.contains(event.target as Node)) {
           close()
         }
       }
@@ -212,11 +205,7 @@ export const FieldPicker = React.forwardRef<HTMLDivElement, FieldPickerProps>(
     const TriggerIcon = isDate ? Calendar : Users
 
     return (
-      <div
-        ref={wrapperRef}
-        className={cn(styles.wrapper, className)}
-        {...props}
-      >
+      <div ref={wrapperRef} className={cn(styles.wrapper, className)} {...props}>
         <button
           type="button"
           aria-haspopup="dialog"
@@ -231,12 +220,7 @@ export const FieldPicker = React.forwardRef<HTMLDivElement, FieldPickerProps>(
           onClick={handleTriggerClick}
         >
           <TriggerIcon size={20} aria-hidden="true" />
-          <span
-            className={cn(
-              styles.triggerLabel,
-              label === null && styles.triggerPlaceholder
-            )}
-          >
+          <span className={cn(styles.triggerLabel, label === null && styles.triggerPlaceholder)}>
             {label ?? placeholder}
           </span>
           <span className={styles.triggerIcon} aria-hidden="true" />

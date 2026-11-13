@@ -14,17 +14,7 @@ import type { ButtonGroupItemProps } from './types'
  * @see docs/components.md for usage examples
  */
 export const ButtonGroupItem = React.forwardRef<HTMLButtonElement, ButtonGroupItemProps>(
-  (
-    {
-      isSelected = false,
-      disabled = false,
-      icon,
-      children,
-      className,
-      ...props
-    },
-    ref
-  ) => {
+  ({ isSelected = false, disabled = false, icon, children, className, ...props }, ref) => {
     return (
       <button
         ref={ref}

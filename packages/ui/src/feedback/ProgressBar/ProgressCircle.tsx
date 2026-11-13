@@ -7,7 +7,7 @@ import type { ProgressCircleProps } from './types'
 
 const CONFIG = {
   default: { size: 64, cx: 32, cy: 32, r: 26, strokeWidth: 8 },
-  sm:      { size: 48, cx: 24, cy: 24, r: 19, strokeWidth: 6 },
+  sm: { size: 48, cx: 24, cy: 24, r: 19, strokeWidth: 6 },
 } as const
 
 /**
@@ -72,9 +72,7 @@ export const ProgressCircle = React.forwardRef<HTMLDivElement, ProgressCirclePro
             style={{ transition: 'stroke-dashoffset 0.3s ease' }}
           />
         </svg>
-        {showLabel && (
-          <span className={styles.circleLabel}>{displayLabel}</span>
-        )}
+        {showLabel && <span className={styles.circleLabel}>{displayLabel}</span>}
       </div>
     )
   }

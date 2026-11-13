@@ -23,21 +23,11 @@ export type CalendarDatePickerTab = 'Calendar' | 'Flexible'
 
 /** Tab 1 flexibility options. Figma source labels use "+-"; rendered as "±" per design. */
 export type FieldPickerFlexibility =
-  | 'Exact date'
-  | '± 1 day'
-  | '± 2 day'
-  | '± 3 day'
-  | '± 7 day'
-  | '± 14 day'
+  'Exact date' | '± 1 day' | '± 2 day' | '± 3 day' | '± 7 day' | '± 14 day'
 
 /** Tab 2 "How long?" trip-length options — exact Figma `DatePicker=Flexible` labels. */
 export type FieldPickerTripLength =
-  | '1 night'
-  | '2-3 nights'
-  | '4-5 nights'
-  | 'week'
-  | '2 week'
-  | 'month'
+  '1 night' | '2-3 nights' | '4-5 nights' | 'week' | '2 week' | 'month'
 
 /**
  * Full date-mode selection reported via `onSelectionChange`. Captures both the

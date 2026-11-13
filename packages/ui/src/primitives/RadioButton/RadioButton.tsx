@@ -15,23 +15,9 @@ import type { RadioButtonProps } from './types'
  * @see docs/components.md for usage examples
  */
 export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
-  (
-    {
-      children,
-      className,
-      disabled = false,
-      ...props
-    },
-    ref
-  ) => {
+  ({ children, className, disabled = false, ...props }, ref) => {
     return (
-      <label
-        className={cn(
-          styles.wrapper,
-          disabled && styles.wrapperDisabled,
-          className
-        )}
-      >
+      <label className={cn(styles.wrapper, disabled && styles.wrapperDisabled, className)}>
         <input
           ref={ref}
           type="radio"
@@ -43,9 +29,7 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
         <span className={styles.radio} aria-hidden="true">
           <span className={styles.knob} />
         </span>
-        {children != null && (
-          <span className={styles.label}>{children}</span>
-        )}
+        {children != null && <span className={styles.label}>{children}</span>}
       </label>
     )
   }

@@ -53,7 +53,8 @@
 }
 
 /* Header row */
-.thead {}
+.thead {
+}
 
 .th {
   background-color: var(--ds-mapped-surface-action-hover-light);
@@ -69,7 +70,8 @@
 }
 
 /* Body rows */
-.tbody {}
+.tbody {
+}
 
 .tr {
   background-color: var(--ds-mapped-surface-default);

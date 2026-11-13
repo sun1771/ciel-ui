@@ -172,8 +172,8 @@
   width: 154px;
   height: 48px;
   /* pl Spacing/xs, pr Spacing/xxs, py Spacing/xs (per Figma 3860:1918). */
-  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-xxs)
-    var(--ds-alias-spacing-xs) var(--ds-alias-spacing-xs);
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-xxs) var(--ds-alias-spacing-xs)
+    var(--ds-alias-spacing-xs);
   background: var(--ds-mapped-surface-default);
   border-radius: var(--ds-alias-border-radius-lg);
   box-sizing: border-box;
@@ -203,8 +203,8 @@
   width: 100%;
   height: 48px;
   /* pl Spacing/xs, pr Spacing/xxs, py Spacing/xs (per Figma 3893:396). */
-  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-xxs)
-    var(--ds-alias-spacing-xs) var(--ds-alias-spacing-xs);
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-xxs) var(--ds-alias-spacing-xs)
+    var(--ds-alias-spacing-xs);
   background: var(--ds-mapped-surface-default);
   border-radius: var(--ds-alias-border-radius-lg);
   box-sizing: border-box;
@@ -217,8 +217,8 @@
   align-items: center;
   gap: var(--ds-alias-spacing-xs);
   /* pl Spacing/xxs, pr Spacing/xs, py Spacing/xs (per Figma 3893:427). */
-  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-xs)
-    var(--ds-alias-spacing-xs) var(--ds-alias-spacing-xxs);
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-xs) var(--ds-alias-spacing-xs)
+    var(--ds-alias-spacing-xxs);
   background: var(--ds-mapped-surface-default);
   border-radius: var(--ds-alias-border-radius-lg);
   box-sizing: border-box;

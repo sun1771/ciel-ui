@@ -31,7 +31,7 @@ export const ActionSuggestions = React.forwardRef<HTMLDivElement, ActionSuggesti
         ))}
       </div>
     )
-  },
+  }
 )
 
 ActionSuggestions.displayName = 'ActionSuggestions'

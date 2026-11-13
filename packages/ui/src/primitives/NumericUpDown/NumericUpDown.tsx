@@ -14,18 +14,7 @@ import styles from './NumericUpDown.module.css'
  * @see docs/components.md for usage examples
  */
 export const NumericUpDown = React.forwardRef<HTMLDivElement, NumericUpDownProps>(
-  (
-    {
-      value = 0,
-      min,
-      max,
-      onChange,
-      disabled = false,
-      className,
-      ...props
-    },
-    ref
-  ) => {
+  ({ value = 0, min, max, onChange, disabled = false, className, ...props }, ref) => {
     const decrementDisabled = disabled || (min !== undefined && value <= min)
     const incrementDisabled = disabled || (max !== undefined && value >= max)
 
@@ -42,11 +31,7 @@ export const NumericUpDown = React.forwardRef<HTMLDivElement, NumericUpDownProps
     }
 
     return (
-      <div
-        ref={ref}
-        className={cn(styles.base, disabled && styles.disabled, className)}
-        {...props}
-      >
+      <div ref={ref} className={cn(styles.base, disabled && styles.disabled, className)} {...props}>
         <button
           type="button"
           className={styles.button}
@@ -59,11 +44,7 @@ export const NumericUpDown = React.forwardRef<HTMLDivElement, NumericUpDownProps
           </span>
         </button>
 
-        <span
-          className={styles.value}
-          aria-live="polite"
-          aria-atomic="true"
-        >
+        <span className={styles.value} aria-live="polite" aria-atomic="true">
           {value}
         </span>
 

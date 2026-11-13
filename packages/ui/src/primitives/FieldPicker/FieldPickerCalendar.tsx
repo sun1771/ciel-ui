@@ -10,11 +10,7 @@ import { ButtonGroup, ButtonGroupItem } from '../../navigation/ButtonGroup'
 import { Button, ButtonVertical } from '../Button'
 import { CarouselItem } from '../../navigation/Carousel'
 import { Checkbox } from '../Checkbox'
-import type {
-  CalendarPanelProps,
-  FieldPickerFlexibility,
-  FieldPickerTripLength,
-} from './types'
+import type { CalendarPanelProps, FieldPickerFlexibility, FieldPickerTripLength } from './types'
 import styles from './FieldPicker.module.css'
 
 /** Tab 1 flexibility options. Figma source uses "+-"; displayed as "±" per design. */
@@ -290,9 +286,7 @@ export function FieldPickerCalendar({
                 >
                   <ChevronLeft size={16} />
                 </button>
-                <span className={styles.monthTitle}>
-                  {formatMonthYear(viewYear, viewMonth)}
-                </span>
+                <span className={styles.monthTitle}>{formatMonthYear(viewYear, viewMonth)}</span>
               </div>
               <MonthGrid
                 year={viewYear}
@@ -308,9 +302,7 @@ export function FieldPickerCalendar({
             {/* Right month */}
             <div className={styles.calendarMonth}>
               <div className={styles.monthHeader}>
-                <span className={styles.monthTitle}>
-                  {formatMonthYear(nextYear, nextMonth)}
-                </span>
+                <span className={styles.monthTitle}>{formatMonthYear(nextYear, nextMonth)}</span>
                 <button
                   type="button"
                   aria-label="Next month"
@@ -414,10 +406,7 @@ export function FieldPickerCalendar({
                   iconTop={<CalendarIcon size={20} />}
                   aria-pressed={selectedMonth === idx}
                   aria-label={MONTH_NAMES[idx]}
-                  className={cn(
-                    styles.monthCell,
-                    selectedMonth === idx && styles.optionSelected
-                  )}
+                  className={cn(styles.monthCell, selectedMonth === idx && styles.optionSelected)}
                   onClick={() => onMonthSelect(idx)}
                 >
                   {month}

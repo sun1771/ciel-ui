@@ -15,7 +15,9 @@
   border: none;
   cursor: pointer;
   color: var(--ds-mapped-icon-action);
-  transition: background-color 120ms ease, color 120ms ease;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
   flex-shrink: 0;
 }
 

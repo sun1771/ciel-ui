@@ -50,7 +50,7 @@ export default function SwitchPreview() {
             fontFamily: 'monospace',
           }}
         >
-          {'import { Switch } from \'@acme/ui\''}
+          {"import { Switch } from '@acme/ui'"}
         </p>
       </div>
 
@@ -79,24 +79,20 @@ export default function SwitchPreview() {
           }}
         >
           {/* Unchecked */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)' }}>
-            <Switch
-              checked={false}
-              onChange={() => {}}
-              aria-label="Unchecked switch"
-            />
+          <div
+            style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)' }}
+          >
+            <Switch checked={false} onChange={() => {}} aria-label="Unchecked switch" />
             <code style={{ fontSize: '11px', color: 'var(--ds-mapped-text-placeholder)' }}>
               checked=false
             </code>
           </div>
 
           {/* Checked */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)' }}>
-            <Switch
-              checked={true}
-              onChange={() => {}}
-              aria-label="Checked switch"
-            />
+          <div
+            style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)' }}
+          >
+            <Switch checked={true} onChange={() => {}} aria-label="Checked switch" />
             <code style={{ fontSize: '11px', color: 'var(--ds-mapped-text-placeholder)' }}>
               checked=true
             </code>
@@ -127,11 +123,10 @@ export default function SwitchPreview() {
           }}
         >
           {/* Toggle 1 */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)' }}>
-            <Switch
-              checked={checked1}
-              onClick={() => setChecked1((v) => !v)}
-            >
+          <div
+            style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)' }}
+          >
+            <Switch checked={checked1} onClick={() => setChecked1((v) => !v)}>
               Enable notifications
             </Switch>
             <code style={{ fontSize: '11px', color: 'var(--ds-mapped-text-placeholder)' }}>
@@ -140,11 +135,10 @@ export default function SwitchPreview() {
           </div>
 
           {/* Toggle 2 */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)' }}>
-            <Switch
-              checked={checked2}
-              onClick={() => setChecked2((v) => !v)}
-            >
+          <div
+            style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)' }}
+          >
+            <Switch checked={checked2} onClick={() => setChecked2((v) => !v)}>
               Dark mode
             </Switch>
             <code style={{ fontSize: '11px', color: 'var(--ds-mapped-text-placeholder)' }}>
@@ -178,31 +172,29 @@ export default function SwitchPreview() {
           }}
         >
           {/* Disabled unchecked */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)' }}>
-            <Switch
-              checked={false}
-              disabled
-              aria-label="Disabled unchecked switch"
-            />
+          <div
+            style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)' }}
+          >
+            <Switch checked={false} disabled aria-label="Disabled unchecked switch" />
             <code style={{ fontSize: '11px', color: 'var(--ds-mapped-text-placeholder)' }}>
               disabled checked=false
             </code>
           </div>
 
           {/* Disabled checked */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)' }}>
-            <Switch
-              checked={true}
-              disabled
-              aria-label="Disabled checked switch"
-            />
+          <div
+            style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)' }}
+          >
+            <Switch checked={true} disabled aria-label="Disabled checked switch" />
             <code style={{ fontSize: '11px', color: 'var(--ds-mapped-text-placeholder)' }}>
               disabled checked=true
             </code>
           </div>
 
           {/* Disabled with label */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)' }}>
+          <div
+            style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)' }}
+          >
             <Switch checked={checked3} disabled>
               Unavailable feature
             </Switch>
@@ -236,7 +228,9 @@ export default function SwitchPreview() {
             alignItems: 'center',
           }}
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)' }}>
+          <div
+            style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-alias-spacing-xs)' }}
+          >
             <Switch
               checked={checked4}
               onClick={() => setChecked4((v) => !v)}

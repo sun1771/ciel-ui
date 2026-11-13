@@ -37,9 +37,8 @@ export default function LogoPreviewPage() {
             borderLeft: '2px solid var(--ds-mapped-border-default)',
           }}
         >
-          The logo is a full-color brand asset (not <code>currentColor</code>).
-          Raw SVGs live in <code>design-system/logo/</code> and are loaded as an{' '}
-          <code>&lt;img&gt;</code>.
+          The logo is a full-color brand asset (not <code>currentColor</code>). Raw SVGs live in{' '}
+          <code>design-system/logo/</code> and are loaded as an <code>&lt;img&gt;</code>.
         </p>
       </div>
 

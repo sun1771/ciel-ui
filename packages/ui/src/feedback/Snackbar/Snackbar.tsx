@@ -63,15 +63,9 @@ export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
         )}
 
         <div className={styles.content}>
-          {title && (
-            <p className={styles.title}>
-              {title}
-            </p>
-          )}
+          {title && <p className={styles.title}>{title}</p>}
 
-          <p className={styles.message}>
-            {children}
-          </p>
+          <p className={styles.message}>{children}</p>
 
           {action && (
             <div className={styles.actionRow}>
@@ -84,11 +78,7 @@ export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
                   {action.label}
                 </a>
               ) : (
-                <button
-                  type="button"
-                  className={styles.actionLabel}
-                  onClick={action.onClick}
-                >
+                <button type="button" className={styles.actionLabel} onClick={action.onClick}>
                   {action.label}
                 </button>
               )}
@@ -117,10 +107,7 @@ export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
             aria-valuemin={0}
             aria-valuemax={100}
           >
-            <div
-              className={styles.progressFill}
-              style={{ width: `${clampedProgress}%` }}
-            />
+            <div className={styles.progressFill} style={{ width: `${clampedProgress}%` }} />
           </div>
         )}
       </div>

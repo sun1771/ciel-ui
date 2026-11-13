@@ -97,7 +97,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
       className,
       ...props
     },
-    ref,
+    ref
   ) => {
     const isLoading = status === 'loading'
     const isMore = status === 'more'
@@ -109,7 +109,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
           styles.card,
           isSelected && styles.selected,
           isMore && styles.cardMore,
-          className,
+          className
         )}
         data-card-type={type}
         aria-busy={isLoading || undefined}
@@ -117,9 +117,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
       >
         {isLoading ? (
           <>
-            {type !== 'flight' && (
-              <div className={styles.skeletonImageArea} aria-hidden="true" />
-            )}
+            {type !== 'flight' && <div className={styles.skeletonImageArea} aria-hidden="true" />}
             <div className={styles.skeletonContent} aria-hidden="true">
               <div className={styles.skeletonRow} />
               <div className={styles.skeletonRow} />
@@ -179,10 +177,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
                 )}
                 {type === 'flight' && (
                   <span className={styles.airlineLogos}>
-                    {(airlineLogos && airlineLogos.length > 0
-                      ? airlineLogos
-                      : [null, null]
-                    )
+                    {(airlineLogos && airlineLogos.length > 0 ? airlineLogos : [null, null])
                       .slice(0, 2)
                       .map((logo, i) => (
                         <span key={i} className={styles.airlineLogo} aria-hidden="true">
@@ -259,9 +254,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
             <div className={styles.priceItem}>
               <span className={styles.price}>
                 {price != null && <span className={styles.priceValue}>{price}</span>}
-                {priceSuffix != null && (
-                  <span className={styles.priceSuffix}>{priceSuffix}</span>
-                )}
+                {priceSuffix != null && <span className={styles.priceSuffix}>{priceSuffix}</span>}
               </span>
               <Button
                 variant="transparent"
@@ -276,7 +269,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
         )}
       </div>
     )
-  },
+  }
 )
 
 Card.displayName = 'Card'

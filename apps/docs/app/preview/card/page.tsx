@@ -118,10 +118,24 @@ export default function CardPreviewPage() {
         >
           Card
         </h1>
-        <p style={{ fontSize: '14px', color: 'var(--ds-mapped-text-body)', marginTop: '8px', marginBottom: '4px' }}>
+        <p
+          style={{
+            fontSize: '14px',
+            color: 'var(--ds-mapped-text-body)',
+            marginTop: '8px',
+            marginBottom: '4px',
+          }}
+        >
           Figma: ↴ LAYOUT / Card — node 1818:1037 + .Card Content 3455:3491 (Type × Status)
         </p>
-        <p style={{ fontSize: '12px', color: 'var(--ds-mapped-text-disabled)', marginTop: 0, fontFamily: 'monospace' }}>
+        <p
+          style={{
+            fontSize: '12px',
+            color: 'var(--ds-mapped-text-disabled)',
+            marginTop: 0,
+            fontFamily: 'monospace',
+          }}
+        >
           import {'{ Card }'} from &apos;@acme/ui&apos;
         </p>
       </div>
@@ -221,7 +235,10 @@ export default function CardPreviewPage() {
               status="recommended"
               headline="ANA"
               tagLabel="Cheapest"
-              airlineLogos={[<LogoCircle key="a" color="#0022ff" />, <LogoCircle key="b" color="#667aff" />]}
+              airlineLogos={[
+                <LogoCircle key="a" color="#0022ff" />,
+                <LogoCircle key="b" color="#667aff" />,
+              ]}
               flightLegs={[
                 { route: 'SFO→NRT', stops: 'Nonstop' },
                 { route: 'NRT→SFO', stops: 'Nonstop' },
@@ -236,7 +253,10 @@ export default function CardPreviewPage() {
               status="normal"
               headline="JAL"
               tagLabel="Cheapest"
-              airlineLogos={[<LogoCircle key="a" color="#0022ff" />, <LogoCircle key="b" color="#667aff" />]}
+              airlineLogos={[
+                <LogoCircle key="a" color="#0022ff" />,
+                <LogoCircle key="b" color="#667aff" />,
+              ]}
               flightLegs={[
                 { route: 'SFO→NRT', stops: 'Nonstop' },
                 { route: 'NRT→SFO', stops: 'Nonstop' },
@@ -304,17 +324,29 @@ export default function CardPreviewPage() {
           fontFamily: 'monospace',
         }}
       >
-        <strong style={{ display: 'block', marginBottom: '8px', fontFamily: 'var(--ds-brand-font-family-body)' }}>
-          Composes: Chip (recommended + green chips), Button (Details / Discover more), CarouselItem + Pagination
-          (hotel carousel), icons (Award, Star, Bed, Gasoline, Users, Car, Baggage, ArrowRight), graphics (Hotel /
-          Flight / CarRental).
+        <strong
+          style={{
+            display: 'block',
+            marginBottom: '8px',
+            fontFamily: 'var(--ds-brand-font-family-body)',
+          }}
+        >
+          Composes: Chip (recommended + green chips), Button (Details / Discover more), CarouselItem
+          + Pagination (hotel carousel), icons (Award, Star, Bed, Gasoline, Users, Car, Baggage,
+          ArrowRight), graphics (Hotel / Flight / CarRental).
         </strong>
-        --ds-mapped-surface-default — card background<br />
-        --ds-mapped-border-default / -action-hover / -action — default / hover / selected border<br />
-        --ds-mapped-text-heading — headline + price value<br />
-        --ds-mapped-text-body — body / chips / suffix<br />
-        --ds-mapped-icon-default — body metric icons<br />
-        --ds-typography-body-md-semibold — headline + price · body-sm — body · body-xsm — chips / suffix
+        --ds-mapped-surface-default — card background
+        <br />
+        --ds-mapped-border-default / -action-hover / -action — default / hover / selected border
+        <br />
+        --ds-mapped-text-heading — headline + price value
+        <br />
+        --ds-mapped-text-body — body / chips / suffix
+        <br />
+        --ds-mapped-icon-default — body metric icons
+        <br />
+        --ds-typography-body-md-semibold — headline + price · body-sm — body · body-xsm — chips /
+        suffix
       </div>
     </div>
   )

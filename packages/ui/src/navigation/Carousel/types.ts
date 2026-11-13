@@ -5,8 +5,7 @@ export type CarouselSize = 'lg' | 'sm'
 export type CarouselDirection = 'left' | 'right'
 
 /** Carousel navigation button — rendered as prev or next arrow. */
-export interface CarouselItemProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface CarouselItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Which direction this button navigates. */
   direction: CarouselDirection
   /** Button shape: round (circle/pill) or rectangle (rounded square). Default: 'round' */
@@ -19,8 +18,7 @@ export interface CarouselItemProps
 }
 
 /** Carousel container that manages slide display, navigation, and pagination. */
-export interface CarouselProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Size of the navigation buttons. Default: 'lg' */
   size?: CarouselSize
   /** Shape of the navigation buttons. Default: 'round' */

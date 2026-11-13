@@ -3,7 +3,8 @@
 import { Avatar } from '@acme/ui'
 
 export default function AvatarPreviewPage() {
-  const sampleImage = 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=128&h=128&fit=crop&crop=face'
+  const sampleImage =
+    'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=128&h=128&fit=crop&crop=face'
 
   return (
     <div style={{ padding: 'var(--ds-alias-spacing-xl)' }}>
@@ -457,7 +458,12 @@ export default function AvatarPreviewPage() {
           }}
         >
           <strong>Tokens used:</strong>
-          <ul style={{ marginTop: 'var(--ds-alias-spacing-xs)', paddingLeft: 'var(--ds-alias-spacing-md)' }}>
+          <ul
+            style={{
+              marginTop: 'var(--ds-alias-spacing-xs)',
+              paddingLeft: 'var(--ds-alias-spacing-md)',
+            }}
+          >
             <li>--ds-alias-border-radius-round — circle shape</li>
             <li>--ds-alias-border-width-sm — border thickness (1px)</li>
             <li>--ds-mapped-border-default — border color</li>
@@ -469,7 +475,8 @@ export default function AvatarPreviewPage() {
             <li>--ds-typography-body-md-semibold-* — sm initials (Inter SemiBold 16px)</li>
           </ul>
           <p style={{ marginTop: 'var(--ds-alias-spacing-xs)' }}>
-            <strong>Hardcoded (no token):</strong> container sizes 64px / 48px / 32px — component-specific dimensions
+            <strong>Hardcoded (no token):</strong> container sizes 64px / 48px / 32px —
+            component-specific dimensions
           </p>
         </div>
       </section>

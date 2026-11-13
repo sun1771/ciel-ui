@@ -36,7 +36,7 @@ export const AgentResponseMode = React.forwardRef<HTMLDivElement, AgentResponseM
       className,
       ...props
     },
-    ref,
+    ref
   ) => {
     const isLoading = status === 'loading'
 
@@ -46,7 +46,7 @@ export const AgentResponseMode = React.forwardRef<HTMLDivElement, AgentResponseM
         className={cn(
           styles.agentResponseMode,
           thinkingMode && styles.agentResponseModeThinking,
-          className,
+          className
         )}
         {...props}
       >
@@ -82,7 +82,7 @@ export const AgentResponseMode = React.forwardRef<HTMLDivElement, AgentResponseM
         )}
       </div>
     )
-  },
+  }
 )
 
 AgentResponseMode.displayName = 'AgentResponseMode'

@@ -25,7 +25,9 @@
   font-weight: var(--ds-brand-font-weight-regular);
   color: var(--ds-mapped-text-body);
   text-align: left;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
 }
 
 /* Header when expanded — only top corners rounded */

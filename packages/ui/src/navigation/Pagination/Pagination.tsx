@@ -15,24 +15,9 @@ import styles from './Pagination.module.css'
  * @see docs/components.md for usage examples
  */
 export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
-  (
-    {
-      page = 1,
-      totalPages,
-      onChange,
-      disabled = false,
-      className,
-      ...props
-    },
-    ref
-  ) => {
+  ({ page = 1, totalPages, onChange, disabled = false, className, ...props }, ref) => {
     return (
-      <nav
-        ref={ref}
-        className={cn(styles.container, className)}
-        aria-label="Pagination"
-        {...props}
-      >
+      <nav ref={ref} className={cn(styles.container, className)} aria-label="Pagination" {...props}>
         {Array.from({ length: totalPages }, (_, i) => {
           const pageNumber = i + 1
           const isActive = pageNumber === page
@@ -41,20 +26,11 @@ export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
             <button
               key={pageNumber}
               type="button"
-              className={cn(
-                styles.dotButton,
-                isActive && styles.dotButtonActive
-              )}
+              className={cn(styles.dotButton, isActive && styles.dotButtonActive)}
               disabled={disabled}
-              aria-label={
-                isActive
-                  ? `Page ${pageNumber}, current`
-                  : `Go to page ${pageNumber}`
-              }
+              aria-label={isActive ? `Page ${pageNumber}, current` : `Go to page ${pageNumber}`}
               aria-current={isActive ? 'page' : undefined}
-              onClick={
-                disabled || isActive ? undefined : () => onChange?.(pageNumber)
-              }
+              onClick={disabled || isActive ? undefined : () => onChange?.(pageNumber)}
             >
               <span
                 className={cn(

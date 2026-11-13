@@ -14,22 +14,15 @@ import type { LabelProps } from './types'
  * @see docs/components.md for usage examples
  */
 export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
-  (
-    {
-      variant = 'default',
-      icon,
-      children,
-      className,
-      ...props
-    },
-    ref
-  ) => {
+  ({ variant = 'default', icon, children, className, ...props }, ref) => {
     return (
       <label ref={ref} className={cn(styles.base, className)} {...props}>
         <span className={styles.labelText}>
           {variant === 'required' && (
             <>
-              <span className={styles.asterisk} aria-hidden="true">*</span>
+              <span className={styles.asterisk} aria-hidden="true">
+                *
+              </span>
               <span className="sr-only">required</span>
             </>
           )}

@@ -34,9 +34,7 @@ function CounterRow({
     <div className={styles.counterRow}>
       <div className={styles.counterRowLabels}>
         <span className={styles.counterRowTitle}>{label}</span>
-        {subtitle && (
-          <span className={styles.counterRowSubtitle}>{subtitle}</span>
-        )}
+        {subtitle && <span className={styles.counterRowSubtitle}>{subtitle}</span>}
       </div>
       <div className={styles.counterControls}>
         <button

@@ -136,26 +136,16 @@ export function DialogBox({
         </div>
 
         {/* Body */}
-        <div className={styles.body}>
-          {children}
-        </div>
+        <div className={styles.body}>{children}</div>
 
         {/* Action Bar */}
         <div className={styles.actionBar}>
           {showSecondary && (
-            <button
-              type="button"
-              className={styles.secondaryButton}
-              onClick={handleSecondary}
-            >
+            <button type="button" className={styles.secondaryButton} onClick={handleSecondary}>
               {secondaryLabel}
             </button>
           )}
-          <button
-            type="button"
-            className={styles.primaryButton}
-            onClick={onPrimary}
-          >
+          <button type="button" className={styles.primaryButton} onClick={onPrimary}>
             {primaryLabel}
           </button>
         </div>

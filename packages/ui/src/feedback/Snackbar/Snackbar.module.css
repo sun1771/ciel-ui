@@ -12,10 +12,7 @@
   gap: var(--ds-alias-spacing-sm);
   width: 370px;
   max-width: 100%;
-  padding:
-    var(--ds-alias-spacing-sm)
-    var(--ds-alias-spacing-sm)
-    var(--ds-alias-spacing-md)
+  padding: var(--ds-alias-spacing-sm) var(--ds-alias-spacing-sm) var(--ds-alias-spacing-md)
     var(--ds-alias-spacing-sm);
   background-color: var(--ds-mapped-surface-default);
   border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);

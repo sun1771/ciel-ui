@@ -12,16 +12,7 @@ import styles from './Badge.module.css'
  * @see docs/components.md for usage examples
  */
 export const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(
-  (
-    {
-      variant = 'default',
-      type = 'default',
-      className,
-      children,
-      ...props
-    },
-    ref
-  ) => {
+  ({ variant = 'default', type = 'default', className, children, ...props }, ref) => {
     return (
       <div
         ref={ref}

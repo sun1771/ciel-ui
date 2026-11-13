@@ -16,15 +16,7 @@ import styles from './AccordionProgressive.module.css'
  */
 export const AccordionProgressive = React.forwardRef<HTMLDivElement, AccordionProgressiveProps>(
   (
-    {
-      label,
-      isExpanded = false,
-      disabled = false,
-      onToggle,
-      children,
-      className,
-      ...props
-    },
+    { label, isExpanded = false, disabled = false, onToggle, children, className, ...props },
     ref
   ) => {
     const contentId = React.useId()
@@ -37,11 +29,7 @@ export const AccordionProgressive = React.forwardRef<HTMLDivElement, AccordionPr
     }
 
     return (
-      <div
-        ref={ref}
-        className={cn(styles.root, disabled && styles.disabled, className)}
-        {...props}
-      >
+      <div ref={ref} className={cn(styles.root, disabled && styles.disabled, className)} {...props}>
         <button
           id={headerId}
           type="button"
@@ -58,12 +46,7 @@ export const AccordionProgressive = React.forwardRef<HTMLDivElement, AccordionPr
         </button>
 
         {isExpanded && (
-          <div
-            id={contentId}
-            role="region"
-            aria-labelledby={headerId}
-            className={styles.content}
-          >
+          <div id={contentId} role="region" aria-labelledby={headerId} className={styles.content}>
             {children}
           </div>
         )}

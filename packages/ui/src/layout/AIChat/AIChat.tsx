@@ -47,7 +47,7 @@ export const AIChat = React.forwardRef<HTMLDivElement, AIChatProps>(
       className,
       ...props
     },
-    ref,
+    ref
   ) => {
     const isCollapsed = state === 'collapsed'
 
@@ -117,7 +117,7 @@ export const AIChat = React.forwardRef<HTMLDivElement, AIChatProps>(
         />
       </div>
     )
-  },
+  }
 )
 
 AIChat.displayName = 'AIChat'

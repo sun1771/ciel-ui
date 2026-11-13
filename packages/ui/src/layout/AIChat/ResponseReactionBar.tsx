@@ -55,7 +55,7 @@ export const ResponseReactionBar = React.forwardRef<HTMLDivElement, ResponseReac
         />
       </div>
     )
-  },
+  }
 )
 
 ResponseReactionBar.displayName = 'ResponseReactionBar'

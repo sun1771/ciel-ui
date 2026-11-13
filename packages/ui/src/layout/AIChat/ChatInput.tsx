@@ -36,7 +36,7 @@ export const ChatInput = React.forwardRef<HTMLDivElement, ChatInputProps>(
       className,
       ...props
     },
-    ref,
+    ref
   ) => {
     const [isFocused, setIsFocused] = React.useState(false)
 
@@ -81,11 +81,7 @@ export const ChatInput = React.forwardRef<HTMLDivElement, ChatInputProps>(
       <Mic size={20} />
     )
 
-    const buttonLabel = isThinking
-      ? 'Stop generating'
-      : isFilled
-        ? 'Send message'
-        : 'Voice input'
+    const buttonLabel = isThinking ? 'Stop generating' : isFilled ? 'Send message' : 'Voice input'
 
     return (
       <div ref={ref} className={cn(styles.container, sizeClass, statusClass, className)} {...props}>
@@ -123,7 +119,7 @@ export const ChatInput = React.forwardRef<HTMLDivElement, ChatInputProps>(
         </div>
       </div>
     )
-  },
+  }
 )
 
 ChatInput.displayName = 'ChatInput'

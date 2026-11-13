@@ -128,7 +128,7 @@ export default function RadioButtonPreview() {
             fontFamily: 'monospace',
           }}
         >
-          {'import { RadioButton } from \'@acme/ui\''}
+          {"import { RadioButton } from '@acme/ui'"}
         </p>
       </div>
 
@@ -154,17 +154,25 @@ export default function RadioButtonPreview() {
 
         <p style={subheadingStyle}>With label</p>
         <div style={rowStyle}>
-          <Item label='checked={false}'>
-            <RadioButton name="states-label" value="e">Option A</RadioButton>
+          <Item label="checked={false}">
+            <RadioButton name="states-label" value="e">
+              Option A
+            </RadioButton>
           </Item>
-          <Item label='defaultChecked'>
-            <RadioButton name="states-label" value="f" defaultChecked>Option B</RadioButton>
+          <Item label="defaultChecked">
+            <RadioButton name="states-label" value="f" defaultChecked>
+              Option B
+            </RadioButton>
           </Item>
-          <Item label='disabled'>
-            <RadioButton name="states-label-disabled" value="g" disabled>Disabled option</RadioButton>
+          <Item label="disabled">
+            <RadioButton name="states-label-disabled" value="g" disabled>
+              Disabled option
+            </RadioButton>
           </Item>
-          <Item label='disabled + checked'>
-            <RadioButton name="states-label-disabled" value="h" defaultChecked disabled>Disabled checked</RadioButton>
+          <Item label="disabled + checked">
+            <RadioButton name="states-label-disabled" value="h" defaultChecked disabled>
+              Disabled checked
+            </RadioButton>
           </Item>
         </div>
       </section>
