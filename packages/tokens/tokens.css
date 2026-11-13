@@ -208,10 +208,10 @@
   --ds-mapped-icon-action: #001bcc;
   --ds-mapped-icon-action-hover: #001499;
   --ds-mapped-icon-disabled: #c6c8cc;
-  --ds-mapped-icon-information: #2e90fa;
-  --ds-mapped-icon-warning: #f79009;
+  --ds-mapped-icon-information: #2d8df5; /* a11y: was #2e90fa (2.89:1 on surface-information) → 3.00:1 */
+  --ds-mapped-icon-warning: #cf7908; /* a11y: was #f79009 (2.34:1) → 3.29:1 */
   --ds-mapped-icon-error: #f04438;
-  --ds-mapped-icon-success: #12b76a;
+  --ds-mapped-icon-success: #10a15e; /* a11y: was #12b76a (2.62:1) → 3.34:1 */
   --ds-mapped-icon-on-action: #ffffff;
   --ds-mapped-surface-page: #ffffff;
   --ds-mapped-surface-default: #ffffff;
@@ -234,6 +234,12 @@
   /* a11y: solid brand fill behind white text (Chip brand/sharp). Was
      border-action-hover #667aff (3.63:1 with white) → 4.55:1. */
   --ds-mapped-surface-brand-strong: #5a6be0;
+  /* a11y: solid status fills behind white text (Badge). Badge used the icon
+     tokens (2.3–3.8:1 with white); these give ≥4.5:1 and work in both themes. */
+  --ds-mapped-surface-information-strong: #2677ce;
+  --ds-mapped-surface-warning-strong: #ad6506;
+  --ds-mapped-surface-error-strong: #d83d32;
+  --ds-mapped-surface-success-strong: #0d884f;
   --ds-mapped-border-focus: #0022ff;
   --ds-mapped-border-disabled: #e3e4e6;
   --ds-responsive-h1-font-size: 60px;
@@ -362,8 +368,8 @@
 [data-theme='dark'] {
   --ds-mapped-text-heading: #f0f1f2;
   --ds-mapped-text-body: #e3e4e6;
-  --ds-mapped-text-action: #334eff;
-  --ds-mapped-text-action-hover: #0022ff;
+  --ds-mapped-text-action: #4b63ff; /* a11y: was #334eff (3.67:1 on black) → 4.53:1 */
+  --ds-mapped-text-action-hover: #6b7fff; /* a11y: was #0022ff (2.07:1) → 6.10:1; lighter than rest */
   --ds-mapped-text-disabled: #44474d;
   --ds-mapped-text-information: #58a6fb;
   --ds-mapped-text-warning: #f9a63a;
@@ -372,7 +378,7 @@
   --ds-mapped-text-placeholder: #e3e4e6;
   --ds-mapped-icon-default: #8d9199;
   --ds-mapped-icon-action: #334eff;
-  --ds-mapped-icon-action-hover: #0022ff;
+  --ds-mapped-icon-action-hover: #1736ff; /* a11y: was #0022ff (2.07:1) → 3.01:1 */
   --ds-mapped-icon-disabled: #5a5e66;
   --ds-mapped-icon-information: #58a6fb;
   --ds-mapped-icon-warning: #f9a63a;
@@ -388,11 +394,15 @@
   --ds-mapped-surface-disabled: #44474d;
   --ds-mapped-surface-default-transparent: #0000004d;
   --ds-mapped-border-default: #2d2f33;
-  --ds-mapped-border-success: #0e9255;
-  --ds-mapped-border-information: #2573c8;
-  --ds-mapped-border-error: #c0362d;
-  --ds-mapped-border-warning: #c67307;
+  /* a11y: also the fill of sharp Chips under light text — darkened to 4.5:1
+     with text-body while staying ≥3:1 against the black page as borders. */
+  --ds-mapped-border-success: #0b7544; /* was #0e9255 */
+  --ds-mapped-border-information: #2167b4; /* was #2573c8 */
+  --ds-mapped-border-error: #bb352c; /* was #c0362d */
+  --ds-mapped-border-warning: #965705; /* was #c67307 */
   --ds-mapped-border-disabled: #5a5e66;
+  /* a11y: the focus ring inherited light #0022ff (2.07:1 on black) → 3.01:1 */
+  --ds-mapped-border-focus: #1736ff;
 }
 
 @media (max-width: 440px) {

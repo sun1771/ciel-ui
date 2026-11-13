@@ -5,6 +5,15 @@ import { playwright } from '@vitest/browser-playwright'
 
 const dirname = import.meta.dirname
 
+// A fresh object per project: Vitest mutates the browser config when expanding
+// instances, so sharing one object makes the second project a duplicate.
+const browser = () => ({
+  enabled: true,
+  headless: true,
+  provider: playwright(),
+  instances: [{ browser: 'chromium' as const }],
+})
+
 export default defineConfig({
   css: {
     modules: { generateScopedName: 'acme-[local]-[hash:base64:5]' },
@@ -32,15 +41,14 @@ export default defineConfig({
         // Every story rendered in real Chromium: play functions + axe checks.
         extends: true,
         plugins: [storybookTest({ configDir: path.join(dirname, '.storybook') })],
-        test: {
-          name: 'storybook',
-          browser: {
-            enabled: true,
-            headless: true,
-            provider: playwright(),
-            instances: [{ browser: 'chromium' }],
-          },
-        },
+        test: { name: 'storybook', browser: browser() },
+      },
+      {
+        // The same stories again in the dark theme (axe checks dark-mode contrast).
+        extends: true,
+        plugins: [storybookTest({ configDir: path.join(dirname, '.storybook') })],
+        define: { 'import.meta.env.STORYBOOK_TEST_THEME': JSON.stringify('dark') },
+        test: { name: 'storybook-dark', browser: browser() },
       },
     ],
   },

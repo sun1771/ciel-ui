@@ -2,39 +2,65 @@
 
 ## What is tested
 
-Every Storybook story runs as a test in real Chromium (`pnpm test:stories`):
+| Layer                    | Command             | What it checks                                                                                                                                |
+| ------------------------ | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| Story tests, light theme | `pnpm test:stories` | Every story in real Chromium. axe-core fails on any violation, colour contrast included. `play` functions cover keyboard and focus behaviour. |
+| Story tests, dark theme  | `pnpm test:stories` | The same stories again with `data-theme="dark"`                                                                                               |
+| Token contrast audit     | `pnpm test:unit`    | `src/test/tokenContrast.test.ts` reads `tokens.css` and checks every text, icon and fill pairing the components use, in both themes           |
+| Unit tests               | `pnpm test:unit`    | State logic (controlled and uncontrolled), calendar grids for every `weekStartsOn`, `ref` forwarding                                          |
 
-- **axe-core** checks the rendered story. Any violation fails the test (`parameters.a11y.test = 'error'`), including colour contrast.
-- **Interaction tests** (`play` functions) cover keyboard and focus behaviour. They include:
-  - focus trap and focus return in DialogBox
-  - Escape returning focus to the trigger in Popover
-  - roving tabindex with arrow keys, Home and End in TabBar and Menu
-  - accessible names, including localised `labels`
+The interaction tests cover:
 
-Unit tests in jsdom (`pnpm test:unit`) cover state logic: controlled vs. uncontrolled behaviour, calendar grids for every `weekStartsOn`, and `ref` forwarding.
+- focus trap and focus return in DialogBox
+- Escape returning focus to the trigger in Popover
+- roving tabindex with arrow keys, Home and End in TabBar and Menu
+- accessible names, including localised `labels`
 
-## Colour contrast
+**Why the token audit exists:** axe only checks text it can see, and it skips icons and single-character text (a Badge showing "3"). The audit covers both gaps:
 
-Contrast is enforced: any text below WCAG 2.2 AA (4.5:1) fails CI. These token values were changed to pass (light theme):
+- **text:** 4.5:1 (WCAG 1.4.3)
+- **icons and indicators:** 3:1 (WCAG 1.4.11)
 
-| Where it shows                         | Token                                  | Was                | Now                |
-| -------------------------------------- | -------------------------------------- | ------------------ | ------------------ |
-| Placeholder, hint and empty-state text | `--ds-mapped-text-placeholder`         | `#8d9199` (3.16:1) | `#73767d` (4.55:1) |
-| Error messages                         | `--ds-mapped-text-error`               | `#f04438` (3.76:1) | `#d83d32` (4.53:1) |
-| Success text (e.g. Snackbar title)     | `--ds-mapped-text-success`             | `#12b76a` (2.62:1) | `#0d884f` (4.51:1) |
-| Warning text                           | `--ds-mapped-text-warning`             | `#f79009` (2.34:1) | `#ad6506` (4.52:1) |
-| Information text                       | `--ds-mapped-text-information`         | `#2e90fa` (3.23:1) | `#2677ce` (4.55:1) |
-| White text on brand "sharp" Chip       | new `--ds-mapped-surface-brand-strong` | `#667aff` (3.63:1) | `#5a6be0` (4.55:1) |
+## Colour changes
 
-Related code changes:
+Every changed value is marked `a11y:` in `packages/tokens/tokens.css`.
 
-- **Icons keep their colours.** Only the text tokens changed. Meaningful icons need 3:1 (WCAG 1.4.11). Default (3.16:1), error (3.76:1) and information (3.23:1) icons meet it. **Warning (`#f79009`, 2.34:1) and success (`#12b76a`, 2.62:1) icons don't** (see follow-ups). axe doesn't check icon contrast, so the test suite can't catch this.
-- **Chip:** `brand` + `sharp` uses the new `--ds-mapped-surface-brand-strong` token. It no longer borrows `--ds-mapped-border-action-hover`, which stays `#667aff` for hover borders.
-- **DateRangeCalendar:** weekday headers use `--ds-mapped-text-placeholder`. They used to use `--ds-mapped-text-disabled`, which is meant for disabled UI only.
-- **Tag:** sets `aria-disabled` when disabled, so assistive tech knows the Tag is inactive. Disabled components are exempt from contrast requirements.
+### Light theme
 
-### Follow-ups
+| Use                                    | Token                                                    | Was                                      | Now                                                 |
+| -------------------------------------- | -------------------------------------------------------- | ---------------------------------------- | --------------------------------------------------- |
+| Placeholder, hint and empty-state text | `text-placeholder`                                       | `#8d9199` (3.16:1)                       | `#73767d` (4.55:1)                                  |
+| Error text                             | `text-error`                                             | `#f04438` (3.76:1)                       | `#d83d32` (4.53:1)                                  |
+| Success text                           | `text-success`                                           | `#12b76a` (2.62:1)                       | `#0d884f` (4.51:1)                                  |
+| Warning text                           | `text-warning`                                           | `#f79009` (2.34:1)                       | `#ad6506` (4.52:1)                                  |
+| Information text                       | `text-information`                                       | `#2e90fa` (3.23:1)                       | `#2677ce` (4.55:1)                                  |
+| Warning icon                           | `icon-warning`                                           | `#f79009` (2.34:1)                       | `#cf7908` (3.29:1; 3.00:1 on its tinted surface)    |
+| Success icon                           | `icon-success`                                           | `#12b76a` (2.62:1)                       | `#10a15e` (3.34:1; 3.02:1 on its tinted surface)    |
+| Information icon                       | `icon-information`                                       | `#2e90fa` (2.89:1 on its tinted surface) | `#2d8df5` (3.00:1)                                  |
+| White text on brand sharp Chip         | new `surface-brand-strong`                               | `#667aff` (3.63:1)                       | `#5a6be0` (4.55:1)                                  |
+| White text on Badge status pills       | new `surface-{information,warning,error,success}-strong` | icon colours (2.3–3.8:1)                 | `#2677ce`, `#ad6506`, `#d83d32`, `#0d884f` (≥4.5:1) |
 
-- `packages/tokens/tokens.css` was edited by hand (each change is marked `a11y:`). Copy these values into the token source (`tokens.json`), or the next regeneration will revert them.
-- `--ds-mapped-icon-warning` and `--ds-mapped-icon-success` are below 3:1 for icons. Darken them, or pair those icons with text that carries the meaning (as Snackbar does with its title).
-- The **dark theme** hasn't been audited yet. Stories are tested in the light theme only.
+### Dark theme (page `#000000`)
+
+| Use                               | Token                                        | Was                          | Now                                                                                              |
+| --------------------------------- | -------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------ |
+| Links / action text               | `text-action`                                | `#334eff` (3.67:1)           | `#4b63ff` (4.53:1)                                                                               |
+| Action text, hover                | `text-action-hover`                          | `#0022ff` (2.07:1)           | `#6b7fff` (6.10:1), lighter than the resting state, as dark UIs expect                           |
+| Action icon, hover                | `icon-action-hover`                          | `#0022ff` (2.07:1)           | `#1736ff` (3.01:1)                                                                               |
+| Focus ring                        | `border-focus`                               | inherited `#0022ff` (2.07:1) | `#1736ff` (3.01:1)                                                                               |
+| Sharp Chip fills / status borders | `border-{success,information,error,warning}` | 2.8–4.3:1 with chip text     | `#0b7544`, `#2167b4`, `#bb352c`, `#965705`: ≥4.5:1 with chip text and ≥3.6:1 as borders on black |
+
+### Related code changes
+
+- **Badge:** pills and dots use the new `surface-*-strong` fills, not icon colours. The stories use two-character counts so axe checks them.
+- **Chip:** `brand` + `sharp` uses `surface-brand-strong`. It no longer borrows `border-action-hover`, which stays `#667aff` for hover borders.
+- **DateRangeCalendar:** weekday headers use `text-placeholder`, not `text-disabled` (they aren't disabled).
+- **Tag:** sets `aria-disabled` when disabled. Disabled components are exempt from contrast requirements.
+
+## Follow-ups
+
+- **Token source.** `tokens.css` was edited by hand. Copy the `a11y:` values into the token source (`tokens.json`), or the next regeneration will revert them.
+- **Non-text contrast in the light theme (WCAG 1.4.11): needs a design decision.** These are visual changes, so they were left as they are:
+  - **Input outlines.** Field, Input, TextArea and SearchBox use `border-default` `#f0f1f2`, which is 1.13:1 on white. The field edges are hard to see. 1.4.11 asks for 3:1 when the boundary is needed to identify the control.
+  - **Status borders.** `border-{error,success,warning,information}` are pastels (1.4–1.7:1 on white). That's fine where text carries the state, as with Field's error message. It isn't fine on its own.
+  - **Checkbox `error`.** The error is shown only by colour (and `aria-invalid` for assistive tech). Pair it with an error message, or add a non-colour cue (WCAG 1.4.1).

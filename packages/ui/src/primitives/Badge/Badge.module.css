@@ -37,22 +37,22 @@
   background-color: var(--ds-mapped-surface-action);
 }
 
-/* error: Icon/error — vibrant red (NOT Surface/error tint — Figma MCP confirmed) */
+/* error: solid error fill (Figma used Icon/error; darkened for 4.5:1 white text — see ACCESSIBILITY.md) */
 .error {
-  background-color: var(--ds-mapped-icon-error);
+  background-color: var(--ds-mapped-surface-error-strong);
 }
 
-/* success: Icon/success — vibrant green (NOT Surface/success tint — Figma MCP confirmed) */
+/* success: solid success fill (Figma used Icon/success; darkened for 4.5:1 white text — see ACCESSIBILITY.md) */
 .success {
-  background-color: var(--ds-mapped-icon-success);
+  background-color: var(--ds-mapped-surface-success-strong);
 }
 
-/* information: Icon/information — vibrant blue (NOT Surface/information tint — Figma MCP confirmed) */
+/* information: solid information fill (Figma used Icon/information; darkened for 4.5:1 white text — see ACCESSIBILITY.md) */
 .information {
-  background-color: var(--ds-mapped-icon-information);
+  background-color: var(--ds-mapped-surface-information-strong);
 }
 
-/* warning: Icon/warning — vibrant orange (NOT Surface/warning tint — Figma MCP confirmed) */
+/* warning: solid warning fill (Figma used Icon/warning; darkened for 4.5:1 white text — see ACCESSIBILITY.md) */
 .warning {
-  background-color: var(--ds-mapped-icon-warning);
+  background-color: var(--ds-mapped-surface-warning-strong);
 }

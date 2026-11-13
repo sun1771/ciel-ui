@@ -4,7 +4,8 @@ import { Badge } from '.'
 const meta = {
   title: 'Primitives/Badge',
   component: Badge,
-  args: { children: '3', variant: 'default', type: 'default' },
+  // Two characters on purpose: axe skips contrast checks on single-character text.
+  args: { children: '12', variant: 'default', type: 'default' },
   argTypes: {
     variant: {
       control: 'select',

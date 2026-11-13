@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useLayoutEffect } from 'react'
 import type { Decorator, Preview } from '@storybook/react-vite'
 import '@acme/tokens/tokens.css'
 import './preview.css'
 
 /** Applies the toolbar's theme to <html data-theme>, the same switch consumers use. */
 function ThemeRoot({ theme, children }: { theme: string; children: React.ReactNode }) {
-  useEffect(() => {
+  // Layout effect: the theme is applied before play functions and axe run.
+  useLayoutEffect(() => {
     document.documentElement.dataset.theme = theme
   }, [theme])
   return <>{children}</>
@@ -33,7 +34,8 @@ const preview: Preview = {
       },
     },
   },
-  initialGlobals: { theme: 'light' },
+  // The storybook-dark test project sets STORYBOOK_TEST_THEME to run every story in dark mode.
+  initialGlobals: { theme: import.meta.env.STORYBOOK_TEST_THEME ?? 'light' },
   decorators: [withTheme],
   parameters: {
     layout: 'padded',
