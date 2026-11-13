@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# A newer push to the same branch or PR cancels the run in progress.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Lint, test, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      # Uses the pnpm version from package.json "packageManager".
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # Story tests and the docs audit run in real Chromium.
+      - name: Install Chromium for Playwright
+        run: pnpm --filter @acme/ui exec playwright install --with-deps chromium
+
+      - run: pnpm format:check
+      - run: pnpm lint
+      - run: pnpm typecheck
+
+      - name: Tokens are up to date with tokens.json
+        run: pnpm --filter @acme/tokens test
+
+      - name: Unit and story tests (light + dark, axe, coverage thresholds)
+        run: pnpm --filter @acme/ui test:coverage
+
+      - run: pnpm build
+
+      - name: Package checks (publint, Are The Types Wrong)
+        run: pnpm check:packages
+
+      - name: Smoke test in a fresh Next.js app
+        run: pnpm smoke
+
+      - name: Docs accessibility audit
+        run: |
+          pnpm --filter docs start --port 3000 &
+          for i in $(seq 1 30); do curl -sf http://localhost:3000 >/dev/null && break; sleep 1; done
+          pnpm --filter docs audit:a11y http://localhost:3000
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: packages/ui/coverage
+          if-no-files-found: ignore

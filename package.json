@@ -12,10 +12,12 @@
     "check:packages": "node scripts/check-packages.mjs",
     "smoke": "node scripts/smoke-test.mjs",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "changeset": "changeset"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.5",
+    "@changesets/cli": "^3.0.3",
     "prettier": "^3.10.0",
     "publint": "^0.3.25",
     "turbo": "^2.11.11",

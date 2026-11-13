@@ -38,6 +38,11 @@ pnpm dev          # docs site at http://localhost:3000
 
 Run `pnpm build` before `check:packages` and `smoke`.
 
+## Contributing and releases
+
+- **CI** (`.github/workflows/ci.yml`) runs on every pull request and on `main`. It runs format, lint and typecheck; checks that `tokens.css` matches `tokens.json`; runs the unit and story tests with coverage thresholds; then builds, runs the package checks and the smoke test, and finally the docs accessibility audit.
+- **Changesets:** a PR that changes a published package adds a changeset with `pnpm changeset` (see `.changeset/README.md`). The three packages share one version number.
+
 ## Docs site (`apps/docs`)
 
 The docs site has a landing page, guides (Getting started, Theming, Accessibility), design tokens, an icon gallery, a page per component with live examples and generated props tables, and the travel recipes.
