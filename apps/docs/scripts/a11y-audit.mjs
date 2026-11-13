@@ -2,7 +2,9 @@
 /**
  * Accessibility audit of the docs site: every route, light and dark theme,
  * axe-core (WCAG 2.2 A/AA rules) in real Chromium. Also expands every
- * "Show code" panel so highlighted code is checked too.
+ * "Show code" panel so highlighted code is checked too, and fails if a page
+ * doesn't load: axe would happily pass a 404 page. The not-found page is
+ * audited on purpose, at an unknown URL.
  *
  * Usage: start the site (`pnpm build && pnpm start`), then
  *   node scripts/a11y-audit.mjs [baseUrl=http://localhost:3000]
@@ -28,6 +30,8 @@ const routes = [
   '/docs/recipes/travel',
   ...COMPONENTS.map((c) => `/docs/components/${c.slug}`),
 ]
+const NOT_FOUND = '/docs/this-page-does-not-exist'
+routes.push(NOT_FOUND)
 
 const browser = await chromium.launch()
 let failures = 0
@@ -35,7 +39,14 @@ for (const theme of ['light', 'dark']) {
   const context = await browser.newContext({ colorScheme: theme })
   const page = await context.newPage()
   for (const route of routes) {
-    await page.goto(base + route, { waitUntil: 'networkidle' })
+    const response = await page.goto(base + route, { waitUntil: 'networkidle' })
+    const status = response?.status()
+    const expected = route === NOT_FOUND ? 404 : 200
+    if (status !== expected) {
+      failures++
+      console.log(`✗ [${theme}] ${route} — HTTP ${status}, expected ${expected}`)
+      continue
+    }
     await page.evaluate(() => document.querySelectorAll('details').forEach((d) => (d.open = true)))
     await page.addScriptTag({ content: axeSource })
     const { violations } = await page.evaluate(() =>
@@ -59,7 +70,7 @@ for (const theme of ['light', 'dark']) {
 await browser.close()
 console.log(
   failures
-    ? `\n${failures} violation(s) across ${routes.length} routes × 2 themes`
+    ? `\n${failures} failure(s) across ${routes.length} routes × 2 themes`
     : `\n✓ no axe violations: ${routes.length} routes × 2 themes`
 )
 process.exit(failures ? 1 : 0)

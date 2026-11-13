@@ -8,7 +8,7 @@
 | Story tests, dark theme  | `pnpm test:stories`             | The same stories again with `data-theme="dark"`                                                                                                                                                                                  |
 | Token contrast audit     | `pnpm test:unit`                | `src/test/tokenContrast.test.ts` reads `tokens.css` and checks every text, icon and fill pairing the components use, in both themes                                                                                              |
 | Unit tests               | `pnpm test:unit`                | State logic (controlled and uncontrolled), calendar grids for every `weekStartsOn`, `ref` forwarding                                                                                                                             |
-| Docs site audit          | `pnpm --filter docs audit:a11y` | axe on every docs page (45 routes) in both themes, with code panels expanded. Start the site first.                                                                                                                              |
+| Docs site audit          | `pnpm --filter docs audit:a11y` | axe on every docs page and the 404 page (46 routes) in both themes, with code panels expanded; fails if a page does not load. Start the site first.                                                                              |
 
 The interaction tests cover:
 
