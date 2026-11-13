@@ -16,11 +16,11 @@ node scripts/design-screenshots.mjs packages/ui/storybook-static packages/ui/des
 
 Every changed token carries a `was #xxxxxx` comment in `packages/tokens/tokens.css`. To restore the original look of one element, put back the old value from the tables below. To undo a whole step, revert its commit:
 
-| Commit      | Change                                                                                                                   |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `398c348`   | Text colours (placeholder, error, success, warning, information), brand Chip fill, calendar headers, Tag `aria-disabled` |
-| `0ecfe23`   | Icon colours, Badge status fills, all dark-theme changes (links, focus ring, sharp Chip fills)                           |
-| this commit | Form-control outlines (`border-input`, `border-input-error`) and the Checkbox error cue                                  |
+| Commit    | Change                                                                                                                   |
+| --------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `398c348` | Text colours (placeholder, error, success, warning, information), brand Chip fill, calendar headers, Tag `aria-disabled` |
+| `0ecfe23` | Icon colours, Badge status fills, all dark-theme changes (links, focus ring, sharp Chip fills)                           |
+| `cd43a5f` | Form-control outlines (`border-input`, `border-input-error`) and the Checkbox error cue                                  |
 
 Reverting a commit brings back the matching accessibility failures, and the tests will fail again (`src/test/tokenContrast.test.ts` and the story axe checks).
 
