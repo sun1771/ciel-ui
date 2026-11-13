@@ -1,88 +1,45 @@
-# tripon-ai Component Preview
+# acme-ui
 
-Standalone visual preview app for components built in /Users/sanazkhanali/dev/tripon-ai
+> Working name — `@acme/*` is a placeholder scope, to be renamed before the first publish.
 
-## Purpose
-Visually verify components and icons match Figma designs and use correct design tokens
-before integrating into the main app.
+A React 19 component library (34 components, 47 icons, design tokens) with a Storybook workbench and a Next.js docs site.
 
-## How to run
+## Repository layout
+
+| Path | Package | What |
+|---|---|---|
+| `packages/ui` | `@acme/ui` | Components (CSS Modules + `--ds-*` tokens) |
+| `packages/icons` | `@acme/icons` | Icon components |
+| `packages/tokens` | `@acme/tokens` | `tokens.css` — CSS custom properties, light + `[data-theme="dark"]` |
+| `apps/docs` | `docs` (private) | Next.js 16 preview / docs site |
+
+## Getting started
+
+Requires Node 20+ and pnpm (`corepack enable pnpm`).
+
 ```bash
-cd /Users/sanazkhanali/dev/test_rendered
-npm run dev
+pnpm install
+pnpm dev          # docs site at http://localhost:3000/preview
 ```
-Visit http://localhost:3000/preview
 
-## Adding a new component preview
-1. Copy the component folder from tripon-ai:
-   ```bash
-   cp -r /Users/sanazkhanali/dev/tripon-ai/components/ui/[Component] \
-     ./components/ui/[Component]
-   ```
+## Scripts (run from the repo root via Turborepo)
 
-2. Re-copy tokens.css if tokens have changed:
-   ```bash
-   cp /Users/sanazkhanali/dev/tripon-ai/app/design-system/tokens/tokens.css \
-     ./design-system/tokens/tokens.css
-   ```
+| Command | Does |
+|---|---|
+| `pnpm dev` | Run the docs site |
+| `pnpm build` | Build every package/app |
+| `pnpm lint` | ESLint (incl. `jsx-a11y`, `react-hooks`) |
+| `pnpm typecheck` | `tsc --noEmit` in every package |
+| `pnpm format` | Prettier |
 
-3. Re-copy icons if new icons were added:
-   ```bash
-   cp -r /Users/sanazkhanali/dev/tripon-ai/app/design-system/icons/components \
-     ./design-system/icons/
-   cp /Users/sanazkhanali/dev/tripon-ai/app/design-system/icons/index.ts \
-     ./design-system/icons/index.ts
-   ```
+## Using the library (preview)
 
-   Re-copy the brand logo if it changed (raw SVGs + module are repo-agnostic):
-   ```bash
-   cp /Users/sanazkhanali/dev/tripon-ai/app/design-system/logo/* \
-     ./design-system/logo/
-   ```
+```tsx
+import '@acme/tokens/tokens.css'
+import { Button } from '@acme/ui'
+import { Search } from '@acme/icons'
+```
 
-4. Create app/preview/[component-name]/page.tsx
+## License
 
-5. Add a nav link in app/preview/layout.tsx
-
-## Currently previewed
-- Avatar — 3 types (icon, image, initials), 3 sizes (lg/md/sm) — components/ui/
-- Badge — 5 variants (default, error, success, information, warning), 2 types (pill, dot) — components/ui/
-- Buttons — Button, ButtonVertical, ButtonIcon, ButtonIconSwitching (icon swaps on hover/focus, e.g. logo → expand arrow) — components/primitives/
-- Icons — 46 total
-- Logo — TripOn AI brand mark, 4 sizes (16/20/24/32), raw SVGs loaded as <img> — design-system/logo/
-- Menu — MenuItem (2 sizes, 4 states) + Menu container (scrollable) — components/ui/
-- Label — 2 variants (default, required), icon slot — components/ui/
-- SelectButton — 3 variants (default, outline, transparent), 2 sizes, disabled, isSelected toggle — components/ui/
-- Field + Input — 5 states (default, hover, focus, disabled, error), icon slots, Label + hint/error text — components/ui/
-- RadioButton — 4 states (default, hover, focus, disabled), with/without label, group example — components/ui/
-- Switch — 2 checked states (on/off), hover, focus, disabled, with/without label — components/ui/
-- Checkbox — unchecked/checked, with/without label, error, disabled, interactive toggle — components/ui/
-- Tag — 2 sizes (lg/sm), static + dismissible (onDismiss), disabled — components/ui/
-- TextArea — 5 states (default, hover, focus, disabled, error), iconRight slot, label/hint/error composition — components/ui/
-- Link — 2 variants (default, in-line), hover underline toggle, focus ring, disabled, icon slots — components/ui/
-- Chip — 5 colors (brand/blue/green/orange/red), 2 variants (light/sharp), icon + label slots — components/ui/
-- Separator — 2 orientations (horizontal, vertical) — components/ui/
-- NumericUpDown — stepper (min/max limits, disabled state, traveler count example) — components/ui/
-- SearchBox — pill search input, clear button, custom icon slot, parent-controlled dropdown — components/ui/
-- FieldPicker — 2 types (date, traveler); date panel has Date/Flexible tabs (ButtonGroup) — Tab 1: two-month range calendar + flexibility Buttons (Exact date / +- 1/2/3/7/14 day); Tab 2: trip-length Buttons + Include-weekend Checkbox + When? month picker (ButtonIcon year nav + ButtonVertical month grid, selected month) — components/primitives/
-- Loader — 5 sizes (lg/md/sm/xs/xxs), SVG dot-ring spinner with animated comet-tail — components/ui/feedback/
-- ProgressBar — linear (value 0–100, optional label, pill track), ProgressCircle (2 sizes: default 64px/sm 48px, center label, SVG arc) — components/ui/feedback/
-- Snackbar — 5 variants (default/success/error/warning/info), icon slot, title+body+action, close button, progress bar — components/ui/feedback/
-- AccordionProgressive — controlled collapsible panel, 2 states (expanded/collapsed), 3 status states (default/hover/disabled), progressive border (2px T/L/R header + B/L/R content, seamless joint), ChevronDown/ChevronTop, aria-expanded — components/ui/navigation/
-- Breadcrumb — navigation trail, last item as current page (underlined span), optional icon per item, ChevronRight separator — components/ui/navigation/
-- TabBar — TabBar (tablist, arrow key navigation) + TabItem (2 states: selected/unselected, disabled, optional icon) — components/ui/navigation/
-- ButtonGroup — ButtonGroup container (segmented control, role=group) + ButtonGroupItem (4 states: default/hover/selected/disabled), 2 variants (button-group, icon-group) — components/ui/navigation/
-- Carousel — CarouselItem nav button (2 directions, 2 shapes, 2 sizes, 4 states) + Carousel container (slides, nav, pagination, disabled) — components/ui/navigation/
-- Expander — controlled accordion disclosure, 2 sizes (lg/sm), 3 states (default/hover/disabled), collapsed/expanded with chevron flip + semibold label — components/ui/navigation/
-- Pagination — dot-style page indicator, 1 status variant (disabled), interactive totalPages/page/onChange props — components/ui/navigation/
-- Card — travel result card, 3 types (hotel/rental car/flight) × 4 statuses (recommended/normal/loading/more) + isSelected border. Composes Chip (recommended + green chips), Button (Details/Discover more), CarouselItem + Pagination (hotel carousel), DS icons & graphics — components/layout/
-- DialogBox — modal dialog, portal rendering, focus trap, Escape key, backdrop click, heading icon slot, primary + optional secondary action buttons — components/layout/
-- PackageCard — 2 variants (default: prev/next, itinerary: prev/"Day N"/next), heading, TripOn AI action button (ButtonIcon), nav buttons (CarouselItem), children slot — components/layout/
-- NavigationPanel — 2 expand states (expanded/collapsed), NavigationLogoItem (logo + collapse ButtonIcon when expanded; logo→Expand ButtonIconSwitching toggle when collapsed), NavigationProfileItem ("Setting & Profile": Avatar + name / Settings right when expanded, Settings stacked on Avatar when collapsed), NavigationMenuGroup (gap none/xxs/md/lg; main group uses xxs 4px), NavigationMenuItem (4 states: default/hover/selected/disabled; selected = filled-blue pill; long labels truncate to … with full label on hover), auto gap fills panel height — components/layout/
-- AIChat (set) — full assembled chat panel (State default/collapsed/wide) + nested pieces: ChatInput, UserBubble, AgentBubble, AgentResponseMode, ResponseContent, ActionSuggestions, ResponseReactionBar — components/layout/
-- Table — data table, 3 cell types (copy/link/action), optional title bar + action buttons, row hover, semantic HTML — components/layout/
-
-## Important
-This app copies files from tripon-ai.
-It does not auto-sync.
-Re-copy any file that changes in tripon-ai.
+MIT
