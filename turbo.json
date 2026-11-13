@@ -5,6 +5,9 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
+    "@acme/tokens#build": {
+      "outputs": ["tokens.css"]
+    },
     "dev": {
       "cache": false,
       "persistent": true
@@ -13,6 +16,9 @@
     "typecheck": {},
     "test": {
       "outputs": ["coverage/**"]
+    },
+    "@acme/tokens#test": {
+      "outputs": []
     },
     "build-storybook": {
       "outputs": ["storybook-static/**"]

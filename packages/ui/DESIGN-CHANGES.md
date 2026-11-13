@@ -14,7 +14,14 @@ node scripts/design-screenshots.mjs packages/ui/storybook-static packages/ui/des
 
 ## How to go back
 
-Every changed token carries a `was #xxxxxx` comment in `packages/tokens/tokens.css`. To restore the original look of one element, put back the old value from the tables below. To undo a whole step, revert its commit:
+The token values live in `packages/tokens/tokens.json`, and `tokens.css` is generated from it. Every changed token keeps its original value there, under `$extensions.a11y.<light|dark>.was`, which is usually a reference such as `{alias.information.default}`. The generated CSS shows the change as an `a11y: was #xxxxxx` comment.
+
+To restore the original look of one token:
+
+1. In `tokens.json`, copy the `was` value back into `$extensions.modes.<light|dark>`.
+2. Run `pnpm --filter @acme/tokens build`.
+
+The tables below list every original value. The steps were made in these commits, before the generator existed. They are a record of what changed: reverting the token part of a commit now means editing `tokens.json` as above, not running `git revert`.
 
 | Commit    | Change                                                                                                                   |
 | --------- | ------------------------------------------------------------------------------------------------------------------------ |

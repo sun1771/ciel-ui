@@ -6,12 +6,12 @@ A React 19 component library (34 components, 47 icons, design tokens) with a Sto
 
 ## Repository layout
 
-| Path              | Package          | What                                                                |
-| ----------------- | ---------------- | ------------------------------------------------------------------- |
-| `packages/ui`     | `@acme/ui`       | Components (CSS Modules + `--ds-*` tokens)                          |
-| `packages/icons`  | `@acme/icons`    | Icon components                                                     |
-| `packages/tokens` | `@acme/tokens`   | `tokens.css` — CSS custom properties, light + `[data-theme="dark"]` |
-| `apps/docs`       | `docs` (private) | Next.js 16 preview / docs site                                      |
+| Path              | Package          | What                                                                 |
+| ----------------- | ---------------- | -------------------------------------------------------------------- |
+| `packages/ui`     | `@acme/ui`       | Components (CSS Modules + `--ds-*` tokens)                           |
+| `packages/icons`  | `@acme/icons`    | Icon components                                                      |
+| `packages/tokens` | `@acme/tokens`   | `tokens.json` (source) → `tokens.css`, light + `[data-theme="dark"]` |
+| `apps/docs`       | `docs` (private) | Next.js 16 preview / docs site                                       |
 
 ## Getting started
 
@@ -19,7 +19,7 @@ Requires Node 20+ and pnpm (`corepack enable pnpm`).
 
 ```bash
 pnpm install
-pnpm dev          # docs site at http://localhost:3000/preview
+pnpm dev          # docs site at http://localhost:3000
 ```
 
 ## Scripts (run from the repo root)
@@ -75,6 +75,7 @@ import { Search } from '@acme/icons'
 
 - `@acme/ui` and `@acme/icons` are built with Vite (Rolldown) in library mode with `preserveModules`; `tsc` emits declarations, and `scripts/fix-dts-extensions.mjs` makes them resolvable under `nodenext`.
 - In the workspace, each package's `exports` points at `src/`; `publishConfig.exports` switches it to `dist/` when packed or published.
+- `@acme/tokens`: `tokens.json` is the source of truth. `pnpm --filter @acme/tokens build` (part of `pnpm build`) generates `tokens.css`, and `pnpm test` fails if the committed `tokens.css` is stale. Don't edit `tokens.css` by hand.
 - `apps/docs/recipes/` holds domain-specific examples (the travel cards and pickers) built from the generic components. They are not part of the published packages.
 
 ## License

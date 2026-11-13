@@ -24,7 +24,7 @@ The interaction tests cover:
 
 ## Colour changes
 
-Every changed value is marked `a11y:` in `packages/tokens/tokens.css`.
+Every changed value keeps its original in `packages/tokens/tokens.json` (`$extensions.a11y`) and is marked `a11y:` in the generated `tokens.css`.
 
 ### Light theme
 
@@ -66,6 +66,6 @@ Every changed value is marked `a11y:` in `packages/tokens/tokens.css`.
 
 **Before/after screenshots and the original values are in [DESIGN-CHANGES.md](DESIGN-CHANGES.md)**, so any change can be compared or reverted.
 
-## Follow-ups
+## Token source
 
-- **Token source.** `packages/tokens/tokens.css` is currently the source of truth, edited by hand. The original `tokens.json` and Style Dictionary setup live in the tripon-ai repo and still have the old colours. Planned: move `tokens.json` and the generator into `packages/tokens` before the first publish (plan Phase 2), with the `a11y:` values applied. Until then, don't copy tripon-ai's `tokens.css` over this one; the token audit and story tests would fail if that happened.
+`packages/tokens/tokens.json` (Tokens Studio format) is the source of truth, and `tokens.css` is generated from it by `pnpm --filter @acme/tokens build`. The `@acme/tokens` test fails if `tokens.css` is out of date. The tripon-ai repo still has the original, pre-a11y `tokens.json`. Don't copy its files over these; the token audit and story tests would fail.
