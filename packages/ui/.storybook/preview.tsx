@@ -38,16 +38,9 @@ const preview: Preview = {
   parameters: {
     layout: 'padded',
     controls: { expanded: true, sort: 'requiredFirst' },
-    a11y: {
-      // Fail story tests (Vitest addon) on any axe accessibility violation…
-      test: 'error',
-      // …except colour contrast, which is a design-token decision tracked in
-      // packages/ui/ACCESSIBILITY.md. It is only disabled in automated runs: the
-      // Storybook Accessibility panel still reports it.
-      config: import.meta.env.STORYBOOK_AUTOMATED_TEST
-        ? { rules: [{ id: 'color-contrast', enabled: false }] }
-        : {},
-    },
+    // Fail story tests (Vitest addon) on any axe accessibility violation,
+    // including colour contrast.
+    a11y: { test: 'error' },
   },
 }
 

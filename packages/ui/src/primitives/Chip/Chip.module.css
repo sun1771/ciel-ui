@@ -41,8 +41,9 @@
 }
 
 .brandSharp {
-  /* bg: border/action-hover (#667aff) — MCP confirmed; figma.md pre-analysis incorrectly listed surface/action */
-  background-color: var(--ds-mapped-border-action-hover);
+  /* bg: was border/action-hover (#667aff) per Figma; that is 3.63:1 with white
+     text, so it uses the darker AA-compliant brand fill (see ACCESSIBILITY.md). */
+  background-color: var(--ds-mapped-surface-brand-strong);
   color: var(--ds-mapped-text-on-action);
 }
 

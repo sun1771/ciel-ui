@@ -32,8 +32,6 @@ export default defineConfig({
         // Every story rendered in real Chromium: play functions + axe checks.
         extends: true,
         plugins: [storybookTest({ configDir: path.join(dirname, '.storybook') })],
-        // Lets .storybook/preview.tsx know it runs under automated tests.
-        define: { 'import.meta.env.STORYBOOK_AUTOMATED_TEST': JSON.stringify('true') },
         test: {
           name: 'storybook',
           browser: {

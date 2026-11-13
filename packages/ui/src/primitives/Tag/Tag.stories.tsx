@@ -20,4 +20,10 @@ export const Dismissible: Story = {
 }
 export const Static: Story = { args: { onDismiss: undefined } }
 export const Small: Story = { args: { size: 'sm' } }
-export const Disabled: Story = { args: { disabled: true } }
+export const Disabled: Story = {
+  args: { disabled: true },
+  play: async ({ canvas }) => {
+    await expect(canvas.getByText('Flights').parentElement).toHaveAttribute('aria-disabled', 'true')
+    await expect(canvas.getByRole('button', { name: 'Dismiss' })).toBeDisabled()
+  },
+}

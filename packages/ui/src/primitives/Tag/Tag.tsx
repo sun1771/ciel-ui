@@ -31,6 +31,7 @@ export function Tag({
   return (
     <div
       ref={ref}
+      aria-disabled={disabled || undefined}
       className={cn(styles.base, styles[size], disabled && styles.disabled, className)}
       {...props}
     >

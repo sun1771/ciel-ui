@@ -75,7 +75,8 @@
   font-weight: var(--ds-typography-body-xsm-font-weight);
   font-size: var(--ds-typography-body-xsm-font-size);
   line-height: var(--ds-typography-body-xsm-line-height);
-  color: var(--ds-mapped-text-disabled);
+  /* Muted but readable (AA). Was text-disabled, which is meant for disabled UI. */
+  color: var(--ds-mapped-text-placeholder);
 }
 
 .dayCell {
