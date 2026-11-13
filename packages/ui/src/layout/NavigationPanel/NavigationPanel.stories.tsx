@@ -1,0 +1,92 @@
+import { useState } from 'react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { expect, userEvent } from 'storybook/test'
+import { Bag, Calendar, Map, Sparkle } from '@acme/icons'
+import {
+  NavigationLogoItem,
+  NavigationMenuGroup,
+  NavigationMenuItem,
+  NavigationPanel,
+  NavigationProfileItem,
+} from '.'
+
+const meta = {
+  title: 'Layout/NavigationPanel',
+  component: NavigationPanel,
+  args: { isExpanded: true },
+  parameters: { layout: 'fullscreen' },
+} satisfies Meta<typeof NavigationPanel>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+const BrandMark = ({ label }: { label: string }) => (
+  <span
+    role={label ? 'img' : undefined}
+    aria-label={label || undefined}
+    style={{ display: 'inline-flex' }}
+  >
+    <Sparkle size={32} />
+  </span>
+)
+
+export const Default: Story = {
+  render: (args) => {
+    const [expanded, setExpanded] = useState(args.isExpanded ?? true)
+    const [selected, setSelected] = useState('trips')
+    return (
+      <div style={{ height: 520, display: 'flex' }}>
+        <NavigationPanel isExpanded={expanded} onToggle={() => setExpanded((e) => !e)}>
+          <NavigationMenuGroup gap="lg">
+            <NavigationLogoItem
+              logo={<BrandMark label="Acme" />}
+              collapsedLogo={<BrandMark label="" />}
+            />
+            <NavigationMenuGroup gap="xxs">
+              {[
+                { id: 'trips', label: 'Trips', icon: <Calendar size={20} /> },
+                { id: 'packages', label: 'Packages', icon: <Bag size={20} /> },
+                { id: 'explore', label: 'Explore', icon: <Map size={20} /> },
+              ].map((item) => (
+                <NavigationMenuItem
+                  key={item.id}
+                  icon={item.icon}
+                  isSelected={selected === item.id}
+                  onClick={() => setSelected(item.id)}
+                >
+                  {item.label}
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuGroup>
+          </NavigationMenuGroup>
+          <NavigationProfileItem userName="Sam Kim" avatarInitials="SK" />
+        </NavigationPanel>
+      </div>
+    )
+  },
+  play: async ({ canvas, step }) => {
+    await step('collapse and expand', async () => {
+      await userEvent.click(canvas.getByRole('button', { name: 'Collapse navigation' }))
+      await userEvent.click(canvas.getByRole('button', { name: 'Expand navigation' }))
+      await expect(canvas.getByRole('button', { name: 'Collapse navigation' })).toBeInTheDocument()
+    })
+    await step('select an item', async () => {
+      await userEvent.click(canvas.getByRole('button', { name: 'Explore' }))
+      await expect(canvas.getByRole('button', { name: 'Explore' })).toHaveAttribute(
+        'aria-current',
+        'page'
+      )
+    })
+  },
+}
+
+export const Collapsed: Story = {
+  render: Default.render,
+  args: { isExpanded: false },
+  play: async ({ canvas }) => {
+    // Labels are visually hidden when collapsed but remain the accessible names.
+    const item = canvas.getByRole('button', { name: 'Packages' })
+    await expect(item).toHaveAttribute('title', 'Packages')
+    await expect(canvas.getByRole('button', { name: 'Expand navigation' })).toBeInTheDocument()
+  },
+}

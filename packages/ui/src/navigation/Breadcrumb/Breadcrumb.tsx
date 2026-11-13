@@ -15,46 +15,49 @@ import type { BreadcrumbProps } from './types'
  * @see design-system/figma.md for Figma mapping (node 814:1221)
  * @see docs/components.md for usage examples
  */
-export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
-  ({ items, className, ...props }, ref) => {
-    return (
-      <nav ref={ref} aria-label="Breadcrumb" className={cn(styles.nav, className)} {...props}>
-        {/* Explicit role keeps list semantics in Safari/VoiceOver when list-style is none. */}
-        {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
-        <ol className={styles.list} role="list">
-          {items.map((item, index) => {
-            const isLast = index === items.length - 1
+export function Breadcrumb({
+  items,
+  className,
+  ref,
+  ...props
+}: BreadcrumbProps & { ref?: React.Ref<HTMLElement> }) {
+  return (
+    <nav ref={ref} aria-label="Breadcrumb" className={cn(styles.nav, className)} {...props}>
+      {/* Explicit role keeps list semantics in Safari/VoiceOver when list-style is none. */}
+      {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
+      <ol className={styles.list} role="list">
+        {items.map((item, index) => {
+          const isLast = index === items.length - 1
 
-            return (
-              <li key={index} className={styles.item}>
-                {item.icon && (
-                  <span aria-hidden="true" className={styles.iconSlot}>
-                    {item.icon}
-                  </span>
-                )}
+          return (
+            <li key={index} className={styles.item}>
+              {item.icon && (
+                <span aria-hidden="true" className={styles.iconSlot}>
+                  {item.icon}
+                </span>
+              )}
 
-                {isLast ? (
-                  <span className={styles.current} aria-current="page">
-                    {item.label}
-                  </span>
-                ) : (
-                  <a href={item.href} className={styles.link}>
-                    {item.label}
-                  </a>
-                )}
+              {isLast ? (
+                <span className={styles.current} aria-current="page">
+                  {item.label}
+                </span>
+              ) : (
+                <a href={item.href} className={styles.link}>
+                  {item.label}
+                </a>
+              )}
 
-                {!isLast && (
-                  <span aria-hidden="true" className={styles.separator}>
-                    <ChevronRight size={20} />
-                  </span>
-                )}
-              </li>
-            )
-          })}
-        </ol>
-      </nav>
-    )
-  }
-)
+              {!isLast && (
+                <span aria-hidden="true" className={styles.separator}>
+                  <ChevronRight size={20} />
+                </span>
+              )}
+            </li>
+          )
+        })}
+      </ol>
+    </nav>
+  )
+}
 
 Breadcrumb.displayName = 'Breadcrumb'

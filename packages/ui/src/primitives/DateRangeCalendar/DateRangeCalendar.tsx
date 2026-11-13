@@ -118,101 +118,97 @@ function MonthGrid({
  * (Figma `.Calendar` DatePicker=Calendar). Hovering after picking a start
  * previews the range. Month, weekday and day names follow `locale`.
  */
-export const DateRangeCalendar = React.forwardRef<HTMLDivElement, DateRangeCalendarProps>(
-  (
-    {
-      value,
-      defaultValue = EMPTY_RANGE,
-      onChange,
-      locale = 'en-US',
-      weekStartsOn = 0,
-      months = 2,
-      defaultMonth,
-      labels,
-      className,
-      ...props
-    },
-    ref
-  ) => {
-    const l = { ...DEFAULT_LABELS, ...labels }
-    const [range, setRange] = useControllableState({ value, defaultValue, onChange })
+export function DateRangeCalendar({
+  value,
+  defaultValue = EMPTY_RANGE,
+  onChange,
+  locale = 'en-US',
+  weekStartsOn = 0,
+  months = 2,
+  defaultMonth,
+  labels,
+  className,
+  ref,
+  ...props
+}: DateRangeCalendarProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const l = { ...DEFAULT_LABELS, ...labels }
+  const [range, setRange] = useControllableState({ value, defaultValue, onChange })
 
-    // View state is pure interaction. It starts at the selected start month (if
-    // any) so reopening a picker lands on the chosen range.
-    const [view, setView] = useState(() => {
-      const base = range.start ?? defaultMonth ?? new Date()
-      return { year: base.getFullYear(), month: base.getMonth() }
+  // View state is pure interaction. It starts at the selected start month (if
+  // any) so reopening a picker lands on the chosen range.
+  const [view, setView] = useState(() => {
+    const base = range.start ?? defaultMonth ?? new Date()
+    return { year: base.getFullYear(), month: base.getMonth() }
+  })
+  const [selectingEnd, setSelectingEnd] = useState(range.start !== null && range.end === null)
+  const [hoverDate, setHoverDate] = useState<Date | null>(null)
+
+  const weekdays = useMemo(() => weekdayLabels(locale, weekStartsOn), [locale, weekStartsOn])
+  const monthTitle = new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' })
+
+  const shift = (delta: number) =>
+    setView(({ year, month }) => {
+      const d = new Date(year, month + delta, 1)
+      return { year: d.getFullYear(), month: d.getMonth() }
     })
-    const [selectingEnd, setSelectingEnd] = useState(range.start !== null && range.end === null)
-    const [hoverDate, setHoverDate] = useState<Date | null>(null)
 
-    const weekdays = useMemo(() => weekdayLabels(locale, weekStartsOn), [locale, weekStartsOn])
-    const monthTitle = new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric' })
-
-    const shift = (delta: number) =>
-      setView(({ year, month }) => {
-        const d = new Date(year, month + delta, 1)
-        return { year: d.getFullYear(), month: d.getMonth() }
-      })
-
-    function handleDayClick(date: Date) {
-      if (!selectingEnd || range.start === null || date < range.start) {
-        setRange({ start: date, end: null })
-        setSelectingEnd(true)
-      } else {
-        setRange({ start: range.start, end: date })
-        setSelectingEnd(false)
-      }
+  function handleDayClick(date: Date) {
+    if (!selectingEnd || range.start === null || date < range.start) {
+      setRange({ start: date, end: null })
+      setSelectingEnd(true)
+    } else {
+      setRange({ start: range.start, end: date })
+      setSelectingEnd(false)
     }
-
-    return (
-      <div ref={ref} className={cn(styles.calendarMonths, className)} {...props}>
-        {Array.from({ length: months }, (_, i) => {
-          const d = new Date(view.year, view.month + i, 1)
-          const isFirst = i === 0
-          const isLast = i === months - 1
-          return (
-            <div key={i} className={styles.calendarMonth}>
-              <div className={styles.monthHeader}>
-                {isFirst && (
-                  <button
-                    type="button"
-                    aria-label={l.previousMonth}
-                    className={cn(styles.monthNavBtn, styles.monthNavPrev)}
-                    onClick={() => shift(-1)}
-                  >
-                    <ChevronLeft size={16} />
-                  </button>
-                )}
-                <span className={styles.monthTitle}>{monthTitle.format(d)}</span>
-                {isLast && (
-                  <button
-                    type="button"
-                    aria-label={l.nextMonth}
-                    className={cn(styles.monthNavBtn, styles.monthNavNext)}
-                    onClick={() => shift(1)}
-                  >
-                    <ChevronRight size={16} />
-                  </button>
-                )}
-              </div>
-              <MonthGrid
-                year={d.getFullYear()}
-                month={d.getMonth()}
-                range={range}
-                hoverDate={hoverDate}
-                locale={locale}
-                weekStartsOn={weekStartsOn}
-                weekdays={weekdays}
-                onDayClick={handleDayClick}
-                onDayHover={setHoverDate}
-              />
-            </div>
-          )
-        })}
-      </div>
-    )
   }
-)
+
+  return (
+    <div ref={ref} className={cn(styles.calendarMonths, className)} {...props}>
+      {Array.from({ length: months }, (_, i) => {
+        const d = new Date(view.year, view.month + i, 1)
+        const isFirst = i === 0
+        const isLast = i === months - 1
+        return (
+          <div key={i} className={styles.calendarMonth}>
+            <div className={styles.monthHeader}>
+              {isFirst && (
+                <button
+                  type="button"
+                  aria-label={l.previousMonth}
+                  className={cn(styles.monthNavBtn, styles.monthNavPrev)}
+                  onClick={() => shift(-1)}
+                >
+                  <ChevronLeft size={16} />
+                </button>
+              )}
+              <span className={styles.monthTitle}>{monthTitle.format(d)}</span>
+              {isLast && (
+                <button
+                  type="button"
+                  aria-label={l.nextMonth}
+                  className={cn(styles.monthNavBtn, styles.monthNavNext)}
+                  onClick={() => shift(1)}
+                >
+                  <ChevronRight size={16} />
+                </button>
+              )}
+            </div>
+            <MonthGrid
+              year={d.getFullYear()}
+              month={d.getMonth()}
+              range={range}
+              hoverDate={hoverDate}
+              locale={locale}
+              weekStartsOn={weekStartsOn}
+              weekdays={weekdays}
+              onDayClick={handleDayClick}
+              onDayHover={setHoverDate}
+            />
+          </div>
+        )
+      })}
+    </div>
+  )
+}
 
 DateRangeCalendar.displayName = 'DateRangeCalendar'

@@ -12,6 +12,8 @@ export interface SnackbarAction {
 /** Props for the Snackbar component. */
 /** Accessible names used by Snackbar. */
 export interface SnackbarLabels {
+  /** Accessible name of the progress bar. */
+  progress: string
   /** Close (X) button name. */
   dismiss: string
 }

@@ -18,89 +18,85 @@ import type { PopoverProps } from './types'
  * You render the trigger yourself via the `trigger` render prop; FieldPicker
  * is a ready-made field-style trigger built on this.
  */
-export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
-  (
-    {
-      open: openProp,
-      defaultOpen = false,
-      onOpenChange,
-      disabled = false,
-      trigger,
-      panelLabel,
-      panelClassName,
-      children,
-      className,
-      ...props
-    },
-    ref
-  ) => {
-    const [open, setOpen] = useControllableState({
-      value: openProp,
-      defaultValue: defaultOpen,
-      onChange: onOpenChange,
-    })
-    const wrapperRef = useRef<HTMLDivElement>(null)
-    const triggerRef = useRef<HTMLButtonElement>(null)
-    const panelId = useId()
+export function Popover({
+  open: openProp,
+  defaultOpen = false,
+  onOpenChange,
+  disabled = false,
+  trigger,
+  panelLabel,
+  panelClassName,
+  children,
+  className,
+  ref,
+  ...props
+}: PopoverProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const [open, setOpen] = useControllableState({
+    value: openProp,
+    defaultValue: defaultOpen,
+    onChange: onOpenChange,
+  })
+  const wrapperRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const panelId = useId()
 
-    React.useImperativeHandle(ref, () => wrapperRef.current as HTMLDivElement, [])
+  React.useImperativeHandle(ref, () => wrapperRef.current as HTMLDivElement, [])
 
-    const close = useCallback(() => setOpen(false), [setOpen])
+  const close = useCallback(() => setOpen(false), [setOpen])
 
-    useEffect(() => {
-      if (!open) return
+  useEffect(() => {
+    if (!open) return
 
-      function handlePointerDown(event: MouseEvent) {
-        if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) close()
+    function handlePointerDown(event: MouseEvent) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) close()
+    }
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        close()
+        triggerRef.current?.focus()
       }
-      function handleKeyDown(event: KeyboardEvent) {
-        if (event.key === 'Escape') {
-          close()
-          triggerRef.current?.focus()
-        }
-      }
+    }
 
-      document.addEventListener('mousedown', handlePointerDown)
-      document.addEventListener('keydown', handleKeyDown)
-      return () => {
-        document.removeEventListener('mousedown', handlePointerDown)
-        document.removeEventListener('keydown', handleKeyDown)
-      }
-    }, [open, close])
+    document.addEventListener('mousedown', handlePointerDown)
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [open, close])
 
-    const isOpen = open && !disabled
+  const isOpen = open && !disabled
 
-    return (
-      <div ref={wrapperRef} className={cn(styles.wrapper, className)} {...props}>
-        {trigger(
-          {
-            ref: triggerRef,
-            type: 'button',
-            'aria-haspopup': 'dialog',
-            'aria-expanded': isOpen,
-            'aria-controls': isOpen ? panelId : undefined,
-            disabled,
-            onClick: () => {
-              if (!disabled) setOpen(!open)
-            },
+  return (
+    <div ref={wrapperRef} className={cn(styles.wrapper, className)} {...props}>
+      {trigger(
+        {
+          ref: triggerRef,
+          type: 'button',
+          'aria-haspopup': 'dialog',
+          'aria-expanded': isOpen,
+          'aria-controls': isOpen ? panelId : undefined,
+          disabled,
+          onClick: () => {
+            if (!disabled) setOpen(!open)
           },
-          { open: isOpen }
-        )}
+        },
+        { open: isOpen }
+      )}
 
-        {isOpen && (
-          <div
-            id={panelId}
-            role="dialog"
-            aria-modal="false"
-            aria-label={panelLabel}
-            className={cn(styles.panel, panelClassName)}
-          >
-            {typeof children === 'function' ? children({ close }) : children}
-          </div>
-        )}
-      </div>
-    )
-  }
-)
+      {isOpen && (
+        <div
+          id={panelId}
+          role="dialog"
+          aria-modal="false"
+          aria-label={panelLabel}
+          className={cn(styles.panel, panelClassName)}
+        >
+          {typeof children === 'function' ? children({ close }) : children}
+        </div>
+      )}
+    </div>
+  )
+}
 
 Popover.displayName = 'Popover'

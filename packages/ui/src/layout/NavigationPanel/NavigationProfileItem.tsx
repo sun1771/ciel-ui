@@ -23,88 +23,84 @@ import styles from './NavigationPanel.module.css'
  * @see design-system/figma.md → NavigationPanel
  * @see docs/components.md for usage examples
  */
-export const NavigationProfileItem = React.forwardRef<HTMLDivElement, NavigationProfileItemProps>(
-  (
-    {
-      userName = 'User',
-      avatarSrc,
-      avatarInitials,
-      avatarAlt,
-      settingsLabel = 'Settings',
-      profileLabel,
-      onSettingsClick,
-      onProfileClick,
-      className,
-      ...props
-    },
-    ref
-  ) => {
-    const { isExpanded } = useNavigationPanel()
+export function NavigationProfileItem({
+  userName = 'User',
+  avatarSrc,
+  avatarInitials,
+  avatarAlt,
+  settingsLabel = 'Settings',
+  profileLabel,
+  onSettingsClick,
+  onProfileClick,
+  className,
+  ref,
+  ...props
+}: NavigationProfileItemProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const { isExpanded } = useNavigationPanel()
 
-    const avatarType = avatarSrc ? 'image' : avatarInitials ? 'initials' : 'icon'
-    const avatar = (
-      <Avatar
-        size="sm"
-        type={avatarType}
-        src={avatarSrc}
-        initials={avatarInitials}
-        alt={avatarAlt ?? userName}
-      />
-    )
+  const avatarType = avatarSrc ? 'image' : avatarInitials ? 'initials' : 'icon'
+  const avatar = (
+    <Avatar
+      size="sm"
+      type={avatarType}
+      src={avatarSrc}
+      initials={avatarInitials}
+      alt={avatarAlt ?? userName}
+    />
+  )
 
-    const settingsButton = (
-      <ButtonIcon
-        label={settingsLabel}
-        icon={<Settings size={20} />}
-        variant="transparent"
-        onClick={onSettingsClick}
-      />
-    )
+  const settingsButton = (
+    <ButtonIcon
+      label={settingsLabel}
+      icon={<Settings size={20} />}
+      variant="transparent"
+      onClick={onSettingsClick}
+    />
+  )
 
-    if (!isExpanded) {
-      return (
-        <div ref={ref} className={cn(styles.profileItemCollapsed, className)} {...props}>
-          {settingsButton}
-          {onProfileClick ? (
-            <button
-              type="button"
-              className={styles.profileAvatarButton}
-              aria-label={profileLabel ?? userName}
-              onClick={onProfileClick}
-            >
-              {avatar}
-            </button>
-          ) : (
-            avatar
-          )}
-        </div>
-      )
-    }
-
-    const profileCluster = onProfileClick ? (
-      <button
-        type="button"
-        className={styles.profileCluster}
-        aria-label={profileLabel ?? userName}
-        onClick={onProfileClick}
-      >
-        {avatar}
-        <span className={styles.profileName}>{userName}</span>
-      </button>
-    ) : (
-      <div className={styles.profileCluster}>
-        {avatar}
-        <span className={styles.profileName}>{userName}</span>
-      </div>
-    )
-
+  if (!isExpanded) {
     return (
-      <div ref={ref} className={cn(styles.profileItem, className)} {...props}>
-        {profileCluster}
+      <div ref={ref} className={cn(styles.profileItemCollapsed, className)} {...props}>
         {settingsButton}
+        {onProfileClick ? (
+          <button
+            type="button"
+            className={styles.profileAvatarButton}
+            aria-label={profileLabel ?? userName}
+            onClick={onProfileClick}
+          >
+            {avatar}
+          </button>
+        ) : (
+          avatar
+        )}
       </div>
     )
   }
-)
+
+  const profileCluster = onProfileClick ? (
+    <button
+      type="button"
+      className={styles.profileCluster}
+      aria-label={profileLabel ?? userName}
+      onClick={onProfileClick}
+    >
+      {avatar}
+      <span className={styles.profileName}>{userName}</span>
+    </button>
+  ) : (
+    <div className={styles.profileCluster}>
+      {avatar}
+      <span className={styles.profileName}>{userName}</span>
+    </div>
+  )
+
+  return (
+    <div ref={ref} className={cn(styles.profileItem, className)} {...props}>
+      {profileCluster}
+      {settingsButton}
+    </div>
+  )
+}
 
 NavigationProfileItem.displayName = 'NavigationProfileItem'

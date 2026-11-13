@@ -20,38 +20,42 @@ import type { FieldPickerProps } from './types'
  *   <DateRangeCalendar value={range} onChange={setRange} />
  * </FieldPicker>
  */
-export const FieldPicker = React.forwardRef<HTMLDivElement, FieldPickerProps>(
-  ({ icon, value, placeholder, ...popoverProps }, ref) => {
-    const isEmpty = value == null || value === ''
+export function FieldPicker({
+  icon,
+  value,
+  placeholder,
+  ref,
+  ...popoverProps
+}: FieldPickerProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const isEmpty = value == null || value === ''
 
-    return (
-      <Popover
-        ref={ref}
-        {...popoverProps}
-        trigger={(triggerProps, { open }) => (
-          <button
-            {...triggerProps}
-            aria-disabled={triggerProps.disabled}
-            className={cn(
-              styles.trigger,
-              open && styles.triggerOpen,
-              triggerProps.disabled && styles.triggerDisabled
-            )}
-          >
-            {icon != null && (
-              <span className={styles.leadingIcon} aria-hidden="true">
-                {icon}
-              </span>
-            )}
-            <span className={cn(styles.triggerLabel, isEmpty && styles.triggerPlaceholder)}>
-              {isEmpty ? placeholder : value}
+  return (
+    <Popover
+      ref={ref}
+      {...popoverProps}
+      trigger={(triggerProps, { open }) => (
+        <button
+          {...triggerProps}
+          aria-disabled={triggerProps.disabled}
+          className={cn(
+            styles.trigger,
+            open && styles.triggerOpen,
+            triggerProps.disabled && styles.triggerDisabled
+          )}
+        >
+          {icon != null && (
+            <span className={styles.leadingIcon} aria-hidden="true">
+              {icon}
             </span>
-            <span className={styles.triggerIcon} aria-hidden="true" />
-          </button>
-        )}
-      />
-    )
-  }
-)
+          )}
+          <span className={cn(styles.triggerLabel, isEmpty && styles.triggerPlaceholder)}>
+            {isEmpty ? placeholder : value}
+          </span>
+          <span className={styles.triggerIcon} aria-hidden="true" />
+        </button>
+      )}
+    />
+  )
+}
 
 FieldPicker.displayName = 'FieldPicker'

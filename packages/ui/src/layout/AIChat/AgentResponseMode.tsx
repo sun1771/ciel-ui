@@ -31,67 +31,63 @@ const DEFAULT_LABELS: AgentResponseModeLabels = {
  *
  * @see design-system/figma.md → AI Chat
  */
-export const AgentResponseMode = React.forwardRef<HTMLDivElement, AgentResponseModeProps>(
-  (
-    {
-      thinkingMode = false,
-      status = 'loaded',
-      thinkingExpanded = false,
-      onToggleThinking,
-      thinkingContent,
-      icon = <Sparkle size={20} />,
-      labels,
-      className,
-      ...props
-    },
-    ref
-  ) => {
-    const l = { ...DEFAULT_LABELS, ...labels }
-    const isLoading = status === 'loading'
+export function AgentResponseMode({
+  thinkingMode = false,
+  status = 'loaded',
+  thinkingExpanded = false,
+  onToggleThinking,
+  thinkingContent,
+  icon = <Sparkle size={20} />,
+  labels,
+  className,
+  ref,
+  ...props
+}: AgentResponseModeProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const l = { ...DEFAULT_LABELS, ...labels }
+  const isLoading = status === 'loading'
 
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          styles.agentResponseMode,
-          thinkingMode && styles.agentResponseModeThinking,
-          className
-        )}
-        {...props}
-      >
-        <div className={styles.responseModeRow}>
-          <span className={styles.sparkle} aria-hidden="true">
-            {icon}
-          </span>
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        styles.agentResponseMode,
+        thinkingMode && styles.agentResponseModeThinking,
+        className
+      )}
+      {...props}
+    >
+      <div className={styles.responseModeRow}>
+        <span className={styles.sparkle} aria-hidden="true">
+          {icon}
+        </span>
 
-          {isLoading && (
-            <div className={styles.thinkingStatus}>
-              <Loader size="xxs" label={l.generating} />
-              {thinkingMode && <p className={styles.thinkingStatusText}>{l.thinking}</p>}
-            </div>
-          )}
-
-          {thinkingMode && !isLoading && (
-            <Expander
-              label={l.showThinking}
-              size="sm"
-              isExpanded={thinkingExpanded}
-              onToggle={onToggleThinking}
-              className={thinkingExpanded ? styles.showThinkingFill : styles.showThinkingHug}
-            >
-              {thinkingContent}
-            </Expander>
-          )}
-        </div>
-
-        {thinkingMode && (
-          <div className={styles.separatorWrap}>
-            <Separator />
+        {isLoading && (
+          <div className={styles.thinkingStatus}>
+            <Loader size="xxs" label={l.generating} />
+            {thinkingMode && <p className={styles.thinkingStatusText}>{l.thinking}</p>}
           </div>
         )}
+
+        {thinkingMode && !isLoading && (
+          <Expander
+            label={l.showThinking}
+            size="sm"
+            isExpanded={thinkingExpanded}
+            onToggle={onToggleThinking}
+            className={thinkingExpanded ? styles.showThinkingFill : styles.showThinkingHug}
+          >
+            {thinkingContent}
+          </Expander>
+        )}
       </div>
-    )
-  }
-)
+
+      {thinkingMode && (
+        <div className={styles.separatorWrap}>
+          <Separator />
+        </div>
+      )}
+    </div>
+  )
+}
 
 AgentResponseMode.displayName = 'AgentResponseMode'

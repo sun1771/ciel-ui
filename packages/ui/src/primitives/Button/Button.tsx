@@ -13,21 +13,19 @@ import type { ButtonProps } from './types'
  * Figma: PRIMITIVES / Button (node 44:1144)
  * Token source: components/ui/Button/Button.module.css
  */
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  {
-    variant = 'default',
-    size = 'lg',
-    disabled = false,
-    isLoading = false,
-    className,
-    iconLeft,
-    iconRight,
-    children,
-    onClick,
-    ...rest
-  },
-  ref
-) {
+export function Button({
+  variant = 'default',
+  size = 'lg',
+  disabled = false,
+  isLoading = false,
+  className,
+  iconLeft,
+  iconRight,
+  children,
+  onClick,
+  ref,
+  ...rest
+}: ButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
   const isDisabled = disabled || isLoading
 
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
@@ -75,4 +73,4 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function 
       )}
     </button>
   )
-})
+}

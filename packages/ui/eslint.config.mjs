@@ -20,6 +20,11 @@ export default tseslint.config(
     },
   },
   {
+    // Storybook `render` functions are components; hooks in them are supported.
+    files: ['**/*.stories.tsx'],
+    rules: { 'react-hooks/rules-of-hooks': 'off' },
+  },
+  {
     rules: {
       // Destructuring a prop out of `...rest` so it isn't forwarded to the DOM is intentional.
       '@typescript-eslint/no-unused-vars': [

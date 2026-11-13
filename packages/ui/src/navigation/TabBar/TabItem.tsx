@@ -13,34 +13,41 @@ import type { TabItemProps } from './types'
  * @see design-system/figma.md for Figma mapping
  * @see docs/components.md for usage examples
  */
-export const TabItem = React.forwardRef<HTMLButtonElement, TabItemProps>(
-  ({ isSelected = false, disabled = false, icon, children, className, onClick, ...props }, ref) => {
-    return (
-      <button
-        ref={ref}
-        role="tab"
-        aria-selected={isSelected}
-        aria-disabled={disabled || undefined}
-        disabled={disabled}
-        tabIndex={isSelected ? 0 : -1}
-        className={cn(
-          styles.tabItem,
-          isSelected && styles.selected,
-          disabled && styles.disabled,
-          className
-        )}
-        onClick={disabled ? undefined : onClick}
-        {...props}
-      >
-        {icon && (
-          <span className={styles.iconWrapper} aria-hidden="true">
-            {icon}
-          </span>
-        )}
-        {children}
-      </button>
-    )
-  }
-)
+export function TabItem({
+  isSelected = false,
+  disabled = false,
+  icon,
+  children,
+  className,
+  onClick,
+  ref,
+  ...props
+}: TabItemProps & { ref?: React.Ref<HTMLButtonElement> }) {
+  return (
+    <button
+      ref={ref}
+      role="tab"
+      aria-selected={isSelected}
+      aria-disabled={disabled || undefined}
+      disabled={disabled}
+      tabIndex={isSelected ? 0 : -1}
+      className={cn(
+        styles.tabItem,
+        isSelected && styles.selected,
+        disabled && styles.disabled,
+        className
+      )}
+      onClick={disabled ? undefined : onClick}
+      {...props}
+    >
+      {icon && (
+        <span className={styles.iconWrapper} aria-hidden="true">
+          {icon}
+        </span>
+      )}
+      {children}
+    </button>
+  )
+}
 
 TabItem.displayName = 'TabItem'

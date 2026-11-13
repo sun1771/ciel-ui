@@ -28,11 +28,16 @@ function CardSkeleton({ media }: { media: boolean }) {
  * Card — container with hover/selected border and an optional loading skeleton.
  * Compose it from CardMedia, CardHeader, CardBody, CardFooter (see types.ts).
  */
-export const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  (
-    { isSelected = false, loading = false, loadingMedia = true, className, children, ...props },
-    ref
-  ) => (
+export function Card({
+  isSelected = false,
+  loading = false,
+  loadingMedia = true,
+  className,
+  children,
+  ref,
+  ...props
+}: CardProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return (
     <div
       ref={ref}
       className={cn(styles.card, isSelected && styles.selected, className)}
@@ -42,12 +47,20 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
       {loading ? <CardSkeleton media={loadingMedia} /> : children}
     </div>
   )
-)
+}
 Card.displayName = 'Card'
 
 /** Title row (title + optional badge) with an optional meta row underneath. */
-export const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
-  ({ title, titleAs: Title = 'p', badge, children, className, ...props }, ref) => (
+export function CardHeader({
+  title,
+  titleAs: Title = 'p',
+  badge,
+  children,
+  className,
+  ref,
+  ...props
+}: CardHeaderProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return (
     <div ref={ref} className={cn(styles.headlineItem, className)} {...props}>
       <div className={styles.headlineRow}>
         <Title className={styles.headline}>{title}</Title>
@@ -56,12 +69,18 @@ export const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
       {children != null && <div className={styles.headlineChips}>{children}</div>}
     </div>
   )
-)
+}
 CardHeader.displayName = 'CardHeader'
 
 /** Wrapping row of supporting content, usually CardMetric items. */
-export const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>(
-  ({ gap = 'xs', align = 'center', className, ...props }, ref) => (
+export function CardBody({
+  gap = 'xs',
+  align = 'center',
+  className,
+  ref,
+  ...props
+}: CardBodyProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return (
     <div
       ref={ref}
       className={cn(
@@ -73,12 +92,18 @@ export const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>(
       {...props}
     />
   )
-)
+}
 CardBody.displayName = 'CardBody'
 
 /** Icon + text pair, e.g. a bed icon with "1 room, king bed". */
-export const CardMetric = React.forwardRef<HTMLSpanElement, CardMetricProps>(
-  ({ icon, className, children, ...props }, ref) => (
+export function CardMetric({
+  icon,
+  className,
+  children,
+  ref,
+  ...props
+}: CardMetricProps & { ref?: React.Ref<HTMLSpanElement> }) {
+  return (
     <span ref={ref} className={cn(styles.bodyMetric, className)} {...props}>
       {icon != null && (
         <span className={styles.metricIcon} aria-hidden="true">
@@ -88,12 +113,19 @@ export const CardMetric = React.forwardRef<HTMLSpanElement, CardMetricProps>(
       <span className={styles.bodyText}>{children}</span>
     </span>
   )
-)
+}
 CardMetric.displayName = 'CardMetric'
 
 /** Bottom row: summary content (e.g. CardPrice) on the left, `action` on the right. */
-export const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
-  ({ action, justify = 'between', className, children, ...props }, ref) => (
+export function CardFooter({
+  action,
+  justify = 'between',
+  className,
+  children,
+  ref,
+  ...props
+}: CardFooterProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return (
     <div
       ref={ref}
       className={cn(styles.priceItem, justify === 'center' && styles.priceItemCenter, className)}
@@ -103,16 +135,22 @@ export const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
       {action}
     </div>
   )
-)
+}
 CardFooter.displayName = 'CardFooter'
 
 /** Price value with an optional small suffix. Grows to push the footer action right. */
-export const CardPrice = React.forwardRef<HTMLSpanElement, CardPriceProps>(
-  ({ value, suffix, className, ...props }, ref) => (
+export function CardPrice({
+  value,
+  suffix,
+  className,
+  ref,
+  ...props
+}: CardPriceProps & { ref?: React.Ref<HTMLSpanElement> }) {
+  return (
     <span ref={ref} className={cn(styles.price, className)} {...props}>
       <span className={styles.priceValue}>{value}</span>
       {suffix != null && <span className={styles.priceSuffix}>{suffix}</span>}
     </span>
   )
-)
+}
 CardPrice.displayName = 'CardPrice'

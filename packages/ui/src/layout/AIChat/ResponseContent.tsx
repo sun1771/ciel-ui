@@ -13,21 +13,26 @@ import styles from './AIChat.module.css'
  *
  * @see design-system/figma.md → AI Chat
  */
-export const ResponseContentItem = React.forwardRef<HTMLDivElement, ResponseContentItemProps>(
-  ({ title, separator = true, children, className, ...props }, ref) => {
-    return (
-      <div ref={ref} className={cn(styles.responseContentItem, className)} {...props}>
-        {title !== undefined && title !== null && <p className={styles.responseTitle}>{title}</p>}
-        <div className={styles.responseBody}>{children}</div>
-        {separator && (
-          <div className={styles.separatorWrap}>
-            <Separator />
-          </div>
-        )}
-      </div>
-    )
-  }
-)
+export function ResponseContentItem({
+  title,
+  separator = true,
+  children,
+  className,
+  ref,
+  ...props
+}: ResponseContentItemProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return (
+    <div ref={ref} className={cn(styles.responseContentItem, className)} {...props}>
+      {title !== undefined && title !== null && <p className={styles.responseTitle}>{title}</p>}
+      <div className={styles.responseBody}>{children}</div>
+      {separator && (
+        <div className={styles.separatorWrap}>
+          <Separator />
+        </div>
+      )}
+    </div>
+  )
+}
 
 ResponseContentItem.displayName = 'ResponseContentItem'
 
@@ -38,19 +43,23 @@ ResponseContentItem.displayName = 'ResponseContentItem'
  *
  * @see design-system/figma.md → AI Chat
  */
-export const ResponseContent = React.forwardRef<HTMLDivElement, ResponseContentProps>(
-  ({ sections, children, className, ...props }, ref) => {
-    return (
-      <div ref={ref} className={cn(styles.responseContent, className)} {...props}>
-        {children ??
-          sections?.map((section, i) => (
-            <ResponseContentItem key={i} title={section.title}>
-              {section.content}
-            </ResponseContentItem>
-          ))}
-      </div>
-    )
-  }
-)
+export function ResponseContent({
+  sections,
+  children,
+  className,
+  ref,
+  ...props
+}: ResponseContentProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return (
+    <div ref={ref} className={cn(styles.responseContent, className)} {...props}>
+      {children ??
+        sections?.map((section, i) => (
+          <ResponseContentItem key={i} title={section.title}>
+            {section.content}
+          </ResponseContentItem>
+        ))}
+    </div>
+  )
+}
 
 ResponseContent.displayName = 'ResponseContent'

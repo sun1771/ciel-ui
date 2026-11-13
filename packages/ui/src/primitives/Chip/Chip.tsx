@@ -20,23 +20,29 @@ const colorVariantClasses: Record<ChipColor, Record<ChipVariant, string>> = {
  * @see design-system/figma.md for Figma mapping (node 1249:2540)
  * @see docs/components.md for usage examples
  */
-export const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
-  ({ color = 'brand', variant = 'light', icon, children, className, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(styles.base, colorVariantClasses[color][variant], className)}
-        {...props}
-      >
-        {icon && (
-          <span aria-hidden="true" className={styles.iconSlot}>
-            {icon}
-          </span>
-        )}
-        {children}
-      </div>
-    )
-  }
-)
+export function Chip({
+  color = 'brand',
+  variant = 'light',
+  icon,
+  children,
+  className,
+  ref,
+  ...props
+}: ChipProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return (
+    <div
+      ref={ref}
+      className={cn(styles.base, colorVariantClasses[color][variant], className)}
+      {...props}
+    >
+      {icon && (
+        <span aria-hidden="true" className={styles.iconSlot}>
+          {icon}
+        </span>
+      )}
+      {children}
+    </div>
+  )
+}
 
 Chip.displayName = 'Chip'

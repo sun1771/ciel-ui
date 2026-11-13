@@ -36,98 +36,94 @@ const DEFAULT_LABELS: AIChatLabels = {
  * @see design-system/figma.md → AI Chat
  * @see docs/components.md for usage examples
  */
-export const AIChat = React.forwardRef<HTMLDivElement, AIChatProps>(
-  (
-    {
-      state = 'default',
-      title = 'Assistant',
-      icon = <Sparkle size={20} />,
-      labels,
-      onCollapse,
-      onExpand,
-      children,
-      inputValue,
-      onInputChange,
-      onSubmit,
-      inputStatus,
-      inputDisabled = false,
-      showTag = false,
-      tagLabel,
-      onRemoveTag,
-      placeholder,
-      className,
-      ...props
-    },
-    ref
-  ) => {
-    const l = { ...DEFAULT_LABELS, ...labels }
-    const isCollapsed = state === 'collapsed'
+export function AIChat({
+  state = 'default',
+  title = 'Assistant',
+  icon = <Sparkle size={20} />,
+  labels,
+  onCollapse,
+  onExpand,
+  children,
+  inputValue,
+  onInputChange,
+  onSubmit,
+  inputStatus,
+  inputDisabled = false,
+  showTag = false,
+  tagLabel,
+  onRemoveTag,
+  placeholder,
+  className,
+  ref,
+  ...props
+}: AIChatProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const l = { ...DEFAULT_LABELS, ...labels }
+  const isCollapsed = state === 'collapsed'
 
-    const panelClass =
-      state === 'collapsed'
-        ? styles.panelCollapsed
-        : state === 'wide'
-          ? styles.panelWide
-          : styles.panelDefault
+  const panelClass =
+    state === 'collapsed'
+      ? styles.panelCollapsed
+      : state === 'wide'
+        ? styles.panelWide
+        : styles.panelDefault
 
-    if (isCollapsed) {
-      return (
-        <div ref={ref} className={cn(styles.panel, panelClass, className)} {...props}>
-          <div className={cn(styles.header, styles.headerCollapsed)}>
-            <div className={styles.headerInner} style={{ flex: '0 0 auto' }}>
-              <ButtonIconSwitching
-                variant="transparent"
-                size="lg"
-                label={l.expand}
-                icon={icon}
-                hoverIcon={<ArrowRight size={20} />}
-                onClick={onExpand}
-              />
-            </div>
-          </div>
-          <div className={styles.chatContainer} />
-        </div>
-      )
-    }
-
+  if (isCollapsed) {
     return (
       <div ref={ref} className={cn(styles.panel, panelClass, className)} {...props}>
-        <div className={styles.header}>
-          <div className={styles.headerInner}>
-            <span className={styles.headerIcon} aria-hidden="true">
-              {icon}
-            </span>
-            <p className={styles.headerTitle}>{title}</p>
-            <ButtonIcon
+        <div className={cn(styles.header, styles.headerCollapsed)}>
+          <div className={styles.headerInner} style={{ flex: '0 0 auto' }}>
+            <ButtonIconSwitching
               variant="transparent"
               size="lg"
-              label={l.collapse}
-              icon={<ArrowLeft size={20} />}
-              onClick={onCollapse}
+              label={l.expand}
+              icon={icon}
+              hoverIcon={<ArrowRight size={20} />}
+              onClick={onExpand}
             />
           </div>
         </div>
-
-        <div className={styles.chatContainer}>
-          <div className={styles.conversation}>{children}</div>
-        </div>
-
-        <ChatInput
-          className={styles.containerFluid}
-          status={inputStatus}
-          disabled={inputDisabled}
-          value={inputValue}
-          onChange={onInputChange}
-          onSubmit={onSubmit}
-          showTag={showTag}
-          tagLabel={tagLabel}
-          onRemoveTag={onRemoveTag}
-          placeholder={placeholder}
-          labels={l}
-        />
+        <div className={styles.chatContainer} />
       </div>
     )
   }
-)
+
+  return (
+    <div ref={ref} className={cn(styles.panel, panelClass, className)} {...props}>
+      <div className={styles.header}>
+        <div className={styles.headerInner}>
+          <span className={styles.headerIcon} aria-hidden="true">
+            {icon}
+          </span>
+          <p className={styles.headerTitle}>{title}</p>
+          <ButtonIcon
+            variant="transparent"
+            size="lg"
+            label={l.collapse}
+            icon={<ArrowLeft size={20} />}
+            onClick={onCollapse}
+          />
+        </div>
+      </div>
+
+      <div className={styles.chatContainer}>
+        <div className={styles.conversation}>{children}</div>
+      </div>
+
+      <ChatInput
+        className={styles.containerFluid}
+        status={inputStatus}
+        disabled={inputDisabled}
+        value={inputValue}
+        onChange={onInputChange}
+        onSubmit={onSubmit}
+        showTag={showTag}
+        tagLabel={tagLabel}
+        onRemoveTag={onRemoveTag}
+        placeholder={placeholder}
+        labels={l}
+      />
+    </div>
+  )
+}
 
 AIChat.displayName = 'AIChat'

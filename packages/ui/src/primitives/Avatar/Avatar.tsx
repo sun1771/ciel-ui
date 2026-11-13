@@ -14,36 +14,43 @@ import styles from './Avatar.module.css'
  * @see design-system/figma.md for Figma mapping (node 814:1333)
  * @see docs/components.md for usage examples
  */
-export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
-  ({ size = 'lg', type = 'icon', initials = 'SK', src, alt, className, ...props }, ref) => {
-    const iconSize = size === 'lg' ? 32 : size === 'md' ? 24 : 20
+export function Avatar({
+  size = 'lg',
+  type = 'icon',
+  initials = 'SK',
+  src,
+  alt,
+  className,
+  ref,
+  ...props
+}: AvatarProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const iconSize = size === 'lg' ? 32 : size === 'md' ? 24 : 20
 
-    return (
-      <div
-        ref={ref}
-        className={cn(styles.avatar, styles[size], type === 'image' && styles.image, className)}
-        role="img"
-        aria-label={
-          type === 'image'
-            ? (alt ?? 'User avatar')
-            : type === 'initials'
-              ? `${initials} avatar`
-              : 'User avatar'
-        }
-        {...props}
-      >
-        {type === 'icon' && <User size={iconSize} aria-hidden="true" />}
+  return (
+    <div
+      ref={ref}
+      className={cn(styles.avatar, styles[size], type === 'image' && styles.image, className)}
+      role="img"
+      aria-label={
+        type === 'image'
+          ? (alt ?? 'User avatar')
+          : type === 'initials'
+            ? `${initials} avatar`
+            : 'User avatar'
+      }
+      {...props}
+    >
+      {type === 'icon' && <User size={iconSize} aria-hidden="true" />}
 
-        {type === 'image' && src && <img src={src} alt={alt ?? ''} className={styles.img} />}
+      {type === 'image' && src && <img src={src} alt={alt ?? ''} className={styles.img} />}
 
-        {type === 'initials' && (
-          <span className={styles.initialsText} aria-hidden="true">
-            {initials}
-          </span>
-        )}
-      </div>
-    )
-  }
-)
+      {type === 'initials' && (
+        <span className={styles.initialsText} aria-hidden="true">
+          {initials}
+        </span>
+      )}
+    </div>
+  )
+}
 
 Avatar.displayName = 'Avatar'

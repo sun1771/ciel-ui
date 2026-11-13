@@ -21,39 +21,44 @@ const DEFAULT_LABELS: UserBubbleLabels = { copy: 'Copy', edit: 'Edit' }
  *
  * @see design-system/figma.md → AI Chat
  */
-export const UserBubble = React.forwardRef<HTMLDivElement, UserBubbleProps>(
-  (
-    { size = 'sm', children, showActions = true, labels, onCopy, onEdit, className, ...props },
-    ref
-  ) => {
-    const l = { ...DEFAULT_LABELS, ...labels }
-    return (
-      <div ref={ref} data-size={size} className={cn(styles.userBubble, className)} {...props}>
-        <div className={cn(styles.userBubbleBox, size === 'lg' && styles.userBubbleBoxLg)}>
-          <p className={styles.userBubbleText}>{children}</p>
-        </div>
-
-        {showActions && (
-          <div className={styles.reactionBar}>
-            <ButtonIcon
-              variant="transparent"
-              size="sm"
-              label={l.copy}
-              icon={<Copy size={16} />}
-              onClick={onCopy}
-            />
-            <ButtonIcon
-              variant="transparent"
-              size="sm"
-              label={l.edit}
-              icon={<Edit size={16} />}
-              onClick={onEdit}
-            />
-          </div>
-        )}
+export function UserBubble({
+  size = 'sm',
+  children,
+  showActions = true,
+  labels,
+  onCopy,
+  onEdit,
+  className,
+  ref,
+  ...props
+}: UserBubbleProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const l = { ...DEFAULT_LABELS, ...labels }
+  return (
+    <div ref={ref} data-size={size} className={cn(styles.userBubble, className)} {...props}>
+      <div className={cn(styles.userBubbleBox, size === 'lg' && styles.userBubbleBoxLg)}>
+        <p className={styles.userBubbleText}>{children}</p>
       </div>
-    )
-  }
-)
+
+      {showActions && (
+        <div className={styles.reactionBar}>
+          <ButtonIcon
+            variant="transparent"
+            size="sm"
+            label={l.copy}
+            icon={<Copy size={16} />}
+            onClick={onCopy}
+          />
+          <ButtonIcon
+            variant="transparent"
+            size="sm"
+            label={l.edit}
+            icon={<Edit size={16} />}
+            onClick={onEdit}
+          />
+        </div>
+      )}
+    </div>
+  )
+}
 
 UserBubble.displayName = 'UserBubble'

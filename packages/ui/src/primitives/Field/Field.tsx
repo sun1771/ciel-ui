@@ -14,39 +14,40 @@ import styles from './Field.module.css'
  * @see design-system/figma.md for Figma mapping (node 63:939)
  * @see docs/components.md for usage examples
  */
-export const Field = React.forwardRef<HTMLInputElement, FieldProps>(
-  ({ disabled = false, error, iconLeft, iconRight, className, ...inputProps }, ref) => {
-    return (
-      <div
-        className={cn(
-          styles.wrapper,
-          disabled && styles.disabled,
-          error && styles.error,
-          className
-        )}
-      >
-        {iconLeft && (
-          <span className={styles.iconSlot} aria-hidden="true">
-            {iconLeft}
-          </span>
-        )}
+export function Field({
+  disabled = false,
+  error,
+  iconLeft,
+  iconRight,
+  className,
+  ref,
+  ...inputProps
+}: FieldProps & { ref?: React.Ref<HTMLInputElement> }) {
+  return (
+    <div
+      className={cn(styles.wrapper, disabled && styles.disabled, error && styles.error, className)}
+    >
+      {iconLeft && (
+        <span className={styles.iconSlot} aria-hidden="true">
+          {iconLeft}
+        </span>
+      )}
 
-        <input
-          ref={ref}
-          className={styles.input}
-          disabled={disabled}
-          aria-invalid={error ? 'true' : undefined}
-          {...inputProps}
-        />
+      <input
+        ref={ref}
+        className={styles.input}
+        disabled={disabled}
+        aria-invalid={error ? 'true' : undefined}
+        {...inputProps}
+      />
 
-        {iconRight && (
-          <span className={styles.iconSlot} aria-hidden="true">
-            {iconRight}
-          </span>
-        )}
-      </div>
-    )
-  }
-)
+      {iconRight && (
+        <span className={styles.iconSlot} aria-hidden="true">
+          {iconRight}
+        </span>
+      )}
+    </div>
+  )
+}
 
 Field.displayName = 'Field'

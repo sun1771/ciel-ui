@@ -16,20 +16,18 @@ import type { MenuItemProps } from './types'
  * @see app/design-system/figma.md for Figma mapping
  * @see app/docs/components.md for usage examples
  */
-export const MenuItem = React.forwardRef<HTMLButtonElement, MenuItemProps>(function MenuItem(
-  {
-    size = 'lg',
-    isSelected = false,
-    disabled = false,
-    className,
-    iconLeft,
-    iconRight,
-    children,
-    onClick,
-    ...rest
-  },
-  ref
-) {
+export function MenuItem({
+  size = 'lg',
+  isSelected = false,
+  disabled = false,
+  className,
+  iconLeft,
+  iconRight,
+  children,
+  onClick,
+  ref,
+  ...rest
+}: MenuItemProps & { ref?: React.Ref<HTMLButtonElement> }) {
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     if (disabled) return
     onClick?.(e)
@@ -67,6 +65,6 @@ export const MenuItem = React.forwardRef<HTMLButtonElement, MenuItemProps>(funct
       )}
     </button>
   )
-})
+}
 
 MenuItem.displayName = 'MenuItem'

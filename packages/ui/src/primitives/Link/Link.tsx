@@ -16,58 +16,54 @@ import type { LinkProps } from './types'
  *
  * NOTE: When using target="_blank", always pass rel="noopener noreferrer" per CLAUDE.md.
  */
-export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
-  (
-    {
-      variant = 'default',
-      disabled = false,
-      iconLeft,
-      iconRight,
-      children,
-      className,
-      onClick,
-      ...props
-    },
-    ref
-  ) => {
-    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (disabled) {
-        e.preventDefault()
-        return
-      }
-      onClick?.(e)
+export function Link({
+  variant = 'default',
+  disabled = false,
+  iconLeft,
+  iconRight,
+  children,
+  className,
+  onClick,
+  ref,
+  ...props
+}: LinkProps & { ref?: React.Ref<HTMLAnchorElement> }) {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (disabled) {
+      e.preventDefault()
+      return
     }
-
-    return (
-      // href and keyboard behaviour come from the native <a> via spread props.
-      // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-      <a
-        ref={ref}
-        className={cn(
-          styles.base,
-          variant === 'default' && styles.default,
-          variant === 'in-line' && styles.inline,
-          disabled && styles.disabled,
-          className
-        )}
-        aria-disabled={disabled || undefined}
-        onClick={handleClick}
-        {...props}
-      >
-        {iconLeft && (
-          <span aria-hidden="true" className={styles.iconWrapper}>
-            {iconLeft}
-          </span>
-        )}
-        {children}
-        {iconRight && (
-          <span aria-hidden="true" className={styles.iconWrapper}>
-            {iconRight}
-          </span>
-        )}
-      </a>
-    )
+    onClick?.(e)
   }
-)
+
+  return (
+    // href and keyboard behaviour come from the native <a> via spread props.
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    <a
+      ref={ref}
+      className={cn(
+        styles.base,
+        variant === 'default' && styles.default,
+        variant === 'in-line' && styles.inline,
+        disabled && styles.disabled,
+        className
+      )}
+      aria-disabled={disabled || undefined}
+      onClick={handleClick}
+      {...props}
+    >
+      {iconLeft && (
+        <span aria-hidden="true" className={styles.iconWrapper}>
+          {iconLeft}
+        </span>
+      )}
+      {children}
+      {iconRight && (
+        <span aria-hidden="true" className={styles.iconWrapper}>
+          {iconRight}
+        </span>
+      )}
+    </a>
+  )
+}
 
 Link.displayName = 'Link'

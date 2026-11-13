@@ -16,64 +16,68 @@ import styles from './Carousel.module.css'
  *
  * @see design-system/figma.md for Figma mapping
  */
-export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
-  (
-    { size = 'lg', shape = 'round', disabled = false, labels, children, className, ...props },
-    ref
-  ) => {
-    const l = { ...DEFAULT_LABELS, ...labels }
-    const slides = React.Children.toArray(children)
-    const totalSlides = slides.length
-    const [currentIndex, setCurrentIndex] = useState(0)
+export function Carousel({
+  size = 'lg',
+  shape = 'round',
+  disabled = false,
+  labels,
+  children,
+  className,
+  ref,
+  ...props
+}: CarouselProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const l = { ...DEFAULT_LABELS, ...labels }
+  const slides = React.Children.toArray(children)
+  const totalSlides = slides.length
+  const [currentIndex, setCurrentIndex] = useState(0)
 
-    const handlePrev = () => {
-      if (!disabled && currentIndex > 0) setCurrentIndex((i) => i - 1)
-    }
+  const handlePrev = () => {
+    if (!disabled && currentIndex > 0) setCurrentIndex((i) => i - 1)
+  }
 
-    const handleNext = () => {
-      if (!disabled && currentIndex < totalSlides - 1) setCurrentIndex((i) => i + 1)
-    }
+  const handleNext = () => {
+    if (!disabled && currentIndex < totalSlides - 1) setCurrentIndex((i) => i + 1)
+  }
 
-    if (totalSlides === 0) return null
+  if (totalSlides === 0) return null
 
-    return (
-      <div ref={ref} className={cn(styles.root, className)} {...props}>
-        {/* Slide display area */}
-        <div className={styles.slideArea}>{slides[currentIndex]}</div>
+  return (
+    <div ref={ref} className={cn(styles.root, className)} {...props}>
+      {/* Slide display area */}
+      <div className={styles.slideArea}>{slides[currentIndex]}</div>
 
-        {/* Controls: nav row + pagination */}
-        <div className={styles.controls}>
-          <div className={styles.navRow}>
-            <CarouselItem
-              direction="left"
-              shape={shape}
-              size={size}
-              label={l.previous}
-              disabled={disabled || currentIndex === 0}
-              onClick={handlePrev}
-            />
-            <CarouselItem
-              direction="right"
-              shape={shape}
-              size={size}
-              label={l.next}
-              disabled={disabled || currentIndex === totalSlides - 1}
-              onClick={handleNext}
-            />
-          </div>
+      {/* Controls: nav row + pagination */}
+      <div className={styles.controls}>
+        <div className={styles.navRow}>
+          <CarouselItem
+            direction="left"
+            shape={shape}
+            size={size}
+            label={l.previous}
+            disabled={disabled || currentIndex === 0}
+            onClick={handlePrev}
+          />
+          <CarouselItem
+            direction="right"
+            shape={shape}
+            size={size}
+            label={l.next}
+            disabled={disabled || currentIndex === totalSlides - 1}
+            onClick={handleNext}
+          />
+        </div>
 
-          <div className={styles.paginationWrapper}>
-            <Pagination
-              page={currentIndex + 1}
-              totalPages={totalSlides}
-              disabled={disabled}
-              onChange={(page) => setCurrentIndex(page - 1)}
-            />
-          </div>
+        <div className={styles.paginationWrapper}>
+          <Pagination
+            page={currentIndex + 1}
+            totalPages={totalSlides}
+            disabled={disabled}
+            onChange={(page) => setCurrentIndex(page - 1)}
+          />
         </div>
       </div>
-    )
-  }
-)
+    </div>
+  )
+}
 
 Carousel.displayName = 'Carousel'

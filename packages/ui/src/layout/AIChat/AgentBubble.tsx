@@ -30,69 +30,63 @@ import styles from './AIChat.module.css'
  *
  * @see design-system/figma.md → AI Chat
  */
-export const AgentBubble = React.forwardRef<HTMLDivElement, AgentBubbleProps>(
-  (
-    {
-      mode = 'normal',
-      responseLoaded = true,
-      thinkingExpanded = false,
-      onToggleThinking,
-      thinkingContent,
-      sections,
-      children,
-      suggestions,
-      showReactionBar = true,
-      onCopy,
-      onThumbsUp,
-      onThumbsDown,
-      onShare,
-      onMore,
-      icon,
-      labels,
-      className,
-      ...props
-    },
-    ref
-  ) => {
-    const thinking = mode === 'thinking'
+export function AgentBubble({
+  mode = 'normal',
+  responseLoaded = true,
+  thinkingExpanded = false,
+  onToggleThinking,
+  thinkingContent,
+  sections,
+  children,
+  suggestions,
+  showReactionBar = true,
+  onCopy,
+  onThumbsUp,
+  onThumbsDown,
+  onShare,
+  onMore,
+  icon,
+  labels,
+  className,
+  ref,
+  ...props
+}: AgentBubbleProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const thinking = mode === 'thinking'
 
-    return (
-      <div ref={ref} className={cn(styles.agentBubble, className)} {...props}>
-        {/* The "Show Thinking" disclosure (with the train of thought as its
+  return (
+    <div ref={ref} className={cn(styles.agentBubble, className)} {...props}>
+      {/* The "Show Thinking" disclosure (with the train of thought as its
             content) lives inside AgentResponseMode. The final response below
             always stays visible — expanding only reveals the reasoning. */}
-        <AgentResponseMode
-          thinkingMode={thinking}
-          status={responseLoaded ? 'loaded' : 'loading'}
-          thinkingExpanded={thinkingExpanded}
-          onToggleThinking={onToggleThinking}
-          thinkingContent={thinkingContent}
-          icon={icon}
+      <AgentResponseMode
+        thinkingMode={thinking}
+        status={responseLoaded ? 'loaded' : 'loading'}
+        thinkingExpanded={thinkingExpanded}
+        onToggleThinking={onToggleThinking}
+        thinkingContent={thinkingContent}
+        icon={icon}
+        labels={labels}
+      />
+
+      {responseLoaded && (
+        <div className={styles.agentContentArea}>
+          <ResponseContent sections={sections}>{children}</ResponseContent>
+          {suggestions && suggestions.length > 0 && <ActionSuggestions suggestions={suggestions} />}
+        </div>
+      )}
+
+      {responseLoaded && showReactionBar && (
+        <ResponseReactionBar
           labels={labels}
+          onCopy={onCopy}
+          onThumbsUp={onThumbsUp}
+          onThumbsDown={onThumbsDown}
+          onShare={onShare}
+          onMore={onMore}
         />
-
-        {responseLoaded && (
-          <div className={styles.agentContentArea}>
-            <ResponseContent sections={sections}>{children}</ResponseContent>
-            {suggestions && suggestions.length > 0 && (
-              <ActionSuggestions suggestions={suggestions} />
-            )}
-          </div>
-        )}
-
-        {responseLoaded && showReactionBar && (
-          <ResponseReactionBar
-            labels={labels}
-            onCopy={onCopy}
-            onThumbsUp={onThumbsUp}
-            onThumbsDown={onThumbsDown}
-            onShare={onShare}
-            onMore={onMore}
-          />
-        )}
-      </div>
-    )
-  }
-)
+      )}
+    </div>
+  )
+}
 
 AgentBubble.displayName = 'AgentBubble'

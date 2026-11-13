@@ -50,52 +50,58 @@ function renderCell(value: TableCellValue, type?: TableCellType): React.ReactNod
  * @see design-system/figma.md for Figma mapping (node 926:1465)
  * @see docs/components.md for usage examples
  */
-export const Table = React.forwardRef<HTMLDivElement, TableProps>(
-  ({ title, actions, columns, rows, className, ...props }, ref) => {
-    const hasTitleBar = Boolean(title || actions)
+export function Table({
+  title,
+  actions,
+  columns,
+  rows,
+  className,
+  ref,
+  ...props
+}: TableProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const hasTitleBar = Boolean(title || actions)
 
-    return (
-      <div ref={ref} className={cn(styles.container, className)} {...props}>
-        {hasTitleBar && (
-          <div className={styles.titleBar}>
-            {title && <h2 className={styles.title}>{title}</h2>}
-            {actions && <div className={styles.actions}>{actions}</div>}
-          </div>
-        )}
+  return (
+    <div ref={ref} className={cn(styles.container, className)} {...props}>
+      {hasTitleBar && (
+        <div className={styles.titleBar}>
+          {title && <h2 className={styles.title}>{title}</h2>}
+          {actions && <div className={styles.actions}>{actions}</div>}
+        </div>
+      )}
 
-        <div className={styles.tableWrapper}>
-          <table className={styles.table}>
-            <thead className={styles.thead}>
-              <tr>
+      <div className={styles.tableWrapper}>
+        <table className={styles.table}>
+          <thead className={styles.thead}>
+            <tr>
+              {columns.map((col) => (
+                <th
+                  key={col.key}
+                  scope="col"
+                  className={styles.th}
+                  style={col.width ? { width: col.width } : undefined}
+                >
+                  {col.header}
+                </th>
+              ))}
+            </tr>
+          </thead>
+
+          <tbody className={styles.tbody}>
+            {rows.map((row) => (
+              <tr key={row.id} className={styles.tr}>
                 {columns.map((col) => (
-                  <th
-                    key={col.key}
-                    scope="col"
-                    className={styles.th}
-                    style={col.width ? { width: col.width } : undefined}
-                  >
-                    {col.header}
-                  </th>
+                  <td key={col.key} className={styles.td}>
+                    {renderCell(row[col.key], col.type)}
+                  </td>
                 ))}
               </tr>
-            </thead>
-
-            <tbody className={styles.tbody}>
-              {rows.map((row) => (
-                <tr key={row.id} className={styles.tr}>
-                  {columns.map((col) => (
-                    <td key={col.key} className={styles.td}>
-                      {renderCell(row[col.key], col.type)}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
-    )
-  }
-)
+    </div>
+  )
+}
 
 Table.displayName = 'Table'

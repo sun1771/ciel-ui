@@ -13,14 +13,17 @@ import type { ButtonGroupProps } from './types'
  * @see design-system/figma.md for Figma mapping
  * @see docs/components.md for usage examples
  */
-export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
-  ({ className, children, ...props }, ref) => {
-    return (
-      <div ref={ref} role="group" className={cn(styles.group, className)} {...props}>
-        {children}
-      </div>
-    )
-  }
-)
+export function ButtonGroup({
+  className,
+  children,
+  ref,
+  ...props
+}: ButtonGroupProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return (
+    <div ref={ref} role="group" className={cn(styles.group, className)} {...props}>
+      {children}
+    </div>
+  )
+}
 
 ButtonGroup.displayName = 'ButtonGroup'

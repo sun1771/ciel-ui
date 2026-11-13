@@ -14,10 +14,15 @@ import type { CheckboxProps } from './types'
  * @see design-system/figma.md → Checkbox (nodes 307:1445, 307:1536)
  * @see docs/components.md for usage examples
  */
-export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(
-  { checked, disabled = false, error = false, children, className, ...rest },
-  ref
-) {
+export function Checkbox({
+  checked,
+  disabled = false,
+  error = false,
+  children,
+  className,
+  ref,
+  ...rest
+}: CheckboxProps & { ref?: React.Ref<HTMLInputElement> }) {
   return (
     <label className={cn(styles.wrapper, disabled && styles.wrapperDisabled, className)}>
       <input
@@ -45,6 +50,6 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(functi
       {children && <span className={styles.label}>{children}</span>}
     </label>
   )
-})
+}
 
 Checkbox.displayName = 'Checkbox'

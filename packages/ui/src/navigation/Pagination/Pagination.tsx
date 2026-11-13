@@ -2,7 +2,13 @@
 
 import React from 'react'
 import { cn } from '../../lib/utils'
-import type { PaginationProps } from './types'
+import type { PaginationLabels, PaginationProps } from './types'
+
+const DEFAULT_LABELS: PaginationLabels = {
+  navigation: 'Pagination',
+  goToPage: (page) => `Go to page ${page}`,
+  currentPage: (page) => `Page ${page}, current`,
+}
 import styles from './Pagination.module.css'
 
 /**
@@ -14,38 +20,46 @@ import styles from './Pagination.module.css'
  * @see design-system/figma.md for Figma mapping
  * @see docs/components.md for usage examples
  */
-export const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
-  ({ page = 1, totalPages, onChange, disabled = false, className, ...props }, ref) => {
-    return (
-      <nav ref={ref} className={cn(styles.container, className)} aria-label="Pagination" {...props}>
-        {Array.from({ length: totalPages }, (_, i) => {
-          const pageNumber = i + 1
-          const isActive = pageNumber === page
+export function Pagination({
+  page = 1,
+  totalPages,
+  onChange,
+  disabled = false,
+  labels,
+  className,
+  ref,
+  ...props
+}: PaginationProps & { ref?: React.Ref<HTMLElement> }) {
+  const l = { ...DEFAULT_LABELS, ...labels }
+  return (
+    <nav ref={ref} className={cn(styles.container, className)} aria-label={l.navigation} {...props}>
+      {Array.from({ length: totalPages }, (_, i) => {
+        const pageNumber = i + 1
+        const isActive = pageNumber === page
 
-          return (
-            <button
-              key={pageNumber}
-              type="button"
-              className={cn(styles.dotButton, isActive && styles.dotButtonActive)}
-              disabled={disabled}
-              aria-label={isActive ? `Page ${pageNumber}, current` : `Go to page ${pageNumber}`}
-              aria-current={isActive ? 'page' : undefined}
-              onClick={disabled || isActive ? undefined : () => onChange?.(pageNumber)}
-            >
-              <span
-                className={cn(
-                  styles.dot,
-                  isActive && styles.dotActive,
-                  disabled && styles.dotDisabled
-                )}
-                aria-hidden="true"
-              />
-            </button>
-          )
-        })}
-      </nav>
-    )
-  }
-)
+        return (
+          <button
+            key={pageNumber}
+            type="button"
+            className={cn(styles.dotButton, isActive && styles.dotButtonActive)}
+            disabled={disabled}
+            aria-label={isActive ? l.currentPage(pageNumber) : l.goToPage(pageNumber)}
+            aria-current={isActive ? 'page' : undefined}
+            onClick={disabled || isActive ? undefined : () => onChange?.(pageNumber)}
+          >
+            <span
+              className={cn(
+                styles.dot,
+                isActive && styles.dotActive,
+                disabled && styles.dotDisabled
+              )}
+              aria-hidden="true"
+            />
+          </button>
+        )
+      })}
+    </nav>
+  )
+}
 
 Pagination.displayName = 'Pagination'

@@ -21,63 +21,59 @@ import type { ButtonIconSwitchingProps } from './types'
  * Figma: PRIMITIVES / Button Icon Hover Switching (node 3814:5034)
  * Token source: components/primitives/Button/Button.module.css
  */
-export const ButtonIconSwitching = React.forwardRef<HTMLButtonElement, ButtonIconSwitchingProps>(
-  function ButtonIconSwitching(
-    {
-      variant = 'transparent',
-      size = 'lg',
-      shape = 'default',
-      disabled = false,
-      isLoading = false,
-      label,
-      icon,
-      hoverIcon,
-      className,
-      onClick,
-      ...rest
-    },
-    ref
-  ) {
-    const isDisabled = disabled || isLoading
+export function ButtonIconSwitching({
+  variant = 'transparent',
+  size = 'lg',
+  shape = 'default',
+  disabled = false,
+  isLoading = false,
+  label,
+  icon,
+  hoverIcon,
+  className,
+  onClick,
+  ref,
+  ...rest
+}: ButtonIconSwitchingProps & { ref?: React.Ref<HTMLButtonElement> }) {
+  const isDisabled = disabled || isLoading
 
-    function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
-      if (isDisabled) return
-      onClick?.(e)
-    }
-
-    return (
-      <button
-        ref={ref}
-        type="button"
-        aria-label={label}
-        disabled={isDisabled}
-        aria-disabled={isDisabled}
-        aria-busy={isLoading}
-        onClick={handleClick}
-        className={cn(
-          styles.base,
-          styles.iconOnly,
-          variant === 'default' && styles.variantDefault,
-          variant === 'outline' && styles.variantOutline,
-          variant === 'transparent' && styles.variantTransparent,
-          size === 'lg' && styles.sizeLg,
-          size === 'sm' && styles.sizeSm,
-          shape === 'round' && styles.shapeRound,
-          isLoading && styles.loading,
-          isDisabled && styles.disabled,
-          className
-        )}
-        {...rest}
-      >
-        {isLoading ? (
-          <span className={styles.spinner} aria-hidden="true" />
-        ) : (
-          <span className={styles.switchIconWrap} aria-hidden="true">
-            <span className={cn(styles.switchIcon, styles.switchIconDefault)}>{icon}</span>
-            <span className={cn(styles.switchIcon, styles.switchIconHover)}>{hoverIcon}</span>
-          </span>
-        )}
-      </button>
-    )
+  function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
+    if (isDisabled) return
+    onClick?.(e)
   }
-)
+
+  return (
+    <button
+      ref={ref}
+      type="button"
+      aria-label={label}
+      disabled={isDisabled}
+      aria-disabled={isDisabled}
+      aria-busy={isLoading}
+      onClick={handleClick}
+      className={cn(
+        styles.base,
+        styles.iconOnly,
+        variant === 'default' && styles.variantDefault,
+        variant === 'outline' && styles.variantOutline,
+        variant === 'transparent' && styles.variantTransparent,
+        size === 'lg' && styles.sizeLg,
+        size === 'sm' && styles.sizeSm,
+        shape === 'round' && styles.shapeRound,
+        isLoading && styles.loading,
+        isDisabled && styles.disabled,
+        className
+      )}
+      {...rest}
+    >
+      {isLoading ? (
+        <span className={styles.spinner} aria-hidden="true" />
+      ) : (
+        <span className={styles.switchIconWrap} aria-hidden="true">
+          <span className={cn(styles.switchIcon, styles.switchIconDefault)}>{icon}</span>
+          <span className={cn(styles.switchIcon, styles.switchIconHover)}>{hoverIcon}</span>
+        </span>
+      )}
+    </button>
+  )
+}

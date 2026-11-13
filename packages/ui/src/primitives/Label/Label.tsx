@@ -13,29 +13,34 @@ import type { LabelProps } from './types'
  * @see design-system/figma.md for Figma mapping (node 56:186)
  * @see docs/components.md for usage examples
  */
-export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
-  ({ variant = 'default', icon, children, className, ...props }, ref) => {
-    return (
-      <label ref={ref} className={cn(styles.base, className)} {...props}>
-        <span className={styles.labelText}>
-          {variant === 'required' && (
-            <>
-              <span className={styles.asterisk} aria-hidden="true">
-                *
-              </span>
-              <span className={styles.srOnly}>required</span>
-            </>
-          )}
-          {children}
-        </span>
-        {icon && (
-          <span className={styles.iconSlot} aria-hidden="true">
-            {icon}
-          </span>
+export function Label({
+  variant = 'default',
+  icon,
+  children,
+  className,
+  ref,
+  ...props
+}: LabelProps & { ref?: React.Ref<HTMLLabelElement> }) {
+  return (
+    <label ref={ref} className={cn(styles.base, className)} {...props}>
+      <span className={styles.labelText}>
+        {variant === 'required' && (
+          <>
+            <span className={styles.asterisk} aria-hidden="true">
+              *
+            </span>
+            <span className={styles.srOnly}>required</span>
+          </>
         )}
-      </label>
-    )
-  }
-)
+        {children}
+      </span>
+      {icon && (
+        <span className={styles.iconSlot} aria-hidden="true">
+          {icon}
+        </span>
+      )}
+    </label>
+  )
+}
 
 Label.displayName = 'Label'

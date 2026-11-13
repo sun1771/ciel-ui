@@ -14,25 +14,29 @@ import type { RadioButtonProps } from './types'
  * @see design-system/figma.md for Figma mapping (nodes 307:1550, 307:1583)
  * @see docs/components.md for usage examples
  */
-export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
-  ({ children, className, disabled = false, ...props }, ref) => {
-    return (
-      <label className={cn(styles.wrapper, disabled && styles.wrapperDisabled, className)}>
-        <input
-          ref={ref}
-          type="radio"
-          className={styles.input}
-          disabled={disabled}
-          aria-disabled={disabled || undefined}
-          {...props}
-        />
-        <span className={styles.radio} aria-hidden="true">
-          <span className={styles.knob} />
-        </span>
-        {children != null && <span className={styles.label}>{children}</span>}
-      </label>
-    )
-  }
-)
+export function RadioButton({
+  children,
+  className,
+  disabled = false,
+  ref,
+  ...props
+}: RadioButtonProps & { ref?: React.Ref<HTMLInputElement> }) {
+  return (
+    <label className={cn(styles.wrapper, disabled && styles.wrapperDisabled, className)}>
+      <input
+        ref={ref}
+        type="radio"
+        className={styles.input}
+        disabled={disabled}
+        aria-disabled={disabled || undefined}
+        {...props}
+      />
+      <span className={styles.radio} aria-hidden="true">
+        <span className={styles.knob} />
+      </span>
+      {children != null && <span className={styles.label}>{children}</span>}
+    </label>
+  )
+}
 
 RadioButton.displayName = 'RadioButton'

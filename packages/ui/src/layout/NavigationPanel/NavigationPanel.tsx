@@ -32,41 +32,37 @@ export const useNavigationPanel = (): NavigationPanelContextValue =>
  * @see design-system/figma.md → NavigationPanel
  * @see docs/components.md for usage examples
  */
-export const NavigationPanel = React.forwardRef<HTMLElement, NavigationPanelProps>(
-  (
-    {
-      isExpanded = true,
-      onToggle,
-      children,
-      className,
-      'aria-label': ariaLabel = 'Main navigation',
-      ...props
-    },
-    ref
-  ) => {
-    const contextValue = React.useMemo<NavigationPanelContextValue>(
-      () => ({ isExpanded, onToggle }),
-      [isExpanded, onToggle]
-    )
+export function NavigationPanel({
+  isExpanded = true,
+  onToggle,
+  children,
+  className,
+  'aria-label': ariaLabel = 'Main navigation',
+  ref,
+  ...props
+}: NavigationPanelProps & { ref?: React.Ref<HTMLElement> }) {
+  const contextValue = React.useMemo<NavigationPanelContextValue>(
+    () => ({ isExpanded, onToggle }),
+    [isExpanded, onToggle]
+  )
 
-    return (
-      <NavigationPanelContext.Provider value={contextValue}>
-        <nav
-          ref={ref}
-          aria-label={ariaLabel}
-          className={cn(
-            styles.panel,
-            isExpanded ? styles.panelExpanded : styles.panelCollapsed,
-            className
-          )}
-          {...props}
-        >
-          {children}
-        </nav>
-      </NavigationPanelContext.Provider>
-    )
-  }
-)
+  return (
+    <NavigationPanelContext.Provider value={contextValue}>
+      <nav
+        ref={ref}
+        aria-label={ariaLabel}
+        className={cn(
+          styles.panel,
+          isExpanded ? styles.panelExpanded : styles.panelCollapsed,
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </nav>
+    </NavigationPanelContext.Provider>
+  )
+}
 
 NavigationPanel.displayName = 'NavigationPanel'
 
@@ -77,25 +73,29 @@ NavigationPanel.displayName = 'NavigationPanel'
  * ends. Pass `gap="lg"` for the top wrapper that separates the logo item from
  * the primary item group; the default `gap="none"` matches stacked item lists.
  */
-export const NavigationMenuGroup = React.forwardRef<HTMLDivElement, NavigationMenuGroupProps>(
-  ({ gap = 'none', children, className, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        role="group"
-        className={cn(
-          styles.menuGroup,
-          gap === 'xxs' && styles.menuGroupGapXxs,
-          gap === 'md' && styles.menuGroupGapMd,
-          gap === 'lg' && styles.menuGroupGapLg,
-          className
-        )}
-        {...props}
-      >
-        {children}
-      </div>
-    )
-  }
-)
+export function NavigationMenuGroup({
+  gap = 'none',
+  children,
+  className,
+  ref,
+  ...props
+}: NavigationMenuGroupProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return (
+    <div
+      ref={ref}
+      role="group"
+      className={cn(
+        styles.menuGroup,
+        gap === 'xxs' && styles.menuGroupGapXxs,
+        gap === 'md' && styles.menuGroupGapMd,
+        gap === 'lg' && styles.menuGroupGapLg,
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  )
+}
 
 NavigationMenuGroup.displayName = 'NavigationMenuGroup'

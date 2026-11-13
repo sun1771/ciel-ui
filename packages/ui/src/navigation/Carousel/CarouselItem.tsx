@@ -13,35 +13,39 @@ import styles from './Carousel.module.css'
  *
  * @see design-system/figma.md for Figma mapping
  */
-export const CarouselItem = React.forwardRef<HTMLButtonElement, CarouselItemProps>(
-  (
-    { direction, shape = 'round', size = 'lg', label, disabled = false, className, ...props },
-    ref
-  ) => {
-    const iconSize = size === 'lg' ? 24 : 20
+export function CarouselItem({
+  direction,
+  shape = 'round',
+  size = 'lg',
+  label,
+  disabled = false,
+  className,
+  ref,
+  ...props
+}: CarouselItemProps & { ref?: React.Ref<HTMLButtonElement> }) {
+  const iconSize = size === 'lg' ? 24 : 20
 
-    return (
-      <button
-        ref={ref}
-        type="button"
-        aria-label={label}
-        disabled={disabled}
-        className={cn(
-          styles.item,
-          size === 'lg' ? styles.itemLg : styles.itemSm,
-          shape === 'rectangle' && styles.rectangle,
-          className
-        )}
-        {...props}
-      >
-        {direction === 'left' ? (
-          <ChevronLeft size={iconSize} color="currentColor" aria-hidden="true" />
-        ) : (
-          <ChevronRight size={iconSize} color="currentColor" aria-hidden="true" />
-        )}
-      </button>
-    )
-  }
-)
+  return (
+    <button
+      ref={ref}
+      type="button"
+      aria-label={label}
+      disabled={disabled}
+      className={cn(
+        styles.item,
+        size === 'lg' ? styles.itemLg : styles.itemSm,
+        shape === 'rectangle' && styles.rectangle,
+        className
+      )}
+      {...props}
+    >
+      {direction === 'left' ? (
+        <ChevronLeft size={iconSize} color="currentColor" aria-hidden="true" />
+      ) : (
+        <ChevronRight size={iconSize} color="currentColor" aria-hidden="true" />
+      )}
+    </button>
+  )
+}
 
 CarouselItem.displayName = 'CarouselItem'

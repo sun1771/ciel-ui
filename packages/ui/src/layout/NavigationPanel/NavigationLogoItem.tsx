@@ -22,45 +22,41 @@ import styles from './NavigationPanel.module.css'
  * @see design-system/figma.md → NavigationPanel
  * @see docs/components.md for usage examples
  */
-export const NavigationLogoItem = React.forwardRef<HTMLDivElement, NavigationLogoItemProps>(
-  (
-    {
-      logo,
-      collapsedLogo,
-      collapseLabel = 'Collapse navigation',
-      expandLabel = 'Expand navigation',
-      className,
-      ...props
-    },
-    ref
-  ) => {
-    const { isExpanded, onToggle } = useNavigationPanel()
+export function NavigationLogoItem({
+  logo,
+  collapsedLogo,
+  collapseLabel = 'Collapse navigation',
+  expandLabel = 'Expand navigation',
+  className,
+  ref,
+  ...props
+}: NavigationLogoItemProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const { isExpanded, onToggle } = useNavigationPanel()
 
-    if (!isExpanded) {
-      return (
-        <div ref={ref} className={cn(styles.logoItemCollapsed, className)} {...props}>
-          <ButtonIconSwitching
-            label={expandLabel}
-            icon={collapsedLogo ?? logo}
-            hoverIcon={<Expand size={20} />}
-            onClick={onToggle}
-          />
-        </div>
-      )
-    }
-
+  if (!isExpanded) {
     return (
-      <div ref={ref} className={cn(styles.logoItem, className)} {...props}>
-        <span className={styles.logoMark}>{logo}</span>
-        <ButtonIcon
-          label={collapseLabel}
-          icon={<Collapse size={20} />}
-          variant="transparent"
+      <div ref={ref} className={cn(styles.logoItemCollapsed, className)} {...props}>
+        <ButtonIconSwitching
+          label={expandLabel}
+          icon={collapsedLogo ?? logo}
+          hoverIcon={<Expand size={20} />}
           onClick={onToggle}
         />
       </div>
     )
   }
-)
+
+  return (
+    <div ref={ref} className={cn(styles.logoItem, className)} {...props}>
+      <span className={styles.logoMark}>{logo}</span>
+      <ButtonIcon
+        label={collapseLabel}
+        icon={<Collapse size={20} />}
+        variant="transparent"
+        onClick={onToggle}
+      />
+    </div>
+  )
+}
 
 NavigationLogoItem.displayName = 'NavigationLogoItem'

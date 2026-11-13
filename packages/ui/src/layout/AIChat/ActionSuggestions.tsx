@@ -14,24 +14,27 @@ import styles from './AIChat.module.css'
  *
  * @see design-system/figma.md → AI Chat
  */
-export const ActionSuggestions = React.forwardRef<HTMLDivElement, ActionSuggestionsProps>(
-  ({ suggestions, className, ...props }, ref) => {
-    return (
-      <div ref={ref} className={cn(styles.actionSuggestions, className)} {...props}>
-        {suggestions.map((suggestion, i) => (
-          <Button
-            key={`${suggestion.label}-${i}`}
-            variant="outline"
-            size="sm"
-            disabled={suggestion.disabled}
-            onClick={suggestion.onClick}
-          >
-            {suggestion.label}
-          </Button>
-        ))}
-      </div>
-    )
-  }
-)
+export function ActionSuggestions({
+  suggestions,
+  className,
+  ref,
+  ...props
+}: ActionSuggestionsProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return (
+    <div ref={ref} className={cn(styles.actionSuggestions, className)} {...props}>
+      {suggestions.map((suggestion, i) => (
+        <Button
+          key={`${suggestion.label}-${i}`}
+          variant="outline"
+          size="sm"
+          disabled={suggestion.disabled}
+          onClick={suggestion.onClick}
+        >
+          {suggestion.label}
+        </Button>
+      ))}
+    </div>
+  )
+}
 
 ActionSuggestions.displayName = 'ActionSuggestions'

@@ -31,41 +31,45 @@ const DOT_R = 6
  * @see design-system/figma.md for Figma mapping
  * @see docs/components.md for usage examples
  */
-export const Loader = React.forwardRef<HTMLDivElement, LoaderProps>(
-  ({ size = 'md', label = 'Loading', className, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        role="status"
-        aria-label={label}
-        className={cn(styles.root, styles[size], className)}
-        {...props}
+export function Loader({
+  size = 'md',
+  label = 'Loading',
+  className,
+  ref,
+  ...props
+}: LoaderProps & { ref?: React.Ref<HTMLDivElement> }) {
+  return (
+    <div
+      ref={ref}
+      role="status"
+      aria-label={label}
+      className={cn(styles.root, styles[size], className)}
+      {...props}
+    >
+      <svg
+        viewBox="0 0 64 64"
+        xmlns="http://www.w3.org/2000/svg"
+        className={styles.spinner}
+        aria-hidden="true"
       >
-        <svg
-          viewBox="0 0 64 64"
-          xmlns="http://www.w3.org/2000/svg"
-          className={styles.spinner}
-          aria-hidden="true"
-        >
-          {DOTS.map(({ angle, opacity }) => {
-            const rad = (angle - 90) * (Math.PI / 180)
-            const x = CX + ORBIT_R * Math.cos(rad)
-            const y = CY + ORBIT_R * Math.sin(rad)
-            return (
-              <circle
-                key={angle}
-                cx={x}
-                cy={y}
-                r={DOT_R}
-                fill="var(--ds-mapped-surface-action)"
-                opacity={opacity}
-              />
-            )
-          })}
-        </svg>
-      </div>
-    )
-  }
-)
+        {DOTS.map(({ angle, opacity }) => {
+          const rad = (angle - 90) * (Math.PI / 180)
+          const x = CX + ORBIT_R * Math.cos(rad)
+          const y = CY + ORBIT_R * Math.sin(rad)
+          return (
+            <circle
+              key={angle}
+              cx={x}
+              cy={y}
+              r={DOT_R}
+              fill="var(--ds-mapped-surface-action)"
+              opacity={opacity}
+            />
+          )
+        })}
+      </svg>
+    </div>
+  )
+}
 
 Loader.displayName = 'Loader'
