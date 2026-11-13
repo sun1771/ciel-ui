@@ -4,7 +4,7 @@ import { Button } from '@acme/ui'
 import { ButtonVertical } from '@acme/ui'
 import { ButtonIcon } from '@acme/ui'
 import { ButtonIconSwitching } from '@acme/ui'
-import { Search, MapPin, Plus, ArrowRight, Expand, TripOnChatIcon } from '@acme/icons'
+import { Search, MapPin, Plus, ArrowRight, Expand, Sparkle } from '@acme/icons'
 import type { ButtonVariant, ButtonSize } from '@acme/ui'
 
 const variants: ButtonVariant[] = ['default', 'outline', 'transparent']
@@ -375,7 +375,7 @@ export default function ButtonsPreviewPage() {
             <ButtonIconSwitching
               size="lg"
               label="Expand navigation"
-              icon={<TripOnChatIcon size={20} />}
+              icon={<Sparkle size={20} />}
               hoverIcon={<Expand size={20} />}
             />
             <code style={codeStyle}>logo → Expand</code>
@@ -384,7 +384,7 @@ export default function ButtonsPreviewPage() {
             <ButtonIconSwitching
               size="lg"
               label="Open"
-              icon={<TripOnChatIcon size={20} />}
+              icon={<Sparkle size={20} />}
               hoverIcon={<ArrowRight size={20} />}
             />
             <code style={codeStyle}>logo → ArrowRight (Figma)</code>
@@ -398,7 +398,7 @@ export default function ButtonsPreviewPage() {
             <ButtonIconSwitching
               size="sm"
               label="Open — sm"
-              icon={<TripOnChatIcon size={16} />}
+              icon={<Sparkle size={16} />}
               hoverIcon={<ArrowRight size={16} />}
             />
             <code style={codeStyle}>size="sm" · 16px icons</code>
@@ -407,7 +407,7 @@ export default function ButtonsPreviewPage() {
             <ButtonIconSwitching
               size="lg"
               label="Open — lg"
-              icon={<TripOnChatIcon size={20} />}
+              icon={<Sparkle size={20} />}
               hoverIcon={<ArrowRight size={20} />}
             />
             <code style={codeStyle}>size="lg" · 20px icons</code>
@@ -417,7 +417,7 @@ export default function ButtonsPreviewPage() {
               size="lg"
               shape="round"
               label="Open — round"
-              icon={<TripOnChatIcon size={20} />}
+              icon={<Sparkle size={20} />}
               hoverIcon={<ArrowRight size={20} />}
             />
             <code style={codeStyle}>shape="round"</code>
@@ -432,7 +432,7 @@ export default function ButtonsPreviewPage() {
               size="lg"
               disabled
               label="Open — disabled"
-              icon={<TripOnChatIcon size={20} />}
+              icon={<Sparkle size={20} />}
               hoverIcon={<ArrowRight size={20} />}
             />
             <code style={codeStyle}>disabled (no swap)</code>

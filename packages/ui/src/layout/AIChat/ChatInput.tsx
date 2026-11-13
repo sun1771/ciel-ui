@@ -5,8 +5,15 @@ import { cn } from '../../lib/utils'
 import { Mic, Pause, ArrowUp } from '@acme/icons'
 import { ButtonIcon } from '../../primitives/Button'
 import { Tag } from '../../primitives/Tag'
-import type { ChatInputProps, ChatInputStatus } from './types'
+import type { ChatInputLabels, ChatInputProps, ChatInputStatus } from './types'
 import styles from './AIChat.module.css'
+
+const DEFAULT_LABELS: ChatInputLabels = {
+  input: 'Chat input',
+  voiceInput: 'Voice input',
+  send: 'Send message',
+  stop: 'Stop generating',
+}
 
 /**
  * ChatInput — `.AI Chat Piece / Chat input` (Figma node 1263:537).
@@ -27,17 +34,19 @@ export const ChatInput = React.forwardRef<HTMLDivElement, ChatInputProps>(
       disabled = false,
       size = 'sm',
       showTag = false,
-      tagLabel = 'Flight',
+      tagLabel,
       onRemoveTag,
+      labels,
       value = '',
       onChange,
       onSubmit,
-      placeholder = "Let's plan a trip...",
+      placeholder = 'Ask anything…',
       className,
       ...props
     },
     ref
   ) => {
+    const l = { ...DEFAULT_LABELS, ...labels }
     const [isFocused, setIsFocused] = React.useState(false)
 
     const effectiveStatus: ChatInputStatus = React.useMemo(() => {
@@ -81,7 +90,7 @@ export const ChatInput = React.forwardRef<HTMLDivElement, ChatInputProps>(
       <Mic size={20} />
     )
 
-    const buttonLabel = isThinking ? 'Stop generating' : isFilled ? 'Send message' : 'Voice input'
+    const buttonLabel = isThinking ? l.stop : isFilled ? l.send : l.voiceInput
 
     return (
       <div ref={ref} className={cn(styles.container, sizeClass, statusClass, className)} {...props}>
@@ -95,13 +104,13 @@ export const ChatInput = React.forwardRef<HTMLDivElement, ChatInputProps>(
             onBlur={() => setIsFocused(false)}
             placeholder={placeholder}
             disabled={disabled || isThinking}
-            aria-label="Chat input"
+            aria-label={l.input}
             aria-multiline="true"
             className={styles.textarea}
           />
           <div className={styles.bottomRow}>
             <div className={styles.tagContainer}>
-              {isFilled && showTag && (
+              {isFilled && showTag && tagLabel != null && (
                 <Tag size="sm" onDismiss={onRemoveTag}>
                   {tagLabel}
                 </Tag>

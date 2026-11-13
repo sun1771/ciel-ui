@@ -99,6 +99,7 @@ function ControlledDemo({ disabled }: { disabled?: boolean }) {
       value={value}
       onChange={(e) => setValue(e.target.value)}
       onClear={() => setValue('')}
+      icon={<MapPin size={20} />}
       placeholder="Search destination..."
       disabled={disabled}
     />
@@ -130,6 +131,7 @@ function DropdownDemo() {
         setValue('')
         setOpen(false)
       }}
+      icon={<MapPin size={20} />}
       placeholder="Search destination..."
       onFocus={() => setOpen(true)}
       onBlur={() => setTimeout(() => setOpen(false), 150)}
@@ -237,6 +239,7 @@ export default function SearchBoxPreviewPage() {
                 value="San Francisco, CA"
                 onChange={() => {}}
                 onClear={() => {}}
+                icon={<MapPin size={20} />}
                 placeholder="Search destination..."
               />
               <Label>filled (value + clear button)</Label>
@@ -250,6 +253,7 @@ export default function SearchBoxPreviewPage() {
                 value="San Francisco, CA"
                 onChange={() => {}}
                 disabled
+                icon={<MapPin size={20} />}
                 placeholder="Search destination..."
               />
               <Label>disabled={true} (filled)</Label>

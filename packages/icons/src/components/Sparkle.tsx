@@ -1,7 +1,7 @@
 import React from 'react'
 import type { IconProps } from '../types'
 
-export function TripOnChatIcon({ size = 24, className, ...props }: Omit<IconProps, 'color'>) {
+export function Sparkle({ size = 24, className, ...props }: Omit<IconProps, 'color'>) {
   return (
     <svg
       width={size}

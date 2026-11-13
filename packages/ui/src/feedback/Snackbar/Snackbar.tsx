@@ -5,7 +5,9 @@ import { cn } from '../../lib/utils'
 import { X } from '@acme/icons'
 import { ChevronRight } from '@acme/icons'
 import styles from './Snackbar.module.css'
-import type { SnackbarProps } from './types'
+import type { SnackbarLabels, SnackbarProps } from './types'
+
+const DEFAULT_LABELS: SnackbarLabels = { dismiss: 'Dismiss notification' }
 
 /**
  * Snackbar
@@ -27,11 +29,13 @@ export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
       onClose,
       showProgress = false,
       progress = 100,
+      labels,
       className,
       ...props
     },
     ref
   ) => {
+    const l = { ...DEFAULT_LABELS, ...labels }
     const handleActionClick = (e: React.MouseEvent) => {
       if (action?.onClick) {
         e.preventDefault()
@@ -91,7 +95,7 @@ export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
           <button
             type="button"
             className={styles.closeButton}
-            aria-label="Dismiss notification"
+            aria-label={l.dismiss}
             onClick={onClose}
             onKeyDown={handleCloseKeyDown}
           >

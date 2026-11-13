@@ -9,6 +9,7 @@ import {
   NavigationProfileItem,
 } from '@acme/ui'
 import { Calendar, Bag, Map, Info } from '@acme/icons'
+import { Logo } from '@/components/logo'
 
 /** A full sidebar: logo item + primary group on top, and the Setting & Profile
  *  row at the bottom (auto gap fills the height between them). `selected` /
@@ -28,7 +29,10 @@ function DemoPanel({
     <NavigationPanel isExpanded={expanded} onToggle={onToggle}>
       {/* Part 1 — logo item separated (gap="lg") from the primary item group */}
       <NavigationMenuGroup gap="lg">
-        <NavigationLogoItem />
+        <NavigationLogoItem
+          logo={<Logo size={32} alt="TripOn AI" />}
+          collapsedLogo={<Logo size={32} alt="" />}
+        />
         {/* Main group — 4px (xxs) gap between items; long labels truncate to … */}
         <NavigationMenuGroup gap="xxs">
           <NavigationMenuItem

@@ -62,7 +62,7 @@
   color: var(--ds-mapped-text-disabled);
 }
 
-/* Loaded=False action button — the TripOn sparkle uses hardcoded brand-blue
+/* Loaded=False action button — the Sparkle icon uses hardcoded brand-blue
    fills (not currentColor), so the disabled button's text color can't gray it.
    Grayscale + reduced opacity matches Figma's dimmed disabled sparkle without
    hardcoding a color. */

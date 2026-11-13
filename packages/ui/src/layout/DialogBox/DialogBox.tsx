@@ -4,7 +4,9 @@ import React, { useEffect, useRef, useCallback } from 'react'
 import ReactDOM from 'react-dom'
 import { cn } from '../../lib/utils'
 import { X } from '@acme/icons'
-import type { DialogBoxProps } from './types'
+import type { DialogBoxLabels, DialogBoxProps } from './types'
+
+const DEFAULT_LABELS: DialogBoxLabels = { close: 'Close dialog' }
 import styles from './DialogBox.module.css'
 
 /**
@@ -27,8 +29,10 @@ export function DialogBox({
   showSecondary = false,
   secondaryLabel = 'Cancel',
   onSecondary,
+  labels,
   className,
 }: DialogBoxProps) {
+  const l = { ...DEFAULT_LABELS, ...labels }
   const dialogRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<Element | null>(null)
 
@@ -127,7 +131,7 @@ export function DialogBox({
             <button
               type="button"
               className={styles.closeButton}
-              aria-label="Close dialog"
+              aria-label={l.close}
               onClick={onClose}
             >
               <X size={20} />

@@ -4,8 +4,10 @@ import React from 'react'
 import { cn } from '../../lib/utils'
 import { Copy, Edit } from '@acme/icons'
 import { ButtonIcon } from '../../primitives/Button'
-import type { UserBubbleProps } from './types'
+import type { UserBubbleLabels, UserBubbleProps } from './types'
 import styles from './AIChat.module.css'
+
+const DEFAULT_LABELS: UserBubbleLabels = { copy: 'Copy', edit: 'Edit' }
 
 /**
  * UserBubble — `.AI Chat Piece / User Bubble` (Figma node 2132:1446).
@@ -20,7 +22,11 @@ import styles from './AIChat.module.css'
  * @see design-system/figma.md → AI Chat
  */
 export const UserBubble = React.forwardRef<HTMLDivElement, UserBubbleProps>(
-  ({ size = 'sm', children, showActions = true, onCopy, onEdit, className, ...props }, ref) => {
+  (
+    { size = 'sm', children, showActions = true, labels, onCopy, onEdit, className, ...props },
+    ref
+  ) => {
+    const l = { ...DEFAULT_LABELS, ...labels }
     return (
       <div ref={ref} data-size={size} className={cn(styles.userBubble, className)} {...props}>
         <div className={cn(styles.userBubbleBox, size === 'lg' && styles.userBubbleBoxLg)}>
@@ -32,14 +38,14 @@ export const UserBubble = React.forwardRef<HTMLDivElement, UserBubbleProps>(
             <ButtonIcon
               variant="transparent"
               size="sm"
-              label="Copy"
+              label={l.copy}
               icon={<Copy size={16} />}
               onClick={onCopy}
             />
             <ButtonIcon
               variant="transparent"
               size="sm"
-              label="Edit"
+              label={l.edit}
               icon={<Edit size={16} />}
               onClick={onEdit}
             />

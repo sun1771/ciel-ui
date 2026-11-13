@@ -3,7 +3,6 @@
 import React from 'react'
 import { cn } from '../../lib/utils'
 import { ButtonIcon, ButtonIconSwitching } from '../../primitives/Button'
-import { Logo } from '../../logo'
 import { Collapse, Expand } from '@acme/icons'
 import type { NavigationLogoItemProps } from './types'
 import { useNavigationPanel } from './NavigationPanel'
@@ -13,7 +12,7 @@ import styles from './NavigationPanel.module.css'
  * NavigationLogoItem
  * The special logo menu item (Type=logo) that heads a NavigationPanel.
  *
- * - Expanded: the brand logo on the left and a transparent collapse ButtonIcon
+ * - Expanded: the `logo` slot on the left and a transparent collapse ButtonIcon
  *   on the right.
  * - Collapsed: the logo becomes the toggle — it swaps to an expand arrow on
  *   hover/focus via ButtonIconSwitching.
@@ -26,7 +25,8 @@ import styles from './NavigationPanel.module.css'
 export const NavigationLogoItem = React.forwardRef<HTMLDivElement, NavigationLogoItemProps>(
   (
     {
-      logoAlt = 'TripOn AI',
+      logo,
+      collapsedLogo,
       collapseLabel = 'Collapse navigation',
       expandLabel = 'Expand navigation',
       className,
@@ -41,7 +41,7 @@ export const NavigationLogoItem = React.forwardRef<HTMLDivElement, NavigationLog
         <div ref={ref} className={cn(styles.logoItemCollapsed, className)} {...props}>
           <ButtonIconSwitching
             label={expandLabel}
-            icon={<Logo size={32} alt="" />}
+            icon={collapsedLogo ?? logo}
             hoverIcon={<Expand size={20} />}
             onClick={onToggle}
           />
@@ -51,9 +51,7 @@ export const NavigationLogoItem = React.forwardRef<HTMLDivElement, NavigationLog
 
     return (
       <div ref={ref} className={cn(styles.logoItem, className)} {...props}>
-        <span className={styles.logoMark}>
-          <Logo size={32} alt={logoAlt} />
-        </span>
+        <span className={styles.logoMark}>{logo}</span>
         <ButtonIcon
           label={collapseLabel}
           icon={<Collapse size={20} />}

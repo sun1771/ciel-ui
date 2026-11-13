@@ -53,7 +53,7 @@ export default function ButtonGroupPreviewPage() {
         </p>
       </div>
 
-      {/* ========== Button Group — button-group variant ========== */}
+      {/* ========== Button Group — icon + label items ========== */}
       <section style={{ marginBottom: '64px' }}>
         <h2
           style={{
@@ -82,7 +82,7 @@ export default function ButtonGroupPreviewPage() {
             Interactive selection (click to select)
           </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <ButtonGroup variant="button-group">
+            <ButtonGroup>
               <ButtonGroupItem
                 isSelected={selected1 === 0}
                 onClick={() => setSelected1(0)}
@@ -274,7 +274,7 @@ export default function ButtonGroupPreviewPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           {/* Interactive icon group */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <ButtonGroup variant="icon-group">
+            <ButtonGroup>
               <ButtonGroupItem
                 isSelected={selectedIcon === 0}
                 onClick={() => setSelectedIcon(0)}
@@ -301,13 +301,13 @@ export default function ButtonGroupPreviewPage() {
                 fontFamily: 'monospace',
               }}
             >
-              variant=&quot;icon-group&quot; — icon-only items with aria-label
+              icon-only items — give each an aria-label
             </code>
           </div>
 
           {/* Icon group with disabled */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <ButtonGroup variant="icon-group">
+            <ButtonGroup>
               <ButtonGroupItem isSelected icon={<Info size={20} />} aria-label="Info" />
               <ButtonGroupItem icon={<Calendar size={20} />} aria-label="Calendar" />
               <ButtonGroupItem

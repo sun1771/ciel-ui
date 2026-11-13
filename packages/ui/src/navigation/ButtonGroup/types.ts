@@ -1,10 +1,7 @@
 import React from 'react'
 
-export type ButtonGroupVariant = 'button-group' | 'icon-group'
-
 /** Props for the ButtonGroup container component */
 export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: ButtonGroupVariant
   children: React.ReactNode
   className?: string
 }

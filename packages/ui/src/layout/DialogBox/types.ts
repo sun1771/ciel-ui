@@ -1,7 +1,15 @@
 import React from 'react'
 
 /** Props for the DialogBox layout component */
+/** Accessible names used by DialogBox. */
+export interface DialogBoxLabels {
+  /** Close (X) button name. */
+  close: string
+}
+
 export interface DialogBoxProps {
+  /** Override accessible names (e.g. for localisation). */
+  labels?: Partial<DialogBoxLabels>
   /** Controls dialog visibility — mounts/unmounts the portal */
   isOpen: boolean
   /** Heading text rendered as H6 */

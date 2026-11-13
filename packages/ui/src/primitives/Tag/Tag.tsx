@@ -3,7 +3,9 @@
 import React from 'react'
 import { cn } from '../../lib/utils'
 import { X } from '@acme/icons'
-import type { TagProps } from './types'
+import type { TagLabels, TagProps } from './types'
+
+const DEFAULT_LABELS: TagLabels = { dismiss: 'Dismiss' }
 import styles from './Tag.module.css'
 
 /**
@@ -14,7 +16,8 @@ import styles from './Tag.module.css'
  * @see docs/components.md for usage examples
  */
 export const Tag = React.forwardRef<HTMLDivElement, TagProps>(
-  ({ size = 'lg', disabled = false, onDismiss, className, children, ...props }, ref) => {
+  ({ size = 'lg', disabled = false, onDismiss, labels, className, children, ...props }, ref) => {
+    const l = { ...DEFAULT_LABELS, ...labels }
     const iconSize = size === 'lg' ? 20 : 16
 
     return (
@@ -30,7 +33,7 @@ export const Tag = React.forwardRef<HTMLDivElement, TagProps>(
             className={styles.dismissButton}
             onClick={onDismiss}
             disabled={disabled}
-            aria-label="Dismiss"
+            aria-label={l.dismiss}
           >
             <span aria-hidden="true">
               <X size={iconSize} />

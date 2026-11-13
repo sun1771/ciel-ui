@@ -26,8 +26,17 @@ export interface NavigationLogoItemProps extends Omit<
   React.HTMLAttributes<HTMLDivElement>,
   'children'
 > {
-  /** Accessible name for the brand logo. Defaults to "TripOn AI". */
-  logoAlt?: string
+  /**
+   * Your brand mark, shown when the panel is expanded (e.g. an `<img>` or SVG
+   * with its own accessible name).
+   */
+  logo: React.ReactNode
+  /**
+   * Mark shown in the collapsed rail, where it doubles as the expand button.
+   * It is decorative there (the button carries `expandLabel`), so give images
+   * `alt=""`. Defaults to `logo`.
+   */
+  collapsedLogo?: React.ReactNode
   /** aria-label for the collapse control shown when the panel is expanded. */
   collapseLabel?: string
   /** aria-label for the expand control shown when the panel is collapsed. */

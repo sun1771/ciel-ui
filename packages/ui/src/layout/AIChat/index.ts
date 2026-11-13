@@ -24,4 +24,9 @@ export type {
   ActionSuggestionsProps,
   ActionSuggestion,
   ResponseReactionBarProps,
+  AIChatLabels,
+  ChatInputLabels,
+  UserBubbleLabels,
+  AgentResponseModeLabels,
+  ResponseReactionBarLabels,
 } from './types'

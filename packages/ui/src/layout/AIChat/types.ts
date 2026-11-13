@@ -80,8 +80,19 @@ export interface ActionSuggestionsProps extends React.HTMLAttributes<HTMLDivElem
   suggestions: ActionSuggestion[]
 }
 
+/** Accessible names for the reaction bar buttons. */
+export interface ResponseReactionBarLabels {
+  copy: string
+  goodResponse: string
+  badResponse: string
+  share: string
+  moreOptions: string
+}
+
 /** .Response reaction bar — icon buttons for reacting to an agent response. */
 export interface ResponseReactionBarProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Override the buttons' accessible names (e.g. for localisation). */
+  labels?: Partial<ResponseReactionBarLabels>
   onCopy?: () => void
   onThumbsUp?: () => void
   onThumbsDown?: () => void
@@ -89,8 +100,22 @@ export interface ResponseReactionBarProps extends React.HTMLAttributes<HTMLDivEl
   onMore?: () => void
 }
 
+/** Text used by the agent identity row. */
+export interface AgentResponseModeLabels {
+  /** Screen-reader label for the loading spinner. */
+  generating: string
+  /** Visible status text while thinking. */
+  thinking: string
+  /** Label of the "Show Thinking" disclosure. */
+  showThinking: string
+}
+
 /** .Agent Response Mode — the agent sparkle row + optional thinking control. */
 export interface AgentResponseModeProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Agent avatar/icon. Default: the Sparkle icon. */
+  icon?: React.ReactNode
+  /** Override the row's text (e.g. for localisation). */
+  labels?: Partial<AgentResponseModeLabels>
   /** True shows the "Show Thinking" expander / "Thinking…" status. Default: false. */
   thinkingMode?: boolean
   /** Whether the response has loaded. Default: 'loaded'. */
@@ -105,6 +130,10 @@ export interface AgentResponseModeProps extends React.HTMLAttributes<HTMLDivElem
 
 /** .AI Chat Piece / Agent Bubble — a full agent message. */
 export interface AgentBubbleProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Agent avatar/icon. Default: the Sparkle icon. */
+  icon?: React.ReactNode
+  /** Override the bubble's text and button names (e.g. for localisation). */
+  labels?: Partial<AgentResponseModeLabels & ResponseReactionBarLabels>
   /** Figma "Mode" property. Default: 'normal'. */
   mode?: 'normal' | 'thinking'
   /** Figma "Response Loaded" property. Default: true. */
@@ -142,8 +171,28 @@ export interface UserBubbleProps extends Omit<React.HTMLAttributes<HTMLDivElemen
   children: React.ReactNode
   /** Whether to render the copy/edit action bar. Default: true. */
   showActions?: boolean
+  /** Override the action buttons' accessible names. */
+  labels?: Partial<UserBubbleLabels>
   onCopy?: () => void
   onEdit?: () => void
+}
+
+/** Accessible names for the user bubble's action buttons. */
+export interface UserBubbleLabels {
+  copy: string
+  edit: string
+}
+
+/** Accessible names used by the chat input. */
+export interface ChatInputLabels {
+  /** Name of the textarea. */
+  input: string
+  /** Action button name while the input is empty. */
+  voiceInput: string
+  /** Action button name while there is text to send. */
+  send: string
+  /** Action button name while the agent is responding. */
+  stop: string
 }
 
 /** .AI Chat Piece / Chat input — the bottom-attached input field. */
@@ -160,17 +209,27 @@ export interface ChatInputProps extends Omit<
   /** Show the tag pill (only visible when filled). */
   showTag?: boolean
   /** Tag pill label. */
-  tagLabel?: string
+  tagLabel?: React.ReactNode
   /** Called when the tag pill is dismissed. */
   onRemoveTag?: () => void
+  /** Override accessible names (e.g. for localisation). */
+  labels?: Partial<ChatInputLabels>
   /** Controlled textarea value. */
   value?: string
   /** Textarea change handler. */
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
   /** Called with the current value when the user submits. */
   onSubmit?: (text: string) => void
-  /** Placeholder text. */
+  /** Placeholder text. Default: 'Ask anything…'. */
   placeholder?: string
+}
+
+/** Accessible names used by the chat panel and its embedded input. */
+export interface AIChatLabels extends ChatInputLabels {
+  /** Expand control in the collapsed rail. */
+  expand: string
+  /** Collapse control in the header. */
+  collapse: string
 }
 
 /** AI Chat — the full assembled chat panel. */
@@ -180,8 +239,12 @@ export interface AIChatProps extends Omit<
 > {
   /** Figma "State" property. Default: 'default'. */
   state?: AIChatState
-  /** Header title. Default: 'TripOn Agent'. */
+  /** Header title. Default: 'Assistant'. */
   title?: string
+  /** Agent icon shown in the header and the collapsed rail. Default: the Sparkle icon. */
+  icon?: React.ReactNode
+  /** Override accessible names (e.g. for localisation). */
+  labels?: Partial<AIChatLabels>
   /** Called when the header collapse arrow is clicked. */
   onCollapse?: () => void
   /** Called when the collapsed logo is clicked to re-expand. */
@@ -201,7 +264,7 @@ export interface AIChatProps extends Omit<
   /** Show the tag pill in the embedded chat input. */
   showTag?: boolean
   /** Tag pill label for the embedded chat input. */
-  tagLabel?: string
+  tagLabel?: React.ReactNode
   /** Called when the embedded chat input tag is dismissed. */
   onRemoveTag?: () => void
   /** Placeholder for the embedded chat input. */

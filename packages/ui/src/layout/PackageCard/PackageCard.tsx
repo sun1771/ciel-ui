@@ -1,14 +1,23 @@
 import React from 'react'
-import { TripOnChatIcon } from '@acme/icons'
+import { Sparkle } from '@acme/icons'
 import { ButtonIcon } from '../../primitives/Button'
 import { CarouselItem } from '../../navigation/Carousel'
 import { cn } from '../../lib/utils'
 import styles from './PackageCard.module.css'
-import type { PackageCardProps } from './types'
+import type { PackageCardLabels, PackageCardProps } from './types'
+
+const DEFAULT_LABELS: PackageCardLabels = {
+  action: 'AI actions',
+  pageNavigation: 'Page navigation',
+  previousPage: 'Previous page',
+  nextPage: 'Next page',
+}
+
+const defaultFormatPageLabel = (page: number) => `Day ${page}`
 
 /**
  * PackageCard
- * Card container with a heading, TripOn AI action button, and built-in page navigation.
+ * Card container with a heading, an action button, and built-in page navigation.
  * variant="default" — prev/next arrows only.
  * variant="itinerary" — prev / "Day N" / next in the header.
  * loaded=false — content not yet generated: shows the `emptyText` placeholder and
@@ -22,19 +31,23 @@ export const PackageCard = React.forwardRef<HTMLDivElement, PackageCardProps>(
     {
       variant = 'default',
       loaded = true,
-      emptyText = 'Not curated yet.',
+      emptyText = 'Nothing here yet.',
       heading,
       page = 1,
       totalPages = 1,
       onPrevPage,
       onNextPage,
       onAction,
+      actionIcon = <Sparkle size={16} />,
+      formatPageLabel = defaultFormatPageLabel,
+      labels,
       children,
       className,
       ...props
     },
     ref
   ) => {
+    const l = { ...DEFAULT_LABELS, ...labels }
     // When not loaded, all interactive controls are disabled (Figma `Loaded=False`).
     const isPrevDisabled = !loaded || page <= 1
     const isNextDisabled = !loaded || page >= totalPages
@@ -46,10 +59,10 @@ export const PackageCard = React.forwardRef<HTMLDivElement, PackageCardProps>(
           {/* H8 heading */}
           <span className={styles.heading}>{heading ?? ''}</span>
 
-          {/* TripOn AI action button */}
+          {/* Action button */}
           <ButtonIcon
-            icon={<TripOnChatIcon size={16} />}
-            label="TripOn AI action"
+            icon={actionIcon}
+            label={l.action}
             onClick={onAction}
             disabled={!loaded}
             className={!loaded ? styles.actionDisabled : undefined}
@@ -59,11 +72,11 @@ export const PackageCard = React.forwardRef<HTMLDivElement, PackageCardProps>(
           />
 
           {/* Navigation group */}
-          <div className={styles.nav} role="group" aria-label="Page navigation">
+          <div className={styles.nav} role="group" aria-label={l.pageNavigation}>
             <CarouselItem
               direction="left"
               size="sm"
-              label="Previous page"
+              label={l.previousPage}
               disabled={isPrevDisabled}
               onClick={onPrevPage}
             />
@@ -73,14 +86,14 @@ export const PackageCard = React.forwardRef<HTMLDivElement, PackageCardProps>(
                 className={cn(styles.dayLabel, !loaded && styles.dayLabelDisabled)}
                 aria-live="polite"
               >
-                Day {page}
+                {formatPageLabel(page)}
               </span>
             )}
 
             <CarouselItem
               direction="right"
               size="sm"
-              label="Next page"
+              label={l.nextPage}
               disabled={isNextDisabled}
               onClick={onNextPage}
             />

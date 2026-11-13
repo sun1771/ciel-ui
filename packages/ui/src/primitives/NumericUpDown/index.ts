@@ -1,2 +1,2 @@
 export { NumericUpDown } from './NumericUpDown'
-export type { NumericUpDownProps } from './types'
+export type { NumericUpDownProps, NumericUpDownLabels } from './types'

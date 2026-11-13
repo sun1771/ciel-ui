@@ -1,6 +1,6 @@
 'use client'
 
-import { Logo } from '@acme/ui'
+import { Logo } from '@/components/logo'
 
 const sizes = [16, 20, 24, 32] as const
 
@@ -135,7 +135,7 @@ export default function LogoPreviewPage() {
           color: 'var(--ds-mapped-text-placeholder)',
         }}
       >
-        {"import { Logo } from '@acme/ui'"}
+        {"import { Logo } from '@/components/logo'"}
       </code>
     </div>
   )

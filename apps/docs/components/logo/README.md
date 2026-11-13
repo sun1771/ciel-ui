@@ -32,10 +32,10 @@ logo/
 
 ```tsx
 // main repo (tripon-ai)
-import { Logo } from '@acme/ui'
+import { Logo } from '@/components/logo'
 
 // preview repo (test_rendered)
-import { Logo } from '@acme/ui'
+import { Logo } from '@/components/logo'
 
 <Logo />              {/* defaults to size 24 */}
 <Logo size={32} />

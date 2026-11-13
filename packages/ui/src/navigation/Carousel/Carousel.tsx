@@ -4,7 +4,9 @@ import React, { useState } from 'react'
 import { Pagination } from '../Pagination'
 import { cn } from '../../lib/utils'
 import { CarouselItem } from './CarouselItem'
-import type { CarouselProps } from './types'
+import type { CarouselLabels, CarouselProps } from './types'
+
+const DEFAULT_LABELS: CarouselLabels = { previous: 'Previous slide', next: 'Next slide' }
 import styles from './Carousel.module.css'
 
 /**
@@ -15,7 +17,11 @@ import styles from './Carousel.module.css'
  * @see design-system/figma.md for Figma mapping
  */
 export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
-  ({ size = 'lg', shape = 'round', disabled = false, children, className, ...props }, ref) => {
+  (
+    { size = 'lg', shape = 'round', disabled = false, labels, children, className, ...props },
+    ref
+  ) => {
+    const l = { ...DEFAULT_LABELS, ...labels }
     const slides = React.Children.toArray(children)
     const totalSlides = slides.length
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -42,7 +48,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
               direction="left"
               shape={shape}
               size={size}
-              label="Previous slide"
+              label={l.previous}
               disabled={disabled || currentIndex === 0}
               onClick={handlePrev}
             />
@@ -50,7 +56,7 @@ export const Carousel = React.forwardRef<HTMLDivElement, CarouselProps>(
               direction="right"
               shape={shape}
               size={size}
-              label="Next slide"
+              label={l.next}
               disabled={disabled || currentIndex === totalSlides - 1}
               onClick={handleNext}
             />

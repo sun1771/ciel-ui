@@ -1,21 +1,26 @@
 'use client'
 
 import React from 'react'
-import { MapPin, X } from '@acme/icons'
+import { Search, X } from '@acme/icons'
 import { cn } from '../../lib/utils'
 import styles from './SearchBox.module.css'
-import type { SearchBoxProps } from './types'
+import type { SearchBoxLabels, SearchBoxProps } from './types'
+
+const DEFAULT_LABELS: SearchBoxLabels = { clear: 'Clear search' }
 
 /**
  * SearchBox
  * Pill-shaped search input with a left icon, text field, optional clear button, and optional dropdown.
- * Left icon defaults to MapPin (destination search) per Figma spec.
+ * The left icon defaults to Search; pass `icon` to change it (e.g. MapPin for a destination search).
  *
- * @see design-system/figma.md for Figma mapping
- * @see docs/components.md for usage examples
+ * The forwarded `ref` points at the native `<input>`; object and callback refs are both supported.
  */
 export const SearchBox = React.forwardRef<HTMLInputElement, SearchBoxProps>(
-  ({ icon, onClear, children, className, disabled = false, value, ...props }, ref) => {
+  ({ icon, onClear, labels, children, className, disabled = false, value, ...props }, ref) => {
+    const l = { ...DEFAULT_LABELS, ...labels }
+    const inputRef = React.useRef<HTMLInputElement>(null)
+    React.useImperativeHandle(ref, () => inputRef.current as HTMLInputElement, [])
+
     const hasValue = typeof value === 'string' && value.length > 0
     const showClear = hasValue && !!onClear && !disabled
 
@@ -26,26 +31,25 @@ export const SearchBox = React.forwardRef<HTMLInputElement, SearchBoxProps>(
         className={cn(styles.wrapper, disabled && styles.disabled, className)}
         // Clicking anywhere on the wrapper focuses the input
         onClick={() => {
-          if (!disabled) {
-            const input = (ref as React.RefObject<HTMLInputElement>)?.current
-            input?.focus()
-          }
+          if (!disabled) inputRef.current?.focus()
         }}
       >
-        // Left icon — MapPin by default per Figma
+        {/* Left icon */}
         <span className={styles.icon} aria-hidden="true">
-          {icon ?? <MapPin size={20} />}
+          {icon ?? <Search size={20} />}
         </span>
-        // Native input
+
+        {/* Native input */}
         <input
-          ref={ref}
+          ref={inputRef}
           className={styles.input}
           disabled={disabled}
           value={value}
           aria-disabled={disabled || undefined}
           {...props}
         />
-        // Clear button — only when value is non-empty and onClear is provided
+
+        {/* Clear button — only when value is non-empty and onClear is provided */}
         {showClear && (
           <button
             type="button"
@@ -53,13 +57,15 @@ export const SearchBox = React.forwardRef<HTMLInputElement, SearchBoxProps>(
             onClick={(e) => {
               e.stopPropagation()
               onClear()
+              inputRef.current?.focus()
             }}
-            aria-label="Clear search"
+            aria-label={l.clear}
           >
             <X size={20} aria-hidden="true" />
           </button>
         )}
-        // Dropdown panel — parent controls visibility by passing children
+
+        {/* Dropdown panel — parent controls visibility by passing children */}
         {children && (
           <div className={styles.dropdown} role="listbox">
             {children}

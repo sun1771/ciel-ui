@@ -10,7 +10,15 @@ export interface SnackbarAction {
 }
 
 /** Props for the Snackbar component. */
+/** Accessible names used by Snackbar. */
+export interface SnackbarLabels {
+  /** Close (X) button name. */
+  dismiss: string
+}
+
 export interface SnackbarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
+  /** Override accessible names (e.g. for localisation). */
+  labels?: Partial<SnackbarLabels>
   /** Visual status variant — controls title color and progress bar color. */
   variant?: SnackbarVariant
   /** Icon rendered in the left slot (20×20). */

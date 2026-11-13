@@ -343,7 +343,7 @@
   width: 708px;
 }
 
-/* Header — TripOn Agent */
+/* Header — agent icon + title + collapse */
 .header {
   display: flex;
   align-items: center;
@@ -359,6 +359,18 @@
   align-items: center;
   gap: var(--ds-alias-spacing-xs);
   height: 40px;
+}
+
+/* Decorative agent icon — same box as the lg icon-only ButtonIcon beside it so the
+   header layout is unchanged, but not focusable (it has no action). */
+.headerIcon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ds-alias-spacing-xs);
+  border: var(--ds-alias-border-width-sm) solid transparent;
+  color: var(--ds-mapped-icon-default);
 }
 
 .headerTitle {

@@ -1,7 +1,17 @@
 import React from 'react'
 
 /** Props for the NumericUpDown stepper component. Root element is a <div>. */
+/** Accessible names used by NumericUpDown. */
+export interface NumericUpDownLabels {
+  /** Minus button name. */
+  decrease: string
+  /** Plus button name. */
+  increase: string
+}
+
 export interface NumericUpDownProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+  /** Override accessible names (e.g. for localisation). */
+  labels?: Partial<NumericUpDownLabels>
   /** Controlled current value. Default: 0 */
   value?: number
   /** Minimum allowed value. Decrement button is disabled when value <= min. */

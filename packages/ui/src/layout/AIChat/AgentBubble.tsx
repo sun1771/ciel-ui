@@ -47,6 +47,8 @@ export const AgentBubble = React.forwardRef<HTMLDivElement, AgentBubbleProps>(
       onThumbsDown,
       onShare,
       onMore,
+      icon,
+      labels,
       className,
       ...props
     },
@@ -65,6 +67,8 @@ export const AgentBubble = React.forwardRef<HTMLDivElement, AgentBubbleProps>(
           thinkingExpanded={thinkingExpanded}
           onToggleThinking={onToggleThinking}
           thinkingContent={thinkingContent}
+          icon={icon}
+          labels={labels}
         />
 
         {responseLoaded && (
@@ -78,6 +82,7 @@ export const AgentBubble = React.forwardRef<HTMLDivElement, AgentBubbleProps>(
 
         {responseLoaded && showReactionBar && (
           <ResponseReactionBar
+            labels={labels}
             onCopy={onCopy}
             onThumbsUp={onThumbsUp}
             onThumbsDown={onThumbsDown}

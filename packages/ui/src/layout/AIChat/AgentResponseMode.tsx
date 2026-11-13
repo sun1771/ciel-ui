@@ -2,16 +2,22 @@
 
 import React from 'react'
 import { cn } from '../../lib/utils'
-import { TripOnChatIcon } from '@acme/icons'
+import { Sparkle } from '@acme/icons'
 import { Separator } from '../../primitives/Separator'
 import { Loader } from '../../feedback/Loader'
 import { Expander } from '../../navigation/Expander'
-import type { AgentResponseModeProps } from './types'
+import type { AgentResponseModeLabels, AgentResponseModeProps } from './types'
 import styles from './AIChat.module.css'
+
+const DEFAULT_LABELS: AgentResponseModeLabels = {
+  generating: 'Generating response',
+  thinking: 'Thinking...',
+  showThinking: 'Show Thinking',
+}
 
 /**
  * AgentResponseMode — `.Agent Response Mode` (Figma node 2078:3215).
- * The agent identity row: the TripOn sparkle icon, plus — in thinking mode — a
+ * The agent identity row: the agent icon (Sparkle by default), plus — in thinking mode — a
  * "Show Thinking" disclosure (loaded) or a "Thinking…" loading status (loading).
  *
  * The disclosure reuses the navigation `Expander` (size="sm"); its children are
@@ -33,11 +39,14 @@ export const AgentResponseMode = React.forwardRef<HTMLDivElement, AgentResponseM
       thinkingExpanded = false,
       onToggleThinking,
       thinkingContent,
+      icon = <Sparkle size={20} />,
+      labels,
       className,
       ...props
     },
     ref
   ) => {
+    const l = { ...DEFAULT_LABELS, ...labels }
     const isLoading = status === 'loading'
 
     return (
@@ -52,19 +61,19 @@ export const AgentResponseMode = React.forwardRef<HTMLDivElement, AgentResponseM
       >
         <div className={styles.responseModeRow}>
           <span className={styles.sparkle} aria-hidden="true">
-            <TripOnChatIcon size={20} />
+            {icon}
           </span>
 
           {isLoading && (
             <div className={styles.thinkingStatus}>
-              <Loader size="xxs" label="Generating response" />
-              {thinkingMode && <p className={styles.thinkingStatusText}>Thinking...</p>}
+              <Loader size="xxs" label={l.generating} />
+              {thinkingMode && <p className={styles.thinkingStatusText}>{l.thinking}</p>}
             </div>
           )}
 
           {thinkingMode && !isLoading && (
             <Expander
-              label="Show Thinking"
+              label={l.showThinking}
               size="sm"
               isExpanded={thinkingExpanded}
               onToggle={onToggleThinking}

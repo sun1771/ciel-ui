@@ -1,2 +1,2 @@
 export { PackageCard } from './PackageCard'
-export type { PackageCardProps, PackageCardVariant } from './types'
+export type { PackageCardProps, PackageCardVariant, PackageCardLabels } from './types'

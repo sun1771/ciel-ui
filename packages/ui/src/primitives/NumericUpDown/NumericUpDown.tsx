@@ -3,7 +3,9 @@
 import React from 'react'
 import { cn } from '../../lib/utils'
 import { Minus, Plus } from '@acme/icons'
-import type { NumericUpDownProps } from './types'
+import type { NumericUpDownLabels, NumericUpDownProps } from './types'
+
+const DEFAULT_LABELS: NumericUpDownLabels = { decrease: 'Decrease', increase: 'Increase' }
 import styles from './NumericUpDown.module.css'
 
 /**
@@ -14,7 +16,8 @@ import styles from './NumericUpDown.module.css'
  * @see docs/components.md for usage examples
  */
 export const NumericUpDown = React.forwardRef<HTMLDivElement, NumericUpDownProps>(
-  ({ value = 0, min, max, onChange, disabled = false, className, ...props }, ref) => {
+  ({ value = 0, min, max, onChange, disabled = false, labels, className, ...props }, ref) => {
+    const l = { ...DEFAULT_LABELS, ...labels }
     const decrementDisabled = disabled || (min !== undefined && value <= min)
     const incrementDisabled = disabled || (max !== undefined && value >= max)
 
@@ -37,7 +40,7 @@ export const NumericUpDown = React.forwardRef<HTMLDivElement, NumericUpDownProps
           className={styles.button}
           onClick={handleDecrement}
           disabled={decrementDisabled}
-          aria-label="Decrease"
+          aria-label={l.decrease}
         >
           <span aria-hidden="true">
             <Minus size={16} />
@@ -53,7 +56,7 @@ export const NumericUpDown = React.forwardRef<HTMLDivElement, NumericUpDownProps
           className={styles.button}
           onClick={handleIncrement}
           disabled={incrementDisabled}
-          aria-label="Increase"
+          aria-label={l.increase}
         >
           <span aria-hidden="true">
             <Plus size={16} />

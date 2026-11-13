@@ -1,2 +1,2 @@
 export { SearchBox } from './SearchBox'
-export type { SearchBoxProps } from './types'
+export type { SearchBoxProps, SearchBoxLabels } from './types'

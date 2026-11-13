@@ -147,6 +147,8 @@ export default function AIChatPreviewPage() {
         <div style={panelFrame}>
           <AIChat
             state={chatState}
+            title="Trip Planner"
+            placeholder="Let's plan a trip..."
             inputValue={value}
             onInputChange={(e) => setValue(e.target.value)}
             onSubmit={(t) => {

@@ -18,7 +18,17 @@ export interface CarouselItemProps extends React.ButtonHTMLAttributes<HTMLButton
 }
 
 /** Carousel container that manages slide display, navigation, and pagination. */
+/** Accessible names used by Carousel. */
+export interface CarouselLabels {
+  /** Previous button name. */
+  previous: string
+  /** Next button name. */
+  next: string
+}
+
 export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Override accessible names (e.g. for localisation). */
+  labels?: Partial<CarouselLabels>
   /** Size of the navigation buttons. Default: 'lg' */
   size?: CarouselSize
   /** Shape of the navigation buttons. Default: 'round' */

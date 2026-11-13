@@ -2,16 +2,25 @@
 
 import React from 'react'
 import { cn } from '../../lib/utils'
-import { TripOnChatIcon, ArrowLeft, ArrowRight } from '@acme/icons'
+import { Sparkle, ArrowLeft, ArrowRight } from '@acme/icons'
 import { ButtonIcon, ButtonIconSwitching } from '../../primitives/Button'
 import { ChatInput } from './ChatInput'
-import type { AIChatProps } from './types'
+import type { AIChatLabels, AIChatProps } from './types'
 import styles from './AIChat.module.css'
+
+const DEFAULT_LABELS: AIChatLabels = {
+  expand: 'Expand chat',
+  collapse: 'Collapse chat',
+  input: 'Chat input',
+  voiceInput: 'Voice input',
+  send: 'Send message',
+  stop: 'Stop generating',
+}
 
 /**
  * AIChat — the assembled chat panel (Figma node 3814:5013).
  * Composes the full conversational UI:
- *   Header (TripOn sparkle + title + collapse arrow)
+ *   Header (agent icon + title + collapse arrow)
  *   → Conversation area (UserBubble / AgentBubble children, scrollable)
  *   → ChatInput (bottom-attached)
  *
@@ -31,7 +40,9 @@ export const AIChat = React.forwardRef<HTMLDivElement, AIChatProps>(
   (
     {
       state = 'default',
-      title = 'TripOn Agent',
+      title = 'Assistant',
+      icon = <Sparkle size={20} />,
+      labels,
       onCollapse,
       onExpand,
       children,
@@ -49,6 +60,7 @@ export const AIChat = React.forwardRef<HTMLDivElement, AIChatProps>(
     },
     ref
   ) => {
+    const l = { ...DEFAULT_LABELS, ...labels }
     const isCollapsed = state === 'collapsed'
 
     const panelClass =
@@ -66,8 +78,8 @@ export const AIChat = React.forwardRef<HTMLDivElement, AIChatProps>(
               <ButtonIconSwitching
                 variant="transparent"
                 size="lg"
-                label="Expand chat"
-                icon={<TripOnChatIcon size={20} />}
+                label={l.expand}
+                icon={icon}
                 hoverIcon={<ArrowRight size={20} />}
                 onClick={onExpand}
               />
@@ -82,17 +94,14 @@ export const AIChat = React.forwardRef<HTMLDivElement, AIChatProps>(
       <div ref={ref} className={cn(styles.panel, panelClass, className)} {...props}>
         <div className={styles.header}>
           <div className={styles.headerInner}>
-            <ButtonIcon
-              variant="transparent"
-              size="lg"
-              label="TripOn Agent"
-              icon={<TripOnChatIcon size={20} />}
-            />
+            <span className={styles.headerIcon} aria-hidden="true">
+              {icon}
+            </span>
             <p className={styles.headerTitle}>{title}</p>
             <ButtonIcon
               variant="transparent"
               size="lg"
-              label="Collapse chat"
+              label={l.collapse}
               icon={<ArrowLeft size={20} />}
               onClick={onCollapse}
             />
@@ -114,6 +123,7 @@ export const AIChat = React.forwardRef<HTMLDivElement, AIChatProps>(
           tagLabel={tagLabel}
           onRemoveTag={onRemoveTag}
           placeholder={placeholder}
+          labels={l}
         />
       </div>
     )
