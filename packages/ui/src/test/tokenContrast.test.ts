@@ -101,6 +101,19 @@ const PAIRS: Pair[] = [
   ['mapped-border-input-error', 'mapped-surface-default', GRAPHIC, 'form control error outlines'],
   // Focus ring on the page
   ['mapped-border-focus', 'mapped-surface-default', GRAPHIC, 'focus outline'],
+  // Hover state: text and icon on the hover fill (TabBar tab, AccordionProgressive header)
+  [
+    'mapped-text-action-hover',
+    'mapped-surface-action-hover-light',
+    TEXT,
+    'hovered tab / accordion label',
+  ],
+  [
+    'mapped-icon-action-hover',
+    'mapped-surface-action-hover-light',
+    GRAPHIC,
+    'hovered tab icon / accordion chevron',
+  ],
 ]
 
 // Dark theme only: the status border colours were darkened for the sharp-Chip

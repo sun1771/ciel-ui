@@ -53,15 +53,15 @@ For a **new** token, "going back" means pointing the component CSS at the origin
 
 ### Original values (dark theme)
 
-| Token                                                     | Original                                | Current                                 |
-| --------------------------------------------------------- | --------------------------------------- | --------------------------------------- |
-| `text-action`                                             | `#334eff`                               | `#4b63ff`                               |
-| `text-action-hover`                                       | `#0022ff`                               | `#6b7fff`                               |
-| `icon-action-hover`                                       | `#0022ff`                               | `#1736ff`                               |
-| `border-focus`                                            | inherited `#0022ff`                     | `#1736ff`                               |
-| `border-success` / `-information` / `-error` / `-warning` | `#0e9255` `#2573c8` `#c0362d` `#c67307` | `#0b7544` `#2167b4` `#bb352c` `#965705` |
-| `border-input` _(new)_                                    | `border-default` `#2d2f33`              | `#5a5e66`                               |
-| `border-input-error` _(new)_                              | `border-error` `#c0362d`                | `#bb352c`                               |
+| Token                                                     | Original                                | Current                                       |
+| --------------------------------------------------------- | --------------------------------------- | --------------------------------------------- |
+| `text-action`                                             | `#334eff`                               | `#4b63ff`                                     |
+| `text-action-hover`                                       | `#0022ff`                               | `#99a7ff` (was `#6b7fff` until the hover fix) |
+| `icon-action-hover`                                       | `#0022ff`                               | `#667aff` (was `#1736ff` until the hover fix) |
+| `border-focus`                                            | inherited `#0022ff`                     | `#1736ff`                                     |
+| `border-success` / `-information` / `-error` / `-warning` | `#0e9255` `#2573c8` `#c0362d` `#c67307` | `#0b7544` `#2167b4` `#bb352c` `#965705`       |
+| `border-input` _(new)_                                    | `border-default` `#2d2f33`              | `#5a5e66`                                     |
+| `border-input-error` _(new)_                              | `border-error` `#c0362d`                | `#bb352c`                                     |
 
 ## Before / after
 

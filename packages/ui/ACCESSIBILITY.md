@@ -43,13 +43,13 @@ Every changed value keeps its original in `packages/tokens/tokens.json` (`$exten
 
 ### Dark theme (page `#000000`)
 
-| Use                               | Token                                        | Was                          | Now                                                                                              |
-| --------------------------------- | -------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------ |
-| Links / action text               | `text-action`                                | `#334eff` (3.67:1)           | `#4b63ff` (4.53:1)                                                                               |
-| Action text, hover                | `text-action-hover`                          | `#0022ff` (2.07:1)           | `#6b7fff` (6.10:1), lighter than the resting state, as dark UIs expect                           |
-| Action icon, hover                | `icon-action-hover`                          | `#0022ff` (2.07:1)           | `#1736ff` (3.01:1)                                                                               |
-| Focus ring                        | `border-focus`                               | inherited `#0022ff` (2.07:1) | `#1736ff` (3.01:1)                                                                               |
-| Sharp Chip fills / status borders | `border-{success,information,error,warning}` | 2.8–4.3:1 with chip text     | `#0b7544`, `#2167b4`, `#bb352c`, `#965705`: ≥4.5:1 with chip text and ≥3.6:1 as borders on black |
+| Use                               | Token                                        | Was                          | Now                                                                                                                 |
+| --------------------------------- | -------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Links / action text               | `text-action`                                | `#334eff` (3.67:1)           | `#4b63ff` (4.53:1)                                                                                                  |
+| Action text, hover                | `text-action-hover`                          | `#0022ff` (2.07:1)           | `#99a7ff` (9.33:1 on black, 5.98:1 on the hover fill `#001499`), lighter than the resting state, as dark UIs expect |
+| Action icon, hover                | `icon-action-hover`                          | `#0022ff` (2.07:1)           | `#667aff` (5.79:1 on black, 3.71:1 on the hover fill `#001499`)                                                     |
+| Focus ring                        | `border-focus`                               | inherited `#0022ff` (2.07:1) | `#1736ff` (3.01:1)                                                                                                  |
+| Sharp Chip fills / status borders | `border-{success,information,error,warning}` | 2.8–4.3:1 with chip text     | `#0b7544`, `#2167b4`, `#bb352c`, `#965705`: ≥4.5:1 with chip text and ≥3.6:1 as borders on black                    |
 
 ### Related code changes
 
