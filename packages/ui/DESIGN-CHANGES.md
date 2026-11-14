@@ -23,14 +23,14 @@ To restore the original look of one token:
 
 The tables below list every original value. The steps were made in these commits, before the generator existed. They are a record of what changed: reverting the token part of a commit now means editing `tokens.json` as above, not running `git revert`.
 
-| Commit        | Change                                                                                                                                                        |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `398c348`     | Text colours (placeholder, error, success, warning, information), brand Chip fill, calendar headers, Tag `aria-disabled`                                      |
-| `0ecfe23`     | Icon colours, Badge status fills, all dark-theme changes (links, focus ring, sharp Chip fills)                                                                |
-| `cd43a5f`     | Form-control outlines (`border-input`, `border-input-error`) and the Checkbox error cue                                                                       |
-| `c84bd9a`     | Pagination dots get 24×24px targets (WCAG 2.2 SC 2.5.8). Was 12×12px, so the dots were closer together                                                        |
-| `f86fb78`     | Dark-theme hover text and icon (`text-action-hover`, `icon-action-hover`) readable on the hover fill: hovered tabs and accordion headers are lighter blue     |
-| _this branch_ | Hover fill and hover border `#667aff` → `#4b63ff`, so white text on hovered buttons and menu items reaches 4.5:1. Hovered controls are a slightly deeper blue |
+| Commit    | Change                                                                                                                                                        |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `398c348` | Text colours (placeholder, error, success, warning, information), brand Chip fill, calendar headers, Tag `aria-disabled`                                      |
+| `0ecfe23` | Icon colours, Badge status fills, all dark-theme changes (links, focus ring, sharp Chip fills)                                                                |
+| `cd43a5f` | Form-control outlines (`border-input`, `border-input-error`) and the Checkbox error cue                                                                       |
+| `c84bd9a` | Pagination dots get 24×24px targets (WCAG 2.2 SC 2.5.8). Was 12×12px, so the dots were closer together                                                        |
+| `f86fb78` | Dark-theme hover text and icon (`text-action-hover`, `icon-action-hover`) readable on the hover fill: hovered tabs and accordion headers are lighter blue     |
+| `18a14aa` | Hover fill and hover border `#667aff` → `#4b63ff`, so white text on hovered buttons and menu items reaches 4.5:1. Hovered controls are a slightly deeper blue |
 
 Reverting a commit brings back the matching accessibility failures, and the tests will fail again (`src/test/tokenContrast.test.ts` and the story axe checks).
 
