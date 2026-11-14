@@ -1,0 +1,72 @@
+/* ============================================
+   Pagination styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Pagination
+   ============================================ */
+
+/* Container — row of dot buttons */
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--ds-alias-spacing-none);
+}
+
+/* Dot button — click target wrapping each dot */
+.dotButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* a11y (WCAG 2.2 SC 2.5.8 target size): every dot is a 24px × 24px target;
+     the visible dot inside is unchanged. Was 12px × 12px (8px dot + 2px
+     padding), so the dots now sit further apart. Before/after:
+     packages/ui/DESIGN-CHANGES.md. */
+  width: var(--ds-alias-spacing-lg);
+  height: var(--ds-alias-spacing-lg);
+  padding: 0;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--ds-alias-border-radius-round);
+  transition: background-color 150ms ease;
+}
+
+.dotButton:focus-visible {
+  outline: 2px solid var(--ds-mapped-border-focus);
+  outline-offset: 2px;
+}
+
+/* Active button holds the 20px pill (same 24px × 24px target). Was 24px × 12px. */
+.dotButtonActive {
+  cursor: default;
+}
+
+/* Dot — the visual circle or pill inside each button */
+.dot {
+  border-radius: var(--ds-alias-border-radius-round);
+  flex-shrink: 0;
+  /* Inactive size: 8px × 8px */
+  width: var(--ds-alias-spacing-xs);
+  height: var(--ds-alias-spacing-xs);
+  background-color: var(--ds-mapped-surface-default);
+  transition: background-color 150ms ease;
+}
+
+/* Active dot: pill shape — 20px wide × 8px tall */
+/* NOTE: 20px has no Alias/Mapped token — flagged as missing token */
+.dotActive {
+  width: 20px;
+  background-color: var(--ds-mapped-surface-action-hover);
+}
+
+/* Disabled dot (applies to both active and inactive) */
+.dotDisabled {
+  background-color: var(--ds-mapped-surface-disabled);
+}
+
+/* Hover on inactive, non-disabled dot */
+.dotButton:not(:disabled):not(.dotButtonActive):hover .dot {
+  background-color: var(--ds-mapped-surface-action-hover-light);
+}

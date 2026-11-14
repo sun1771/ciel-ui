@@ -1,0 +1,80 @@
+/* TravelerPicker recipe — counter rows */
+
+/* ── Traveler panel ────────────────────────────────────── */
+.travelerPanel {
+  /* 260px — Figma spec panel width */
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+}
+
+.counterRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ds-alias-spacing-sm) 0;
+}
+
+.counterRowLabels {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-xxxs);
+}
+
+.counterRowTitle {
+  font-family: var(--ds-typography-body-md-font-family);
+  font-weight: var(--ds-typography-body-md-font-weight);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-body);
+}
+
+.counterRowSubtitle {
+  font-family: var(--ds-typography-body-xsm-font-family);
+  font-weight: var(--ds-typography-body-xsm-font-weight);
+  font-size: var(--ds-typography-body-xsm-font-size);
+  line-height: var(--ds-typography-body-xsm-line-height);
+  color: var(--ds-mapped-text-disabled);
+}
+
+.counterControls {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+}
+
+.counterBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 24px — Figma spec button size */
+  width: 24px;
+  height: 24px;
+  padding: var(--ds-alias-spacing-xxs);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  border-radius: var(--ds-alias-border-radius-round);
+  background: var(--ds-mapped-surface-default);
+  cursor: pointer;
+  color: var(--ds-mapped-icon-default);
+}
+
+.counterBtn:hover:not(.counterBtnDisabled) {
+  border-color: var(--ds-mapped-border-action-hover);
+  color: var(--ds-mapped-text-action-hover);
+}
+
+.counterBtnDisabled {
+  border-color: var(--ds-mapped-border-disabled);
+  color: var(--ds-mapped-icon-disabled);
+  cursor: not-allowed;
+}
+
+.counterValue {
+  font-family: var(--ds-typography-body-md-semibold-font-family);
+  font-weight: var(--ds-typography-body-md-semibold-font-weight);
+  font-size: var(--ds-typography-body-md-semibold-font-size);
+  line-height: var(--ds-typography-body-md-semibold-line-height);
+  color: var(--ds-mapped-text-body);
+  min-width: 16px;
+  text-align: center;
+}

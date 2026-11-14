@@ -1,0 +1,43 @@
+{
+  "name": "@acme/icons",
+  "version": "0.0.0",
+  "description": "Icon components for @acme/ui",
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "icons",
+    "svg"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "./package.json": "./package.json"
+    },
+    "types": "./dist/index.d.ts"
+  },
+  "scripts": {
+    "build": "vite build && tsc -p tsconfig.build.json && node ../../scripts/fix-dts-extensions.mjs dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "react": "19.2.4",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.8"
+  }
+}

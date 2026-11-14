@@ -1,0 +1,62 @@
+export const metadata = { title: 'Theming' }
+
+# Theming
+
+Every colour, font, radius and spacing value comes from **design tokens**: CSS custom properties prefixed `--ds-`. Components never hard-code colours, so you theme Ciel UI by changing tokens.
+
+## Dark mode
+
+Set `data-theme="dark"` on the root element:
+
+```tsx
+document.documentElement.dataset.theme = 'dark' // or 'light'
+```
+
+Both themes meet WCAG 2.2 AA contrast. Our tests render every component in both themes and check the token pairings (see [Accessibility](/docs/accessibility)). To follow the operating system setting, choose the theme from `prefers-color-scheme` before first paint, like this site does.
+
+## Token layers
+
+| Layer  | Example                     | Use it for                                                 |
+| ------ | --------------------------- | ---------------------------------------------------------- |
+| Brand  | `--ds-brand-sharp-blue-500` | Raw palette. Avoid using it directly.                      |
+| Alias  | `--ds-alias-spacing-md`     | Spacing, radius, border width                              |
+| Mapped | `--ds-mapped-text-error`    | **Semantic** roles, which components use and themes switch |
+
+Override **mapped** tokens to rebrand. Every component picks up the change:
+
+```css
+:root {
+  --ds-mapped-surface-action: #7c3aed; /* primary buttons, selected states */
+  --ds-mapped-border-action: #7c3aed;
+  --ds-mapped-text-action: #6d28d9; /* links */
+  --ds-mapped-border-focus: #7c3aed; /* focus ring */
+}
+```
+
+If you change colours, keep the contrast ratios: 4.5:1 for text, 3:1 for icons, outlines and the focus ring.
+
+Browse every token with live swatches on the [Design tokens](/docs/tokens) page.
+
+The tokens are also published as `@acme/tokens/tokens.json` in the [Tokens Studio](https://tokens.studio) format, with light and dark modes. You can import it into Figma, or use it as the base for your own token build.
+
+## Localising built-in text
+
+Components with built-in text, mostly screen-reader labels such as “Close dialog”, take a `labels` prop. Pass only the strings you want to change:
+
+```tsx
+<DialogBox labels={{ close: 'Schließen' }} … />
+<Pagination labels={{ goToPage: (p) => `Zu Seite ${p}` }} … />
+<DateRangeCalendar locale="de-DE" weekStartsOn={1} />
+```
+
+The calendar takes month and weekday names from `Intl`, so `locale` is all it needs.
+
+## Customising a single component
+
+Every component accepts `className` and spreads native attributes onto its root element. For one-off changes, add a class:
+
+```tsx
+<Card className="featured-card" />
+```
+
+The `Card` width is a custom property you can override: `--card-width: 320px`.

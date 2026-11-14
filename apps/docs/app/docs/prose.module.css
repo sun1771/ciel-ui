@@ -1,0 +1,70 @@
+/* Typography for MDX guides. */
+.prose {
+  max-width: 760px;
+}
+
+.prose h1 {
+  margin: 0 0 12px;
+  font-size: 40px;
+}
+
+.prose h2 {
+  margin: 44px 0 8px;
+  font-size: 26px;
+}
+
+.prose h3 {
+  margin: 28px 0 6px;
+  font-size: 19px;
+}
+
+.prose p,
+.prose li {
+  font-size: 16px;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 22px;
+}
+
+.prose li {
+  margin: 6px 0;
+}
+
+.prose :not(pre) > code {
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: color-mix(
+    in srgb,
+    var(--ds-mapped-surface-disabled) 45%,
+    var(--ds-mapped-surface-default)
+  );
+  color: var(--ds-mapped-text-heading);
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+}
+
+.prose th,
+.prose td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--ds-mapped-border-default);
+}
+
+.prose blockquote {
+  margin: 16px 0;
+  padding: 8px 16px;
+  border-left: 3px solid var(--ds-mapped-border-action);
+  background: var(--ds-mapped-surface-action-hover-light);
+  border-radius: 0 6px 6px 0;
+}
+
+.prose blockquote p {
+  margin: 6px 0;
+}

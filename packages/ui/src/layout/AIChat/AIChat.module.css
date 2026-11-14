@@ -1,0 +1,424 @@
+/* ============================================
+   AI Chat component set styles
+   Tokens: app/design-system/tokens/tokens.css
+   Figma:  AI Chat set (node 1250:2549)
+   Every value references a --ds- token except component-specific
+   panel widths (320 / 60 / 708px) which have no token equivalent.
+   ============================================ */
+
+/* ════════════════════════════════════════════
+   .AI Chat Piece / Chat input  (node 1263:537)
+   ════════════════════════════════════════════ */
+
+/* Base container — top border only, top corners rounded */
+.container {
+  background-color: var(--ds-mapped-surface-default);
+  border-top: var(--ds-alias-border-width-md) solid;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  border-top-left-radius: var(--ds-alias-border-radius-xl);
+  border-top-right-radius: var(--ds-alias-border-radius-xl);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  padding: var(--ds-alias-spacing-sm);
+  box-sizing: border-box;
+}
+
+/* Size — fixed reference widths per Figma (sm 320 / lg 440). */
+.containerSm {
+  width: 320px;
+}
+
+.containerLg {
+  width: 440px;
+}
+
+/* Status — border + shadow */
+.statusDefault,
+.statusThinking {
+  border-top-color: var(--ds-mapped-border-default);
+  box-shadow: var(--ds-effect-shadow);
+}
+
+.statusSelected,
+.statusFilled {
+  border-top-color: var(--ds-mapped-border-action);
+  box-shadow: var(--ds-effect-shadow-on);
+}
+
+.statusDisabled {
+  border-top-color: var(--ds-mapped-border-disabled);
+  box-shadow: var(--ds-effect-shadow);
+}
+
+/* Chat field — vertical stack */
+.chatField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-xs);
+  align-items: flex-end;
+  width: 100%;
+}
+
+/* Textarea */
+.textarea {
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: var(--ds-typography-body-sm-line-height);
+  color: var(--ds-mapped-text-body);
+  padding: 0;
+  overflow: hidden;
+  field-sizing: content;
+  min-height: var(--ds-typography-body-sm-line-height);
+}
+
+.textarea::placeholder {
+  color: var(--ds-mapped-text-body);
+}
+
+.textarea:disabled {
+  color: var(--ds-mapped-text-disabled);
+  cursor: not-allowed;
+}
+
+.textarea:disabled::placeholder {
+  color: var(--ds-mapped-text-disabled);
+}
+
+/* Bottom row — tag slot + button */
+.bottomRow {
+  display: flex;
+  gap: var(--ds-alias-spacing-xs);
+  align-items: center;
+  width: 100%;
+}
+
+.tagContainer {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* ════════════════════════════════════════════
+   .Response Content item  (node 2087:3575)
+   .Response Content       (node 2090:3602)
+   ════════════════════════════════════════════ */
+
+.responseContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-xs);
+  align-items: flex-start;
+  width: 100%;
+}
+
+.responseContentItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-xs);
+  align-items: flex-start;
+  width: 100%;
+}
+
+.responseTitle {
+  margin: 0;
+  width: 100%;
+  word-break: break-word;
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-semi-bold);
+  font-size: var(--ds-typography-body-md-semibold-font-size);
+  line-height: var(--ds-typography-body-md-semibold-line-height);
+  color: var(--ds-mapped-text-body);
+}
+
+.responseBody {
+  margin: 0;
+  width: 100%;
+  word-break: break-word;
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: var(--ds-typography-body-sm-line-height);
+  color: var(--ds-mapped-text-body);
+}
+
+/* Separator wrapper — matches Figma py xs around the divider line */
+.separatorWrap {
+  width: 100%;
+  padding-top: var(--ds-alias-spacing-xs);
+  padding-bottom: var(--ds-alias-spacing-xs);
+}
+
+/* ════════════════════════════════════════════
+   .Action suggestions  (node 2090:3636)
+   ════════════════════════════════════════════ */
+
+.actionSuggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-alias-spacing-xxs);
+  align-items: center;
+  align-content: center;
+  width: 100%;
+}
+
+/* ════════════════════════════════════════════
+   .Response reaction bar  (node 2090:3670)
+   .AI Chat Piece / User Bubble action bar
+   ════════════════════════════════════════════ */
+
+.reactionBar {
+  display: flex;
+  gap: var(--ds-alias-spacing-xxs);
+  align-items: center;
+}
+
+/* ════════════════════════════════════════════
+   .Agent Response Mode  (node 2078:3215)
+   ════════════════════════════════════════════ */
+
+.agentResponseMode {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Thinking mode adds an 8px gap before the trailing separator */
+.agentResponseModeThinking {
+  gap: var(--ds-alias-spacing-xs);
+}
+
+.responseModeRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ds-alias-spacing-xs);
+  width: 100%;
+}
+
+/* Sparkle holder — fixed 28px height to align with the row */
+.sparkle {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  flex-shrink: 0;
+  color: var(--ds-mapped-icon-action);
+}
+
+/* Loading status row — loader (+ "Thinking…" label in thinking mode) */
+.thinkingStatus {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+  height: 28px;
+  padding: var(--ds-alias-spacing-xxs) var(--ds-alias-spacing-xs);
+}
+
+.thinkingStatusText {
+  margin: 0;
+  white-space: nowrap;
+  word-break: break-word;
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: var(--ds-typography-body-sm-line-height);
+  color: var(--ds-mapped-text-body);
+}
+
+/* "Show Thinking" — reuses the navigation Expander (sm). Collapsed it hugs the
+   header; expanded it grows to fill the row so the revealed content fills width. */
+.showThinkingHug {
+  width: fit-content;
+}
+
+.showThinkingFill {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* ════════════════════════════════════════════
+   .AI Chat Piece / Agent Bubble  (node 2092:4258)
+   ════════════════════════════════════════════ */
+
+.agentBubble {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ds-alias-spacing-xs);
+  width: 100%;
+}
+
+.agentContentArea {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ds-alias-spacing-md);
+  width: 100%;
+}
+
+/* ════════════════════════════════════════════
+   .AI Chat Piece / User Bubble  (node 2132:1446)
+   ════════════════════════════════════════════ */
+
+/* User bubble fills the container with a 48px (spacing/xxl) left indent so the
+   message is offset from the left edge. Applies to both sm and lg sizes. */
+.userBubble {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--ds-alias-spacing-xs);
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: var(--ds-alias-spacing-xxl);
+}
+
+/* Speech bubble — fills the padded width, rounded on three corners (flat BR) */
+.userBubbleBox {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
+  background-color: var(--ds-mapped-surface-action-hover-light);
+  border-top-left-radius: var(--ds-alias-border-radius-lg);
+  border-top-right-radius: var(--ds-alias-border-radius-lg);
+  border-bottom-left-radius: var(--ds-alias-border-radius-lg);
+  border-bottom-right-radius: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* lg caps at 400px so it doesn't span end-to-end in the wide (708px) panel. */
+.userBubbleBoxLg {
+  max-width: 400px;
+}
+
+.userBubbleText {
+  margin: 0;
+  flex: 1 0 0;
+  min-width: 0;
+  word-break: break-word;
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: var(--ds-typography-body-sm-line-height);
+  color: var(--ds-mapped-text-body);
+}
+
+/* ════════════════════════════════════════════
+   AI Chat panel  (node 3814:5013)
+   ════════════════════════════════════════════ */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: var(--ds-mapped-surface-default);
+  border-top: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-action);
+  border-radius: var(--ds-alias-border-radius-xl);
+  box-shadow: var(--ds-effect-shadow-on);
+}
+
+/* Component-specific widths — no --ds- token exists for these panel sizes. */
+.panelDefault {
+  width: 320px;
+}
+
+.panelCollapsed {
+  width: 60px;
+}
+
+.panelWide {
+  width: 708px;
+}
+
+/* Header — agent icon + title + collapse */
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--ds-alias-spacing-md) var(--ds-alias-spacing-sm);
+  box-sizing: border-box;
+}
+
+.headerInner {
+  display: flex;
+  flex: 1 0 0;
+  min-width: 0;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+  height: 40px;
+}
+
+/* Decorative agent icon — same box as the lg icon-only ButtonIcon beside it so the
+   header layout is unchanged, but not focusable (it has no action). */
+.headerIcon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ds-alias-spacing-xs);
+  border: var(--ds-alias-border-width-sm) solid transparent;
+  color: var(--ds-mapped-icon-default);
+}
+
+.headerTitle {
+  margin: 0;
+  flex: 1 0 0;
+  min-width: 0;
+  word-break: break-word;
+  font-family: var(--ds-brand-font-family-heading);
+  font-weight: var(--ds-brand-font-weight-semi-bold);
+  font-size: var(--ds-typography-heading-h7-font-size);
+  line-height: var(--ds-typography-heading-h7-line-height);
+  color: var(--ds-mapped-text-heading);
+}
+
+/* Collapsed header — only the switching logo button, left-aligned */
+.headerCollapsed {
+  justify-content: flex-start;
+}
+
+/* Chat container — fills remaining height above the input */
+.chatContainer {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 var(--ds-alias-spacing-sm) var(--ds-alias-spacing-xxl);
+}
+
+/* Conversation — messages stacked, anchored to the bottom, scrollable */
+.conversation {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-sm);
+  align-items: stretch;
+  justify-content: flex-end;
+  min-height: 0;
+  width: 100%;
+  overflow-y: auto;
+}
+
+/* Embedded chat input fills the panel width but caps at 400px so it doesn't
+   span end-to-end in the wide (708px) panel. Defined after .containerSm/.containerLg
+   so it wins on equal specificity. */
+.containerFluid {
+  width: 100%;
+  max-width: 400px;
+}

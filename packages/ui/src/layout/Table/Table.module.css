@@ -1,0 +1,132 @@
+/* ============================================
+   Table styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Table (926:1465)
+   ============================================ */
+
+/* Outer container — border, radius, overflow clip */
+.container {
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  border-radius: var(--ds-alias-border-radius-lg);
+  overflow: hidden;
+  background-color: var(--ds-mapped-surface-default);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Title bar — top section with heading and optional actions */
+.titleBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ds-alias-spacing-lg);
+  gap: var(--ds-alias-spacing-xs);
+}
+
+.title {
+  font-family: var(--ds-typography-heading-h4-font-family);
+  font-weight: var(--ds-typography-heading-h4-font-weight);
+  font-size: var(--ds-responsive-h4-font-size);
+  line-height: var(--ds-responsive-h4-line-height);
+  color: var(--ds-mapped-text-heading);
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+  flex-shrink: 0;
+}
+
+/* Table data section — top border separates from title bar */
+.tableWrapper {
+  overflow-x: auto;
+  border-top: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+}
+
+/* Semantic table — collapse borders, fill container */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+/* Header row */
+.thead {
+}
+
+.th {
+  background-color: var(--ds-mapped-surface-action-hover-light);
+  color: var(--ds-mapped-text-body);
+  font-family: var(--ds-typography-body-md-semibold-font-family);
+  font-weight: var(--ds-typography-body-md-semibold-font-weight);
+  font-size: var(--ds-typography-body-md-semibold-font-size);
+  line-height: var(--ds-typography-body-md-semibold-line-height);
+  padding: var(--ds-alias-spacing-sm);
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+}
+
+/* Body rows */
+.tbody {
+}
+
+.tr {
+  background-color: var(--ds-mapped-surface-default);
+}
+
+.tr:hover .td {
+  background-color: var(--ds-mapped-surface-action-hover-light);
+}
+
+/* Data cells */
+.td {
+  color: var(--ds-mapped-text-body);
+  font-family: var(--ds-typography-body-md-font-family);
+  font-weight: var(--ds-typography-body-md-font-weight);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  padding: var(--ds-alias-spacing-sm);
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  background-color: var(--ds-mapped-surface-default);
+}
+
+/* Remove bottom border from the last row */
+.tbody .tr:last-child .td {
+  border-bottom: none;
+}
+
+/* ============================================
+   Cell content types
+   ============================================ */
+
+/* type="link" — icon? + label + ArrowRight */
+.cellLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+  color: var(--ds-mapped-text-body);
+  text-decoration: none;
+}
+
+.cellLink:hover {
+  color: var(--ds-mapped-text-action-hover);
+}
+
+.cellLinkIcon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* type="action" — icon button slot(s) */
+.cellAction {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xxxs);
+  color: var(--ds-mapped-icon-action);
+}

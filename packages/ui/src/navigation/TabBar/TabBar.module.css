@@ -1,0 +1,119 @@
+/* ============================================
+   TabBar + TabItem styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Tab Bar
+   ============================================ */
+
+/* ---- TabBar (tablist container) ---- */
+
+.tabBar {
+  display: flex;
+  align-items: center;
+  border-bottom: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-default);
+}
+
+/* ---- TabItem (individual tab button) ---- */
+
+.tabItem {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
+
+  font-family: var(--ds-typography-body-md-font-family);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  font-weight: var(--ds-brand-font-weight-regular);
+  color: var(--ds-mapped-text-body);
+  white-space: nowrap;
+
+  background: transparent;
+  border: none;
+  /* Reserve 2px at bottom for the active indicator without shifting layout */
+  border-bottom: var(--ds-alias-border-width-md) solid transparent;
+  margin-bottom: calc(-1 * var(--ds-alias-border-width-md));
+
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Icon wrapper — sets icon color per state via currentColor */
+.tabItem .iconWrapper {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--ds-mapped-icon-default);
+}
+
+/* ---- Selected state ---- */
+
+.selected {
+  font-weight: var(--ds-brand-font-weight-semi-bold);
+  color: var(--ds-mapped-text-action);
+  border-bottom-color: var(--ds-mapped-border-action);
+}
+
+.selected .iconWrapper {
+  color: var(--ds-mapped-icon-action);
+}
+
+/* ---- Hover state (non-disabled only) ---- */
+
+.tabItem:hover:not(:disabled):not(.disabled) {
+  background: var(--ds-mapped-surface-action-hover-light);
+  color: var(--ds-mapped-text-action-hover);
+}
+
+.tabItem:hover:not(:disabled):not(.disabled) .iconWrapper {
+  color: var(--ds-mapped-icon-action-hover);
+}
+
+.selected:hover:not(:disabled):not(.disabled) {
+  border-bottom-color: var(--ds-mapped-border-action-hover);
+}
+
+/* ---- Focus-visible state ---- */
+
+.tabItem:focus-visible {
+  outline: none;
+}
+
+.tabItem:focus-visible::after {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * var(--ds-alias-spacing-xxs));
+  border: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
+  border-radius: var(--ds-alias-border-radius-lg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* When selected+focused the ring extends 2px lower to sit below the active indicator */
+.selected:focus-visible::after {
+  inset: calc(-1 * var(--ds-alias-spacing-xxs)) calc(-1 * var(--ds-alias-spacing-xxs))
+    calc(-1 * var(--ds-alias-spacing-xxs) - var(--ds-alias-border-width-md))
+    calc(-1 * var(--ds-alias-spacing-xxs));
+}
+
+/* ---- Disabled state ---- */
+
+.disabled,
+.tabItem:disabled {
+  background: var(--ds-mapped-surface-disabled);
+  color: var(--ds-mapped-text-disabled);
+  cursor: not-allowed;
+  border-bottom-color: transparent;
+  pointer-events: none;
+}
+
+.disabled .iconWrapper,
+.tabItem:disabled .iconWrapper {
+  color: var(--ds-mapped-icon-disabled);
+}
+
+.disabled.selected,
+.tabItem:disabled.selected {
+  border-bottom-color: var(--ds-mapped-border-disabled);
+}

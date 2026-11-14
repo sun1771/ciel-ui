@@ -1,0 +1,44 @@
+.sidebar {
+  position: sticky;
+  top: var(--site-header-h);
+  max-height: calc(100vh - var(--site-header-h));
+  overflow-y: auto;
+  padding: 24px 16px 48px 24px;
+  font-size: 14px;
+}
+
+.heading {
+  margin: 20px 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ds-mapped-text-placeholder);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  display: block;
+  padding: 5px 10px;
+  border-radius: 6px;
+  color: var(--ds-mapped-text-body);
+  text-decoration: none;
+}
+
+.link:hover {
+  background: var(--ds-mapped-surface-action-hover-light);
+}
+
+/* Current page: heading-colour text on the tint (readable in both themes), plus
+   a bar and bold weight so it isn't signalled by colour alone. */
+.link[aria-current='page'] {
+  background: var(--ds-mapped-surface-action-hover-light);
+  color: var(--ds-mapped-text-heading);
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 var(--ds-mapped-border-action);
+}

@@ -1,0 +1,5 @@
+body {
+  background: var(--ds-mapped-surface-default);
+  color: var(--ds-mapped-text-body);
+  font-family: var(--ds-brand-font-family-body), sans-serif;
+}

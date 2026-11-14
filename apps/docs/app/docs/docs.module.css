@@ -1,0 +1,33 @@
+.shell {
+  max-width: var(--site-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: var(--site-sidebar-w) minmax(0, 1fr);
+}
+
+.aside {
+  border-right: 1px solid var(--ds-mapped-border-default);
+}
+
+.main {
+  padding: 40px 48px;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+  .aside {
+    border-right: 0;
+    border-bottom: 1px solid var(--ds-mapped-border-default);
+  }
+  .aside > nav {
+    position: static;
+    max-height: none;
+    columns: 2;
+  }
+  .main {
+    padding: 32px 20px;
+  }
+}

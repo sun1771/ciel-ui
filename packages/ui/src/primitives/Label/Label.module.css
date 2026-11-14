@@ -1,0 +1,56 @@
+/* ============================================
+   Label styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Label (56:186)
+   ============================================ */
+
+/* Base — the <label> element */
+.base {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-body);
+  cursor: default;
+}
+
+/* The text + asterisk wrapper — no internal gap between asterisk and text */
+.labelText {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+/* Red asterisk rendered before children in the 'required' variant */
+.asterisk {
+  color: var(--ds-mapped-text-error);
+  margin-right: var(--ds-alias-spacing-xxxs);
+  line-height: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+/* Icon slot — decorative, inherits currentColor */
+.iconSlot {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--ds-mapped-icon-default);
+}
+
+/* Visually hidden but announced by screen readers (the library can't rely on
+   Tailwind's sr-only being present in consumer apps). */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,166 @@
+/* ============================================
+   DialogBox styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Dialog Box
+   ============================================ */
+
+/* Backdrop — full-screen semi-transparent overlay */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: var(--ds-alias-neutral-black-transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+/* Dialog panel */
+.dialog {
+  position: relative;
+  /* TODO: 366px — no alias dimension token exists for this width */
+  width: 366px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--ds-mapped-surface-default);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  border-radius: var(--ds-alias-border-radius-lg);
+  box-shadow: var(--ds-effect-shadow-overlay);
+}
+
+/* Heading row */
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ds-alias-spacing-md) var(--ds-alias-spacing-lg);
+}
+
+/* Left side of heading: icon + title */
+.headingContent {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+}
+
+/* Icon slot in heading */
+/* TODO: 32px icon container — no alias dimension token; using hardcoded value */
+.headingIcon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* H6 dialog title */
+.title {
+  font-family: var(--ds-typography-heading-h6-font-family);
+  font-weight: var(--ds-typography-heading-h6-font-weight);
+  font-size: var(--ds-responsive-h6-font-size);
+  line-height: var(--ds-responsive-h6-line-height);
+  color: var(--ds-mapped-text-heading);
+  white-space: nowrap;
+  margin: 0;
+}
+
+/* X close button */
+.closeButton {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ds-alias-spacing-xs);
+  border-radius: var(--ds-alias-border-radius-lg);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--ds-mapped-icon-default);
+  transition: background-color 0.15s ease;
+}
+
+.closeButton:hover {
+  background-color: var(--ds-mapped-surface-action-hover-light);
+}
+
+.closeButton:focus-visible {
+  outline: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
+  outline-offset: 2px;
+}
+
+/* Body section */
+.body {
+  padding: var(--ds-alias-spacing-md) var(--ds-alias-spacing-lg) var(--ds-alias-spacing-lg);
+}
+
+/* Action bar */
+.actionBar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--ds-alias-spacing-xs);
+  padding: var(--ds-alias-spacing-md) var(--ds-alias-spacing-lg);
+}
+
+/* Primary action button — filled */
+.primaryButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ds-alias-spacing-xs);
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
+  background-color: var(--ds-mapped-surface-action);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-action);
+  border-radius: var(--ds-alias-border-radius-lg);
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-on-action);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.primaryButton:hover {
+  background-color: var(--ds-mapped-surface-action-hover);
+  border-color: var(--ds-mapped-border-action-hover);
+}
+
+.primaryButton:focus-visible {
+  outline: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
+  outline-offset: 2px;
+}
+
+/* Secondary action button — outline */
+.secondaryButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ds-alias-spacing-xs);
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
+  background-color: var(--ds-mapped-surface-default);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  border-radius: var(--ds-alias-border-radius-lg);
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-regular);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-body);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s ease;
+}
+
+.secondaryButton:hover {
+  border-color: var(--ds-mapped-border-action-hover);
+}
+
+.secondaryButton:focus-visible {
+  outline: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
+  outline-offset: 2px;
+}

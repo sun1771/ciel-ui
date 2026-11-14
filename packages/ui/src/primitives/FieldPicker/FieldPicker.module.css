@@ -1,0 +1,60 @@
+/* FieldPicker — field-style trigger (the panel comes from Popover) */
+
+/* ── Trigger button ────────────────────────────────────── */
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+  width: 100%;
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-input);
+  border-radius: var(--ds-alias-border-radius-lg);
+  background: var(--ds-mapped-surface-default);
+  cursor: pointer;
+  text-align: left;
+
+  font-family: var(--ds-typography-body-md-font-family);
+  font-weight: var(--ds-typography-body-md-font-weight);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-body);
+}
+
+.trigger:hover:not(.triggerDisabled) {
+  border-color: var(--ds-mapped-border-action-hover);
+}
+
+.triggerOpen {
+  border-color: var(--ds-mapped-border-focus);
+}
+
+.triggerDisabled {
+  background: var(--ds-mapped-surface-disabled);
+  border-color: var(--ds-mapped-border-disabled);
+  color: var(--ds-mapped-text-disabled);
+  cursor: not-allowed;
+}
+
+.triggerLabel {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.triggerPlaceholder {
+  color: var(--ds-mapped-text-placeholder);
+}
+
+.triggerIcon {
+  flex-shrink: 0;
+  color: var(--ds-mapped-icon-default);
+  display: flex;
+  align-items: center;
+}
+
+/* Leading icon slot */
+.leadingIcon {
+  display: flex;
+  flex-shrink: 0;
+}

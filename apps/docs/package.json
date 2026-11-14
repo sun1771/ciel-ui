@@ -1,0 +1,39 @@
+{
+  "name": "docs",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "codegen": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/codegen.mjs",
+    "dev": "pnpm codegen && next dev",
+    "build": "pnpm codegen && next build",
+    "start": "next start",
+    "lint": "pnpm codegen && eslint",
+    "typecheck": "pnpm codegen && next typegen && tsc --noEmit",
+    "audit:a11y": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/a11y-audit.mjs"
+  },
+  "dependencies": {
+    "@acme/icons": "workspace:*",
+    "@acme/tokens": "workspace:*",
+    "@acme/ui": "workspace:*",
+    "@mdx-js/loader": "^3.1.1",
+    "@mdx-js/react": "^3.1.1",
+    "@next/mdx": "16.2.3",
+    "next": "16.2.3",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "shiki": "^4.6.0"
+  },
+  "devDependencies": {
+    "@types/mdx": "^2.0.14",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "axe-core": "^4.14.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.3",
+    "playwright": "^1.65.0",
+    "react-docgen-typescript": "^2.4.0",
+    "remark-gfm": "^4.0.1",
+    "typescript": "^5"
+  }
+}

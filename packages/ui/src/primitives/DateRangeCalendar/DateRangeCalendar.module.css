@@ -1,0 +1,129 @@
+/* DateRangeCalendar — month grids (moved from FieldPicker) */
+
+/* ── Calendar: two-month layout ────────────────────────── */
+.calendarMonths {
+  display: flex;
+  gap: var(--ds-alias-spacing-xl);
+}
+
+.calendarMonth {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-xs);
+}
+
+/* ── Month header ──────────────────────────────────────── */
+.monthHeader {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 20px top space — between spacing-md(16) and spacing-lg(24), component-specific */
+  padding-top: 20px;
+  padding-bottom: var(--ds-alias-spacing-xs);
+}
+
+.monthTitle {
+  font-family: var(--ds-typography-heading-h8-font-family);
+  font-weight: var(--ds-typography-heading-h8-font-weight);
+  font-size: var(--ds-typography-heading-h8-font-size);
+  line-height: var(--ds-typography-heading-h8-line-height);
+  color: var(--ds-mapped-text-heading);
+}
+
+.monthNavBtn {
+  position: absolute;
+  top: var(--ds-alias-spacing-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ds-alias-spacing-xxs);
+  border: none;
+  border-radius: var(--ds-alias-border-radius-lg);
+  background: transparent;
+  cursor: pointer;
+  color: var(--ds-mapped-icon-default);
+}
+
+.monthNavBtn:hover {
+  background: var(--ds-mapped-surface-action-hover-light);
+}
+
+.monthNavPrev {
+  left: 0;
+}
+
+.monthNavNext {
+  right: 0;
+}
+
+/* ── Day grid ──────────────────────────────────────────── */
+.dayGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--ds-alias-border-width-sm);
+}
+
+.dayHeaderCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 40×40px cell — Figma spec, no exact token equivalent */
+  width: 40px;
+  height: 40px;
+  font-family: var(--ds-typography-body-xsm-font-family);
+  font-weight: var(--ds-typography-body-xsm-font-weight);
+  font-size: var(--ds-typography-body-xsm-font-size);
+  line-height: var(--ds-typography-body-xsm-line-height);
+  /* Muted but readable (AA). Was text-disabled, which is meant for disabled UI. */
+  color: var(--ds-mapped-text-placeholder);
+}
+
+.dayCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 40×40px cell — Figma spec, no exact token equivalent */
+  width: 40px;
+  height: 40px;
+  border-radius: var(--ds-alias-border-radius-lg);
+  background: var(--ds-mapped-surface-default);
+  border: none;
+  cursor: pointer;
+  font-family: var(--ds-typography-body-md-font-family);
+  font-weight: var(--ds-typography-body-md-font-weight);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-body);
+}
+
+.dayCell:hover {
+  background: var(--ds-mapped-surface-action-hover-light);
+}
+
+.dayCellActive {
+  background: var(--ds-mapped-surface-action);
+  color: var(--ds-mapped-text-on-action);
+}
+
+.dayCellActive:hover {
+  background: var(--ds-mapped-surface-action);
+}
+
+.dayCellRange {
+  background: var(--ds-mapped-surface-action-hover-light);
+  border-radius: 0;
+}
+
+.dayCellRangeStart {
+  border-radius: var(--ds-alias-border-radius-lg) 0 0 var(--ds-alias-border-radius-lg);
+}
+
+.dayCellRangeEnd {
+  border-radius: 0 var(--ds-alias-border-radius-lg) var(--ds-alias-border-radius-lg) 0;
+}
+
+.dayCellHidden {
+  visibility: hidden;
+  pointer-events: none;
+}

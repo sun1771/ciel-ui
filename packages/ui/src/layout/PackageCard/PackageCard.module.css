@@ -1,0 +1,92 @@
+/* ============================================
+   PackageCard styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Package Card
+   ============================================ */
+
+/* Card container */
+.card {
+  background-color: var(--ds-mapped-surface-default);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  border-radius: var(--ds-alias-border-radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Header row — heading + action button + nav */
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-md);
+  padding: var(--ds-alias-spacing-sm) var(--ds-alias-spacing-md);
+  width: 100%;
+}
+
+/* H8 heading — Poppins SemiBold 18px/20px */
+.heading {
+  flex: 1 0 0;
+  min-width: 1px;
+  font-family: var(--ds-typography-heading-h8-font-family);
+  font-weight: var(--ds-typography-heading-h8-font-weight);
+  font-size: var(--ds-typography-heading-h8-font-size);
+  line-height: var(--ds-typography-heading-h8-line-height);
+  color: var(--ds-mapped-text-heading);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Navigation group (prev/next) */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
+  flex-shrink: 0;
+}
+
+/* "Day N" label (itinerary variant) — Body/md Inter Regular 16px/20px */
+.dayLabel {
+  font-family: var(--ds-typography-body-md-font-family);
+  font-weight: var(--ds-typography-body-md-font-weight);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-heading);
+  white-space: nowrap;
+}
+
+/* Dimmed "Day N" label — Loaded=False (Figma text/disabled) */
+.dayLabelDisabled {
+  color: var(--ds-mapped-text-disabled);
+}
+
+/* Loaded=False action button — the Sparkle icon uses hardcoded brand-blue
+   fills (not currentColor), so the disabled button's text color can't gray it.
+   Grayscale + reduced opacity matches Figma's dimmed disabled sparkle without
+   hardcoding a color. */
+.actionDisabled :global(svg) {
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+
+/* Content area — children slot */
+.content {
+  padding: 0 var(--ds-alias-spacing-md) var(--ds-alias-spacing-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Placeholder body text — Loaded=False ("Not curated yet.")
+   Body/md Inter Regular 16px/20px, text/placeholder */
+.emptyText {
+  font-family: var(--ds-typography-body-md-font-family);
+  font-weight: var(--ds-typography-body-md-font-weight);
+  font-size: var(--ds-typography-body-md-font-size);
+  line-height: var(--ds-typography-body-md-line-height);
+  color: var(--ds-mapped-text-placeholder);
+  margin: 0;
+}

@@ -1,0 +1,53 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: var(--site-header-h);
+  background: color-mix(in srgb, var(--ds-mapped-surface-page) 85%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--ds-mapped-border-default);
+}
+
+.inner {
+  max-width: var(--site-max);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--ds-brand-font-family-heading), sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--ds-mapped-text-heading);
+  text-decoration: none;
+  margin-right: auto;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav a {
+  color: var(--ds-mapped-text-body);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav a:hover {
+  color: var(--ds-mapped-text-action);
+}
+
+@media (max-width: 640px) {
+  .nav {
+    gap: 12px;
+    font-size: 14px;
+  }
+}

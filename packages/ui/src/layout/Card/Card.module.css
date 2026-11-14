@@ -1,0 +1,286 @@
+/* ============================================
+   Card styles
+   Tokens: docs/design-system.md
+   Figma:  design-system/figma.md → Card (1818:1037) + .Card Content (3455:3491)
+   ============================================ */
+
+/* ---- Base container (Figma Card State) ---- */
+
+.card {
+  background: var(--ds-mapped-surface-default);
+  border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-default);
+  border-radius: var(--ds-alias-border-radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: content-box;
+  /* 230px Figma default (no --ds- token); override with --card-width. */
+  width: var(--card-width, 230px);
+}
+
+/* Hover — CSS only (Figma Card State=hover) */
+.card:hover {
+  border-width: var(--ds-alias-border-width-md);
+  border-color: var(--ds-mapped-border-action-hover);
+}
+
+/* Selected (Figma Card State=selected) — border/action, no bg change */
+.selected {
+  border-width: var(--ds-alias-border-width-md);
+  border-color: var(--ds-mapped-border-action);
+}
+
+.selected:hover {
+  border-color: var(--ds-mapped-border-action);
+}
+
+/* ============================================
+   .Headline Item (1708:1796)
+   ============================================ */
+
+.headlineItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-xxxs);
+  padding: var(--ds-alias-spacing-sm) var(--ds-alias-spacing-sm) var(--ds-alias-spacing-none);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.headlineRow {
+  display: flex;
+  gap: var(--ds-alias-spacing-xxs);
+  align-items: flex-start;
+  width: 100%;
+  /* TODO: 24px row min-height — no --ds- token; Figma spec */
+  min-height: 24px;
+}
+
+.headline {
+  flex: 1 0 0;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--ds-typography-body-md-semibold-font-family);
+  font-weight: var(--ds-typography-body-md-semibold-font-weight);
+  font-size: var(--ds-typography-body-md-semibold-font-size);
+  line-height: var(--ds-typography-body-md-semibold-line-height);
+  color: var(--ds-mapped-text-heading);
+  word-break: break-word;
+}
+
+/* Meta row under the title (CardHeader children) */
+.headlineChips {
+  display: flex;
+  gap: var(--ds-alias-spacing-xxs);
+  align-items: center;
+}
+
+/* ============================================
+   .Image Item (3455:3325)
+   ============================================ */
+
+.imageItem {
+  position: relative;
+  /* TODO: 102px image height — no --ds- token; Figma spec */
+  height: 102px;
+  width: 100%;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.imageItem > img,
+.imageSlide,
+.imageSlide > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Carousel nav arrows — absolute overlay on the image */
+.carouselNav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--ds-alias-spacing-xxs);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.carouselNav > * {
+  pointer-events: auto;
+}
+
+/* Pagination dots — bottom-center overlay */
+.paginationOverlay {
+  position: absolute;
+  bottom: var(--ds-alias-spacing-xxs);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* ============================================
+   .Body Item (1262:2394)
+   ============================================ */
+
+.bodyItem {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* CardBody gap / align props */
+.gapXxs {
+  gap: var(--ds-alias-spacing-xxs);
+}
+
+.gapXs {
+  gap: var(--ds-alias-spacing-xs);
+}
+
+.alignStart {
+  align-items: flex-start;
+}
+
+.bodyMetric {
+  display: flex;
+  gap: var(--ds-alias-spacing-xxs);
+  align-items: center;
+}
+
+.metricIcon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--ds-mapped-icon-default);
+}
+
+.bodyText {
+  margin: 0;
+  font-family: var(--ds-typography-body-sm-font-family);
+  font-weight: var(--ds-typography-body-sm-font-weight);
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: var(--ds-typography-body-sm-line-height);
+  color: var(--ds-mapped-text-body);
+  white-space: nowrap;
+}
+
+/* ============================================
+   .Price and details Item (3455:3427)
+   ============================================ */
+
+.priceItem {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--ds-alias-spacing-xs);
+  align-items: center;
+  background: var(--ds-mapped-surface-default);
+  padding: var(--ds-alias-spacing-none) var(--ds-alias-spacing-sm) var(--ds-alias-spacing-xs);
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* CardFooter justify="center" */
+.priceItemCenter {
+  justify-content: center;
+}
+
+.price {
+  display: flex;
+  gap: var(--ds-alias-spacing-xxxs);
+  align-items: center;
+  flex: 1 0 0;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.priceValue {
+  margin: 0;
+  font-family: var(--ds-typography-body-md-semibold-font-family);
+  font-weight: var(--ds-typography-body-md-semibold-font-weight);
+  font-size: var(--ds-typography-body-md-semibold-font-size);
+  line-height: var(--ds-typography-body-md-semibold-line-height);
+  color: var(--ds-mapped-text-heading);
+}
+
+.priceSuffix {
+  margin: 0;
+  font-family: var(--ds-typography-body-xsm-font-family);
+  font-weight: var(--ds-typography-body-xsm-font-weight);
+  font-size: var(--ds-typography-body-xsm-font-size);
+  line-height: var(--ds-typography-body-xsm-line-height);
+  color: var(--ds-mapped-text-body);
+}
+
+/* ============================================
+   Graphic Container (3465:1972) — "more" status
+   ============================================ */
+
+/* ============================================
+   Loading skeleton
+   ============================================ */
+
+.skeletonImageArea {
+  /* TODO: 102px — same as imageItem, no --ds- token */
+  height: 102px;
+  flex-shrink: 0;
+  background: var(--ds-mapped-surface-disabled);
+  position: relative;
+  overflow: hidden;
+}
+
+.skeletonContent {
+  padding: var(--ds-alias-spacing-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-alias-spacing-xs);
+}
+
+.skeletonRow {
+  border-radius: var(--ds-alias-border-radius-md);
+  background: var(--ds-mapped-surface-disabled);
+  position: relative;
+  overflow: hidden;
+  /* TODO: 20px row height — no --ds- token; matches body-sm line-height */
+  height: 20px;
+  width: 100%;
+}
+
+.skeletonRowSm {
+  width: 60%;
+}
+
+/* Shimmer animation on skeleton areas */
+.skeletonImageArea::after,
+.skeletonRow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* TODO: shimmer highlight — Background++/_backgroundPlaceholder has no --ds- token */
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}

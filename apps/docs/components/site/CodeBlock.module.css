@@ -1,0 +1,24 @@
+.block {
+  position: relative;
+  border: 1px solid var(--ds-mapped-border-default);
+  border-radius: var(--site-radius);
+  background: color-mix(
+    in srgb,
+    var(--ds-mapped-surface-disabled) 35%,
+    var(--ds-mapped-surface-default)
+  );
+}
+
+.copy {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.code :global(pre) {
+  margin: 0;
+  padding: 16px 52px 16px 16px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.6;
+}

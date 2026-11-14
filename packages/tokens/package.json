@@ -1,0 +1,31 @@
+{
+  "name": "@acme/tokens",
+  "version": "0.0.0",
+  "description": "Design tokens for @acme/ui: CSS custom properties (light + dark) and the tokens.json source",
+  "license": "MIT",
+  "keywords": [
+    "design-tokens",
+    "css-variables",
+    "tokens-studio"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    "./tokens.css": "./tokens.css",
+    "./tokens.json": "./tokens.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "tokens.css",
+    "tokens.json"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/build.mjs --check"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
