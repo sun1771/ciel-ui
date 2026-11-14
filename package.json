@@ -13,7 +13,8 @@
     "smoke": "node scripts/smoke-test.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "changeset": "changeset"
+    "changeset": "changeset",
+    "audit:hover": "node scripts/hover-audit.mjs packages/ui/storybook-static"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.5",

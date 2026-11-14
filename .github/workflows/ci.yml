@@ -53,6 +53,11 @@ jobs:
       - name: Smoke test in a fresh Next.js app
         run: pnpm smoke
 
+      - name: Hover contrast audit (real mouse, every story, both themes)
+        run: |
+          pnpm --filter @acme/ui build-storybook
+          pnpm audit:hover
+
       - name: Docs accessibility audit
         run: |
           pnpm --filter docs start --port 3000 &
