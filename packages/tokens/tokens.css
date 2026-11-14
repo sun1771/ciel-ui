@@ -216,7 +216,7 @@
   --ds-mapped-surface-page: #ffffff;
   --ds-mapped-surface-default: #ffffff;
   --ds-mapped-surface-action: #0022ff;
-  --ds-mapped-surface-action-hover: #667aff;
+  --ds-mapped-surface-action-hover: #4b63ff; /* a11y: was #667aff: white text on it 3.63:1 → 4.64:1 (hovered Button, Menu item, NavigationPanel item, DialogBox action) */
   --ds-mapped-surface-action-hover-light: #e5e8ff;
   --ds-mapped-surface-success: #e7f7f0;
   --ds-mapped-surface-warning: #fef3e6;
@@ -239,7 +239,7 @@
   --ds-mapped-border-error: #f9b4af;
   --ds-mapped-border-warning: #fcd39c;
   --ds-mapped-border-action: #0022ff;
-  --ds-mapped-border-action-hover: #667aff;
+  --ds-mapped-border-action-hover: #4b63ff; /* a11y: was #667aff; matches the hover fill so filled controls get no lighter ring. 4.64:1 on white, 4.53:1 on black */
   --ds-mapped-border-focus: #0022ff;
   --ds-mapped-border-disabled: #e3e4e6;
   /* a11y (WCAG 1.4.11): outlines of form controls (text fields, search, picker,

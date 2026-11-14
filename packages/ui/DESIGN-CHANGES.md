@@ -23,32 +23,35 @@ To restore the original look of one token:
 
 The tables below list every original value. The steps were made in these commits, before the generator existed. They are a record of what changed: reverting the token part of a commit now means editing `tokens.json` as above, not running `git revert`.
 
-| Commit    | Change                                                                                                                                                    |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `398c348` | Text colours (placeholder, error, success, warning, information), brand Chip fill, calendar headers, Tag `aria-disabled`                                  |
-| `0ecfe23` | Icon colours, Badge status fills, all dark-theme changes (links, focus ring, sharp Chip fills)                                                            |
-| `cd43a5f` | Form-control outlines (`border-input`, `border-input-error`) and the Checkbox error cue                                                                   |
-| `c84bd9a` | Pagination dots get 24×24px targets (WCAG 2.2 SC 2.5.8). Was 12×12px, so the dots were closer together                                                    |
-| `f86fb78` | Dark-theme hover text and icon (`text-action-hover`, `icon-action-hover`) readable on the hover fill: hovered tabs and accordion headers are lighter blue |
+| Commit    | Change                                                                                                                                                        |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `398c348` | Text colours (placeholder, error, success, warning, information), brand Chip fill, calendar headers, Tag `aria-disabled`                                      |
+| `0ecfe23` | Icon colours, Badge status fills, all dark-theme changes (links, focus ring, sharp Chip fills)                                                                |
+| `cd43a5f` | Form-control outlines (`border-input`, `border-input-error`) and the Checkbox error cue                                                                       |
+| `c84bd9a` | Pagination dots get 24×24px targets (WCAG 2.2 SC 2.5.8). Was 12×12px, so the dots were closer together                                                        |
+| `f86fb78` | Dark-theme hover text and icon (`text-action-hover`, `icon-action-hover`) readable on the hover fill: hovered tabs and accordion headers are lighter blue     |
+| `18a14aa` | Hover fill and hover border `#667aff` → `#4b63ff`, so white text on hovered buttons and menu items reaches 4.5:1. Hovered controls are a slightly deeper blue |
 
 Reverting a commit brings back the matching accessibility failures, and the tests will fail again (`src/test/tokenContrast.test.ts` and the story axe checks).
 
 ### Original values (light theme)
 
-| Token                                                 | Original                                  | Current                                 | Used by                                                          |
-| ----------------------------------------------------- | ----------------------------------------- | --------------------------------------- | ---------------------------------------------------------------- |
-| `text-placeholder`                                    | `#8d9199`                                 | `#73767d`                               | placeholders, hints, empty text, calendar headers                |
-| `text-error`                                          | `#f04438`                                 | `#d83d32`                               | error messages                                                   |
-| `text-success`                                        | `#12b76a`                                 | `#0d884f`                               | success text                                                     |
-| `text-warning`                                        | `#f79009`                                 | `#ad6506`                               | warning text                                                     |
-| `text-information`                                    | `#2e90fa`                                 | `#2677ce`                               | information text                                                 |
-| `icon-warning`                                        | `#f79009`                                 | `#cf7908`                               | warning icons, Snackbar progress                                 |
-| `icon-success`                                        | `#12b76a`                                 | `#10a15e`                               | success icons, Snackbar progress                                 |
-| `icon-information`                                    | `#2e90fa`                                 | `#2d8df5`                               | information icons, Snackbar progress                             |
-| `surface-brand-strong` _(new)_                        | Chip used `border-action-hover` `#667aff` | `#5a6be0`                               | Chip brand/sharp                                                 |
-| `surface-{info,warning,error,success}-strong` _(new)_ | Badge used the icon colours               | `#2677ce` `#ad6506` `#d83d32` `#0d884f` | Badge                                                            |
-| `border-input` _(new)_                                | controls used `border-default` `#f0f1f2`  | `#8d9199`                               | Field, Input, TextArea, SearchBox, FieldPicker, Checkbox, Switch |
-| `border-input-error` _(new)_                          | controls used `border-error` `#f9b4af`    | `#f04438`                               | error outlines                                                   |
+| Token                                                 | Original                                  | Current                                 | Used by                                                                                                              |
+| ----------------------------------------------------- | ----------------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `text-placeholder`                                    | `#8d9199`                                 | `#73767d`                               | placeholders, hints, empty text, calendar headers                                                                    |
+| `text-error`                                          | `#f04438`                                 | `#d83d32`                               | error messages                                                                                                       |
+| `text-success`                                        | `#12b76a`                                 | `#0d884f`                               | success text                                                                                                         |
+| `text-warning`                                        | `#f79009`                                 | `#ad6506`                               | warning text                                                                                                         |
+| `text-information`                                    | `#2e90fa`                                 | `#2677ce`                               | information text                                                                                                     |
+| `icon-warning`                                        | `#f79009`                                 | `#cf7908`                               | warning icons, Snackbar progress                                                                                     |
+| `icon-success`                                        | `#12b76a`                                 | `#10a15e`                               | success icons, Snackbar progress                                                                                     |
+| `icon-information`                                    | `#2e90fa`                                 | `#2d8df5`                               | information icons, Snackbar progress                                                                                 |
+| `surface-brand-strong` _(new)_                        | Chip used `border-action-hover` `#667aff` | `#5a6be0`                               | Chip brand/sharp                                                                                                     |
+| `surface-{info,warning,error,success}-strong` _(new)_ | Badge used the icon colours               | `#2677ce` `#ad6506` `#d83d32` `#0d884f` | Badge                                                                                                                |
+| `border-input` _(new)_                                | controls used `border-default` `#f0f1f2`  | `#8d9199`                               | Field, Input, TextArea, SearchBox, FieldPicker, Checkbox, Switch                                                     |
+| `border-input-error` _(new)_                          | controls used `border-error` `#f9b4af`    | `#f04438`                               | error outlines                                                                                                       |
+| `surface-action-hover` _(both themes)_                | `#667aff`                                 | `#4b63ff`                               | hover fill of Button, Menu item, NavigationPanel item, DialogBox action, SelectButton, checked Checkbox/Radio/Switch |
+| `border-action-hover` _(both themes)_                 | `#667aff`                                 | `#4b63ff`                               | hover borders; kept equal to the hover fill                                                                          |
 
 For a **new** token, "going back" means pointing the component CSS at the original token again. For example, `Field.module.css` would use `var(--ds-mapped-border-default)` instead of `var(--ds-mapped-border-input)`.
 
@@ -225,3 +228,79 @@ In a Card image carousel:
 | ----- | ----------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | Light | ![before](design-changes/before/layout-card--media-carousel--light.png) | ![after](design-changes/after/layout-card--media-carousel--light.png) |
 | Dark  | ![before](design-changes/before/layout-card--media-carousel--dark.png)  | ![after](design-changes/after/layout-card--media-carousel--dark.png)  |
+
+## Hover states
+
+The hover fill and hover border went from `#667aff` to `#4b63ff` in both themes: white text on the old fill was 3.63:1, below the 4.5:1 minimum. Found by `pnpm audit:hover`, which hovers every interactive element with the real mouse. The screenshots are taken with the pointer resting on the element named below.
+
+### Button — hover
+
+The Default button is hovered.
+
+|       | Before                                                                         | After                                                                        |
+| ----- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
+| Light | ![before](design-changes/before/primitives-button--variants--hover--light.png) | ![after](design-changes/after/primitives-button--variants--hover--light.png) |
+| Dark  | ![before](design-changes/before/primitives-button--variants--hover--dark.png)  | ![after](design-changes/after/primitives-button--variants--hover--dark.png)  |
+
+### Menu item — hover
+
+“Settings” is hovered.
+
+|       | Before                                                                      | After                                                                     |
+| ----- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Light | ![before](design-changes/before/primitives-menu--default--hover--light.png) | ![after](design-changes/after/primitives-menu--default--hover--light.png) |
+| Dark  | ![before](design-changes/before/primitives-menu--default--hover--dark.png)  | ![after](design-changes/after/primitives-menu--default--hover--dark.png)  |
+
+### NavigationPanel item — hover
+
+“Explore” is hovered.
+
+|       | Before                                                                             | After                                                                            |
+| ----- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Light | ![before](design-changes/before/layout-navigationpanel--default--hover--light.png) | ![after](design-changes/after/layout-navigationpanel--default--hover--light.png) |
+| Dark  | ![before](design-changes/before/layout-navigationpanel--default--hover--dark.png)  | ![after](design-changes/after/layout-navigationpanel--default--hover--dark.png)  |
+
+### DialogBox action — hover
+
+“Cancel booking” is hovered.
+
+|       | Before                                                                    | After                                                                   |
+| ----- | ------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| Light | ![before](design-changes/before/layout-dialogbox--open--hover--light.png) | ![after](design-changes/after/layout-dialogbox--open--hover--light.png) |
+| Dark  | ![before](design-changes/before/layout-dialogbox--open--hover--dark.png)  | ![after](design-changes/after/layout-dialogbox--open--hover--dark.png)  |
+
+### SelectButton — hover
+
+The selected button is hovered.
+
+|       | Before                                                                               | After                                                                              |
+| ----- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| Light | ![before](design-changes/before/primitives-selectbutton--selected--hover--light.png) | ![after](design-changes/after/primitives-selectbutton--selected--hover--light.png) |
+| Dark  | ![before](design-changes/before/primitives-selectbutton--selected--hover--dark.png)  | ![after](design-changes/after/primitives-selectbutton--selected--hover--dark.png)  |
+
+### RadioButton — hover
+
+The selected option is hovered.
+
+|       | Before                                                                           | After                                                                          |
+| ----- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| Light | ![before](design-changes/before/primitives-radiobutton--group--hover--light.png) | ![after](design-changes/after/primitives-radiobutton--group--hover--light.png) |
+| Dark  | ![before](design-changes/before/primitives-radiobutton--group--hover--dark.png)  | ![after](design-changes/after/primitives-radiobutton--group--hover--dark.png)  |
+
+### Switch — hover
+
+The switch is hovered.
+
+|       | Before                                                                   | After                                                                  |
+| ----- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| Light | ![before](design-changes/before/primitives-switch--on--hover--light.png) | ![after](design-changes/after/primitives-switch--on--hover--light.png) |
+| Dark  | ![before](design-changes/before/primitives-switch--on--hover--dark.png)  | ![after](design-changes/after/primitives-switch--on--hover--dark.png)  |
+
+### Input — hover
+
+The field is hovered (hover border).
+
+|       | Before                                                                       | After                                                                      |
+| ----- | ---------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Light | ![before](design-changes/before/primitives-input--default--hover--light.png) | ![after](design-changes/after/primitives-input--default--hover--light.png) |
+| Dark  | ![before](design-changes/before/primitives-input--default--hover--dark.png)  | ![after](design-changes/after/primitives-input--default--hover--dark.png)  |

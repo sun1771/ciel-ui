@@ -24,23 +24,24 @@ pnpm dev          # docs site at http://localhost:3000
 
 ## Scripts (run from the repo root)
 
-| Command               | Does                                                                                                                                          |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pnpm dev`            | Run the docs site at http://localhost:3000 (uses package **source**, so edits hot-reload)                                                     |
-| `pnpm build`          | Build every package (`packages/*/dist`) and the docs site                                                                                     |
-| `pnpm lint`           | ESLint (incl. `jsx-a11y`, `react-hooks`)                                                                                                      |
-| `pnpm typecheck`      | `tsc --noEmit` in every package                                                                                                               |
-| `pnpm check:packages` | Pack each package as it would be published and run [publint](https://publint.dev) + [Are The Types Wrong](https://arethetypeswrong.github.io) |
-| `pnpm smoke`          | Install the packed packages into a fresh Next.js app, build it, and check SSR, CSS, types and tree-shaking                                    |
-| `pnpm test`           | Unit tests + every story in Chromium (light and dark), with axe and coverage                                                                  |
-| `pnpm storybook`      | Storybook at http://localhost:6006                                                                                                            |
-| `pnpm format`         | Prettier                                                                                                                                      |
+| Command               | Does                                                                                                                                                       |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm dev`            | Run the docs site at http://localhost:3000 (uses package **source**, so edits hot-reload)                                                                  |
+| `pnpm build`          | Build every package (`packages/*/dist`) and the docs site                                                                                                  |
+| `pnpm lint`           | ESLint (incl. `jsx-a11y`, `react-hooks`)                                                                                                                   |
+| `pnpm typecheck`      | `tsc --noEmit` in every package                                                                                                                            |
+| `pnpm check:packages` | Pack each package as it would be published and run [publint](https://publint.dev) + [Are The Types Wrong](https://arethetypeswrong.github.io)              |
+| `pnpm smoke`          | Install the packed packages into a fresh Next.js app, build it, and check SSR, CSS, types and tree-shaking                                                 |
+| `pnpm test`           | Unit tests + every story in Chromium (light and dark), with axe and coverage                                                                               |
+| `pnpm storybook`      | Storybook at http://localhost:6006                                                                                                                         |
+| `pnpm audit:hover`    | Hover every interactive element of every story with the real mouse (light and dark) and check contrast. Run `pnpm --filter @acme/ui build-storybook` first |
+| `pnpm format`         | Prettier                                                                                                                                                   |
 
 Run `pnpm build` before `check:packages` and `smoke`.
 
 ## Contributing and releases
 
-- **CI** (`.github/workflows/ci.yml`) runs on every pull request and on `main`. It runs format, lint and typecheck; checks that `tokens.css` matches `tokens.json`; runs the unit and story tests with coverage thresholds; then builds, runs the package checks and the smoke test, and finally the docs accessibility audit.
+- **CI** (`.github/workflows/ci.yml`) runs on every pull request and on `main`. It runs format, lint and typecheck; checks that `tokens.css` matches `tokens.json`; runs the unit and story tests with coverage thresholds; then builds, runs the package checks and the smoke test, the hover contrast audit, and finally the docs accessibility audit.
 - **Changesets:** a PR that changes a published package adds a changeset with `pnpm changeset` (see `.changeset/README.md`). The three packages share one version number.
 
 ## Docs site (`apps/docs`)
