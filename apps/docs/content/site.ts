@@ -16,5 +16,5 @@ export const site = {
   },
   /** Set at deploy time; links are hidden while unset. */
   storybookUrl: process.env.NEXT_PUBLIC_STORYBOOK_URL ?? null,
-  repoUrl: process.env.NEXT_PUBLIC_REPO_URL ?? 'https://github.com/sun1771',
+  repoUrl: process.env.NEXT_PUBLIC_REPO_URL ?? 'https://github.com/sun1771/ciel-ui',
 }
