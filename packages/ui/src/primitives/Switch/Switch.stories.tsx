@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { expect, userEvent } from 'storybook/test'
+import { expect, fn, userEvent } from 'storybook/test'
 import { Switch } from '.'
 
 const meta = {
@@ -27,4 +27,16 @@ export const Default: Story = {
   },
 }
 export const On: Story = { args: { checked: true } }
+
+/** Uncontrolled: no state code needed; `onCheckedChange` reports each toggle. */
+export const Uncontrolled: Story = {
+  args: { defaultChecked: true, onCheckedChange: fn() },
+  play: async ({ args, canvas }) => {
+    const sw = canvas.getByRole('switch', { name: 'Notifications' })
+    await expect(sw).toHaveAttribute('aria-checked', 'true')
+    await userEvent.click(sw)
+    await expect(sw).toHaveAttribute('aria-checked', 'false')
+    await expect(args.onCheckedChange).toHaveBeenCalledWith(false)
+  },
+}
 export const Disabled: Story = { args: { disabled: true } }

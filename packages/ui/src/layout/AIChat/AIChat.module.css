@@ -328,6 +328,8 @@
   border-top: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-action);
   border-radius: var(--ds-alias-border-radius-xl);
   box-shadow: var(--ds-effect-shadow-on);
+  /* Collapse/expand eases the width instead of snapping. */
+  transition: width var(--ds-motion-duration-slow) var(--ds-motion-easing-standard);
 }
 
 /* Component-specific widths — no --ds- token exists for these panel sizes. */
@@ -368,8 +370,8 @@
   flex: none;
   align-items: center;
   justify-content: center;
-  padding: var(--ds-alias-spacing-xs);
-  border: var(--ds-alias-border-width-sm) solid transparent;
+  width: 38px; /* same box as the lg icon-only ButtonIcon */
+  height: 38px;
   color: var(--ds-mapped-icon-default);
 }
 
@@ -402,17 +404,33 @@
   padding: 0 var(--ds-alias-spacing-sm) var(--ds-alias-spacing-xxl);
 }
 
-/* Conversation — messages stacked, anchored to the bottom, scrollable */
+/* Conversation — messages stacked, anchored to the bottom, scrollable.
+   The anchoring is a top margin on the first message, not
+   justify-content: flex-end: with flex-end, messages that overflow the top
+   were cut off and could not be scrolled to. */
 .conversation {
   display: flex;
   flex: 1 0 0;
   flex-direction: column;
   gap: var(--ds-alias-spacing-sm);
   align-items: stretch;
-  justify-content: flex-end;
   min-height: 0;
   width: 100%;
   overflow-y: auto;
+  overscroll-behavior: contain;
+  /* Room for the focus ring inside the scroll area */
+  padding: var(--ds-alias-spacing-xxs);
+  box-sizing: border-box;
+  border-radius: var(--ds-alias-border-radius-lg);
+}
+
+.conversation > :first-child {
+  margin-top: auto;
+}
+
+.conversation:focus-visible {
+  outline: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
+  outline-offset: calc(-1 * var(--ds-alias-border-width-md));
 }
 
 /* Embedded chat input fills the panel width but caps at 400px so it doesn't

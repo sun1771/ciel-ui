@@ -3,6 +3,8 @@
 import React from 'react'
 import { cn } from '../../lib/utils'
 import styles from './TabBar.module.css'
+import { useControllableState } from '../../lib/useControllableState'
+import { TabBarContext } from './TabBarContext'
 import type { TabBarProps } from './types'
 
 /**
@@ -11,6 +13,11 @@ import type { TabBarProps } from './types'
  * Manages keyboard navigation (Left/Right/Home/End arrow keys) via
  * the roving tabindex pattern.
  *
+ * Selection, two ways:
+ *   - Give each TabItem a `value` and let TabBar track the selected one:
+ *     `defaultValue` (uncontrolled) or `value` + `onValueChange` (controlled).
+ *   - Or set `isSelected` on each TabItem yourself.
+ *
  * @see design-system/figma.md for Figma mapping
  * @see docs/components.md for usage examples
  */
@@ -18,10 +25,22 @@ export function TabBar({
   children,
   className,
   onKeyDown,
+  value: valueProp,
+  defaultValue,
+  onValueChange,
   ref,
   ...props
 }: TabBarProps & { ref?: React.Ref<HTMLDivElement> }) {
   const innerRef = React.useRef<HTMLDivElement>(null)
+  const [value, setValue] = useControllableState<string | undefined>({
+    value: valueProp,
+    defaultValue,
+    onChange: onValueChange as ((v: string | undefined) => void) | undefined,
+  })
+  const context = React.useMemo(
+    () => ({ value, select: (v: string) => setValue(v) }),
+    [value, setValue]
+  )
 
   const resolvedRef = (node: HTMLDivElement | null) => {
     innerRef.current = node
@@ -77,7 +96,7 @@ export function TabBar({
       onKeyDown={handleKeyDown}
       {...props}
     >
-      {children}
+      <TabBarContext.Provider value={context}>{children}</TabBarContext.Provider>
     </div>
   )
 }

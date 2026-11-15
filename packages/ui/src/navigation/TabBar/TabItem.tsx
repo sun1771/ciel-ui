@@ -3,6 +3,7 @@
 import React from 'react'
 import { cn } from '../../lib/utils'
 import styles from './TabBar.module.css'
+import { TabBarContext } from './TabBarContext'
 import type { TabItemProps } from './types'
 
 /**
@@ -14,7 +15,8 @@ import type { TabItemProps } from './types'
  * @see docs/components.md for usage examples
  */
 export function TabItem({
-  isSelected = false,
+  value,
+  isSelected: isSelectedProp,
   disabled = false,
   icon,
   children,
@@ -23,6 +25,10 @@ export function TabItem({
   ref,
   ...props
 }: TabItemProps & { ref?: React.Ref<HTMLButtonElement> }) {
+  const bar = React.useContext(TabBarContext)
+  // With a `value`, the TabBar decides; an explicit isSelected still wins.
+  const isSelected = isSelectedProp ?? (value !== undefined && bar?.value === value)
+
   return (
     <button
       ref={ref}
@@ -37,7 +43,14 @@ export function TabItem({
         disabled && styles.disabled,
         className
       )}
-      onClick={disabled ? undefined : onClick}
+      onClick={
+        disabled
+          ? undefined
+          : (e) => {
+              onClick?.(e)
+              if (!e.defaultPrevented && value !== undefined) bar?.select(value)
+            }
+      }
       {...props}
     >
       {icon && (

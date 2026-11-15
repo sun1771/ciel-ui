@@ -4,8 +4,9 @@ import React from 'react'
 import { cn } from '../../lib/utils'
 import { Sparkle, ArrowLeft, ArrowRight } from '@acme/icons'
 import { ButtonIcon, ButtonIconSwitching } from '../../primitives/Button'
+import { useControllableState } from '../../lib/useControllableState'
 import { ChatInput } from './ChatInput'
-import type { AIChatLabels, AIChatProps } from './types'
+import type { AIChatLabels, AIChatProps, AIChatState } from './types'
 import styles from './AIChat.module.css'
 
 const DEFAULT_LABELS: AIChatLabels = {
@@ -30,6 +31,11 @@ const DEFAULT_LABELS: AIChatLabels = {
  *   - 'collapsed' (60px)   logo-only rail; the ButtonIconSwitching logo reveals
  *                          an expand arrow on hover and calls `onExpand`
  *
+ * The collapse arrow and the collapsed logo switch states on their own
+ * (`defaultState`), returning to the width the panel had before; pass `state`
+ * + `onStateChange` to control it instead. The conversation scrolls, starts
+ * at the newest message, and follows new messages as they arrive.
+ *
  * Reuses ButtonIcon (header controls), ButtonIconSwitching (collapsed logo),
  * and the ChatInput / UserBubble / AgentBubble pieces.
  *
@@ -37,7 +43,9 @@ const DEFAULT_LABELS: AIChatLabels = {
  * @see docs/components.md for usage examples
  */
 export function AIChat({
-  state = 'default',
+  state: stateProp,
+  defaultState = 'default',
+  onStateChange,
   title = 'Assistant',
   icon = <Sparkle size={20} />,
   labels,
@@ -58,7 +66,37 @@ export function AIChat({
   ...props
 }: AIChatProps & { ref?: React.Ref<HTMLDivElement> }) {
   const l = { ...DEFAULT_LABELS, ...labels }
+  const [state, setState] = useControllableState<AIChatState>({
+    value: stateProp,
+    defaultValue: defaultState,
+    onChange: onStateChange,
+  })
   const isCollapsed = state === 'collapsed'
+  // The width to return to when the collapsed rail is expanded again.
+  const lastOpenState = React.useRef<AIChatState>(state === 'wide' ? 'wide' : 'default')
+
+  const collapse = () => {
+    lastOpenState.current = state === 'wide' ? 'wide' : 'default'
+    onCollapse?.()
+    setState('collapsed')
+  }
+  const expand = () => {
+    onExpand?.()
+    setState(lastOpenState.current)
+  }
+
+  // Keep the newest message in view: jump there on first render, then glide
+  // to it whenever the conversation changes.
+  const conversationRef = React.useRef<HTMLDivElement>(null)
+  const hasScrolled = React.useRef(false)
+  React.useLayoutEffect(() => {
+    const el = conversationRef.current
+    if (!el) return
+    const top = el.scrollHeight
+    if (!hasScrolled.current || typeof el.scrollTo !== 'function') el.scrollTop = top
+    else el.scrollTo({ top, behavior: 'smooth' })
+    hasScrolled.current = true
+  }, [children, isCollapsed])
 
   const panelClass =
     state === 'collapsed'
@@ -78,7 +116,7 @@ export function AIChat({
               label={l.expand}
               icon={icon}
               hoverIcon={<ArrowRight size={20} />}
-              onClick={onExpand}
+              onClick={expand}
             />
           </div>
         </div>
@@ -100,13 +138,23 @@ export function AIChat({
             size="lg"
             label={l.collapse}
             icon={<ArrowLeft size={20} />}
-            onClick={onCollapse}
+            onClick={collapse}
           />
         </div>
       </div>
 
       <div className={styles.chatContainer}>
-        <div className={styles.conversation}>{children}</div>
+        <div
+          ref={conversationRef}
+          className={styles.conversation}
+          role="log"
+          aria-label={title}
+          // Focusable so keyboard users can scroll the conversation.
+          // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+          tabIndex={0}
+        >
+          {children}
+        </div>
       </div>
 
       <ChatInput

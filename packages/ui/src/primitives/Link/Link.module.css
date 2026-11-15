@@ -92,3 +92,21 @@
 .disabled .iconWrapper {
   color: var(--ds-mapped-icon-disabled);
 }
+
+/* Motion: hover colour changes ease in, and a trailing icon (e.g. an arrow)
+   nudges forward. */
+.base {
+  transition:
+    color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    text-decoration-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+.iconWrapper {
+  transition:
+    color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    transform var(--ds-motion-duration-base) var(--ds-motion-easing-standard);
+}
+
+.base:hover .iconWrapper:last-child:not(:first-child) {
+  transform: translateX(var(--ds-alias-spacing-xxs));
+}

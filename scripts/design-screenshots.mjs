@@ -29,7 +29,7 @@ if (!staticDir || !outDir) {
   process.exit(1)
 }
 
-/** Stories whose look changed in the accessibility work. */
+/** Stories whose look changed (accessibility work, then the polish pass). */
 export const STORIES = [
   'primitives-input--default',
   'primitives-input--error',
@@ -49,6 +49,12 @@ export const STORIES = [
   'feedback-snackbar--with-progress',
   'navigation-pagination--default',
   'layout-card--media-carousel',
+  // Polish pass (see DESIGN-CHANGES.md "Polish pass")
+  'primitives-button--icon-only',
+  'feedback-progressbar--circle',
+  'primitives-textarea--default',
+  'layout-table--default',
+  'navigation-carousel--default',
 ]
 
 /** Hover states that changed: the real mouse rests on `hover` while capturing. */

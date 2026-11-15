@@ -12,14 +12,21 @@ export interface PaginationLabels {
 }
 
 export interface PaginationProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> {
-  /** Current active page — 1-indexed. The corresponding dot displays as a pill. */
   /** Override accessible names (e.g. for localisation). */
   labels?: Partial<PaginationLabels>
-  page: number
+  /** Current page, 1-indexed; its dot displays as a pill. Pass it to control Pagination yourself. */
+  page?: number
+  /** Starting page when `page` isn't passed (uncontrolled). Default: 1. */
+  defaultPage?: number
   /** Total number of pages — determines how many dots are rendered. */
   totalPages: number
-  /** Callback fired when an inactive dot is clicked. Receives the target page number. */
+  /** Called with the target page number when an inactive dot is clicked, in both modes. */
   onChange?: (page: number) => void
+  /**
+   * Colour scheme. 'default' = neutral dots for the page surface; 'onMedia' =
+   * white dots with a soft shadow, for use over photos (e.g. Card images).
+   */
+  tone?: 'default' | 'onMedia'
   /** When true, all dots render in the disabled surface color and interactions are suppressed. */
   disabled?: boolean
   className?: string

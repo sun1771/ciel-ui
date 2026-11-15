@@ -17,15 +17,20 @@
   background: var(--ds-mapped-surface-default);
   padding: var(--ds-alias-spacing-lg) var(--ds-alias-spacing-xxs);
   box-shadow: var(--ds-effect-shadow);
-  overflow: hidden;
+  /* Long lists scroll inside the panel. */
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   box-sizing: border-box;
+  transition: width var(--ds-motion-duration-slow) var(--ds-motion-easing-standard);
 }
 
 /* Widths derive from the item box (154 / 48) + 4px (Spacing/xxs) padding each
    side. No --ds- token exists for these container dimensions — component-
-   specific, flagged in figma.md (same precedent as Switch/Avatar). */
+   specific, flagged in figma.md (same precedent as Switch/Avatar). Override
+   the expanded width with --nav-panel-width; items fill it. */
 .panelExpanded {
-  width: 162px;
+  width: var(--nav-panel-width, 162px);
 }
 
 .panelCollapsed {
@@ -54,14 +59,45 @@
   gap: var(--ds-alias-spacing-lg);
 }
 
+/* Group heading */
+.groupLabel {
+  display: block;
+  padding: var(--ds-alias-spacing-sm) var(--ds-alias-spacing-sm) var(--ds-alias-spacing-xxs);
+  font-family: var(--ds-brand-font-family-body);
+  font-weight: var(--ds-brand-font-weight-semi-bold);
+  font-size: var(--ds-typography-body-xsm-font-size);
+  line-height: var(--ds-typography-body-xsm-line-height);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ds-mapped-text-placeholder);
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ---- NavigationMenuItem (Type=regular) ---- */
 
 .item {
   display: flex;
   align-items: center;
   gap: var(--ds-alias-spacing-xs);
-  width: 154px;
+  width: 100%;
   height: 48px;
+  flex-shrink: 0;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    transform var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
   padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
   background: var(--ds-mapped-surface-default);
   border: none;
@@ -69,6 +105,21 @@
   text-align: left;
   cursor: pointer;
   box-sizing: border-box;
+}
+
+/* Small: a 36px row with smaller text, for long lists. */
+.itemSm {
+  height: 36px;
+  padding: var(--ds-alias-spacing-xxs) var(--ds-alias-spacing-sm);
+}
+
+.itemSm .itemText {
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: var(--ds-typography-body-sm-line-height);
+}
+
+.item:active:not(:disabled):not(.disabled) {
+  transform: scale(0.98);
 }
 
 /* Collapsed: square icon button, label hidden, icon centered. */
@@ -138,6 +189,7 @@
   width: 20px;
   height: 20px;
   color: var(--ds-mapped-icon-default);
+  transition: color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
 }
 
 /* ---- Label text ---- */
@@ -149,6 +201,7 @@
   line-height: var(--ds-typography-body-md-line-height);
   color: var(--ds-mapped-text-body);
   white-space: nowrap;
+  transition: color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
   /* Truncate labels longer than the item with an ellipsis (…).
      min-width:0 lets this flex child shrink below its content width. */
   flex: 1;
@@ -178,7 +231,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 154px;
+  width: 100%;
   height: 48px;
   /* pl Spacing/xs, pr Spacing/xxs, py Spacing/xs (per Figma 3860:1918). */
   padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-xxs) var(--ds-alias-spacing-xs)

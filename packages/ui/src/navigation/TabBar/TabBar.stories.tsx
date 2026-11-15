@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { expect, userEvent } from 'storybook/test'
+import { expect, fn, userEvent } from 'storybook/test'
 import { TabBar, TabItem } from '.'
 
 const meta = {
@@ -53,5 +53,28 @@ export const Default: Story = {
       await userEvent.click(tab('Cars'))
       await expect(tab('Cars')).toHaveAttribute('aria-selected', 'true')
     })
+  },
+}
+
+/** Uncontrolled: give each TabItem a `value`; TabBar tracks the selection. */
+export const Uncontrolled: Story = {
+  args: { defaultValue: 'flights', onValueChange: fn() },
+  render: (args) => (
+    <TabBar {...args}>
+      {TABS.map((t) => (
+        <TabItem key={t} value={t.toLowerCase()}>
+          {t}
+        </TabItem>
+      ))}
+    </TabBar>
+  ),
+  play: async ({ args, canvas }) => {
+    const tab = (name: string) => canvas.getByRole('tab', { name })
+    await expect(tab('Flights')).toHaveAttribute('aria-selected', 'true')
+    await expect(tab('Flights')).toHaveAttribute('tabindex', '0')
+    await userEvent.click(tab('Cars'))
+    await expect(tab('Cars')).toHaveAttribute('aria-selected', 'true')
+    await expect(tab('Flights')).toHaveAttribute('aria-selected', 'false')
+    await expect(args.onValueChange).toHaveBeenCalledWith('cars')
   },
 }

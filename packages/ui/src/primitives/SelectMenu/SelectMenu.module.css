@@ -1,0 +1,26 @@
+/* SelectMenu — SelectButton + a floating Menu below it */
+
+.wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* .wrapper > raises specificity over Menu's own position: relative. */
+.wrapper > .menu {
+  position: absolute;
+  top: calc(100% + var(--ds-alias-spacing-xxs));
+  left: 0;
+  z-index: 10;
+  min-width: 100%;
+  width: max-content;
+  max-width: 320px;
+  transform-origin: top left;
+  animation: menuIn var(--ds-motion-duration-base) var(--ds-motion-easing-enter);
+}
+
+@keyframes menuIn {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--ds-alias-spacing-xxs))) scale(0.98);
+  }
+}

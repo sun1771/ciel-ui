@@ -38,37 +38,82 @@
   height: 100%;
   background: var(--ds-mapped-surface-action);
   border-radius: var(--ds-alias-border-radius-round);
-  transition: width 0.3s ease;
+  transition: width var(--ds-motion-duration-slow) var(--ds-motion-easing-standard);
 }
 
 /* ---- ProgressCircle ---- */
 
+/* Ring, then the optional caption beside it. */
 .progressCircle {
-  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-alias-spacing-xs);
   flex-shrink: 0;
 }
 
-.progressCircle.sizeDefault {
+.ring {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+}
+
+.ring svg {
+  display: block;
+}
+
+.arc {
+  transition: stroke-dashoffset var(--ds-motion-duration-slow) var(--ds-motion-easing-standard);
+}
+
+.sizeDefault .ring {
   width: 64px;
   height: 64px;
 }
 
-.progressCircle.sizeSm {
+.sizeSm .ring {
   width: 48px;
   height: 48px;
 }
 
-.circleLabel {
+/* Percentage, centred inside the ring. Sized to fit the hole ("100%" included):
+   default 14px text in a 44px hole, sm 12px text in a 35px hole. Was any
+   label text at 14px, which spilled over the ring (e.g. "Step 1 of 4"). */
+.circleValue {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--ds-typography-body-sm-font-family);
+  font-weight: var(--ds-brand-font-weight-semi-bold);
+  font-size: var(--ds-typography-body-sm-font-size);
+  line-height: 1;
+  color: var(--ds-mapped-text-body);
+  pointer-events: none;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.sizeSm .circleValue {
+  font-size: var(--ds-typography-body-xsm-font-size);
+}
+
+/* A smaller % sign keeps "100%" inside the hole and puts the weight on the number. */
+.percent {
+  font-size: 0.75em;
+  font-weight: var(--ds-brand-font-weight-regular);
+}
+
+.circleValue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+}
+
+.circleCaption {
   font-family: var(--ds-typography-body-sm-font-family);
   font-weight: var(--ds-typography-body-sm-font-weight);
   font-size: var(--ds-typography-body-sm-font-size);
   line-height: var(--ds-typography-body-sm-line-height);
   color: var(--ds-mapped-text-body);
-  text-align: center;
-  pointer-events: none;
-  white-space: nowrap;
 }

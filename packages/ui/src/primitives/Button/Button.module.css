@@ -25,11 +25,27 @@
   cursor: pointer;
   user-select: none;
   outline: none;
-  /* Transition — only opacity/colors, never layout */
+  /* Height of the standard (text) button per size. Icon-only buttons use it
+     for both width and height, so they line up with text buttons in a row. */
+  --btn-size-lg: calc(
+    var(--ds-typography-body-md-line-height) + 2 * var(--ds-alias-spacing-xs) + 2 *
+      var(--ds-alias-border-width-sm)
+  );
+  --btn-size-sm: calc(
+    var(--ds-typography-body-sm-line-height) + 2 * var(--ds-alias-spacing-xxs) + 2 *
+      var(--ds-alias-border-width-sm)
+  );
+  /* Transition — colours, plus a slight press (transform never shifts layout) */
   transition:
-    background-color 150ms ease,
-    border-color 150ms ease,
-    color 150ms ease;
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    transform var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+/* Pressed: a subtle dip, so a click feels acknowledged */
+.base:active:not(:disabled):not(.loading) {
+  transform: scale(0.97);
 }
 
 .base:focus-visible {
@@ -228,18 +244,38 @@
 
 /* ─── ButtonIcon ─────────────────────────────────────────────────────────────── */
 
+/* Always square (or a circle with shape="round"): width = height = the height
+   of a standard Button of the same size (lg 38px, sm 30px), whatever the
+   variant. Was padding-only, so the icon's line box made them taller than
+   wide (e.g. lg 38 × 41px). Before/after: packages/ui/DESIGN-CHANGES.md. */
 .iconOnly {
-  /* Symmetric padding — size token per size class */
+  padding: 0;
+  gap: 0;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.iconOnly > span {
+  display: inline-flex;
 }
 
 .iconOnly.sizeLg {
-  padding: var(--ds-alias-spacing-xs);
-  gap: 0;
+  width: var(--btn-size-lg);
+  height: var(--btn-size-lg);
 }
 
 .iconOnly.sizeSm {
-  padding: var(--ds-alias-spacing-xxs);
-  gap: 0;
+  width: var(--btn-size-sm);
+  height: var(--btn-size-sm);
+}
+
+/* Standard buttons get the same height as a floor, so rows of mixed buttons align. */
+.base.sizeLg:not(.iconOnly):not(.vertical) {
+  min-height: var(--btn-size-lg);
+}
+
+.base.sizeSm:not(.iconOnly):not(.vertical) {
+  min-height: var(--btn-size-sm);
 }
 
 .shapeRound {
@@ -277,19 +313,24 @@
   grid-area: 1 / 1;
   display: inline-flex;
   color: inherit;
-  transition: opacity 150ms ease;
+  transition:
+    opacity var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    transform var(--ds-motion-duration-base) var(--ds-motion-easing-standard);
 }
 
 .switchIconHover {
   opacity: 0;
+  transform: scale(0.8);
 }
 
 .base:hover:not(:disabled):not(.loading) .switchIconDefault,
 .base:focus-visible:not(:disabled):not(.loading) .switchIconDefault {
   opacity: 0;
+  transform: scale(0.8);
 }
 
 .base:hover:not(:disabled):not(.loading) .switchIconHover,
 .base:focus-visible:not(:disabled):not(.loading) .switchIconHover {
   opacity: 1;
+  transform: none;
 }

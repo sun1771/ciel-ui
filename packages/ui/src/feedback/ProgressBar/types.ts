@@ -8,7 +8,7 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   value?: number
   /** Show label text above the track */
   showLabel?: boolean
-  /** Custom label text. Defaults to "{value}%" when showLabel is true */
+  /** Label text, shown above the track with showLabel (else "{value}%"). Also the accessible name. */
   label?: string
   className?: string
 }
@@ -19,9 +19,9 @@ export interface ProgressCircleProps extends React.HTMLAttributes<HTMLDivElement
   value?: number
   /** Size variant. 'default' = 64px, 'sm' = 48px. Default: 'default' */
   size?: ProgressCircleSize
-  /** Show percentage label in the center */
+  /** Show the percentage inside the ring, and `label` (if any) as a caption beside it */
   showLabel?: boolean
-  /** Custom label text. Defaults to "{value}%" when showLabel is true */
+  /** What is progressing, e.g. "Step 1 of 4". The accessible name; shown beside the ring with showLabel. */
   label?: string
   className?: string
 }

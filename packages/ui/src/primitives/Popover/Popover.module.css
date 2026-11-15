@@ -20,3 +20,16 @@
   box-shadow: var(--ds-effect-shadow-overlay-light);
   padding: var(--ds-alias-spacing-md);
 }
+
+/* Motion: the panel fades and drops into place when it opens */
+.panel {
+  transform-origin: top left;
+  animation: panelIn var(--ds-motion-duration-base) var(--ds-motion-easing-enter);
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--ds-alias-spacing-xxs))) scale(0.98);
+  }
+}

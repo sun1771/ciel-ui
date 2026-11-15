@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { expect, userEvent } from 'storybook/test'
+import { expect, fn, userEvent } from 'storybook/test'
 import { NumericUpDown } from '.'
 
 const meta = {
@@ -26,6 +26,15 @@ export const Default: Story = {
     await userEvent.click(inc)
     await expect(canvas.getByText('3')).toBeInTheDocument()
     await expect(inc).toBeDisabled() // at max
+  },
+}
+/** Uncontrolled: counts on its own from `defaultValue`. */
+export const Uncontrolled: Story = {
+  args: { defaultValue: 2, onChange: fn() },
+  play: async ({ args, canvas }) => {
+    await userEvent.click(canvas.getByRole('button', { name: 'Increase' }))
+    await expect(canvas.getByText('3')).toBeInTheDocument()
+    await expect(args.onChange).toHaveBeenCalledWith(3)
   },
 }
 export const Localised: Story = {

@@ -2,21 +2,25 @@
 
 import React from 'react'
 import { cn } from '../../lib/utils'
-import { ChevronDown, ChevronTop } from '@acme/icons'
+import { ChevronDown } from '@acme/icons'
+import { useControllableState } from '../../lib/useControllableState'
 import type { AccordionProgressiveProps } from './types'
 import styles from './AccordionProgressive.module.css'
 
 /**
  * AccordionProgressive
- * Collapsible disclosure panel. Controlled: parent passes isExpanded and onToggle.
- * Header shows ChevronDown (collapsed) / ChevronTop (expanded) with progressive border styling.
+ * Collapsible disclosure panel with progressive border styling. Pass
+ * `isExpanded` + `onToggle` to control it, or `defaultExpanded` (or nothing) to
+ * let it keep its own state. The panel animates open and closed; while closed
+ * it is inert (not focusable, hidden from screen readers).
  *
  * @see design-system/figma.md for Figma mapping
  * @see docs/components.md for usage examples
  */
 export function AccordionProgressive({
   label,
-  isExpanded = false,
+  isExpanded: isExpandedProp,
+  defaultExpanded = false,
   disabled = false,
   onToggle,
   children,
@@ -26,11 +30,14 @@ export function AccordionProgressive({
 }: AccordionProgressiveProps & { ref?: React.Ref<HTMLDivElement> }) {
   const contentId = React.useId()
   const headerId = React.useId()
+  const [isExpanded, setExpanded] = useControllableState({
+    value: isExpandedProp,
+    defaultValue: defaultExpanded,
+    onChange: onToggle,
+  })
 
   const handleClick = () => {
-    if (!disabled) {
-      onToggle?.(!isExpanded)
-    }
+    if (!disabled) setExpanded(!isExpanded)
   }
 
   return (
@@ -40,21 +47,23 @@ export function AccordionProgressive({
         type="button"
         className={cn(styles.header, isExpanded && styles.headerExpanded)}
         aria-expanded={isExpanded}
-        aria-controls={isExpanded ? contentId : undefined}
+        aria-controls={contentId}
         disabled={disabled}
         onClick={handleClick}
       >
         <span className={styles.label}>{label}</span>
         <span className={styles.chevron} aria-hidden="true">
-          {isExpanded ? <ChevronTop size={20} /> : <ChevronDown size={20} />}
+          <ChevronDown size={20} />
         </span>
       </button>
 
-      {isExpanded && (
-        <div id={contentId} role="region" aria-labelledby={headerId} className={styles.content}>
-          {children}
+      <div className={cn(styles.collapse, isExpanded && styles.collapseOpen)} inert={!isExpanded}>
+        <div className={styles.collapseInner}>
+          <div id={contentId} role="region" aria-labelledby={headerId} className={styles.content}>
+            {children}
+          </div>
         </div>
-      )}
+      </div>
     </div>
   )
 }

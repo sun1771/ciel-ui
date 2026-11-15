@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { expect, userEvent } from 'storybook/test'
+import { expect, fn, userEvent, waitFor } from 'storybook/test'
 import { Expander } from '.'
 
 const meta = {
@@ -24,5 +24,20 @@ export const Default: Story = {
     await expect(toggle).toHaveAttribute('aria-expanded', 'true')
   },
 }
-export const Small: Story = { args: { size: 'sm', isExpanded: true } }
+/** Uncontrolled: opens and closes with no state code. Closed content is inert. */
+export const Uncontrolled: Story = {
+  args: { onToggle: fn() },
+  play: async ({ args, canvas }) => {
+    const toggle = canvas.getByRole('button', { name: 'Show details' })
+    await expect(canvas.queryByRole('region')).toBeNull()
+    await userEvent.click(toggle)
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true')
+    await expect(args.onToggle).toHaveBeenCalledWith(true)
+    await waitFor(() => expect(canvas.getByRole('region')).toBeVisible())
+    await userEvent.click(toggle)
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false')
+    await waitFor(() => expect(canvas.queryByRole('region')).toBeNull())
+  },
+}
+export const Small: Story = { args: { size: 'sm', defaultExpanded: true } }
 export const Disabled: Story = { args: { disabled: true } }

@@ -34,6 +34,9 @@
   outline: none;
   appearance: none;
   -webkit-appearance: none;
+  transition:
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
 }
 
 /* ─── Checked (on) state ─────────────────────────────────────────────────── */
@@ -41,7 +44,6 @@
 .track.checked {
   background-color: var(--ds-mapped-surface-action);
   border-color: var(--ds-mapped-border-action);
-  justify-content: flex-end;
 }
 
 /* ─── Hover states ───────────────────────────────────────────────────────── */
@@ -86,7 +88,6 @@
 .track.checked.disabled {
   background-color: var(--ds-mapped-surface-disabled);
   border-color: var(--ds-mapped-border-disabled);
-  justify-content: flex-end;
 }
 
 /* ─── Knob (the circle inside the track) ────────────────────────────────── */
@@ -103,6 +104,28 @@
      --ds-mapped-surface-default becomes black in dark mode (incorrect for knob). */
   background-color: var(--ds-brand-foundation-white);
   box-shadow: var(--ds-effect-shadow-overlay-light);
+  /* The knob slides (rather than jumping) between the ends of the track. */
+  transition:
+    transform var(--ds-motion-duration-base) var(--ds-motion-easing-standard),
+    width var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+/* On: slide to the right end. Travel = track width − borders − padding − knob. */
+.checked .knob {
+  transform: translateX(
+    calc(64px - 2 * var(--ds-alias-border-width-sm) - 2 * var(--ds-alias-spacing-xxs) - 24px)
+  );
+}
+
+/* Pressed: the knob stretches a little toward where it is going. */
+.track:active:not(:disabled) .knob {
+  width: 28px;
+}
+
+.checked:active:not(:disabled) .knob {
+  transform: translateX(
+    calc(64px - 2 * var(--ds-alias-border-width-sm) - 2 * var(--ds-alias-spacing-xxs) - 28px)
+  );
 }
 
 /* ─── Label text ─────────────────────────────────────────────────────────── */

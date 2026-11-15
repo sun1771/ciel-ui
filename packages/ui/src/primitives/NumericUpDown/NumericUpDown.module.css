@@ -72,3 +72,30 @@
 .disabled .value {
   color: var(--ds-mapped-text-disabled);
 }
+
+/* Each new number fades and slides in slightly. */
+.valueText {
+  display: inline-block;
+  animation: valueIn var(--ds-motion-duration-base) var(--ds-motion-easing-enter);
+}
+
+@keyframes valueIn {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--ds-alias-spacing-xxs)));
+  }
+}
+
+/* Motion: hover colours ease in; the buttons dip when pressed */
+.button {
+  transition:
+    color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    box-shadow var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    transform var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+.button:active:not(:disabled) {
+  transform: scale(0.9);
+}

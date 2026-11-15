@@ -14,7 +14,11 @@ export interface SearchBoxProps extends React.InputHTMLAttributes<HTMLInputEleme
   onClear?: () => void
   /** Override accessible names (e.g. for localisation). */
   labels?: Partial<SearchBoxLabels>
-  /** Optional dropdown content rendered in a floating panel below the input. Parent controls when to pass children. */
+  /**
+   * Suggestions shown in a dropdown below the input, e.g. `<MenuItem role="option">` items.
+   * Passing children (even an empty list) makes the input a combobox; the dropdown opens as
+   * the user types and closes when an option is picked, on Escape, or on a click outside.
+   */
   children?: React.ReactNode
   /** Applied to the outer wrapper div, not the native <input>. */
   className?: string
