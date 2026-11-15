@@ -65,6 +65,20 @@ Every changed value keeps its original in `packages/tokens/tokens.json` (`$exten
 - **Form control outlines** use a new `border-input` token: `#8d9199` (3.16:1) in light, `#5a5e66` (3.23:1) in dark. Covers Field, Input, TextArea, SearchBox, FieldPicker, Checkbox and the Switch track. Cards, tables and dividers keep `border-default` (decorative, so exempt).
 - **Error outlines** use `border-input-error`: `#f04438` (3.76:1) in light, `#bb352c` (3.66:1) in dark. The pastel `border-*` status colours remain only as decorative accents (Chips), where text carries the meaning.
 - **Checkbox `error`** also doubles the outline weight, so the state doesn't rely on colour alone (WCAG 1.4.1).
+- **Pagination dots** use a new `surface-indicator` token: `#8d9199` (3.16:1) in light, `#5a5e66` (3.23:1) in dark. They used `surface-default`, so the unselected dots were invisible in both themes.
+- **Selectable Menu items** show a tick as well as the filled background, so selection doesn't rely on colour alone.
+
+### Motion (WCAG 2.3.3)
+
+- Transitions use the `--ds-motion-*` tokens. With `prefers-reduced-motion: reduce`, `tokens.css` sets every duration to `0ms`, so hover, open and slide changes happen instantly.
+- The Loader keeps turning with reduced motion (it shows that something is happening), but slowly and steadily: one turn every 3 seconds.
+
+### Interaction patterns
+
+- **SelectMenu**: WAI-ARIA menu button. Focus moves into the menu on open and back to the button on close; items are `menuitemradio` with `aria-checked`.
+- **SearchBox with suggestions**: the input is a `combobox` (`aria-expanded`, `aria-controls`, `aria-autocomplete="list"`). Escape, picking an option, Tab away or a click outside closes the list.
+- **Expander, AccordionProgressive, Carousel**: hidden content (a closed panel, off-screen slides) is `inert`, so Tab and screen readers skip it.
+- **AIChat**: the conversation is a focusable `role="log"`, so keyboard users can scroll it.
 
 **Before/after screenshots and the original values are in [DESIGN-CHANGES.md](DESIGN-CHANGES.md)**, so any change can be compared or reverted.
 
