@@ -10,6 +10,7 @@
  *   modes.light / modes.web  → :root
  *   modes.dark               → [data-theme='dark']   (only values that differ)
  *   modes.mobile             → @media (max-width: 440px)
+ *   $type duration           → also 0ms in @media (prefers-reduced-motion: reduce)
  *
  * Additions over the original:
  *   - $extensions.a11y.<mode> = { was, note } records a value changed for WCAG
@@ -71,6 +72,7 @@ function decl(name, value, a11y) {
 const rootLines = []
 const darkLines = []
 const mobileLines = []
+const reducedMotionLines = []
 
 for (const [p, token] of Object.entries(all)) {
   const name = varName(p)
@@ -90,6 +92,8 @@ for (const [p, token] of Object.entries(all)) {
   } else if (type === 'shadow') {
     const { offsetX, offsetY, blur, spread, color } = value
     rootLines.push(`  ${name}: ${offsetX} ${offsetY} ${blur} ${spread} ${color};`)
+  } else if (type === 'cubicBezier') {
+    rootLines.push(`  ${name}: cubic-bezier(${resolve(value).join(', ')});`)
   } else if (type === 'fontWeight') {
     rootLines.push(`  ${name}: ${fontWeight(value)};`)
   } else if (modes?.light !== undefined || modes?.dark !== undefined) {
@@ -104,6 +108,7 @@ for (const [p, token] of Object.entries(all)) {
     if (mobile !== web) mobileLines.push(`  ${name}: ${mobile};`)
   } else {
     rootLines.push(decl(name, resolve(value), a11y.light))
+    if (type === 'duration') reducedMotionLines.push(`  ${name}: 0ms;`)
   }
 }
 
@@ -126,6 +131,16 @@ const css =
           '@media (max-width: 440px) {',
           '  :root {',
           ...mobileLines.map((l) => '  ' + l),
+          '  }',
+          '}',
+        ]
+      : []),
+    ...(reducedMotionLines.length
+      ? [
+          '',
+          '@media (prefers-reduced-motion: reduce) {',
+          '  :root {',
+          ...reducedMotionLines.map((l) => '  ' + l),
           '  }',
           '}',
         ]
