@@ -1,20 +1,27 @@
 import { Carousel } from '@acme/ui'
 
+const DESTINATIONS = ['Lisbon', 'Kyoto', 'Oaxaca', 'Reykjavík']
+
 export default function Basic() {
   return (
-    <Carousel>
-      <div
-        style={{
-          width: 260,
-          height: 140,
-          display: 'grid',
-          placeItems: 'center',
-          borderRadius: 8,
-          background: 'var(--ds-mapped-surface-action-hover-light)',
-        }}
-      >
-        Slide content
-      </div>
-    </Carousel>
+    <div style={{ maxWidth: 360 }}>
+      <Carousel aria-label="Destinations">
+        {DESTINATIONS.map((city) => (
+          <div
+            key={city}
+            style={{
+              height: 140,
+              display: 'grid',
+              placeItems: 'center',
+              borderRadius: 8,
+              background: 'var(--ds-mapped-surface-action-hover-light)',
+              color: 'var(--ds-mapped-text-body)',
+            }}
+          >
+            {city}
+          </div>
+        ))}
+      </Carousel>
+    </div>
   )
 }
