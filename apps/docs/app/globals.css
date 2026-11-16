@@ -19,6 +19,13 @@ html {
   scroll-padding-top: calc(var(--site-header-h) + 16px);
 }
 
+/* Phones: the docs Menu bar (48px) sits under the header too. */
+@media (max-width: 720px) {
+  html {
+    scroll-padding-top: calc(var(--site-header-h) + 64px);
+  }
+}
+
 body {
   margin: 0;
   background: var(--ds-mapped-surface-page);
