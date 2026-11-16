@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { expect, userEvent } from 'storybook/test'
+import { expect, fn, userEvent } from 'storybook/test'
 import { TabBar, TabItem } from '.'
 
 const meta = {
@@ -53,5 +53,56 @@ export const Default: Story = {
       await userEvent.click(tab('Cars'))
       await expect(tab('Cars')).toHaveAttribute('aria-selected', 'true')
     })
+  },
+}
+
+/** Uncontrolled: give each TabItem a `value`; TabBar tracks the selection. */
+export const Uncontrolled: Story = {
+  args: { defaultValue: 'flights', onValueChange: fn() },
+  render: (args) => (
+    <TabBar {...args}>
+      {TABS.map((t) => (
+        <TabItem key={t} value={t.toLowerCase()}>
+          {t}
+        </TabItem>
+      ))}
+    </TabBar>
+  ),
+  play: async ({ args, canvas }) => {
+    const tab = (name: string) => canvas.getByRole('tab', { name })
+    await expect(tab('Flights')).toHaveAttribute('aria-selected', 'true')
+    await expect(tab('Flights')).toHaveAttribute('tabindex', '0')
+    await userEvent.click(tab('Cars'))
+    await expect(tab('Cars')).toHaveAttribute('aria-selected', 'true')
+    await expect(tab('Flights')).toHaveAttribute('aria-selected', 'false')
+    await expect(args.onValueChange).toHaveBeenCalledWith('cars')
+  },
+}
+
+/** No tab selected yet: the first tab is still reachable with Tab. */
+export const NoSelection: Story = {
+  args: { onValueChange: fn() },
+  render: (args) => (
+    <>
+      <button type="button">Before</button>
+      <TabBar {...args}>
+        {TABS.map((t) => (
+          <TabItem key={t} value={t.toLowerCase()}>
+            {t}
+          </TabItem>
+        ))}
+      </TabBar>
+    </>
+  ),
+  play: async ({ canvas }) => {
+    const tab = (name: string) => canvas.getByRole('tab', { name })
+    canvas.getByRole('button', { name: 'Before' }).focus()
+    await userEvent.tab()
+    await expect(tab('Hotels')).toHaveFocus()
+    await expect(tab('Flights')).toHaveAttribute('tabindex', '-1')
+    // Once a tab is selected, it is the only Tab stop.
+    await userEvent.click(tab('Cars'))
+    await expect(tab('Cars')).toHaveAttribute('tabindex', '0')
+    await expect(tab('Hotels')).toHaveAttribute('tabindex', '-1')
   },
 }

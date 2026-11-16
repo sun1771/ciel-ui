@@ -27,10 +27,25 @@
   user-select: none;
   outline: none;
   /* Transition */
+  position: relative;
   transition:
-    background-color 150ms ease,
-    border-color 150ms ease,
-    color 150ms ease;
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+/* Tick of a selectable item: hidden until the item is selected, then pops in. */
+.tick {
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    transform var(--ds-motion-duration-base) var(--ds-motion-easing-standard);
+}
+
+.selected .tick {
+  opacity: 1;
+  transform: none;
 }
 
 /* ─── MenuItem — sizes ───────────────────────────────────────────────────────── */
@@ -96,7 +111,8 @@
 .item:focus-visible::after {
   content: '';
   position: absolute;
-  inset: -2px;
+  /* Drawn just inside the item: the menu clips anything outside it. */
+  inset: 0;
   border: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
   pointer-events: none;
   z-index: 1;

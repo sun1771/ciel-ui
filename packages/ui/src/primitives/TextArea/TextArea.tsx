@@ -37,7 +37,12 @@ export function TextArea({
       {hint && <p className={styles.hint}>{hint}</p>}
 
       <div
-        className={cn(styles.field, disabled && styles.fieldDisabled, !!error && styles.fieldError)}
+        className={cn(
+          styles.field,
+          disabled && styles.fieldDisabled,
+          !!error && styles.fieldError,
+          !!iconRight && styles.hasIcon
+        )}
       >
         <textarea
           ref={ref}

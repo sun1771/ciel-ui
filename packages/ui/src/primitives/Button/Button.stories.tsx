@@ -62,7 +62,7 @@ export const Disabled: Story = {
 
 export const IconOnly: StoryObj<typeof ButtonIcon> = {
   render: () => (
-    <div style={{ display: 'flex', gap: 12 }}>
+    <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
       <ButtonIcon label="Search" icon={<Search size={20} />} />
       <ButtonIcon label="Search" icon={<Search size={20} />} variant="outline" shape="round" />
       <ButtonIcon label="Search" icon={<Search size={20} />} variant="transparent" size="sm" />
@@ -72,6 +72,52 @@ export const IconOnly: StoryObj<typeof ButtonIcon> = {
     // Icon-only buttons must still have an accessible name.
     const buttons = within(canvasElement).getAllByRole('button', { name: 'Search' })
     await expect(buttons).toHaveLength(3)
+    // Square, and as tall as a standard button of the same size (lg 38px, sm 30px).
+    const size = (b: HTMLElement) => b.getBoundingClientRect()
+    for (const [b, px] of [
+      [buttons[0], 38],
+      [buttons[1], 38],
+      [buttons[2], 30],
+    ] as const) {
+      await expect(size(b).width).toBe(px)
+      await expect(size(b).height).toBe(px)
+    }
+  },
+}
+
+/** Icon-only buttons match the height of text buttons beside them. */
+export const IconWithText: StoryObj<typeof ButtonIcon> = {
+  render: () => (
+    <div style={{ display: 'grid', gap: 12 }}>
+      <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+        <Button>Search</Button>
+        <ButtonIcon label="Search" icon={<Search size={20} />} />
+        <ButtonIcon label="Search" icon={<Search size={20} />} variant="outline" shape="round" />
+        <ButtonIcon label="Search" icon={<Search size={20} />} variant="transparent" />
+      </div>
+      <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+        <Button size="sm">Search</Button>
+        <ButtonIcon label="Search" icon={<Search size={16} />} size="sm" />
+        <ButtonIcon
+          label="Search"
+          icon={<Search size={16} />}
+          size="sm"
+          variant="outline"
+          shape="round"
+        />
+        <ButtonIcon label="Search" icon={<Search size={16} />} size="sm" variant="transparent" />
+      </div>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const rows = canvasElement.querySelectorAll<HTMLElement>(':scope > div > div')
+    await expect(rows).toHaveLength(2)
+    for (const row of rows) {
+      const heights = [...row.querySelectorAll('button')].map(
+        (b) => b.getBoundingClientRect().height
+      )
+      await expect(new Set(heights).size).toBe(1)
+    }
   },
 }
 

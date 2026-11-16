@@ -52,7 +52,12 @@ export function CardMedia({
             />
           </div>
           <div className={styles.paginationOverlay}>
-            <Pagination page={current + 1} totalPages={total} onChange={(p) => setPage(p - 1)} />
+            <Pagination
+              tone="onMedia"
+              page={current + 1}
+              totalPages={total}
+              onChange={(p) => setPage(p - 1)}
+            />
           </div>
         </>
       )}

@@ -21,6 +21,9 @@ export default function Group() {
           {c}
         </RadioButton>
       ))}
+      <RadioButton name="cabin" value="First" disabled>
+        First (sold out)
+      </RadioButton>
     </fieldset>
   )
 }

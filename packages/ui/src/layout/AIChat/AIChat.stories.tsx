@@ -5,6 +5,16 @@ import { AIChat, AgentBubble, ChatInput, UserBubble } from '.'
 
 const conversation = (
   <>
+    <UserBubble>I’m going to Prague in May. Where should I stay?</UserBubble>
+    <AgentBubble
+      sections={[
+        {
+          title: 'Old Town',
+          content: 'Walkable to most sights, lively in the evenings, pricier.',
+        },
+        { title: 'Vinohrady', content: 'Quieter, leafy streets and cafés, 15 minutes by tram.' },
+      ]}
+    />
     <UserBubble>Find me a quiet hotel near the river.</UserBubble>
     <AgentBubble
       sections={[
@@ -19,9 +29,10 @@ const conversation = (
 const meta = {
   title: 'Layout/AIChat',
   component: AIChat,
-  args: { state: 'default', onSubmit: fn(), children: conversation },
+  args: { onSubmit: fn(), onStateChange: fn(), children: conversation },
   argTypes: {
-    state: { control: 'inline-radio', options: ['default', 'wide', 'collapsed'] },
+    defaultState: { control: 'inline-radio', options: ['default', 'wide', 'collapsed'] },
+    state: { control: false },
     children: { control: false },
     icon: { control: false },
   },
@@ -71,8 +82,37 @@ export const Default: Story = {
   },
 }
 
-export const Wide: Story = { args: { state: 'wide' } }
-export const Collapsed: Story = { args: { state: 'collapsed' } }
+export const Wide: Story = { args: { defaultState: 'wide' } }
+export const Collapsed: Story = { args: { defaultState: 'collapsed' } }
+
+/** Collapse and expand work with no state code; expanding restores the earlier width. */
+export const CollapseAndExpand: Story = {
+  args: { defaultState: 'wide' },
+  play: async ({ args, canvas }) => {
+    await userEvent.click(canvas.getByRole('button', { name: 'Collapse chat' }))
+    await expect(args.onStateChange).toHaveBeenLastCalledWith('collapsed')
+    await expect(canvas.queryByRole('textbox')).toBeNull()
+    await userEvent.click(canvas.getByRole('button', { name: 'Expand chat' }))
+    await expect(args.onStateChange).toHaveBeenLastCalledWith('wide')
+    await expect(canvas.getByRole('textbox', { name: 'Chat input' })).toBeInTheDocument()
+  },
+}
+
+/** The conversation scrolls: it opens on the newest message and the oldest can be reached. */
+export const Scrolling: Story = {
+  play: async ({ canvas }) => {
+    const log = canvas.getByRole('log', { name: 'Assistant' })
+    await expect(log.scrollHeight).toBeGreaterThan(log.clientHeight)
+    // Starts at the bottom (newest message).
+    await expect(log.scrollTop + log.clientHeight).toBeGreaterThanOrEqual(log.scrollHeight - 2)
+    // The first message can be scrolled fully into view.
+    log.scrollTop = 0
+    const first = canvas.getByText('I’m going to Prague in May. Where should I stay?')
+    await expect(first.getBoundingClientRect().top).toBeGreaterThanOrEqual(
+      log.getBoundingClientRect().top
+    )
+  },
+}
 export const Localised: Story = {
   args: {
     title: 'Assistent',

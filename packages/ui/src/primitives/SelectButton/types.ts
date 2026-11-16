@@ -7,10 +7,9 @@ export type SelectButtonVariant = 'default' | 'outline' | 'transparent'
 export type SelectButtonSize = 'lg' | 'sm'
 
 /**
- * SelectButton — a toggle button with a trailing chevron icon.
- * The chevron points down when unselected (closed) and up when selected (open).
- * isSelected is a controlled prop; the parent manages state and renders the
- * dropdown (Menu) when isSelected=true.
+ * SelectButton — the trigger of a dropdown, with a trailing chevron that points
+ * up while the dropdown is open (isSelected). For a working dropdown use
+ * SelectMenu, or render your own panel and set isSelected while it is open.
  *
  * @see design-system/figma.md → Select Button (node 1748:7209)
  * @see docs/components.md for usage examples

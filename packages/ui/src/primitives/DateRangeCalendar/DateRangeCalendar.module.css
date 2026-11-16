@@ -127,3 +127,19 @@
   visibility: hidden;
   pointer-events: none;
 }
+
+/* Motion: day and month-nav hover ease in; press feedback */
+.dayCell,
+.monthNavBtn {
+  transition:
+    color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    box-shadow var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    transform var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+.dayCell:active,
+.monthNavBtn:active {
+  transform: scale(0.94);
+}

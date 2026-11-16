@@ -284,3 +284,11 @@
     transform: translateX(100%);
   }
 }
+
+/* Motion: hover border and shadow ease in */
+.card {
+  transition:
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    box-shadow var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}

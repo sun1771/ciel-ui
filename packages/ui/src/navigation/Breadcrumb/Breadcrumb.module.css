@@ -74,3 +74,10 @@
   flex-shrink: 0;
   color: var(--ds-mapped-icon-default);
 }
+
+/* Motion: hover colour eases in */
+.link {
+  transition:
+    color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    text-decoration-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}

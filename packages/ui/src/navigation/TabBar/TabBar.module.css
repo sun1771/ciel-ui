@@ -37,6 +37,33 @@
   cursor: pointer;
   outline: none;
   -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+/* Active indicator: a 2px bar over the reserved bottom border that grows out
+   from the centre when a tab becomes selected. */
+.tabItem::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(-1 * var(--ds-alias-border-width-md));
+  height: var(--ds-alias-border-width-md);
+  background: var(--ds-mapped-border-action);
+  transform: scaleX(0);
+  transition:
+    transform var(--ds-motion-duration-base) var(--ds-motion-easing-standard),
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+.selected::before {
+  transform: scaleX(1);
+}
+
+.iconWrapper {
+  transition: color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
 }
 
 /* Icon wrapper — sets icon color per state via currentColor */
@@ -52,7 +79,6 @@
 .selected {
   font-weight: var(--ds-brand-font-weight-semi-bold);
   color: var(--ds-mapped-text-action);
-  border-bottom-color: var(--ds-mapped-border-action);
 }
 
 .selected .iconWrapper {
@@ -70,8 +96,8 @@
   color: var(--ds-mapped-icon-action-hover);
 }
 
-.selected:hover:not(:disabled):not(.disabled) {
-  border-bottom-color: var(--ds-mapped-border-action-hover);
+.selected:hover:not(:disabled):not(.disabled)::before {
+  background: var(--ds-mapped-border-action-hover);
 }
 
 /* ---- Focus-visible state ---- */
@@ -113,7 +139,7 @@
   color: var(--ds-mapped-icon-disabled);
 }
 
-.disabled.selected,
-.tabItem:disabled.selected {
-  border-bottom-color: var(--ds-mapped-border-disabled);
+.disabled.selected::before,
+.tabItem:disabled.selected::before {
+  background: var(--ds-mapped-border-disabled);
 }

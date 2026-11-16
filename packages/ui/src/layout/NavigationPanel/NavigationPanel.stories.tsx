@@ -90,3 +90,44 @@ export const Collapsed: Story = {
     await expect(canvas.getByRole('button', { name: 'Expand navigation' })).toBeInTheDocument()
   },
 }
+
+const SECTIONS = [
+  { label: 'Guides', items: ['Getting started', 'Theming', 'Accessibility'] },
+  { label: 'Primitives', items: ['Button', 'Avatar', 'Badge', 'Chip'] },
+  { label: 'Feedback', items: ['Loader', 'ProgressBar', 'Snackbar'] },
+]
+
+/** Long link lists: compact `sm` items under group headings, with `href`
+ * links. The panel scrolls when the list is taller than the page. */
+export const Grouped: Story = {
+  args: { 'aria-label': 'Documentation' },
+  render: (args) => (
+    <div style={{ height: 480, display: 'flex' }}>
+      <NavigationPanel {...args} style={{ ['--nav-panel-width' as string]: '220px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+          {SECTIONS.map((section) => (
+            <NavigationMenuGroup key={section.label} label={section.label} gap="xxs">
+              {section.items.map((item) => (
+                <NavigationMenuItem
+                  key={item}
+                  href={`#${item.toLowerCase().replace(/ /g, '-')}`}
+                  size="sm"
+                  isSelected={item === 'Button'}
+                >
+                  {item}
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuGroup>
+          ))}
+        </div>
+      </NavigationPanel>
+    </div>
+  ),
+  play: async ({ canvas }) => {
+    await expect(canvas.getByRole('link', { name: 'Button' })).toHaveAttribute(
+      'aria-current',
+      'page'
+    )
+    await expect(canvas.getByText('Primitives')).toBeVisible()
+  },
+}

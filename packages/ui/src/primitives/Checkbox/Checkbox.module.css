@@ -30,7 +30,8 @@
   border-width: 0;
 }
 
-/* Visual checkbox box */
+/* Visual checkbox box. Its state comes from the hidden input's pseudo-classes
+   (:checked, :disabled), so controlled and uncontrolled use look the same. */
 .box {
   /* 24px is a design-specific dimension — no alias spacing token at this value */
   width: 24px;
@@ -47,53 +48,76 @@
   position: relative;
   box-sizing: border-box;
   transition:
-    background-color 120ms ease,
-    border-color 120ms ease,
-    color 120ms ease;
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    transform var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+/* The tick scales in when checked, out when unchecked. */
+.box svg {
+  transform: scale(0.6);
+  opacity: 0;
+  transition:
+    transform var(--ds-motion-duration-base) var(--ds-motion-easing-standard),
+    opacity var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+.input:checked + .box svg {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Pressed: the box dips slightly */
+.wrapper:active:not(.wrapperDisabled) .box {
+  transform: scale(0.92);
 }
 
 /* Checked state */
-.checked {
+.input:checked + .box {
   background-color: var(--ds-mapped-surface-action);
   border-color: var(--ds-mapped-border-action);
   color: var(--ds-mapped-icon-on-action);
 }
 
-/* Disabled state (unchecked) */
-.boxDisabled {
-  background-color: var(--ds-mapped-surface-disabled);
-  border-color: var(--ds-mapped-border-disabled);
-  cursor: not-allowed;
-  color: transparent;
-}
-
 /* Error state (checked or unchecked). Besides the colour, the outline doubles
    in weight (inset ring, so the box doesn't change size) — the error must not
    rely on colour alone (WCAG 1.4.1). Was: 1px border-error #f9b4af. */
-.error {
+.box.error,
+.input:checked + .box.error {
   background-color: var(--ds-mapped-surface-error);
   border-color: var(--ds-mapped-border-input-error);
   box-shadow: inset 0 0 0 var(--ds-alias-border-width-sm) var(--ds-mapped-border-input-error);
 }
 
-/* Checked + disabled — icon uses disabled color */
-.checkedDisabled {
-  color: var(--ds-mapped-icon-disabled);
-}
-
-/* Checked + error (not disabled) — icon uses error color */
-.checkedError {
+/* Checked + error — icon uses error color */
+.input:checked + .box.error {
   color: var(--ds-mapped-icon-error);
 }
 
+/* Disabled state (checked or not) */
+.input:disabled + .box,
+.input:disabled + .box.error {
+  background-color: var(--ds-mapped-surface-disabled);
+  border-color: var(--ds-mapped-border-disabled);
+  box-shadow: none;
+  cursor: not-allowed;
+  color: transparent;
+}
+
+/* Checked + disabled — icon uses disabled color */
+.input:checked:disabled + .box {
+  color: var(--ds-mapped-icon-disabled);
+}
+
 /* Hover — unchecked, no error, not disabled */
-.wrapper:hover:not(.wrapperDisabled) .box:not(.checked):not(.error):not(.boxDisabled) {
+.wrapper:hover .input:not(:checked):not(:disabled) + .box:not(.error) {
   background-color: var(--ds-mapped-surface-action-hover-light);
   border-color: var(--ds-mapped-border-action-hover);
 }
 
 /* Hover — checked, no error, not disabled */
-.wrapper:hover:not(.wrapperDisabled) .box.checked:not(.error):not(.boxDisabled) {
+.wrapper:hover .input:checked:not(:disabled) + .box:not(.error) {
   background-color: var(--ds-mapped-surface-action-hover);
   border-color: var(--ds-mapped-border-action-hover);
 }

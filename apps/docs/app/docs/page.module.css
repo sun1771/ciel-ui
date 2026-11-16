@@ -14,7 +14,10 @@
 
 .title {
   margin: 4px 0 8px;
-  font-size: 40px;
+  /* 40px on wide screens, smaller on phones; long one-word names
+     (AccordionProgressive) break rather than widen the page. */
+  font-size: clamp(28px, 7vw, 40px);
+  overflow-wrap: anywhere;
 }
 
 .lead {
@@ -24,11 +27,14 @@
 
 .meta {
   display: grid;
+  /* minmax(0, …): a long import line scrolls inside its block instead of
+     widening the page on phones. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 8px;
   margin-bottom: 8px;
 }
 
-.article h2 {
+.article h2:not([data-demo] *) {
   margin: 48px 0 8px;
   font-size: 26px;
   padding-top: 8px;
@@ -73,7 +79,7 @@
 }
 
 /* Inline code in descriptions, a11y notes and leads. */
-.article :not(pre) > code {
+.article :not(pre) > code:not([data-demo] *) {
   padding: 1px 6px;
   border-radius: 4px;
   background: color-mix(

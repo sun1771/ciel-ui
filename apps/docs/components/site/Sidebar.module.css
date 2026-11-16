@@ -1,44 +1,115 @@
-.sidebar {
+/* Layout of the docs NavigationPanel. The look of the items comes from the
+   library. `nav.` raises specificity above the library's own rules. */
+
+/* ---- Wide screens: a sticky column that scrolls on its own ---- */
+
+nav.sidebar {
+  --nav-panel-width: 100%;
   position: sticky;
   top: var(--site-header-h);
+  height: auto;
   max-height: calc(100vh - var(--site-header-h));
-  overflow-y: auto;
-  padding: 24px 16px 48px 24px;
-  font-size: 14px;
+  padding: 16px 12px 48px 16px;
+  box-shadow: none;
+  justify-content: flex-start;
 }
 
-.heading {
-  margin: 20px 0 6px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ds-mapped-text-placeholder);
+/* Space between the sections (Guides, Primitives, Feedback, …). */
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.mobileBar,
+.drawer {
+  display: none;
 }
 
-.link {
-  display: block;
-  padding: 5px 10px;
-  border-radius: 6px;
-  color: var(--ds-mapped-text-body);
-  text-decoration: none;
+/* ---- Narrow screens: a Menu bar that opens the navigation in a drawer ---- */
+
+@media (max-width: 720px) {
+  nav.sidebar {
+    display: none;
+  }
+
+  .mobileBar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 48px;
+    padding: 0 12px;
+  }
+
+  .current {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ds-mapped-text-heading);
+  }
+
+  .current::before {
+    content: '/';
+    margin-right: 8px;
+    color: var(--ds-mapped-text-placeholder);
+  }
+
+  .drawer[open] {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: min(320px, 85vw);
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: var(--ds-mapped-surface-default);
+    color: inherit;
+    box-shadow: var(--ds-effect-shadow);
+    animation: drawerIn var(--ds-motion-duration-slow) var(--ds-motion-easing-enter);
+  }
+
+  .drawer::backdrop {
+    background: rgb(0 0 0 / 0.4);
+    animation: backdropIn var(--ds-motion-duration-slow) var(--ds-motion-easing-enter);
+  }
+
+  .drawerHeader {
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 8px 0;
+  }
+
+  nav.drawerNav {
+    --nav-panel-width: 100%;
+    flex: 1;
+    min-height: 0;
+    height: auto;
+    padding: 0 12px 32px 16px;
+    box-shadow: none;
+    justify-content: flex-start;
+  }
 }
 
-.link:hover {
-  background: var(--ds-mapped-surface-action-hover-light);
+@keyframes drawerIn {
+  from {
+    transform: translateX(-100%);
+  }
 }
 
-/* Current page: heading-colour text on the tint (readable in both themes), plus
-   a bar and bold weight so it isn't signalled by colour alone. */
-.link[aria-current='page'] {
-  background: var(--ds-mapped-surface-action-hover-light);
-  color: var(--ds-mapped-text-heading);
-  font-weight: 600;
-  box-shadow: inset 3px 0 0 var(--ds-mapped-border-action);
+@keyframes backdropIn {
+  from {
+    opacity: 0;
+  }
+}
+
+/* No page scroll behind the open drawer. */
+:global(html:has(dialog[open])) {
+  overflow: hidden;
 }

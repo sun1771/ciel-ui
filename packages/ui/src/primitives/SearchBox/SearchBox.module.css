@@ -102,4 +102,28 @@
   box-shadow: var(--ds-effect-shadow-overlay-light);
   border-radius: var(--ds-alias-border-radius-lg);
   overflow: hidden;
+  transform-origin: top center;
+  animation: dropdownIn var(--ds-motion-duration-base) var(--ds-motion-easing-enter);
+}
+
+@keyframes dropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--ds-alias-spacing-xxs))) scale(0.98);
+  }
+}
+
+/* Motion: hover/focus outline and the clear button ease in; press feedback */
+.wrapper,
+.clear {
+  transition:
+    color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    box-shadow var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    transform var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+.clear:active {
+  transform: scale(0.9);
 }

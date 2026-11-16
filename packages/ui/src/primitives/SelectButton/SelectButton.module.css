@@ -22,9 +22,14 @@
   user-select: none;
   outline: none;
   transition:
-    background-color 150ms ease,
-    border-color 150ms ease,
-    color 150ms ease;
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    transform var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+.base:active:not(:disabled) {
+  transform: scale(0.97);
 }
 
 .base:focus-visible {
@@ -135,4 +140,10 @@
   display: inline-flex;
   flex-shrink: 0;
   color: inherit;
+  transition: transform var(--ds-motion-duration-base) var(--ds-motion-easing-standard);
+}
+
+/* Open: the chevron turns to point up. */
+.open .chevron {
+  transform: rotate(180deg);
 }

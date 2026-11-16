@@ -30,7 +30,6 @@
   border: none;
   cursor: pointer;
   border-radius: var(--ds-alias-border-radius-round);
-  transition: background-color 150ms ease;
 }
 
 .dotButton:focus-visible {
@@ -50,11 +49,17 @@
   /* Inactive size: 8px × 8px */
   width: var(--ds-alias-spacing-xs);
   height: var(--ds-alias-spacing-xs);
-  background-color: var(--ds-mapped-surface-default);
-  transition: background-color 150ms ease;
+  /* A neutral that reads on the page in both themes (3:1, WCAG 1.4.11).
+     Was surface-default (white on white, black on black): the dots were
+     invisible. Before/after: packages/ui/DESIGN-CHANGES.md. */
+  background-color: var(--ds-mapped-surface-indicator);
+  transition:
+    width var(--ds-motion-duration-base) var(--ds-motion-easing-standard),
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    transform var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
 }
 
-/* Active dot: pill shape — 20px wide × 8px tall */
+/* Active dot: pill shape — 20px wide × 8px tall; the width eases in. */
 /* NOTE: 20px has no Alias/Mapped token — flagged as missing token */
 .dotActive {
   width: 20px;
@@ -66,7 +71,20 @@
   background-color: var(--ds-mapped-surface-disabled);
 }
 
-/* Hover on inactive, non-disabled dot */
+/* Hover on an inactive dot: it turns blue and grows a little.
+   Was surface-action-hover-light, which was lighter than the dot itself. */
 .dotButton:not(:disabled):not(.dotButtonActive):hover .dot {
-  background-color: var(--ds-mapped-surface-action-hover-light);
+  background-color: var(--ds-mapped-icon-action-hover);
+  transform: scale(1.25);
+}
+
+.dotButton:not(:disabled):not(.dotButtonActive):active .dot {
+  transform: scale(0.9);
+}
+
+/* Over photos: white dots in both themes, with a soft shadow so they read on
+   light images too. (CardMedia uses this; it kept its white dots.) */
+.onMedia .dot:not(.dotActive):not(.dotDisabled) {
+  background-color: var(--ds-brand-foundation-white);
+  box-shadow: var(--ds-effect-shadow-overlay-light);
 }

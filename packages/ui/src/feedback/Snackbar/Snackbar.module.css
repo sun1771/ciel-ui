@@ -191,3 +191,28 @@
 .info .progressFill {
   background-color: var(--ds-mapped-icon-information);
 }
+
+/* Motion: the snackbar slides up and fades in when it appears */
+.base {
+  animation: snackbarIn var(--ds-motion-duration-slow) var(--ds-motion-easing-enter);
+}
+
+@keyframes snackbarIn {
+  from {
+    opacity: 0;
+    transform: translateY(var(--ds-alias-spacing-xs));
+  }
+}
+
+.closeButton {
+  transition:
+    color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    box-shadow var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    transform var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+.closeButton:active {
+  transform: scale(0.9);
+}

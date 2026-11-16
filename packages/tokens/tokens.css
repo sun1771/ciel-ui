@@ -233,6 +233,12 @@
   --ds-mapped-surface-warning-strong: #ad6506;
   --ds-mapped-surface-error-strong: #d83d32;
   --ds-mapped-surface-success-strong: #0d884f;
+  /* Inactive indicators on the page surface, such as unselected Pagination dots.
+     Meets 3:1 against surface-default in both themes (WCAG 1.4.11). */
+  --ds-mapped-surface-indicator: #8d9199;
+  /* Quiet neutral fill for structural areas, such as Table header rows.
+     Kept distinct from the blue action-hover-light used for hover. */
+  --ds-mapped-surface-subtle: #f0f1f2;
   --ds-mapped-border-default: #f0f1f2;
   --ds-mapped-border-success: #a0e2c3;
   --ds-mapped-border-information: #abd3fd;
@@ -372,6 +378,18 @@
   --ds-effect-shadow-overlay: 4px 12px 24px -24px #00000059;
   --ds-effect-shadow-overlay-light: 2px 4px 16px -4px #00000059;
   --ds-effect-shadow-standard: 0px -4px 8px 0px #0022ff0a;
+  /* Colour and opacity changes: hover, focus, pressed. */
+  --ds-motion-duration-fast: 120ms;
+  /* Small movements: switch knob, chevrons, checkbox tick, dots. */
+  --ds-motion-duration-base: 200ms;
+  /* Larger movements: panels opening, slides, dialogs. */
+  --ds-motion-duration-slow: 320ms;
+  /* Default for most transitions: quick start, gentle settle. */
+  --ds-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  /* Elements appearing: decelerate into place. */
+  --ds-motion-easing-enter: cubic-bezier(0, 0, 0, 1);
+  /* Elements leaving: accelerate away. */
+  --ds-motion-easing-exit: cubic-bezier(0.3, 0, 1, 1);
 }
 
 [data-theme='dark'] {
@@ -402,6 +420,8 @@
   --ds-mapped-surface-information: #123a64;
   --ds-mapped-surface-disabled: #44474d;
   --ds-mapped-surface-default-transparent: #0000004d;
+  --ds-mapped-surface-indicator: #5a5e66;
+  --ds-mapped-surface-subtle: #2d2f33;
   --ds-mapped-border-default: #2d2f33;
   --ds-mapped-border-success: #0b7544; /* a11y: was #0e9255; sharp Chip fill, 4.5:1 with text-body */
   --ds-mapped-border-information: #2167b4; /* a11y: was #2573c8; sharp Chip fill, 4.5:1 with text-body */
@@ -431,5 +451,13 @@
     --ds-responsive-h7-line-height: 20px;
     --ds-responsive-h8-font-size: 16px;
     --ds-responsive-device-size: 440px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ds-motion-duration-fast: 0ms;
+    --ds-motion-duration-base: 0ms;
+    --ds-motion-duration-slow: 0ms;
   }
 }

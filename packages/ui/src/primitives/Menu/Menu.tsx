@@ -3,6 +3,8 @@
 import React from 'react'
 import { cn } from '../../lib/utils'
 import styles from './Menu.module.css'
+import { useControllableState } from '../../lib/useControllableState'
+import { MenuContext } from './MenuContext'
 import type { MenuProps } from './types'
 
 /**
@@ -11,6 +13,12 @@ import type { MenuProps } from './types'
  * Renders as role="menu" with WAI-ARIA keyboard support: ArrowDown/ArrowUp
  * move between items (wrapping), Home/End jump to the ends, and only one item
  * is in the Tab order at a time (roving tabindex).
+ *
+ * Selection: give MenuItems a `value` and the Menu tracks which one is chosen
+ * (`defaultValue`, or `value` + `onValueChange`). Clicking an item selects it;
+ * those items become role="menuitemradio" with aria-checked and a tick.
+ * Without values, set `isSelected` on items yourself.
+ *
  * Width and height are controlled by the parent
  * via className — the component does not enforce fixed dimensions.
  *
@@ -26,23 +34,37 @@ export function Menu({
   className,
   children,
   onKeyDown,
+  value: valueProp,
+  defaultValue,
+  onValueChange,
   ref,
   ...rest
 }: MenuProps & { ref?: React.Ref<HTMLDivElement> }) {
   const menuRef = React.useRef<HTMLDivElement>(null)
   React.useImperativeHandle(ref, () => menuRef.current as HTMLDivElement, [])
+  const [value, setValue] = useControllableState<string | undefined>({
+    value: valueProp,
+    defaultValue,
+    onChange: onValueChange as ((v: string | undefined) => void) | undefined,
+  })
+  const context = React.useMemo(
+    () => ({ value, select: (v: string) => setValue(v) }),
+    [value, setValue]
+  )
 
   // The item that starts in the Tab order: the selected one, else the first enabled one.
   const items = React.Children.toArray(children).filter(React.isValidElement)
   const propsOf = (el: React.ReactElement) =>
-    el.props as { isSelected?: boolean; disabled?: boolean }
-  const selectedIdx = items.findIndex((el) => propsOf(el).isSelected && !propsOf(el).disabled)
+    el.props as { isSelected?: boolean; disabled?: boolean; value?: string }
+  const isChosen = (el: React.ReactElement) =>
+    propsOf(el).isSelected ?? (propsOf(el).value !== undefined && propsOf(el).value === value)
+  const selectedIdx = items.findIndex((el) => isChosen(el) && !propsOf(el).disabled)
   const tabStop = selectedIdx >= 0 ? selectedIdx : items.findIndex((el) => !propsOf(el).disabled)
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
     onKeyDown?.(e)
     const enabled = Array.from(
-      menuRef.current?.querySelectorAll<HTMLElement>('[role="menuitem"]:not(:disabled)') ?? []
+      menuRef.current?.querySelectorAll<HTMLElement>('[role^="menuitem"]:not(:disabled)') ?? []
     )
     if (enabled.length === 0) return
     const current = enabled.indexOf(document.activeElement as HTMLElement)
@@ -81,20 +103,22 @@ export function Menu({
       className={cn(styles.menu, showScrollbar && styles.scrollable, className)}
       {...rest}
     >
-      {React.Children.map(children, (child) => {
-        if (!React.isValidElement(child)) return child
-        itemIndex++
-        const childProps = child.props as Record<string, unknown>
-        return React.cloneElement(
-          child as React.ReactElement<{ size?: string; tabIndex?: number }>,
-          {
-            // Pass size down to MenuItem children that don't override it explicitly
-            size: (childProps.size as string | undefined) ?? size,
-            tabIndex:
-              (childProps.tabIndex as number | undefined) ?? (itemIndex === tabStop ? 0 : -1),
-          }
-        )
-      })}
+      <MenuContext.Provider value={context}>
+        {React.Children.map(children, (child) => {
+          if (!React.isValidElement(child)) return child
+          itemIndex++
+          const childProps = child.props as Record<string, unknown>
+          return React.cloneElement(
+            child as React.ReactElement<{ size?: string; tabIndex?: number }>,
+            {
+              // Pass size down to MenuItem children that don't override it explicitly
+              size: (childProps.size as string | undefined) ?? size,
+              tabIndex:
+                (childProps.tabIndex as number | undefined) ?? (itemIndex === tabStop ? 0 : -1),
+            }
+          )
+        })}
+      </MenuContext.Provider>
     </div>
   )
 }

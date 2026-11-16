@@ -30,20 +30,23 @@
   color: var(--ds-mapped-text-placeholder);
 }
 
-/* Field container — carries border, bg, and flex row layout */
+/* Field container — carries border and bg. It has no padding of its own: the
+   <textarea> fills it edge to edge (the padding is inside the textarea), so
+   the browser's resize handle sits in the field's bottom-right corner and the
+   field is exactly as tall as the textarea. Was: padding on the field and a
+   min-height of 108px on it, so the textarea (and its handle) floated inside
+   a taller box and could be dragged smaller than the field.
+   Before/after: packages/ui/DESIGN-CHANGES.md. */
 .field {
+  position: relative;
   display: flex;
-  align-items: flex-start;
-  gap: var(--ds-alias-spacing-xs);
-  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
-  min-height: 108px; /* component-specific — no token equivalent */
   width: 100%;
   background-color: var(--ds-mapped-surface-default);
   border: var(--ds-alias-border-width-sm) solid var(--ds-mapped-border-input);
   border-radius: var(--ds-alias-border-radius-lg);
   box-sizing: border-box;
   cursor: text;
-  transition: border-color 120ms ease;
+  transition: border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
 }
 
 /* Hover — border tints blue */
@@ -74,15 +77,21 @@
   cursor: not-allowed;
 }
 
-/* Native <textarea> — transparent so field container styling shows through */
+/* Native <textarea> — transparent so field container styling shows through.
+   min-height keeps the field at 108px (component-specific, no token) and is
+   also the smallest size the resize handle can drag it to. */
 .textarea {
+  display: block;
   flex: 1 0 0;
   min-width: 0;
+  min-height: calc(108px - 2 * var(--ds-alias-border-width-sm));
   border: none;
+  border-radius: inherit;
   outline: none;
   background: transparent;
   resize: vertical;
-  padding: 0;
+  padding: var(--ds-alias-spacing-xs) var(--ds-alias-spacing-sm);
+  box-sizing: border-box;
   font-family: var(--ds-brand-font-family-body);
   font-weight: var(--ds-brand-font-weight-regular);
   font-size: var(--ds-typography-body-md-font-size);
@@ -104,12 +113,19 @@
   color: var(--ds-mapped-text-disabled);
 }
 
-/* Icon right slot */
+/* Room for the icon at the top right */
+.hasIcon .textarea {
+  padding-right: calc(var(--ds-alias-spacing-sm) + 20px + var(--ds-alias-spacing-xs));
+}
+
+/* Icon right slot — pinned to the top-right corner */
 .iconSlot {
+  position: absolute;
+  top: var(--ds-alias-spacing-xs);
+  right: var(--ds-alias-spacing-sm);
   display: inline-flex;
-  align-items: flex-start;
-  flex-shrink: 0;
   color: var(--ds-mapped-icon-default);
+  pointer-events: none;
 }
 
 .fieldDisabled .iconSlot {

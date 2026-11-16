@@ -8,8 +8,16 @@ import React from 'react'
  *    the primary item group */
 export type NavigationMenuGroupGap = 'none' | 'xxs' | 'md' | 'lg'
 
+/** Item size. `lg` (default) is the 48px Figma item; `sm` is a 36px row with
+ *  smaller text, for long lists such as documentation navigation. */
+export type NavigationMenuItemSize = 'lg' | 'sm'
+
 /** Props for a single clickable navigation menu item (Type=regular). */
 export interface NavigationMenuItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Makes the item a link to this URL (rendered with the panel's `linkComponent`). */
+  href?: string
+  /** Item size. Default 'lg'. */
+  size?: NavigationMenuItemSize
   /** Marks this item as the currently active route (filled blue pill). */
   isSelected?: boolean
   /** Icon slot — a 20px icon from the design system, rendered with currentColor. */
@@ -73,6 +81,8 @@ export interface NavigationProfileItemProps extends Omit<
 
 /** Props for a group of navigation items inside a NavigationPanel. */
 export interface NavigationMenuGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Visible heading for the group (hidden while the panel is collapsed). */
+  label?: React.ReactNode
   /** Vertical gap between children. Default `none`. Use `md` for the top
    *  wrapper that separates the logo item from the primary item group. */
   gap?: NavigationMenuGroupGap
@@ -81,12 +91,20 @@ export interface NavigationMenuGroupProps extends React.HTMLAttributes<HTMLDivEl
 }
 
 /** Props for the navigation panel container. */
-export interface NavigationPanelProps extends React.HTMLAttributes<HTMLElement> {
+export interface NavigationPanelProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onToggle'> {
   /** When true, item labels are visible and the panel is at full width.
-   *  When false, only icons are shown and the panel shrinks to icon width. */
+   *  When false, only icons are shown and the panel shrinks to icon width.
+   *  Pass it to control the panel yourself. */
   isExpanded?: boolean
-  /** Called when the logo item's collapse/expand control is activated. */
-  onToggle?: () => void
+  /** Starting state when `isExpanded` isn't passed (uncontrolled). Default: true. */
+  defaultExpanded?: boolean
+  /** Called with the next expanded state when the logo item's collapse/expand control is activated. */
+  onToggle?: (next: boolean) => void
+  /**
+   * Component used to render items that have an `href`. Default: 'a'. Pass
+   * your router's link (e.g. Next.js `Link`) for client-side navigation.
+   */
+  linkComponent?: React.ElementType
   children?: React.ReactNode
   className?: string
 }
@@ -95,4 +113,5 @@ export interface NavigationPanelProps extends React.HTMLAttributes<HTMLElement> 
 export interface NavigationPanelContextValue {
   isExpanded: boolean
   onToggle?: () => void
+  linkComponent?: React.ElementType
 }

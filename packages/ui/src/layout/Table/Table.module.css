@@ -56,8 +56,11 @@
 .thead {
 }
 
+/* Neutral header fill, so it doesn't look like a hovered row. Was
+   surface-action-hover-light, the same blue as row hover. Before/after:
+   packages/ui/DESIGN-CHANGES.md. */
 .th {
-  background-color: var(--ds-mapped-surface-action-hover-light);
+  background-color: var(--ds-mapped-surface-subtle);
   color: var(--ds-mapped-text-body);
   font-family: var(--ds-typography-body-md-semibold-font-family);
   font-weight: var(--ds-typography-body-md-semibold-font-weight);
@@ -79,6 +82,10 @@
 
 .tr:hover .td {
   background-color: var(--ds-mapped-surface-action-hover-light);
+}
+
+.td {
+  transition: background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
 }
 
 /* Data cells */
@@ -111,6 +118,10 @@
   gap: var(--ds-alias-spacing-xs);
   color: var(--ds-mapped-text-body);
   text-decoration: none;
+}
+
+.cellLink {
+  transition: color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
 }
 
 .cellLink:hover {

@@ -1,4 +1,14 @@
-import { Button, Table } from '@acme/ui'
+import { Star } from '@acme/icons'
+import { Button, ButtonIcon, Table } from '@acme/ui'
+
+const save = (airline: string) => (
+  <ButtonIcon
+    label={`Save the ${airline} flight`}
+    icon={<Star size={16} />}
+    variant="transparent"
+    size="sm"
+  />
+)
 
 export default function Basic() {
   return (
@@ -14,6 +24,7 @@ export default function Basic() {
         { key: 'route', header: 'Route' },
         { key: 'price', header: 'Price' },
         { key: 'details', header: 'Details', type: 'link' },
+        { key: 'save', header: 'Save', type: 'action' },
       ]}
       rows={[
         {
@@ -22,6 +33,7 @@ export default function Basic() {
           route: 'SFO → NRT',
           price: '$812',
           details: { label: 'View', href: '#1' },
+          save: save('Sky Air'),
         },
         {
           id: 2,
@@ -29,6 +41,7 @@ export default function Basic() {
           route: 'SFO → HND',
           price: '$904',
           details: { label: 'View', href: '#2' },
+          save: save('Blue Jet'),
         },
         {
           id: 3,
@@ -36,6 +49,7 @@ export default function Basic() {
           route: 'OAK → NRT',
           price: '$768',
           details: { label: 'View', href: '#3' },
+          save: save('Coast Lines'),
         },
       ]}
     />

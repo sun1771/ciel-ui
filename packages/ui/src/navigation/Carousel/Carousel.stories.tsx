@@ -1,25 +1,35 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { expect } from 'storybook/test'
+import { expect, userEvent } from 'storybook/test'
 import { Carousel, CarouselItem } from '.'
 
 const slide = (label: string) => (
   <div
+    key={label}
     style={{
-      width: 240,
-      height: 120,
+      height: 140,
       display: 'grid',
       placeItems: 'center',
-      background: 'var(--ds-mapped-surface-disabled)',
+      borderRadius: 8,
+      background: 'var(--ds-mapped-surface-action-hover-light)',
+      color: 'var(--ds-mapped-text-body)',
     }}
   >
     {label}
   </div>
 )
+const SLIDES = ['Lisbon', 'Kyoto', 'Oaxaca', 'Reykjavík'].map(slide)
 
 const meta = {
   title: 'Navigation/Carousel',
   component: Carousel,
-  args: { size: 'lg', shape: 'round', children: slide('Slide') },
+  args: { 'aria-label': 'Destinations', size: 'lg', shape: 'round', children: SLIDES },
+  decorators: [
+    (Story) => (
+      <div style={{ maxWidth: 360 }}>
+        <Story />
+      </div>
+    ),
+  ],
   argTypes: {
     size: { control: 'inline-radio', options: ['lg', 'sm'] },
     shape: { control: 'inline-radio', options: ['round', 'rectangle'] },
@@ -31,9 +41,31 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  play: async ({ canvas }) => {
-    await expect(canvas.getByRole('button', { name: 'Previous slide' })).toBeInTheDocument()
-    await expect(canvas.getByRole('button', { name: 'Next slide' })).toBeInTheDocument()
+  play: async ({ canvas, step }) => {
+    const prev = canvas.getByRole('button', { name: 'Previous slide' })
+    const next = canvas.getByRole('button', { name: 'Next slide' })
+    const current = () => canvas.getByRole('button', { name: /, current$/ })
+    // The page dots are named after the carousel, so two carousels differ.
+    await expect(canvas.getByRole('navigation')).toHaveAccessibleName('Destinations: slides')
+
+    await step('starts on the first slide', async () => {
+      await expect(prev).toBeDisabled()
+      await expect(current()).toHaveAccessibleName('Page 1, current')
+      // Only the visible slide is reachable.
+      await expect(canvas.getAllByRole('group')).toHaveLength(1)
+    })
+    await step('next / previous move one slide', async () => {
+      await userEvent.click(next)
+      await userEvent.click(next)
+      await expect(current()).toHaveAccessibleName('Page 3, current')
+      await userEvent.click(prev)
+      await expect(current()).toHaveAccessibleName('Page 2, current')
+    })
+    await step('dots jump to a slide; next stops at the last', async () => {
+      await userEvent.click(canvas.getByRole('button', { name: 'Go to page 4' }))
+      await expect(next).toBeDisabled()
+      await expect(canvas.getByRole('group', { name: '4 / 4' })).toHaveTextContent('Reykjavík')
+    })
   },
 }
 export const Disabled: Story = { args: { disabled: true } }

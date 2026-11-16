@@ -31,7 +31,7 @@ export function ProgressBar({
       aria-valuenow={clampedValue}
       aria-valuemin={0}
       aria-valuemax={100}
-      aria-label={showLabel ? displayLabel : `Progress: ${clampedValue}%`}
+      aria-label={label ?? 'Progress'}
       {...props}
     >
       {showLabel && <span className={styles.label}>{displayLabel}</span>}

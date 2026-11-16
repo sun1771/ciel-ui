@@ -18,7 +18,7 @@ export function Example({
     <section className={styles.example}>
       <h3 className={styles.title}>{title}</h3>
       {description && <p className={styles.description}>{renderInlineCode(description)}</p>}
-      <div className={styles.preview}>
+      <div className={styles.preview} data-demo>
         <Component />
       </div>
       <details className={styles.source}>

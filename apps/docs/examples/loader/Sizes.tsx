@@ -7,6 +7,7 @@ export default function Sizes() {
       <Loader size="md" />
       <Loader size="sm" />
       <Loader size="xs" />
+      <Loader size="xxs" />
     </div>
   )
 }

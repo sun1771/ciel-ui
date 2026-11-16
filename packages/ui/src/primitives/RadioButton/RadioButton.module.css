@@ -49,8 +49,8 @@
   flex-shrink: 0;
   box-sizing: border-box;
   transition:
-    background-color 150ms ease,
-    border-color 150ms ease;
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
 }
 
 /* Focus ring — drawn on ::after so it sits outside the circle border */

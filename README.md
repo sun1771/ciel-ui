@@ -76,6 +76,8 @@ import { Search } from '@acme/icons'
 - **Tree-shaking:** each component is its own module, so bundlers drop the ones you don't import.
 - **Theming:** components read `--ds-*` CSS custom properties. Set `data-theme="dark"` on `<html>` for the dark theme, or override variables to rebrand.
 - **Localisation:** components with built-in text accept a `labels` prop, e.g. `<DialogBox labels={{ close: 'Schließen' }} />`.
+- **Controlled or not:** stateful components work on their own from a `default*` prop (`defaultChecked`, `defaultValue`, `defaultExpanded`, `defaultPage`, `defaultIndex`, `defaultState`), or take the value plus a change handler when you want to control them.
+- **Motion:** transitions use the `--ds-motion-*` tokens and turn off when the user asks for reduced motion.
 
 ## How it's built
 

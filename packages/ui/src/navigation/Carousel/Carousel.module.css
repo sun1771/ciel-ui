@@ -16,9 +16,14 @@
   cursor: pointer;
   color: var(--ds-mapped-icon-action);
   transition:
-    background-color 120ms ease,
-    color 120ms ease;
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    transform var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
   flex-shrink: 0;
+}
+
+.item:active:not(:disabled) {
+  transform: scale(0.92);
 }
 
 /* Sizes */
@@ -73,6 +78,17 @@
 .slideArea {
   width: 100%;
   overflow: hidden;
+}
+
+/* All slides side by side; the track slides to the current one. */
+.track {
+  display: flex;
+  transition: transform var(--ds-motion-duration-slow) var(--ds-motion-easing-standard);
+}
+
+.slide {
+  flex: 0 0 100%;
+  min-width: 0;
 }
 
 /* Controls: nav row + pagination */

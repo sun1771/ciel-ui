@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { cn } from '../../lib/utils'
+import { useControllableState } from '../../lib/useControllableState'
 import type {
   NavigationPanelProps,
   NavigationMenuGroupProps,
@@ -27,23 +28,33 @@ export const useNavigationPanel = (): NavigationPanelContextValue =>
  * A collapsible vertical sidebar navigation container. Expanded, items show an
  * icon and label; collapsed, only icons are visible and the panel shrinks to
  * icon width. Top and bottom item groups are pushed apart (justify-between) so
- * supporting items (Settings, Profile) sit at the bottom.
+ * supporting items (Settings, Profile) sit at the bottom. Long lists scroll.
+ *
+ * Items with an `href` render as links, using `linkComponent` (e.g. Next.js
+ * Link). The panel's width is the `--nav-panel-width` CSS variable (162px).
  *
  * @see design-system/figma.md → NavigationPanel
  * @see docs/components.md for usage examples
  */
 export function NavigationPanel({
-  isExpanded = true,
+  isExpanded: isExpandedProp,
+  defaultExpanded = true,
   onToggle,
+  linkComponent,
   children,
   className,
   'aria-label': ariaLabel = 'Main navigation',
   ref,
   ...props
 }: NavigationPanelProps & { ref?: React.Ref<HTMLElement> }) {
+  const [isExpanded, setExpanded] = useControllableState({
+    value: isExpandedProp,
+    defaultValue: defaultExpanded,
+    onChange: onToggle,
+  })
   const contextValue = React.useMemo<NavigationPanelContextValue>(
-    () => ({ isExpanded, onToggle }),
-    [isExpanded, onToggle]
+    () => ({ isExpanded, onToggle: () => setExpanded(!isExpanded), linkComponent }),
+    [isExpanded, setExpanded, linkComponent]
   )
 
   return (
@@ -75,15 +86,19 @@ NavigationPanel.displayName = 'NavigationPanel'
  */
 export function NavigationMenuGroup({
   gap = 'none',
+  label,
   children,
   className,
   ref,
   ...props
 }: NavigationMenuGroupProps & { ref?: React.Ref<HTMLDivElement> }) {
+  const { isExpanded } = useNavigationPanel()
+  const labelId = React.useId()
   return (
     <div
       ref={ref}
       role="group"
+      aria-labelledby={label != null ? labelId : undefined}
       className={cn(
         styles.menuGroup,
         gap === 'xxs' && styles.menuGroupGapXxs,
@@ -93,6 +108,11 @@ export function NavigationMenuGroup({
       )}
       {...props}
     >
+      {label != null && (
+        <span id={labelId} className={cn(styles.groupLabel, !isExpanded && styles.visuallyHidden)}>
+          {label}
+        </span>
+      )}
       {children}
     </div>
   )

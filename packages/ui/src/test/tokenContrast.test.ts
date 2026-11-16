@@ -101,6 +101,11 @@ const PAIRS: Pair[] = [
   ['mapped-border-input-error', 'mapped-surface-default', GRAPHIC, 'form control error outlines'],
   // Focus ring on the page
   ['mapped-border-focus', 'mapped-surface-default', GRAPHIC, 'focus outline'],
+  // Unselected Pagination dots identify the pages (WCAG 1.4.11)
+  ['mapped-surface-indicator', 'mapped-surface-default', GRAPHIC, 'Pagination dots'],
+  // Table header row
+  ['mapped-text-heading', 'mapped-surface-subtle', TEXT, 'Table header text'],
+  ['mapped-text-body', 'mapped-surface-subtle', TEXT, 'Table header text'],
   // Hover state of filled controls: white text on the hover fill (Button, Menu item, DialogBox)
   ['mapped-text-on-action', 'mapped-surface-action-hover', TEXT, 'hovered primary button'],
   // Hover state: text and icon on the hover fill (TabBar tab, AccordionProgressive header)

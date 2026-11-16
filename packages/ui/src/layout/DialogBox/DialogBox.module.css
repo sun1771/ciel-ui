@@ -78,7 +78,7 @@
   border: none;
   cursor: pointer;
   color: var(--ds-mapped-icon-default);
-  transition: background-color 0.15s ease;
+  transition: background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
 }
 
 .closeButton:hover {
@@ -122,8 +122,8 @@
   cursor: pointer;
   white-space: nowrap;
   transition:
-    background-color 0.15s ease,
-    border-color 0.15s ease;
+    background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
 }
 
 .primaryButton:hover {
@@ -153,7 +153,7 @@
   color: var(--ds-mapped-text-body);
   cursor: pointer;
   white-space: nowrap;
-  transition: border-color 0.15s ease;
+  transition: border-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
 }
 
 .secondaryButton:hover {
@@ -163,4 +163,26 @@
 .secondaryButton:focus-visible {
   outline: var(--ds-alias-border-width-md) solid var(--ds-mapped-border-focus);
   outline-offset: 2px;
+}
+
+/* Motion: the backdrop fades in and the dialog rises into place */
+.backdrop {
+  animation: backdropIn var(--ds-motion-duration-base) var(--ds-motion-easing-standard);
+}
+
+.dialog {
+  animation: dialogIn var(--ds-motion-duration-slow) var(--ds-motion-easing-enter);
+}
+
+@keyframes backdropIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes dialogIn {
+  from {
+    opacity: 0;
+    transform: translateY(var(--ds-alias-spacing-xs)) scale(0.98);
+  }
 }

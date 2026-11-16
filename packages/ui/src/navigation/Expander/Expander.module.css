@@ -26,8 +26,8 @@
   color: var(--ds-mapped-text-body);
   text-align: left;
   transition:
-    background 0.15s ease,
-    color 0.15s ease;
+    background var(--ds-motion-duration-fast) var(--ds-motion-easing-standard),
+    color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
 }
 
 /* Header when expanded — only top corners rounded */
@@ -107,4 +107,52 @@
 
 .sm .content {
   padding: var(--ds-alias-spacing-xs);
+}
+
+/* ---- Open/close animation ----
+   The panel stays mounted; a one-row grid animates between 0fr and 1fr, so the
+   height eases to the content's natural size without measuring it. Closed, the
+   panel is inert (set in the component) and hidden once the animation ends. */
+.collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition:
+    grid-template-rows var(--ds-motion-duration-slow) var(--ds-motion-easing-standard),
+    visibility 0s linear var(--ds-motion-duration-slow);
+}
+
+.collapseOpen {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition:
+    grid-template-rows var(--ds-motion-duration-slow) var(--ds-motion-easing-standard),
+    visibility 0s;
+}
+
+.collapseInner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.collapseInner > .content {
+  opacity: 0;
+  transform: translateY(calc(-1 * var(--ds-alias-spacing-xxs)));
+  transition:
+    opacity var(--ds-motion-duration-base) var(--ds-motion-easing-standard),
+    transform var(--ds-motion-duration-base) var(--ds-motion-easing-standard);
+}
+
+.collapseOpen .collapseInner > .content {
+  opacity: 1;
+  transform: none;
+}
+
+/* The chevron turns to point up when open (one icon, rotated, instead of a swap). */
+.chevron svg {
+  transition: transform var(--ds-motion-duration-base) var(--ds-motion-easing-standard);
+}
+
+.headerExpanded .chevron svg {
+  transform: rotate(180deg);
 }

@@ -24,6 +24,12 @@ export interface CarouselLabels {
   previous: string
   /** Next button name. */
   next: string
+  /**
+   * Name of the page-dot navigation. Default: the carousel's `aria-label`
+   * plus ": slides" ("Destinations: slides"), or "Slides", so several
+   * carousels on one page have distinct landmarks.
+   */
+  pagination: string
 }
 
 export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -35,6 +41,12 @@ export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {
   shape?: CarouselShape
   /** When true, disables all navigation and pagination interactions. */
   disabled?: boolean
+  /** Current slide, 0-indexed. Pass it to control the Carousel yourself. */
+  index?: number
+  /** Starting slide when `index` isn't passed (uncontrolled). Default: 0. */
+  defaultIndex?: number
+  /** Called with the new slide index when the user navigates, in both modes. */
+  onIndexChange?: (index: number) => void
   /** Each direct child is treated as one slide. */
   children: React.ReactNode
   className?: string

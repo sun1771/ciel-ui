@@ -237,9 +237,13 @@ export interface AIChatProps extends Omit<
   React.HTMLAttributes<HTMLDivElement>,
   'onChange' | 'onSubmit' | 'title'
 > {
-  /** Figma "State" property. Default: 'default'. */
+  /** Figma "State" property. Pass it to control the panel yourself. */
   state?: AIChatState
-  /** Header title. Default: 'Assistant'. */
+  /** Starting state when `state` isn't passed (uncontrolled). Default: 'default'. */
+  defaultState?: AIChatState
+  /** Called with the new state when the panel is collapsed or expanded, in both modes. */
+  onStateChange?: (state: AIChatState) => void
+  /** Header title, and the accessible name of the conversation. Default: 'Assistant'. */
   title?: string
   /** Agent icon shown in the header and the collapsed rail. Default: the Sparkle icon. */
   icon?: React.ReactNode
