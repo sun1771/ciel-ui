@@ -14,7 +14,7 @@ export const site = {
       { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sanaz-khanali/' },
     ],
   },
-  /** Set at deploy time; links are hidden while unset. */
-  storybookUrl: process.env.NEXT_PUBLIC_STORYBOOK_URL ?? null,
+  /** Override with NEXT_PUBLIC_STORYBOOK_URL, e.g. for a preview deploy. */
+  storybookUrl: process.env.NEXT_PUBLIC_STORYBOOK_URL ?? 'https://storybook-ciel-ui.vercel.app',
   repoUrl: process.env.NEXT_PUBLIC_REPO_URL ?? 'https://github.com/sun1771/ciel-ui',
 }
