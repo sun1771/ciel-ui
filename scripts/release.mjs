@@ -32,7 +32,11 @@ const run = (cmd, args, opts = {}) =>
 
 function isOnNpm(name, version) {
   try {
-    return run('npm', ['view', `${name}@${version}`, 'version']) === version
+    return (
+      run('npm', ['view', `${name}@${version}`, 'version'], {
+        stdio: ['ignore', 'pipe', 'ignore'],
+      }) === version
+    )
   } catch {
     return false // E404: the package or version does not exist
   }
