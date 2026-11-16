@@ -24,6 +24,12 @@ export interface CarouselLabels {
   previous: string
   /** Next button name. */
   next: string
+  /**
+   * Name of the page-dot navigation. Default: the carousel's `aria-label`
+   * plus ": slides" ("Destinations: slides"), or "Slides", so several
+   * carousels on one page have distinct landmarks.
+   */
+  pagination: string
 }
 
 export interface CarouselProps extends React.HTMLAttributes<HTMLDivElement> {

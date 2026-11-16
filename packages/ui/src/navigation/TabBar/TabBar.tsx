@@ -42,6 +42,20 @@ export function TabBar({
     [value, setValue]
   )
 
+  // Roving tabindex: the selected tab is the one Tab stop. With no selected
+  // (enabled) tab, the first enabled tab takes that role, so keyboard users
+  // can still reach the tablist. Runs after every render, as tabs change.
+  React.useLayoutEffect(() => {
+    const tabs = Array.from(
+      innerRef.current?.querySelectorAll<HTMLButtonElement>('[role="tab"]') ?? []
+    )
+    const enabled = tabs.filter((t) => !t.disabled)
+    const hasStop = enabled.some((t) => t.getAttribute('aria-selected') === 'true')
+    enabled.forEach((t, i) => {
+      if (t.getAttribute('aria-selected') !== 'true') t.tabIndex = !hasStop && i === 0 ? 0 : -1
+    })
+  })
+
   const resolvedRef = (node: HTMLDivElement | null) => {
     innerRef.current = node
     if (typeof ref === 'function') {

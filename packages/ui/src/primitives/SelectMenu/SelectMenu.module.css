@@ -3,6 +3,11 @@
 .wrapper {
   position: relative;
   display: inline-block;
+  vertical-align: top;
+  /* Stay the height of the button even in a stretching flex or grid parent
+     (align-items: stretch), so the menu opens right below the button. */
+  height: fit-content;
+  align-self: flex-start;
 }
 
 /* .wrapper > raises specificity over Menu's own position: relative. */

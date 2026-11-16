@@ -22,7 +22,7 @@ const SLIDES = ['Lisbon', 'Kyoto', 'Oaxaca', 'Reykjavík'].map(slide)
 const meta = {
   title: 'Navigation/Carousel',
   component: Carousel,
-  args: { size: 'lg', shape: 'round', children: SLIDES },
+  args: { 'aria-label': 'Destinations', size: 'lg', shape: 'round', children: SLIDES },
   decorators: [
     (Story) => (
       <div style={{ maxWidth: 360 }}>
@@ -45,6 +45,8 @@ export const Default: Story = {
     const prev = canvas.getByRole('button', { name: 'Previous slide' })
     const next = canvas.getByRole('button', { name: 'Next slide' })
     const current = () => canvas.getByRole('button', { name: /, current$/ })
+    // The page dots are named after the carousel, so two carousels differ.
+    await expect(canvas.getByRole('navigation')).toHaveAccessibleName('Destinations: slides')
 
     await step('starts on the first slide', async () => {
       await expect(prev).toBeDisabled()

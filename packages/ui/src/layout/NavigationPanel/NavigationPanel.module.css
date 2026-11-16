@@ -69,7 +69,8 @@
   line-height: var(--ds-typography-body-xsm-line-height);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--ds-mapped-text-placeholder);
+  /* Heading colour (was text-placeholder): the section names read as headings. */
+  color: var(--ds-mapped-text-heading);
 }
 
 .visuallyHidden {

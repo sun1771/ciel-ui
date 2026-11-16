@@ -49,9 +49,9 @@ export const Default: Story = {
       // The menu floats just below the button, outside the page flow.
       const menu = canvas.getByRole('menu')
       await expect(getComputedStyle(menu).position).toBe('absolute')
-      await expect(menu.getBoundingClientRect().top).toBeGreaterThanOrEqual(
-        button.getBoundingClientRect().bottom
-      )
+      const gap = menu.getBoundingClientRect().top - button.getBoundingClientRect().bottom
+      await expect(gap).toBeGreaterThanOrEqual(0)
+      await expect(gap).toBeLessThanOrEqual(8)
       await userEvent.click(canvas.getByRole('menuitemradio', { name: 'Rating' }))
       await expect(args.onValueChange).toHaveBeenCalledWith('rating')
       await expect(canvas.queryByRole('menu')).toBeNull()
@@ -83,3 +83,24 @@ export const Default: Story = {
 
 export const Preselected: Story = { args: { defaultValue: 'price', variant: 'default' } }
 export const Small: Story = { args: { size: 'sm', variant: 'transparent' } }
+
+/** In a flex row that stretches its items (the default `align-items`), the
+ * menu still opens right below the button, not at the bottom of the row. */
+export const InStretchingRow: Story = {
+  decorators: [
+    (Story) => (
+      <div style={{ display: 'flex', gap: 12, minHeight: 220 }}>
+        <Story />
+      </div>
+    ),
+  ],
+  play: async ({ canvas }) => {
+    const button = canvas.getByRole('button', { name: 'Sort by' })
+    await userEvent.click(button)
+    const menu = canvas.getByRole('menu')
+    const gap = menu.getBoundingClientRect().top - button.getBoundingClientRect().bottom
+    await expect(gap).toBeGreaterThanOrEqual(0)
+    await expect(gap).toBeLessThanOrEqual(8)
+    await userEvent.keyboard('{Escape}')
+  },
+}

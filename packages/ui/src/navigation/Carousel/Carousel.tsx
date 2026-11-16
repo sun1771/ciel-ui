@@ -7,7 +7,10 @@ import { useControllableState } from '../../lib/useControllableState'
 import { CarouselItem } from './CarouselItem'
 import type { CarouselLabels, CarouselProps } from './types'
 
-const DEFAULT_LABELS: CarouselLabels = { previous: 'Previous slide', next: 'Next slide' }
+const DEFAULT_LABELS: Omit<CarouselLabels, 'pagination'> = {
+  previous: 'Previous slide',
+  next: 'Next slide',
+}
 import styles from './Carousel.module.css'
 
 /**
@@ -33,7 +36,12 @@ export function Carousel({
   ref,
   ...props
 }: CarouselProps & { ref?: React.Ref<HTMLDivElement> }) {
-  const l = { ...DEFAULT_LABELS, ...labels }
+  const ariaLabel = props['aria-label']
+  const l = {
+    ...DEFAULT_LABELS,
+    pagination: ariaLabel ? `${ariaLabel}: slides` : 'Slides',
+    ...labels,
+  }
   const slides = React.Children.toArray(children)
   const totalSlides = slides.length
   const [index, setIndex] = useControllableState({
@@ -106,6 +114,7 @@ export function Carousel({
             page={currentIndex + 1}
             totalPages={totalSlides}
             disabled={disabled}
+            labels={{ navigation: l.pagination }}
             onChange={(page) => setIndex(page - 1)}
           />
         </div>
