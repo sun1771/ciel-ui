@@ -1,0 +1,86 @@
+name: Release
+
+# On every push to main:
+# - changesets waiting → open or update the "Version packages" pull request
+# - that PR was merged (versions bumped, not on npm yet) → stage the new
+#   versions on npm, tag them and create the GitHub release.
+# Staged versions go live when a maintainer approves them with 2FA on npmjs.com.
+on:
+  push:
+    branches: [main]
+
+# Never run two releases at once; never cancel one halfway.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions: {}
+
+jobs:
+  mode:
+    name: Select mode
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ steps.select.outputs.mode }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - id: select
+        uses: changesets/action/select-mode@v2
+
+  version:
+    name: Version packages PR
+    needs: mode
+    if: needs.mode.outputs.mode == 'version'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # commit the version bump
+      pull-requests: write # open the PR
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # The PR is opened with the workflow's token, so CI does not run on it
+      # (GitHub's rule). It only changes versions and changelogs.
+      - uses: changesets/action/version@v2
+        with:
+          pr-title: Version packages
+          commit-message: Version packages
+
+  publish:
+    name: Publish to npm
+    needs: mode
+    if: needs.mode.outputs.mode == 'publish'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # push tags, create the GitHub release
+      id-token: write # npm trusted publishing (OIDC) and provenance
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # all tags, to skip versions already staged
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+      # `npm stage` needs npm 11.15+.
+      - run: npm install -g npm@^11.21
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm turbo run build --filter='./packages/*'
+      - name: Package checks (publint, Are The Types Wrong)
+        run: pnpm check:packages
+      - name: Stage on npm, tag, create the GitHub release
+        run: node scripts/release.mjs
+        env:
+          GH_TOKEN: ${{ github.token }}

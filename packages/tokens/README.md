@@ -1,6 +1,6 @@
 # @cielui/tokens
 
-The design tokens of [Ciel UI](https://github.com/sun1771/ciel-ui): colour, typography, spacing, radius, borders, shadows and motion, as CSS custom properties.
+The design tokens of [Ciel UI](https://docs-ciel-ui.vercel.app): colour, typography, spacing, radius, borders, shadows and motion, as CSS custom properties.
 
 ```bash
 npm install @cielui/tokens

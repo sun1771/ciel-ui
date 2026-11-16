@@ -2,6 +2,8 @@
 
 A React 19 component library (38 components, 48 icons, design tokens) with a Storybook workbench and a Next.js docs site.
 
+**Docs and live examples:** https://docs-ciel-ui.vercel.app
+
 ```bash
 npm install @cielui/react @cielui/icons @cielui/tokens
 ```

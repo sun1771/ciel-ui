@@ -1,6 +1,6 @@
 # @cielui/icons
 
-The SVG icon components of [Ciel UI](https://github.com/sun1771/ciel-ui), for React 19. Tree-shakeable: only the icons you import are bundled.
+The SVG icon components of [Ciel UI](https://docs-ciel-ui.vercel.app), for React 19. Tree-shakeable: only the icons you import are bundled.
 
 ```bash
 npm install @cielui/icons
