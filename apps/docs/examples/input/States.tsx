@@ -1,5 +1,5 @@
-import { Input } from '@acme/ui'
-import { User } from '@acme/icons'
+import { Input } from '@cielui/react'
+import { User } from '@cielui/icons'
 
 export default function States() {
   return (

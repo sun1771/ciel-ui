@@ -8,8 +8,8 @@ import {
   CardMetric,
   CardPrice,
   Chip,
-} from '@acme/ui'
-import { ArrowRight, Star, User } from '@acme/icons'
+} from '@cielui/react'
+import { ArrowRight, Star, User } from '@cielui/icons'
 
 export default function Product() {
   return (

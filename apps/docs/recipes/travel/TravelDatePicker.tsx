@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { FieldPicker } from '@acme/ui'
-import { Calendar } from '@acme/icons'
+import { FieldPicker } from '@cielui/react'
+import { Calendar } from '@cielui/icons'
 import { MONTH_ABBR, TravelDatePanel, flexibilityDays } from './TravelDatePanel'
 import type {
   DateFlexibility,
@@ -18,7 +18,7 @@ import type {
  * All selection state (range, flexibility, tab, trip length, month) lives here
  * so it survives the panel closing and is reflected in the field's summary.
  * The range may be controlled (`startDate`/`endDate`) or uncontrolled.
- * Example code for the docs site, not part of @acme/ui.
+ * Example code for the docs site, not part of @cielui/react.
  */
 
 function formatDateRange(start: Date | null, end: Date | null): string | null {

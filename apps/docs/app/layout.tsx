@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import '@acme/tokens/tokens.css'
+import '@cielui/tokens/tokens.css'
 import './globals.css'
 import { site } from '@/content/site'
 import { Header } from '@/components/site/Header'

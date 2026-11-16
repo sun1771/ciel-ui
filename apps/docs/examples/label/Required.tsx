@@ -1,4 +1,4 @@
-import { Label } from '@acme/ui'
+import { Label } from '@cielui/react'
 
 export default function Required() {
   return (

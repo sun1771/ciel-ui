@@ -1,5 +1,5 @@
-import { Button } from '@acme/ui'
-import { ArrowRight, Plus } from '@acme/icons'
+import { Button } from '@cielui/react'
+import { ArrowRight, Plus } from '@cielui/icons'
 
 export default function WithIcons() {
   return (

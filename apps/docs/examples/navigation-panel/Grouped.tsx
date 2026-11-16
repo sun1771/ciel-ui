@@ -1,6 +1,6 @@
 'use client'
 
-import { NavigationMenuGroup, NavigationMenuItem, NavigationPanel } from '@acme/ui'
+import { NavigationMenuGroup, NavigationMenuItem, NavigationPanel } from '@cielui/react'
 
 const SECTIONS = [
   { label: 'Plan', items: ['Search', 'Saved trips'] },

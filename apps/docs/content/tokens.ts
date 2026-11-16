@@ -1,10 +1,10 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-/** Parse @acme/tokens' CSS into light/dark maps (build time, server only). */
+/** Parse @cielui/tokens' CSS into light/dark maps (build time, server only). */
 export function readTokens() {
   const css = fs.readFileSync(
-    path.join(process.cwd(), 'node_modules/@acme/tokens/tokens.css'),
+    path.join(process.cwd(), 'node_modules/@cielui/tokens/tokens.css'),
     'utf8'
   )
   const block = (selector: string) => {

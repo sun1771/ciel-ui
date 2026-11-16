@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { cn } from '../../lib/utils'
-import { Check } from '@acme/icons'
+import { Check } from '@cielui/icons'
 import styles from './Checkbox.module.css'
 import type { CheckboxProps } from './types'
 

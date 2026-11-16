@@ -1,8 +1,21 @@
 {
-  "name": "@acme/icons",
-  "version": "0.0.0",
-  "description": "Icon components for @acme/ui",
+  "name": "@cielui/icons",
+  "version": "0.1.0",
+  "description": "Icon components for @cielui/react",
   "license": "MIT",
+  "author": {
+    "name": "Sanaz Khanali",
+    "url": "https://www.sunnyk.net/"
+  },
+  "homepage": "https://github.com/sun1771/ciel-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sun1771/ciel-ui.git",
+    "directory": "packages/icons"
+  },
+  "bugs": {
+    "url": "https://github.com/sun1771/ciel-ui/issues"
+  },
   "keywords": [
     "react",
     "icons",
@@ -14,7 +27,8 @@
     ".": "./src/index.ts"
   },
   "files": [
-    "dist"
+    "dist",
+    "CHANGELOG.md"
   ],
   "publishConfig": {
     "access": "public",

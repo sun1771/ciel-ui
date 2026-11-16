@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 
 /**
- * Library build for @acme/ui.
+ * Library build for @cielui/react.
  * - ESM only, one output file per source module (preserveModules) so
  *   consumers' bundlers can tree-shake unused components.
  * - Module-level 'use client' directives are kept per file by Rolldown, so
@@ -12,7 +12,7 @@ import { defineConfig } from 'vite'
  */
 export default defineConfig({
   css: {
-    modules: { generateScopedName: 'acme-[local]-[hash:base64:5]' },
+    modules: { generateScopedName: 'ciel-[local]-[hash:base64:5]' },
   },
   build: {
     lib: { entry: 'src/index.ts', formats: ['es'], cssFileName: 'styles' },
@@ -23,7 +23,7 @@ export default defineConfig({
     minify: false,
     cssMinify: true,
     rollupOptions: {
-      external: [/^react($|\/)/, /^react-dom($|\/)/, /^@acme\//, 'clsx'],
+      external: [/^react($|\/)/, /^react-dom($|\/)/, /^@cielui\//, 'clsx'],
       output: { preserveModules: true, preserveModulesRoot: 'src', entryFileNames: '[name].js' },
       onwarn(warning, warn) {
         // 'use client' is preserved per module with preserveModules; verified in scripts/check-dist.mjs.

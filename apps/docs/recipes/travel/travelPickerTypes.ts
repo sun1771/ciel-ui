@@ -1,4 +1,4 @@
-import type { DateRange, FieldPickerProps } from '@acme/ui'
+import type { DateRange, FieldPickerProps } from '@cielui/react'
 
 export type { DateRange }
 

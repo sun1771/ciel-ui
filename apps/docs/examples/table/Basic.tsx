@@ -1,5 +1,5 @@
-import { Star } from '@acme/icons'
-import { Button, ButtonIcon, Table } from '@acme/ui'
+import { Star } from '@cielui/icons'
+import { Button, ButtonIcon, Table } from '@cielui/react'
 
 const save = (airline: string) => (
   <ButtonIcon

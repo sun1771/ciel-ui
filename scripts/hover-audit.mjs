@@ -12,7 +12,7 @@
  * Disabled elements are skipped (WCAG exempts them).
  *
  * Usage:
- *   pnpm --filter @acme/ui build-storybook
+ *   pnpm --filter @cielui/react build-storybook
  *   node scripts/hover-audit.mjs packages/ui/storybook-static [story-id-prefix,...]
  */
 import fs from 'node:fs'
@@ -29,7 +29,7 @@ const staticDir = process.argv[2] && path.resolve(process.argv[2])
 const filters = process.argv[3]?.split(',').filter(Boolean)
 if (!staticDir || !fs.existsSync(path.join(staticDir, 'index.json'))) {
   console.error('usage: hover-audit.mjs <storybook-static dir> [story-id-prefix,...]')
-  console.error('Build Storybook first: pnpm --filter @acme/ui build-storybook')
+  console.error('Build Storybook first: pnpm --filter @cielui/react build-storybook')
   process.exit(1)
 }
 

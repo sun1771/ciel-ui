@@ -1,4 +1,4 @@
-import { ProgressBar, ProgressCircle } from '@acme/ui'
+import { ProgressBar, ProgressCircle } from '@cielui/react'
 
 export default function Basic() {
   return (

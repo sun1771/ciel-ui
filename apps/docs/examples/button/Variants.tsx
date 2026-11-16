@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@acme/ui'
+import { Button } from '@cielui/react'
 
 const VARIANTS = ['default', 'outline', 'transparent'] as const
 const name = (v: string) => v[0].toUpperCase() + v.slice(1)

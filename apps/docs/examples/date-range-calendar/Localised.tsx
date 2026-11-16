@@ -1,4 +1,4 @@
-import { DateRangeCalendar } from '@acme/ui'
+import { DateRangeCalendar } from '@cielui/react'
 
 export default function Localised() {
   return (

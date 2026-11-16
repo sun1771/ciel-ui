@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { cn } from '../../lib/utils'
-import { User } from '@acme/icons'
+import { User } from '@cielui/icons'
 import type { AvatarProps } from './types'
 import styles from './Avatar.module.css'
 

@@ -11,7 +11,7 @@
  * `<story id>--hover` for a hover shot), so earlier "before" shots aren't
  * overwritten when you record a new change.
  *
- * Build Storybook first: pnpm --filter @acme/ui build-storybook
+ * Build Storybook first: pnpm --filter @cielui/react build-storybook
  */
 import fs from 'node:fs'
 import path from 'node:path'

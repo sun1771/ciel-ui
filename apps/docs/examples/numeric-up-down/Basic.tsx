@@ -1,4 +1,4 @@
-import { NumericUpDown } from '@acme/ui'
+import { NumericUpDown } from '@cielui/react'
 
 export default function Basic() {
   return (

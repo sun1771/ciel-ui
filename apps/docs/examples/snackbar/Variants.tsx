@@ -1,4 +1,4 @@
-import { Snackbar } from '@acme/ui'
+import { Snackbar } from '@cielui/react'
 
 export default function Variants() {
   return (

@@ -16,7 +16,7 @@ const browser = () => ({
 
 export default defineConfig({
   css: {
-    modules: { generateScopedName: 'acme-[local]-[hash:base64:5]' },
+    modules: { generateScopedName: 'ciel-[local]-[hash:base64:5]' },
   },
   test: {
     coverage: {

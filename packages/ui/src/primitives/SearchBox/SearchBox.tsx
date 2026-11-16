@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Search, X } from '@acme/icons'
+import { Search, X } from '@cielui/icons'
 import { cn } from '../../lib/utils'
 import styles from './SearchBox.module.css'
 import type { SearchBoxLabels, SearchBoxProps } from './types'

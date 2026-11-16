@@ -1,14 +1,14 @@
 'use client'
 
 import React, { useState } from 'react'
-import { FieldPicker, Separator, cn } from '@acme/ui'
-import { Minus, Plus, Users } from '@acme/icons'
+import { FieldPicker, Separator, cn } from '@cielui/react'
+import { Minus, Plus, Users } from '@cielui/icons'
 import type { TravelerCounts, TravelerPickerProps } from './travelPickerTypes'
 import styles from './TravelerPicker.module.css'
 
 /**
  * Recipe: traveler / room counter picker, built on the library's FieldPicker.
- * Example code for the docs site, not part of @acme/ui.
+ * Example code for the docs site, not part of @cielui/react.
  */
 
 const DEFAULT_TRAVELERS: TravelerCounts = { adults: 1, children: 0, pets: 0, rooms: 1 }

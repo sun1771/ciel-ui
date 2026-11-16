@@ -1,4 +1,4 @@
-import { Avatar } from '@acme/ui'
+import { Avatar } from '@cielui/react'
 
 // A stand-in photo, so the example has no external image.
 const PHOTO =

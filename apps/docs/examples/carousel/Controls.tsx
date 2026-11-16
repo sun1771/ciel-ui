@@ -1,6 +1,6 @@
 'use client'
 
-import { Carousel } from '@acme/ui'
+import { Carousel } from '@cielui/react'
 
 const SLIDES = ['Morning', 'Afternoon', 'Evening']
 

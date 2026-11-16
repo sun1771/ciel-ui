@@ -1,6 +1,6 @@
 'use client'
 
-import { SelectButton } from '@acme/ui'
+import { SelectButton } from '@cielui/react'
 
 export default function States() {
   return (

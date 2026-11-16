@@ -3,7 +3,7 @@
 import React from 'react'
 import { cn } from '../../lib/utils'
 import styles from './Menu.module.css'
-import { Check } from '@acme/icons'
+import { Check } from '@cielui/icons'
 import { MenuContext } from './MenuContext'
 import type { MenuItemProps } from './types'
 

@@ -1,5 +1,5 @@
-import { Field } from '@acme/ui'
-import { Search } from '@acme/icons'
+import { Field } from '@cielui/react'
+import { Search } from '@cielui/icons'
 
 export default function Basic() {
   return (

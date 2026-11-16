@@ -1,7 +1,7 @@
 'use client'
 
-import { Search, Settings, Share } from '@acme/icons'
-import { ButtonIcon } from '@acme/ui'
+import { Search, Settings, Share } from '@cielui/icons'
+import { ButtonIcon } from '@cielui/react'
 
 const VARIANTS = [
   { variant: 'default', label: 'Search', Icon: Search },

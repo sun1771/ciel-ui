@@ -7,8 +7,8 @@ import {
   NavigationMenuItem,
   NavigationPanel,
   NavigationProfileItem,
-} from '@acme/ui'
-import { Bag, Calendar, Map, Sparkle } from '@acme/icons'
+} from '@cielui/react'
+import { Bag, Calendar, Map, Sparkle } from '@cielui/icons'
 
 const ITEMS = [
   { id: 'trips', label: 'Trips', icon: <Calendar size={20} /> },

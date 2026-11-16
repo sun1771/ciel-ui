@@ -2,7 +2,7 @@
   "$schema": "https://unpkg.com/@changesets/config@4.0.1/schema.json",
   "changelog": "@changesets/cli/changelog",
   "commit": false,
-  "fixed": [["@acme/ui", "@acme/icons", "@acme/tokens"]],
+  "fixed": [["@cielui/react", "@cielui/icons", "@cielui/tokens"]],
   "linked": [],
   "access": "public",
   "baseBranch": "main",

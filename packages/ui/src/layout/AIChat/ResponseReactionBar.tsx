@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { cn } from '../../lib/utils'
-import { Copy, ThumbsUp, ThumbsDown, Share, MoreVertical } from '@acme/icons'
+import { Copy, ThumbsUp, ThumbsDown, Share, MoreVertical } from '@cielui/icons'
 import { ButtonIcon } from '../../primitives/Button'
 import type { ResponseReactionBarLabels, ResponseReactionBarProps } from './types'
 import styles from './AIChat.module.css'

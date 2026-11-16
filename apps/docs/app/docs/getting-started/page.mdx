@@ -2,12 +2,12 @@ export const metadata = { title: 'Getting started' }
 
 # Getting started
 
-Ciel UI is a React 19 component library: 37 components and 47 icons, built on design tokens, accessible in light and dark themes, and ready for React Server Components.
+Ciel UI is a React 19 component library: 38 components and 48 icons, built on design tokens, accessible in light and dark themes, and ready for React Server Components.
 
 ## Install
 
 ```bash
-npm install @acme/ui @acme/icons @acme/tokens
+npm install @cielui/react @cielui/icons @cielui/tokens
 ```
 
 React 19 is a peer dependency. The packages are **ESM only**.
@@ -18,8 +18,8 @@ Import the design tokens and the component styles **once**, at the root of your 
 
 ```tsx
 // app/layout.tsx (Next.js) or src/main.tsx (Vite)
-import '@acme/tokens/tokens.css'
-import '@acme/ui/styles.css'
+import '@cielui/tokens/tokens.css'
+import '@cielui/react/styles.css'
 ```
 
 Components read `--ds-*` CSS custom properties from the tokens, so the tokens stylesheet must load first.
@@ -27,8 +27,8 @@ Components read `--ds-*` CSS custom properties from the tokens, so the tokens st
 ## Use a component
 
 ```tsx
-import { Button, Card, CardHeader, CardFooter } from '@acme/ui'
-import { ArrowRight } from '@acme/icons'
+import { Button, Card, CardHeader, CardFooter } from '@cielui/react'
+import { ArrowRight } from '@cielui/icons'
 
 export function TripCard() {
   return (

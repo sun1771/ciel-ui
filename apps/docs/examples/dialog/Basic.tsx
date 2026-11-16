@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Button, DialogBox } from '@acme/ui'
+import { Button, DialogBox } from '@cielui/react'
 
 export default function Basic() {
   const [open, setOpen] = useState(false)

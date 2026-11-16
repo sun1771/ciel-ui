@@ -1,7 +1,7 @@
 'use client'
 
-import { ArrowLeft, Expand, Sparkle } from '@acme/icons'
-import { ButtonIconSwitching, ButtonVertical } from '@acme/ui'
+import { ArrowLeft, Expand, Sparkle } from '@cielui/icons'
+import { ButtonIconSwitching, ButtonVertical } from '@cielui/react'
 
 export default function Vertical() {
   return (

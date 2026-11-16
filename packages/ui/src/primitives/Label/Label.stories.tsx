@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect } from 'storybook/test'
-import { Info } from '@acme/icons'
+import { Info } from '@cielui/icons'
 import { Label } from '.'
 
 const meta = {

@@ -1,5 +1,5 @@
-import '@acme/tokens/tokens.css'
-import '@acme/ui/styles.css'
+import '@cielui/tokens/tokens.css'
+import '@cielui/react/styles.css'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

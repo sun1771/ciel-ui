@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { ChevronRight } from '@acme/icons'
+import { ChevronRight } from '@cielui/icons'
 import { cn } from '../../lib/utils'
 import styles from './Breadcrumb.module.css'
 import type { BreadcrumbProps } from './types'

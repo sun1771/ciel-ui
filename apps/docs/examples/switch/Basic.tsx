@@ -1,4 +1,4 @@
-import { Switch } from '@acme/ui'
+import { Switch } from '@cielui/react'
 
 export default function Basic() {
   return (

@@ -49,7 +49,7 @@ const PALETTES = ['primary', 'neutral', 'information', 'success', 'warning', 'er
 /** Descriptions of the motion tokens, from the published tokens.json. */
 function motionNotes() {
   const json = JSON.parse(
-    fs.readFileSync(path.join(process.cwd(), 'node_modules/@acme/tokens/tokens.json'), 'utf8')
+    fs.readFileSync(path.join(process.cwd(), 'node_modules/@cielui/tokens/tokens.json'), 'utf8')
   ) as {
     motion: Record<string, Record<string, { $description?: string; $value: unknown }>>
   }
@@ -86,7 +86,7 @@ export default function TokensPage() {
       <p className={page.lead}>
         Every value the components use: colour, type, spacing, radius, borders, shadows and motion.
         Each preview uses the live CSS variable, and the values are read from{' '}
-        <code>@acme/tokens</code>, so this page always matches the package.
+        <code>@cielui/tokens</code>, so this page always matches the package.
       </p>
       <p>
         Tokens come in three layers: <strong>brand</strong> (the raw palette and scales),{' '}

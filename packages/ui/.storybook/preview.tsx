@@ -1,6 +1,6 @@
 import React, { useLayoutEffect } from 'react'
 import type { Decorator, Preview } from '@storybook/react-vite'
-import '@acme/tokens/tokens.css'
+import '@cielui/tokens/tokens.css'
 import './preview.css'
 
 /** Applies the toolbar's theme to <html data-theme>, the same switch consumers use. */

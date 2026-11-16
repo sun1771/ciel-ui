@@ -1,5 +1,5 @@
-import { Link } from '@acme/ui'
-import { ArrowRight } from '@acme/icons'
+import { Link } from '@cielui/react'
+import { ArrowRight } from '@cielui/icons'
 
 export default function Variants() {
   return (

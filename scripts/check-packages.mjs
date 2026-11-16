@@ -12,7 +12,7 @@ import os from 'node:os'
 import path from 'node:path'
 
 const root = path.resolve(import.meta.dirname, '..')
-const out = fs.mkdtempSync(path.join(os.tmpdir(), 'acme-pack-'))
+const out = fs.mkdtempSync(path.join(os.tmpdir(), 'ciel-pack-'))
 const packages = [
   { dir: 'ui', attw: '--exclude-entrypoints styles.css' },
   { dir: 'icons', attw: '' },

@@ -9,8 +9,8 @@ import {
   CardMetric,
   CardPrice,
   Chip,
-} from '@acme/ui'
-import { ArrowRight, Award, Baggage, Bed, Car, Gasoline, Star, Users } from '@acme/icons'
+} from '@cielui/react'
+import { ArrowRight, Award, Baggage, Bed, Car, Gasoline, Star, Users } from '@cielui/icons'
 import { CarRentalGraphic, FlightGraphic, HotelGraphic } from './graphics'
 import styles from './TravelResultCard.module.css'
 
@@ -18,7 +18,7 @@ import styles from './TravelResultCard.module.css'
  * Recipe: a travel search-result card for hotels, rental cars and flights,
  * built entirely from the library's generic Card parts.
  *
- * This is example code for the docs site, not part of @acme/ui. Copy it and
+ * This is example code for the docs site, not part of @cielui/react. Copy it and
  * adapt it to your own domain.
  */
 

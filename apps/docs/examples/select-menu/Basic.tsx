@@ -1,6 +1,6 @@
 'use client'
 
-import { MenuItem, SelectMenu } from '@acme/ui'
+import { MenuItem, SelectMenu } from '@cielui/react'
 
 export default function Basic() {
   return (

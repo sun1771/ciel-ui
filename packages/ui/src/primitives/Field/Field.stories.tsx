@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Search } from '@acme/icons'
+import { Search } from '@cielui/icons'
 import { Field } from '.'
 
 const meta = {

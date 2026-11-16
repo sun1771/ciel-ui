@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { cn } from '../../lib/utils'
-import { ArrowRight } from '@acme/icons'
+import { ArrowRight } from '@cielui/icons'
 import styles from './Table.module.css'
 import type { TableProps, TableCellType, TableCellValue, TableLinkCellValue } from './types'
 

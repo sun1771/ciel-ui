@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Sparkle } from '@acme/icons'
+import { Sparkle } from '@cielui/icons'
 import { site } from '@/content/site'
 import { ThemeToggle } from './ThemeToggle'
 import styles from './Header.module.css'

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { PackageCard } from '@acme/ui'
+import { PackageCard } from '@cielui/react'
 
 const OPTIONS = ['Hotel + flights, 5 nights: $1,240', 'Hotel only, 5 nights: $890']
 

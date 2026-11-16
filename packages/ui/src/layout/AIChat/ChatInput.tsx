@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { cn } from '../../lib/utils'
-import { Mic, Pause, ArrowUp } from '@acme/icons'
+import { Mic, Pause, ArrowUp } from '@cielui/icons'
 import { ButtonIcon } from '../../primitives/Button'
 import { Tag } from '../../primitives/Tag'
 import type { ChatInputLabels, ChatInputProps, ChatInputStatus } from './types'

@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useCallback } from 'react'
 import ReactDOM from 'react-dom'
 import { cn } from '../../lib/utils'
-import { X } from '@acme/icons'
+import { X } from '@cielui/icons'
 import type { DialogBoxLabels, DialogBoxProps } from './types'
 
 const DEFAULT_LABELS: DialogBoxLabels = { close: 'Close dialog' }

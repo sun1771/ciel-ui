@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, fn, userEvent } from 'storybook/test'
-import { ArrowRight, Star, User } from '@acme/icons'
+import { ArrowRight, Star, User } from '@cielui/icons'
 import { Button } from '../../primitives/Button'
 import { Chip } from '../../primitives/Chip'
 import { Card, CardBody, CardFooter, CardHeader, CardMedia, CardMetric, CardPrice } from '.'
