@@ -1,6 +1,6 @@
 {
   "name": "@cielui/react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Accessible, themeable React 19 components: WCAG 2.2 AA in light and dark themes",
   "license": "MIT",
   "author": {
