@@ -21,8 +21,15 @@
 
 .links {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 8px 20px;
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+/* Storybook, source code and npm: a row of its own above the credit. */
+.project {
+  flex-basis: 100%;
+  font-weight: 500;
 }

@@ -59,3 +59,11 @@
     font-size: 14px;
   }
 }
+
+/* Brand, Docs, Components, Storybook, GitHub and the theme toggle need about
+   440px; below that the outside links live in the footer only. */
+@media (max-width: 480px) {
+  .wide {
+    display: none;
+  }
+}

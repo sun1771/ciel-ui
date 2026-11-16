@@ -15,8 +15,15 @@ export function Header() {
         <nav aria-label="Main" className={styles.nav}>
           <Link href="/docs/getting-started">Docs</Link>
           <Link href="/docs">Components</Link>
-          {site.storybookUrl && <a href={site.storybookUrl}>Storybook</a>}
-          <a href={site.repoUrl}>GitHub</a>
+          {/* On narrow phones these two move to the footer (see CSS). */}
+          {site.storybookUrl && (
+            <a href={site.storybookUrl} className={styles.wide}>
+              Storybook
+            </a>
+          )}
+          <a href={site.repoUrl} className={styles.wide}>
+            GitHub
+          </a>
         </nav>
         <ThemeToggle />
       </div>
