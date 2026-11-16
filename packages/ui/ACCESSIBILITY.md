@@ -2,14 +2,14 @@
 
 ## What is tested
 
-| Layer                    | Command                         | What it checks                                                                                                                                                                                                                                               |
-| ------------------------ | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Story tests, light theme | `pnpm test:stories`             | Every story in real Chromium. axe-core runs the WCAG 2.0, 2.1 and 2.2 A/AA rules plus best practices, colour contrast and target size included, and fails on any violation. `play` functions cover keyboard and focus behaviour.                             |
-| Story tests, dark theme  | `pnpm test:stories`             | The same stories again with `data-theme="dark"`                                                                                                                                                                                                              |
-| Token contrast audit     | `pnpm test:unit`                | `src/test/tokenContrast.test.ts` reads `tokens.css` and checks every text, icon and fill pairing the components use, in both themes                                                                                                                          |
-| Hover audit              | `pnpm audit:hover`              | Moves the real mouse over every interactive element of every story (light and dark) and checks text (axe, 4.5:1) and icon-only controls (3:1) in the hover state. The story tests can't: simulated hover never triggers CSS `:hover`. Build Storybook first. |
-| Unit tests               | `pnpm test:unit`                | State logic (controlled and uncontrolled), calendar grids for every `weekStartsOn`, `ref` forwarding                                                                                                                                                         |
-| Docs site audit          | `pnpm --filter docs audit:a11y` | axe on every docs page and the 404 page (46 routes) in both themes, with code panels expanded; fails if a page does not load. Start the site first.                                                                                                          |
+| Layer                    | Command                         | What it checks                                                                                                                                                                                                                                                         |
+| ------------------------ | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Story tests, light theme | `pnpm test:stories`             | Every story in real Chromium. axe-core runs the WCAG 2.0, 2.1 and 2.2 A/AA rules plus best practices, colour contrast and target size included, and fails on any violation. `play` functions cover keyboard and focus behaviour.                                       |
+| Story tests, dark theme  | `pnpm test:stories`             | The same stories again with `data-theme="dark"`                                                                                                                                                                                                                        |
+| Token contrast audit     | `pnpm test:unit`                | `src/test/tokenContrast.test.ts` reads `tokens.css` and checks every text, icon and fill pairing the components use, in both themes                                                                                                                                    |
+| Hover audit              | `pnpm audit:hover`              | Moves the real mouse over every interactive element of every story (light and dark) and checks text (axe, 4.5:1) and icon-only controls (3:1) in the hover state. The story tests can't: simulated hover never triggers CSS `:hover`. Build Storybook first.           |
+| Unit tests               | `pnpm test:unit`                | State logic (controlled and uncontrolled), calendar grids for every `weekStartsOn`, `ref` forwarding                                                                                                                                                                   |
+| Docs site audit          | `pnpm --filter docs audit:a11y` | axe on every docs page and the 404 page (47 routes) in both themes, at desktop and phone (390px) widths, plus the open navigation drawer, with code panels expanded. Fails if a page does not load or scrolls sideways on a phone (WCAG 1.4.10). Start the site first. |
 
 The interaction tests cover:
 
@@ -79,6 +79,9 @@ Every changed value keeps its original in `packages/tokens/tokens.json` (`$exten
 - **SearchBox with suggestions**: the input is a `combobox` (`aria-expanded`, `aria-controls`, `aria-autocomplete="list"`). Escape, picking an option, Tab away or a click outside closes the list.
 - **Expander, AccordionProgressive, Carousel**: hidden content (a closed panel, off-screen slides) is `inert`, so Tab and screen readers skip it.
 - **AIChat**: the conversation is a focusable `role="log"`, so keyboard users can scroll it.
+- **TabBar**: the selected tab is the one Tab stop; with no selection, the first enabled tab is.
+- **Carousel**: the page dots are a `<nav>` named after the carousel ("Destinations: slides"), so several carousels on a page have distinct landmarks. Give standalone Paginations their own `labels.navigation` too.
+- **Docs navigation on phones**: a modal `<dialog>` drawer. Focus moves into it, stays inside, and Escape or picking a page closes it.
 
 **Before/after screenshots and the original values are in [DESIGN-CHANGES.md](DESIGN-CHANGES.md)**, so any change can be compared or reverted.
 
