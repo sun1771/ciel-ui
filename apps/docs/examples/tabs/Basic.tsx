@@ -13,6 +13,9 @@ export default function Basic() {
       <TabItem value="cars" icon={<Car size={20} />}>
         Cars
       </TabItem>
+      <TabItem value="trains" disabled>
+        Trains (soon)
+      </TabItem>
     </TabBar>
   )
 }

@@ -20,7 +20,8 @@ export function PropsTable({ component }: { component: string }) {
       <h3 className={styles.name}>
         <code>{component}</code>
       </h3>
-      <div className={styles.scroll}>
+      {/* Focusable, so keyboard users can scroll a table wider than the screen. */}
+      <div className={styles.scroll} role="region" aria-label={`${component} props`} tabIndex={0}>
         <table className={styles.table}>
           <thead>
             <tr>

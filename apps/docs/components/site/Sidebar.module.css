@@ -1,6 +1,8 @@
-/* Layout of the docs NavigationPanel: full width of the sidebar column, sticky
-   under the header, and scrolling on its own. The look of the items comes
-   from the library. `nav.` raises specificity above the library's own rules. */
+/* Layout of the docs NavigationPanel. The look of the items comes from the
+   library. `nav.` raises specificity above the library's own rules. */
+
+/* ---- Wide screens: a sticky column that scrolls on its own ---- */
+
 nav.sidebar {
   --nav-panel-width: 100%;
   position: sticky;
@@ -12,23 +14,102 @@ nav.sidebar {
   justify-content: flex-start;
 }
 
+/* Space between the sections (Guides, Primitives, Feedback, …). */
 .groups {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 20px;
 }
 
-.group {
-  break-inside: avoid;
+.mobileBar,
+.drawer {
+  display: none;
 }
 
-@media (max-width: 900px) {
+/* ---- Narrow screens: a Menu bar that opens the navigation in a drawer ---- */
+
+@media (max-width: 720px) {
   nav.sidebar {
-    position: static;
+    display: none;
+  }
+
+  .mobileBar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 48px;
+    padding: 0 12px;
+  }
+
+  .current {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ds-mapped-text-heading);
+  }
+
+  .current::before {
+    content: '/';
+    margin-right: 8px;
+    color: var(--ds-mapped-text-placeholder);
+  }
+
+  .drawer[open] {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: min(320px, 85vw);
+    max-width: none;
+    height: 100dvh;
     max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: var(--ds-mapped-surface-default);
+    color: inherit;
+    box-shadow: var(--ds-effect-shadow);
+    animation: drawerIn var(--ds-motion-duration-slow) var(--ds-motion-easing-enter);
   }
-  .groups {
-    display: block;
-    columns: 2;
+
+  .drawer::backdrop {
+    background: rgb(0 0 0 / 0.4);
+    animation: backdropIn var(--ds-motion-duration-slow) var(--ds-motion-easing-enter);
   }
+
+  .drawerHeader {
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 8px 0;
+  }
+
+  nav.drawerNav {
+    --nav-panel-width: 100%;
+    flex: 1;
+    min-height: 0;
+    height: auto;
+    padding: 0 12px 32px 16px;
+    box-shadow: none;
+    justify-content: flex-start;
+  }
+}
+
+@keyframes drawerIn {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes backdropIn {
+  from {
+    opacity: 0;
+  }
+}
+
+/* No page scroll behind the open drawer. */
+:global(html:has(dialog[open])) {
+  overflow: hidden;
 }

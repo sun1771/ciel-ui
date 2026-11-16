@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 88px 24px 56px;
   display: grid;
+  /* minmax(0, …): the install command scrolls instead of widening the page. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 32px;
 }
 
@@ -90,7 +92,7 @@
 
 .showcase {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, max-content));
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), max-content));
   justify-content: center;
   gap: 24px 64px;
   padding: 28px;
@@ -103,6 +105,9 @@
 
 .showcaseCol {
   display: grid;
+  /* One column no wider than the space, so max-width: 100% items shrink. */
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
   gap: 16px;
   align-content: start;
   justify-items: start;
@@ -166,4 +171,17 @@
   border-radius: 999px;
   border: 1px solid var(--ds-mapped-border-default);
   font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 56px 16px 40px;
+  }
+  .section {
+    padding: 40px 16px;
+  }
+  .showcase {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 16px;
+  }
 }

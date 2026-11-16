@@ -22,7 +22,9 @@ export default function TravelRecipe() {
         <code>FieldPicker</code>, <code>Popover</code>, <code>DateRangeCalendar</code>,{' '}
         <code>ButtonGroup</code> and <code>Checkbox</code>.
       </p>
-      <SearchBar />
+      <div data-demo>
+        <SearchBar />
+      </div>
 
       <h2>Result cards</h2>
       <p>
@@ -43,7 +45,7 @@ export default function TravelRecipe() {
   </CardFooter>
 </Card>`}
       />
-      <div style={{ marginTop: 24 }}>
+      <div style={{ marginTop: 24 }} data-demo>
         <Results />
       </div>
     </article>

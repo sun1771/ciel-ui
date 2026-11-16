@@ -41,12 +41,24 @@ export const COMPONENTS: ComponentDoc[] = [
       'Triggers an action. Comes in three variants and two sizes, with icon slots, a loading state, and icon-only and vertical forms.',
     api: ['Button', 'ButtonIcon', 'ButtonIconSwitching', 'ButtonVertical'],
     examples: [
-      { name: 'Variants', title: 'Variants' },
+      {
+        name: 'Variants',
+        title: 'Variants and sizes',
+        description:
+          'Default, outline and transparent, in the large and small sizes, and disabled.',
+      },
       { name: 'WithIcons', title: 'With icons and loading' },
       {
         name: 'IconOnly',
         title: 'Icon-only',
-        description: 'Always give an icon-only button a `label`. It becomes the accessible name.',
+        description:
+          'Square by default, or a circle with `shape="round"`; as tall as a text button of the same size. Always give an icon-only button a `label`. It becomes the accessible name.',
+      },
+      {
+        name: 'Vertical',
+        title: 'Vertical and switching icon',
+        description:
+          '`ButtonVertical` stacks an icon or support text with the label. `ButtonIconSwitching` swaps its icon on hover and focus.',
       },
     ],
     a11y: [
@@ -62,7 +74,13 @@ export const COMPONENTS: ComponentDoc[] = [
     category: 'Primitives',
     description: 'A person or entity, shown as initials, an icon or an image.',
     api: ['Avatar'],
-    examples: [{ name: 'Types', title: 'Types and sizes' }],
+    examples: [
+      {
+        name: 'Types',
+        title: 'Types and sizes',
+        description: 'Image, initials and icon, each in the large, medium and small sizes.',
+      },
+    ],
     a11y: ['Give image avatars a meaningful `alt`. Decorative avatars can use `alt=""`.'],
     storybook: 'primitives-avatar',
   },
@@ -72,7 +90,13 @@ export const COMPONENTS: ComponentDoc[] = [
     category: 'Primitives',
     description: 'A small count or status indicator.',
     api: ['Badge'],
-    examples: [{ name: 'Variants', title: 'Variants' }],
+    examples: [
+      {
+        name: 'Variants',
+        title: 'Variants',
+        description: 'Each colour as a pill with text, and as a dot (`type="dot"`).',
+      },
+    ],
     a11y: [
       'Status fills meet 4.5:1 with white text in both themes.',
       'A count badge alone is ambiguous to screen readers. Mention it in the related control’s label, e.g. “Inbox, 12 unread”.',
@@ -85,7 +109,13 @@ export const COMPONENTS: ComponentDoc[] = [
     category: 'Primitives',
     description: 'A compact label for attributes such as “Cheapest” or a rating.',
     api: ['Chip'],
-    examples: [{ name: 'Colors', title: 'Colours and variants' }],
+    examples: [
+      {
+        name: 'Colors',
+        title: 'Colours and variants',
+        description: 'Every colour in the `light` (top) and `sharp` (bottom) variants.',
+      },
+    ],
     a11y: ['An icon-only chip needs `role="img"` and an `aria-label`.'],
     storybook: 'primitives-chip',
   },
@@ -95,7 +125,10 @@ export const COMPONENTS: ComponentDoc[] = [
     category: 'Primitives',
     description: 'A removable token, e.g. an active filter.',
     api: ['Tag'],
-    examples: [{ name: 'Dismissible', title: 'Dismissible tags' }],
+    examples: [
+      { name: 'Dismissible', title: 'Dismissible tags' },
+      { name: 'Sizes', title: 'Sizes and states' },
+    ],
     a11y: [
       'The dismiss button is named by `labels.dismiss` (default “Dismiss”).',
       'Disabled tags set `aria-disabled`.',
@@ -143,6 +176,7 @@ export const COMPONENTS: ComponentDoc[] = [
     api: ['Menu', 'MenuItem'],
     examples: [
       { name: 'Basic', title: 'Actions' },
+      { name: 'Sizes', title: 'Sizes', description: 'Large and small, with a disabled item.' },
       {
         name: 'Selectable',
         title: 'Selectable',
@@ -271,7 +305,14 @@ export const COMPONENTS: ComponentDoc[] = [
     description:
       'The trigger of a dropdown: shows the current choice, with a chevron that turns while open. For a working dropdown, use SelectMenu.',
     api: ['SelectButton'],
-    examples: [{ name: 'Basic', title: 'SelectButton' }],
+    examples: [
+      { name: 'Variants', title: 'Variants and sizes' },
+      {
+        name: 'States',
+        title: 'States',
+        description: '`isSelected` shows the open state: the chevron turns up.',
+      },
+    ],
     a11y: ['On its own, wire `aria-expanded` and `aria-controls` to whatever it opens.'],
     storybook: 'primitives-selectbutton',
   },
@@ -423,9 +464,13 @@ export const COMPONENTS: ComponentDoc[] = [
     category: 'Navigation',
     description: 'Dot pagination for carousels and short sequences.',
     api: ['Pagination'],
-    examples: [{ name: 'Basic', title: 'Pagination' }],
+    examples: [
+      { name: 'Basic', title: 'Pagination' },
+      { name: 'OnMedia', title: 'On images' },
+    ],
     a11y: [
       'The current page has `aria-current="page"`, and every name is localisable through `labels`.',
+      'It is a `<nav>` landmark named "Pagination". With more than one on a page, give each its own `labels.navigation` ("Result pages", "Photos").',
     ],
     storybook: 'navigation-pagination',
   },
@@ -447,10 +492,14 @@ export const COMPONENTS: ComponentDoc[] = [
     category: 'Navigation',
     description: 'Slides with previous and next controls and dot pagination.',
     api: ['Carousel', 'CarouselItem'],
-    examples: [{ name: 'Basic', title: 'Carousel' }],
+    examples: [
+      { name: 'Basic', title: 'Carousel' },
+      { name: 'Controls', title: 'Small, rectangular controls' },
+    ],
     a11y: [
       'The controls are named by `labels`, and the dots say which slide is current.',
       'Slides that are off screen are inert, so Tab only reaches the visible one.',
+      'The page dots are named after the carousel’s `aria-label` ("Destinations: slides"), so several carousels on one page stay distinct.',
     ],
     storybook: 'navigation-carousel',
   },
@@ -466,6 +515,7 @@ export const COMPONENTS: ComponentDoc[] = [
         title: 'Expander',
         description: 'Opens and closes on its own; pass `isExpanded` + `onToggle` to control it.',
       },
+      { name: 'Sizes', title: 'Sizes' },
     ],
     a11y: [
       'A button with `aria-expanded` and `aria-controls`.',
@@ -530,7 +580,10 @@ export const COMPONENTS: ComponentDoc[] = [
       'NavigationMenuItem',
       'NavigationProfileItem',
     ],
-    examples: [{ name: 'Basic', title: 'Sidebar' }],
+    examples: [
+      { name: 'Basic', title: 'Sidebar' },
+      { name: 'Grouped', title: 'Grouped links' },
+    ],
     a11y: [
       'A `<nav>` landmark, and the current item has `aria-current="page"`.',
       'Items with `href` are real links (pass your router’s link as `linkComponent`). This site’s sidebar is a NavigationPanel.',
@@ -544,7 +597,10 @@ export const COMPONENTS: ComponentDoc[] = [
     category: 'Layout',
     description: 'A paged content card with a heading, an AI action and page navigation.',
     api: ['PackageCard'],
-    examples: [{ name: 'Basic', title: 'Itinerary' }],
+    examples: [
+      { name: 'Basic', title: 'Itinerary' },
+      { name: 'Default', title: 'Default and not loaded' },
+    ],
     a11y: [
       'Navigation buttons are disabled at the ends, and every name is localisable through `labels`.',
     ],
@@ -557,7 +613,13 @@ export const COMPONENTS: ComponentDoc[] = [
     description:
       'A data table with text, link and action cells, plus an optional title and toolbar.',
     api: ['Table'],
-    examples: [{ name: 'Basic', title: 'Table' }],
+    examples: [
+      {
+        name: 'Basic',
+        title: 'Table',
+        description: "Text, link and action cells (`type: 'link'`, `type: 'action'`).",
+      },
+    ],
     a11y: ['A native `<table>` with column headers.'],
     storybook: 'layout-table',
   },

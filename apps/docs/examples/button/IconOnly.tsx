@@ -1,12 +1,37 @@
-import { ButtonIcon } from '@acme/ui'
-import { Search, Settings, Share } from '@acme/icons'
+'use client'
 
+import { Search, Settings, Share } from '@acme/icons'
+import { ButtonIcon } from '@acme/ui'
+
+const VARIANTS = [
+  { variant: 'default', label: 'Search', Icon: Search },
+  { variant: 'outline', label: 'Share', Icon: Share },
+  { variant: 'transparent', label: 'Settings', Icon: Settings },
+] as const
+
+/** Square by default, a circle with shape="round". Same height as a text Button. */
 export default function IconOnly() {
   return (
-    <div style={{ display: 'flex', gap: 12 }}>
-      <ButtonIcon label="Search" icon={<Search size={20} />} />
-      <ButtonIcon label="Share" icon={<Share size={20} />} variant="outline" shape="round" />
-      <ButtonIcon label="Settings" icon={<Settings size={20} />} variant="transparent" />
+    <div style={{ display: 'grid', gap: 16 }}>
+      {(['lg', 'sm'] as const).map((size) => (
+        <div
+          key={size}
+          style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}
+        >
+          {(['default', 'round'] as const).flatMap((shape) =>
+            VARIANTS.map(({ variant, label, Icon }) => (
+              <ButtonIcon
+                key={`${shape}-${variant}`}
+                label={label}
+                icon={<Icon size={size === 'sm' ? 16 : 20} />}
+                variant={variant}
+                size={size}
+                shape={shape}
+              />
+            ))
+          )}
+        </div>
+      ))}
     </div>
   )
 }
