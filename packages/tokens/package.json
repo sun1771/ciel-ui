@@ -1,6 +1,6 @@
 {
   "name": "@cielui/tokens",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Design tokens for @cielui/react: CSS custom properties (light + dark) and the tokens.json source",
   "license": "MIT",
   "author": {
