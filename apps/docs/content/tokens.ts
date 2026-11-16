@@ -16,7 +16,16 @@ export function readTokens() {
   }
   const light = block(':root {')
   const dark = { ...light, ...block("[data-theme='dark'] {") }
-  return { light, dark }
+  // Responsive type shrinks on small screens; motion durations drop to 0ms
+  // with reduced motion.
+  const phone = block('@media (max-width: 440px)')
+  const reducedMotion = block('@media (prefers-reduced-motion: reduce)')
+  return { light, dark, phone, reducedMotion }
+}
+
+/** Token names (without `--`) that start with `prefix`, in source order. */
+export function withPrefix(tokens: Record<string, string>, prefix: string) {
+  return Object.keys(tokens).filter((n) => n.startsWith(prefix))
 }
 
 function luminance(hex: string) {

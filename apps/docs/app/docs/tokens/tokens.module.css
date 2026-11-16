@@ -50,3 +50,267 @@
 .fail {
   color: var(--ds-mapped-text-error);
 }
+
+/* ── Page sections ───────────────────────────────────────────────────── */
+
+.toc ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.toc a {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1px solid var(--ds-mapped-border-default);
+  border-radius: var(--ds-alias-border-radius-round);
+  font-size: 14px;
+  text-decoration: none;
+  transition: background-color var(--ds-motion-duration-fast) var(--ds-motion-easing-standard);
+}
+
+.toc a:hover {
+  background: var(--ds-mapped-surface-action-hover-light);
+  color: var(--ds-mapped-text-action-hover);
+}
+
+.subhead {
+  margin: 28px 0 4px;
+  font-size: 18px;
+}
+
+.small {
+  font-size: 14px;
+}
+
+.value {
+  font-size: 12px;
+  color: var(--ds-mapped-text-placeholder);
+}
+
+.rows {
+  display: grid;
+  gap: 4px;
+  margin: 12px 0 24px;
+}
+
+/* ── Typography ──────────────────────────────────────────────────────── */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.chip {
+  padding: 4px 12px;
+  border: 1px solid var(--ds-mapped-border-default);
+  border-radius: var(--site-radius);
+}
+
+.typeRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 4px 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--ds-mapped-border-default);
+}
+
+.typeSample {
+  color: var(--ds-mapped-text-heading);
+  overflow-wrap: anywhere;
+}
+
+.typeRow .values {
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+@media (max-width: 560px) {
+  .typeRow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .typeRow .values {
+    flex-direction: row;
+    align-items: baseline;
+    text-align: left;
+  }
+}
+
+/* ── Spacing ─────────────────────────────────────────────────────────── */
+
+.scaleRow {
+  display: grid;
+  grid-template-columns: minmax(0, 220px) 48px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-height: 28px;
+}
+
+.bar {
+  height: 16px;
+  min-width: 1px;
+  border-radius: 2px;
+  background: var(--ds-mapped-surface-action);
+}
+
+@media (max-width: 560px) {
+  .scaleRow {
+    grid-template-columns: minmax(0, 1fr) 40px 64px;
+  }
+}
+
+/* ── Radius, borders, shadows ────────────────────────────────────────── */
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+  margin: 12px 0;
+}
+
+.tile {
+  display: grid;
+  justify-items: start;
+  gap: 4px;
+  min-width: 0;
+}
+
+.tile .name,
+.tile .value {
+  overflow-wrap: anywhere;
+}
+
+.radiusBox,
+.widthBox,
+.shadowBox {
+  display: block;
+  width: 100%;
+  height: 72px;
+  margin-bottom: 6px;
+  box-sizing: border-box;
+}
+
+.radiusBox {
+  background: var(--ds-mapped-surface-action-hover-light);
+  border: 2px solid var(--ds-mapped-surface-action);
+}
+
+.widthBox {
+  border-style: solid;
+  border-color: var(--ds-mapped-text-heading);
+  border-radius: var(--ds-alias-border-radius-lg);
+}
+
+/* border-width-none draws nothing, so outline the empty box. */
+.widthBox[data-none] {
+  outline: 1px dashed var(--ds-mapped-border-input);
+  outline-offset: -1px;
+}
+
+.shadowBox {
+  border-radius: var(--ds-alias-border-radius-lg);
+  background: var(--ds-mapped-surface-default);
+  border: 1px solid var(--ds-mapped-border-default);
+}
+
+/* ── Motion ──────────────────────────────────────────────────────────── */
+
+.motion {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+  margin: 12px 0 24px;
+}
+
+.motionRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(120px, 240px);
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--ds-mapped-border-default);
+}
+
+.motionMeta {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.motionRow:not(:has(.curve)) {
+  grid-template-columns: minmax(0, 1fr) minmax(120px, 240px);
+}
+
+.track {
+  position: relative;
+  height: 24px;
+  border-radius: var(--ds-alias-border-radius-round);
+  background: var(--ds-mapped-surface-subtle);
+}
+
+.dot {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--ds-mapped-surface-action);
+  transition-property: left;
+}
+
+.dot[data-moved] {
+  left: calc(100% - 20px);
+}
+
+.curve {
+  flex-shrink: 0;
+}
+
+.axis {
+  fill: none;
+  stroke: var(--ds-mapped-border-input);
+  stroke-width: 1;
+}
+
+.curveLine {
+  fill: none;
+  stroke: var(--ds-mapped-surface-action);
+  stroke-width: 2;
+}
+
+@media (max-width: 560px) {
+  .motionRow,
+  .motionRow:not(:has(.curve)) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ── Palette ─────────────────────────────────────────────────────────── */
+
+.strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: 8px;
+  margin: 8px 0 16px;
+}
+
+.step {
+  display: grid;
+  gap: 2px;
+}
+
+.stepSwatch {
+  display: block;
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid var(--ds-mapped-border-default);
+}
