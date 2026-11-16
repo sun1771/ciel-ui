@@ -1,4 +1,4 @@
-import { Separator } from '@acme/ui'
+import { Separator } from '@cielui/react'
 
 export default function Orientations() {
   return (

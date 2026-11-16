@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { AccordionProgressive } from '@acme/ui'
+import { AccordionProgressive } from '@cielui/react'
 
 export default function Basic() {
   const [step, setStep] = useState<number | null>(0)

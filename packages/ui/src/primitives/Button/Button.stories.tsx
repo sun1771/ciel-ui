@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, fn, userEvent, within } from 'storybook/test'
-import { ArrowRight, Plus, Search, Sparkle, Expand, Calendar } from '@acme/icons'
+import { ArrowRight, Plus, Search, Sparkle, Expand, Calendar } from '@cielui/icons'
 import { Button, ButtonIcon, ButtonIconSwitching, ButtonVertical } from '.'
 
 const meta = {

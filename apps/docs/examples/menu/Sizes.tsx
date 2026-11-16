@@ -1,5 +1,5 @@
-import { Menu, MenuItem } from '@acme/ui'
-import { Settings, User } from '@acme/icons'
+import { Menu, MenuItem } from '@cielui/react'
+import { Settings, User } from '@cielui/icons'
 
 export default function Sizes() {
   return (

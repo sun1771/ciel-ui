@@ -1,4 +1,4 @@
-import { Loader } from '@acme/ui'
+import { Loader } from '@cielui/react'
 
 export default function Sizes() {
   return (

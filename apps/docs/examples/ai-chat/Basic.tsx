@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { AIChat, AgentBubble, UserBubble } from '@acme/ui'
+import { AIChat, AgentBubble, UserBubble } from '@cielui/react'
 
 export default function Basic() {
   const [value, setValue] = useState('')

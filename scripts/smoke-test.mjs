@@ -21,7 +21,7 @@ import path from 'node:path'
 
 const root = path.resolve(import.meta.dirname, '..')
 const keep = process.argv.includes('--keep')
-const work = fs.mkdtempSync(path.join(os.tmpdir(), 'acme-smoke-'))
+const work = fs.mkdtempSync(path.join(os.tmpdir(), 'ciel-smoke-'))
 const packs = path.join(work, 'packs')
 const app = path.join(work, 'app')
 const run = (cmd, cwd) => execSync(cmd, { cwd, stdio: 'inherit' })
@@ -35,14 +35,21 @@ function check(name, ok, detail = '') {
 try {
   // 1. Pack the built packages (publishConfig swaps exports to dist/).
   fs.mkdirSync(packs)
+  // Tarball of each package folder, whatever its name and version.
+  const tarballs = {}
   for (const pkg of ['ui', 'icons', 'tokens']) {
     const dir = path.join(root, 'packages', pkg)
     if (pkg !== 'tokens' && !fs.existsSync(path.join(dir, 'dist'))) {
       throw new Error(`packages/${pkg}/dist is missing — run \`pnpm build\` first`)
     }
+    const before = new Set(fs.readdirSync(packs))
     execSync(`pnpm pack --pack-destination "${packs}"`, { cwd: dir, stdio: 'ignore' })
+    tarballs[pkg] = path.join(
+      packs,
+      fs.readdirSync(packs).find((f) => !before.has(f))
+    )
   }
-  const tgz = (name) => `file:${path.join(packs, `acme-${name}-0.0.0.tgz`)}`
+  const tgz = (pkg) => `file:${tarballs[pkg]}`
 
   // 2. Fresh app from the fixture.
   fs.cpSync(path.join(root, 'smoke/next-app'), app, { recursive: true })
@@ -52,13 +59,13 @@ try {
     path.join(app, 'package.json'),
     JSON.stringify(
       {
-        name: 'acme-smoke',
+        name: 'ciel-smoke',
         private: true,
         scripts: { build: 'next build' },
         dependencies: {
-          '@acme/ui': tgz('ui'),
-          '@acme/icons': tgz('icons'),
-          '@acme/tokens': tgz('tokens'),
+          '@cielui/react': tgz('ui'),
+          '@cielui/icons': tgz('icons'),
+          '@cielui/tokens': tgz('tokens'),
           next: nextVersion,
           react: '19.2.4',
           'react-dom': '19.2.4',
@@ -69,8 +76,9 @@ try {
           '@types/react-dom': '^19',
           '@types/node': '^20',
         },
-        // Never resolve the placeholder @acme scope from the registry.
-        overrides: { '@acme/icons': '$@acme/icons' },
+        // @cielui/react depends on @cielui/icons: use the local tarball for
+        // it too, never the copy published on the registry.
+        overrides: { '@cielui/icons': '$@cielui/icons' },
       },
       null,
       2
@@ -96,7 +104,7 @@ try {
     .filter((f) => f.endsWith('.css'))
     .map((f) => fs.readFileSync(f, 'utf8'))
     .join('\n')
-  check('CSS includes library classes', /\.acme-[a-zA-Z]+-/.test(css))
+  check('CSS includes library classes', /\.ciel-[a-zA-Z]+-/.test(css))
   check('CSS includes design tokens', css.includes('--ds-'))
 
   const buttonOnlyHtml = fs.readFileSync(path.join(serverApp, 'button-only.html'), 'utf8')

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Tag } from '@acme/ui'
+import { Tag } from '@cielui/react'
 
 export default function Dismissible() {
   const [filters, setFilters] = useState(['Free cancellation', 'Breakfast', 'Pool'])

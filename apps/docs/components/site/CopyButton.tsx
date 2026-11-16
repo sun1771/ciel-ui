@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { ButtonIcon } from '@acme/ui'
-import { Check, Copy } from '@acme/icons'
+import { ButtonIcon } from '@cielui/react'
+import { Check, Copy } from '@cielui/icons'
 
 export function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false)

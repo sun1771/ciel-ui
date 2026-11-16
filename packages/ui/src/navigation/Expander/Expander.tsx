@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { cn } from '../../lib/utils'
-import { ChevronDown } from '@acme/icons'
+import { ChevronDown } from '@cielui/icons'
 import { useControllableState } from '../../lib/useControllableState'
 import type { ExpanderProps } from './types'
 import styles from './Expander.module.css'

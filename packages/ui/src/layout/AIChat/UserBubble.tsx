@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { cn } from '../../lib/utils'
-import { Copy, Edit } from '@acme/icons'
+import { Copy, Edit } from '@cielui/icons'
 import { ButtonIcon } from '../../primitives/Button'
 import type { UserBubbleLabels, UserBubbleProps } from './types'
 import styles from './AIChat.module.css'

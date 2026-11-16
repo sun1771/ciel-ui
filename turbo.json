@@ -5,7 +5,7 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
-    "@acme/tokens#build": {
+    "@cielui/tokens#build": {
       "outputs": ["tokens.css"]
     },
     "dev": {
@@ -17,7 +17,7 @@
     "test": {
       "outputs": ["coverage/**"]
     },
-    "@acme/tokens#test": {
+    "@cielui/tokens#test": {
       "outputs": []
     },
     "build-storybook": {

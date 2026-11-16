@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Checkbox } from '@acme/ui'
+import { Checkbox } from '@cielui/react'
 
 export default function States() {
   const [weekend, setWeekend] = useState(true)

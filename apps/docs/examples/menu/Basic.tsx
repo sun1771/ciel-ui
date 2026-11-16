@@ -1,5 +1,5 @@
-import { Menu, MenuItem } from '@acme/ui'
-import { Check, Settings, User } from '@acme/icons'
+import { Menu, MenuItem } from '@cielui/react'
+import { Check, Settings, User } from '@cielui/icons'
 
 export default function Basic() {
   return (

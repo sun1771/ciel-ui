@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { ButtonGroup, ButtonGroupItem } from '@acme/ui'
-import { Calendar, Map } from '@acme/icons'
+import { ButtonGroup, ButtonGroupItem } from '@cielui/react'
+import { Calendar, Map } from '@cielui/icons'
 
 export default function Basic() {
   const [view, setView] = useState('list')

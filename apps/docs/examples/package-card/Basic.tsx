@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { PackageCard } from '@acme/ui'
+import { PackageCard } from '@cielui/react'
 
 const DAYS = [
   'Fushimi Inari at sunrise, then Nishiki Market for lunch.',

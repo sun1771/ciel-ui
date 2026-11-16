@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, userEvent } from 'storybook/test'
-import { Calendar, Map } from '@acme/icons'
+import { Calendar, Map } from '@cielui/icons'
 import { ButtonGroup, ButtonGroupItem } from '.'
 
 const meta = {

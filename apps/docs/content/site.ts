@@ -3,9 +3,9 @@ export const site = {
   name: 'Ciel UI',
   tagline: 'Accessible, themeable React components for real products.',
   description:
-    'Ciel UI is a React 19 component library: 37 components and 47 icons, WCAG 2.2 AA in light and dark themes, Server Component ready, and tested in a real browser.',
-  /** npm scope. Placeholder until the npm org exists (see README). */
-  packages: { ui: '@acme/ui', icons: '@acme/icons', tokens: '@acme/tokens' },
+    'Ciel UI is a React 19 component library: 38 components and 48 icons, WCAG 2.2 AA in light and dark themes, Server Component ready, and tested in a real browser.',
+  /** npm package names. */
+  packages: { ui: '@cielui/react', icons: '@cielui/icons', tokens: '@cielui/tokens' },
   author: {
     name: 'Sanaz Khanali',
     links: [

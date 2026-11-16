@@ -6,7 +6,7 @@
  *    and pairs it with its source code (shown under the live demo).
  * 2. generated/examples/index.ts — lazy loaders, so a page only bundles its own
  *    examples.
- * 3. generated/props.json — props tables extracted from @acme/ui's TypeScript
+ * 3. generated/props.json — props tables extracted from @cielui/react's TypeScript
  *    types (JSDoc comments become descriptions) with react-docgen-typescript.
  *
  * It also checks the registry and the examples folder agree.

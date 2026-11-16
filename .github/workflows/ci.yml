@@ -33,17 +33,17 @@ jobs:
 
       # Story tests and the docs audit run in real Chromium.
       - name: Install Chromium for Playwright
-        run: pnpm --filter @acme/ui exec playwright install --with-deps chromium
+        run: pnpm --filter @cielui/react exec playwright install --with-deps chromium
 
       - run: pnpm format:check
       - run: pnpm lint
       - run: pnpm typecheck
 
       - name: Tokens are up to date with tokens.json
-        run: pnpm --filter @acme/tokens test
+        run: pnpm --filter @cielui/tokens test
 
       - name: Unit and story tests (light + dark, axe, coverage thresholds)
-        run: pnpm --filter @acme/ui test:coverage
+        run: pnpm --filter @cielui/react test:coverage
 
       - run: pnpm build
 
@@ -55,7 +55,7 @@ jobs:
 
       - name: Hover contrast audit (real mouse, every story, both themes)
         run: |
-          pnpm --filter @acme/ui build-storybook
+          pnpm --filter @cielui/react build-storybook
           pnpm audit:hover
 
       - name: Docs accessibility audit

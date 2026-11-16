@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Award } from '@acme/icons'
+import { Award } from '@cielui/icons'
 import { Chip } from '.'
 
 const meta = {

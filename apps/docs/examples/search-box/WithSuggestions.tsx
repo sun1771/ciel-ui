@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { MenuItem, SearchBox } from '@acme/ui'
-import { MapPin } from '@acme/icons'
+import { MenuItem, SearchBox } from '@cielui/react'
+import { MapPin } from '@cielui/icons'
 
 const CITIES = ['Tokyo, Japan', 'Toronto, Canada', 'Paris, France', 'Porto, Portugal']
 

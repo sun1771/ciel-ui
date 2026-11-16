@@ -187,15 +187,15 @@ importers:
 
   apps/docs:
     dependencies:
-      '@acme/icons':
+      '@cielui/icons':
         specifier: workspace:*
         version: link:../../packages/icons
-      '@acme/tokens':
-        specifier: workspace:*
-        version: link:../../packages/tokens
-      '@acme/ui':
+      '@cielui/react':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@cielui/tokens':
+        specifier: workspace:*
+        version: link:../../packages/tokens
       '@mdx-js/loader':
         specifier: ^3.1.1
         version: 3.1.1(supports-color@7.2.0)
@@ -271,14 +271,14 @@ importers:
 
   packages/ui:
     dependencies:
-      '@acme/icons':
+      '@cielui/icons':
         specifier: workspace:*
         version: link:../icons
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
     devDependencies:
-      '@acme/tokens':
+      '@cielui/tokens':
         specifier: workspace:*
         version: link:../tokens
       '@eslint/js':

@@ -1,5 +1,5 @@
-import { TabBar, TabItem } from '@acme/ui'
-import { Bed, Car, Trip } from '@acme/icons'
+import { TabBar, TabItem } from '@cielui/react'
+import { Bed, Car, Trip } from '@cielui/icons'
 
 export default function Basic() {
   return (

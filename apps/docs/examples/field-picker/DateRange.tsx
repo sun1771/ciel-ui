@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { DateRangeCalendar, FieldPicker, type DateRange } from '@acme/ui'
-import { Calendar } from '@acme/icons'
+import { DateRangeCalendar, FieldPicker, type DateRange } from '@cielui/react'
+import { Calendar } from '@cielui/icons'
 
 const fmt = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' })
 

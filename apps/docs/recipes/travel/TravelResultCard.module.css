@@ -1,5 +1,5 @@
 /* Travel recipe styles — the domain-specific bits that used to live in the
-   library's Card. Everything else comes from @acme/ui's Card parts. */
+   library's Card. Everything else comes from @cielui/react's Card parts. */
 
 /* "Discover more" teaser card */
 .more {

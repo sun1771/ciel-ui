@@ -1,6 +1,6 @@
 # Changesets
 
-Every pull request that changes a published package (`@acme/ui`, `@acme/icons`, `@acme/tokens`) adds a changeset:
+Every pull request that changes a published package (`@cielui/react`, `@cielui/icons`, `@cielui/tokens`) adds a changeset:
 
 ```bash
 pnpm changeset

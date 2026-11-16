@@ -1,4 +1,4 @@
-import { Carousel } from '@acme/ui'
+import { Carousel } from '@cielui/react'
 
 const DESTINATIONS = ['Lisbon', 'Kyoto', 'Oaxaca', 'Reykjavík']
 

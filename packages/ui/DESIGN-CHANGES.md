@@ -8,7 +8,7 @@ The accessibility work changed some colours, and the [polish pass](#polish-pass)
 Screenshots: `design-changes/before` and `design-changes/after`. To recapture them after a future change:
 
 ```bash
-pnpm --filter @acme/ui build-storybook
+pnpm --filter @cielui/react build-storybook
 node scripts/design-screenshots.mjs packages/ui/storybook-static packages/ui/design-changes/after
 ```
 
@@ -19,7 +19,7 @@ The token values live in `packages/tokens/tokens.json`, and `tokens.css` is gene
 To restore the original look of one token:
 
 1. In `tokens.json`, copy the `was` value back into `$extensions.modes.<light|dark>`.
-2. Run `pnpm --filter @acme/tokens build`.
+2. Run `pnpm --filter @cielui/tokens build`.
 
 The tables below list every original value. The steps were made in these commits, before the generator existed. They are a record of what changed: reverting the token part of a commit now means editing `tokens.json` as above, not running `git revert`.
 

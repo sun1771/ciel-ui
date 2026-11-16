@@ -1,9 +1,12 @@
 import Link from 'next/link'
+import * as Icons from '@cielui/icons'
 import { COMPONENTS } from '@/content/registry'
 import { site } from '@/content/site'
 import { CodeBlock } from '@/components/site/CodeBlock'
 import { Showcase } from './Showcase'
 import styles from './landing.module.css'
+
+const ICON_COUNT = Object.values(Icons).filter((v) => typeof v === 'function').length
 
 const FEATURES = [
   {
@@ -43,8 +46,8 @@ export default function Home() {
           <h1 className={styles.heroTitle}>{site.name}</h1>
           <p className={styles.heroTagline}>{site.tagline}</p>
           <p className={styles.heroBody}>
-            {COMPONENTS.length} components, 47 icons and a token-based theme, tested in light and
-            dark mode with 340 automated tests.
+            {COMPONENTS.length} components, {ICON_COUNT} icons and a token-based theme, tested in a
+            real browser in light and dark mode.
           </p>
           <div className={styles.ctas}>
             <Link href="/docs/getting-started" className={styles.primary}>

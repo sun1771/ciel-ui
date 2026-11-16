@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import * as Icons from '@acme/icons'
-import { SearchBox } from '@acme/ui'
+import * as Icons from '@cielui/icons'
+import { SearchBox } from '@cielui/react'
 import styles from './icons.module.css'
 
 const ALL = Object.entries(Icons).filter(([, v]) => typeof v === 'function') as [

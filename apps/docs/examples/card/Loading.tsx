@@ -1,4 +1,4 @@
-import { Card } from '@acme/ui'
+import { Card } from '@cielui/react'
 
 export default function Loading() {
   return (

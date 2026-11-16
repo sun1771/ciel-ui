@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { RadioButton } from '@acme/ui'
+import { RadioButton } from '@cielui/react'
 
 const CABINS = ['Economy', 'Premium', 'Business']
 

@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Button } from '@acme/ui'
+import { Button } from '@cielui/react'
 import styles from './tokens.module.css'
 
 type Row = { name: string; value: string; note?: string; bezier?: number[] }

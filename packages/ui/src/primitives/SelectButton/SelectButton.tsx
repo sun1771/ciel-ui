@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { cn } from '../../lib/utils'
-import { ChevronDown } from '@acme/icons'
+import { ChevronDown } from '@cielui/icons'
 import styles from './SelectButton.module.css'
 import type { SelectButtonProps } from './types'
 

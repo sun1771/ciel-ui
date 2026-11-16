@@ -1,5 +1,5 @@
 import React from 'react'
-import { Sparkle } from '@acme/icons'
+import { Sparkle } from '@cielui/icons'
 import { ButtonIcon } from '../../primitives/Button'
 import { CarouselItem } from '../../navigation/Carousel'
 import { cn } from '../../lib/utils'

@@ -1,4 +1,4 @@
-import { TextArea } from '@acme/ui'
+import { TextArea } from '@cielui/react'
 
 export default function Basic() {
   return (

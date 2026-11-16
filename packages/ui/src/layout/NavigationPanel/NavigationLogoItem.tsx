@@ -3,7 +3,7 @@
 import React from 'react'
 import { cn } from '../../lib/utils'
 import { ButtonIcon, ButtonIconSwitching } from '../../primitives/Button'
-import { Collapse, Expand } from '@acme/icons'
+import { Collapse, Expand } from '@cielui/icons'
 import type { NavigationLogoItemProps } from './types'
 import { useNavigationPanel } from './NavigationPanel'
 import styles from './NavigationPanel.module.css'

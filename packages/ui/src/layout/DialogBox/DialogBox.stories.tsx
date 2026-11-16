@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, fn, userEvent, waitFor, within } from 'storybook/test'
-import { Info } from '@acme/icons'
+import { Info } from '@cielui/icons'
 import { Button } from '../../primitives/Button'
 import { DialogBox } from '.'
 

@@ -1,4 +1,4 @@
-import { Menu, MenuItem } from '@acme/ui'
+import { Menu, MenuItem } from '@cielui/react'
 
 export default function Selectable() {
   return (

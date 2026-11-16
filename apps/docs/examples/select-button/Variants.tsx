@@ -1,6 +1,6 @@
 'use client'
 
-import { SelectButton } from '@acme/ui'
+import { SelectButton } from '@cielui/react'
 
 const VARIANTS = ['default', 'outline', 'transparent'] as const
 

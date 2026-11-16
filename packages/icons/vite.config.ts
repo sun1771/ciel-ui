@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 
-/** Library build for @acme/icons: ESM, one file per icon for tree-shaking. */
+/** Library build for @cielui/icons: ESM, one file per icon for tree-shaking. */
 export default defineConfig({
   build: {
     lib: { entry: 'src/index.ts', formats: ['es'] },

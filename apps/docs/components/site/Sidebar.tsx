@@ -3,14 +3,14 @@
 import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Hamburger, X } from '@acme/icons'
+import { Hamburger, X } from '@cielui/icons'
 import {
   Button,
   ButtonIcon,
   NavigationMenuGroup,
   NavigationMenuItem,
   NavigationPanel,
-} from '@acme/ui'
+} from '@cielui/react'
 import { CATEGORIES, COMPONENTS } from '@/content/registry'
 import styles from './Sidebar.module.css'
 

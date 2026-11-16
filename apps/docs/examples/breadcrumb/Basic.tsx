@@ -1,4 +1,4 @@
-import { Breadcrumb } from '@acme/ui'
+import { Breadcrumb } from '@cielui/react'
 
 export default function Basic() {
   return (

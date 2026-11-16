@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { cn } from '../../lib/utils'
-import { Sparkle, ArrowLeft, ArrowRight } from '@acme/icons'
+import { Sparkle, ArrowLeft, ArrowRight } from '@cielui/icons'
 import { ButtonIcon, ButtonIconSwitching } from '../../primitives/Button'
 import { useControllableState } from '../../lib/useControllableState'
 import { ChatInput } from './ChatInput'

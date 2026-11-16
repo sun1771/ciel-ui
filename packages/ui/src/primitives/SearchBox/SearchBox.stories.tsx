@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, userEvent } from 'storybook/test'
-import { MapPin } from '@acme/icons'
+import { MapPin } from '@cielui/icons'
 import { MenuItem } from '../Menu'
 import { SearchBox } from '.'
 

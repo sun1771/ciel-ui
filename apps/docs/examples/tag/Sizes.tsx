@@ -1,6 +1,6 @@
 'use client'
 
-import { Tag } from '@acme/ui'
+import { Tag } from '@cielui/react'
 
 export default function Sizes() {
   return (

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, userEvent } from 'storybook/test'
-import { Bag, Calendar, Map, Sparkle } from '@acme/icons'
+import { Bag, Calendar, Map, Sparkle } from '@cielui/icons'
 import {
   NavigationLogoItem,
   NavigationMenuGroup,

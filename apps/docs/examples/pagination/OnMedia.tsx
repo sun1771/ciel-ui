@@ -1,6 +1,6 @@
 'use client'
 
-import { Pagination } from '@acme/ui'
+import { Pagination } from '@cielui/react'
 
 /** `tone="onMedia"`: white dots with a shadow, for use on photos (CardMedia uses it). */
 export default function OnMedia() {

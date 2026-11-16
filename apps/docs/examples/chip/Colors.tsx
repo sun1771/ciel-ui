@@ -1,7 +1,7 @@
 'use client'
 
-import { Award } from '@acme/icons'
-import { Chip } from '@acme/ui'
+import { Award } from '@cielui/icons'
+import { Chip } from '@cielui/react'
 
 const COLORS = ['brand', 'blue', 'green', 'orange', 'red'] as const
 

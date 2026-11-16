@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { cn } from '../../lib/utils'
-import { Sparkle } from '@acme/icons'
+import { Sparkle } from '@cielui/icons'
 import { Separator } from '../../primitives/Separator'
 import { Loader } from '../../feedback/Loader'
 import { Expander } from '../../navigation/Expander'

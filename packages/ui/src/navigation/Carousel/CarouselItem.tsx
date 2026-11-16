@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { ChevronLeft, ChevronRight } from '@acme/icons'
+import { ChevronLeft, ChevronRight } from '@cielui/icons'
 import { cn } from '../../lib/utils'
 import type { CarouselItemProps } from './types'
 import styles from './Carousel.module.css'

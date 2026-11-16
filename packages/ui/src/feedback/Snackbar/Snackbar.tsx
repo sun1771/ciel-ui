@@ -2,8 +2,8 @@
 
 import React from 'react'
 import { cn } from '../../lib/utils'
-import { X } from '@acme/icons'
-import { ChevronRight } from '@acme/icons'
+import { X } from '@cielui/icons'
+import { ChevronRight } from '@cielui/icons'
 import styles from './Snackbar.module.css'
 import type { SnackbarLabels, SnackbarProps } from './types'
 

@@ -4,6 +4,6 @@ import { defineConfig } from 'vite'
 // which is the library build (lib mode) and must not leak into Storybook.
 export default defineConfig({
   css: {
-    modules: { generateScopedName: 'acme-[local]-[hash:base64:5]' },
+    modules: { generateScopedName: 'ciel-[local]-[hash:base64:5]' },
   },
 })

@@ -12,8 +12,8 @@ import {
   DateRangeCalendar,
   FieldPicker,
   type ButtonProps,
-} from '@acme/ui'
-import { Calendar, Star } from '@acme/icons'
+} from '@cielui/react'
+import { Calendar, Star } from '@cielui/icons'
 
 const buttonProps: ButtonProps = { variant: 'default', children: 'Smoke Button' }
 

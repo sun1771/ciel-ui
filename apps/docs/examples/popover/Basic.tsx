@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Checkbox, Popover } from '@acme/ui'
+import { Button, Checkbox, Popover } from '@cielui/react'
 
 export default function Basic() {
   return (

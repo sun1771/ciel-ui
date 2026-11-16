@@ -10,8 +10,8 @@ import {
   Checkbox,
   DateRangeCalendar,
   cn,
-} from '@acme/ui'
-import { Calendar as CalendarIcon, Info } from '@acme/icons'
+} from '@cielui/react'
+import { Calendar as CalendarIcon, Info } from '@cielui/icons'
 import type { DateFlexibility, TravelDatePanelProps, TripLength } from './travelPickerTypes'
 import styles from './TravelDatePicker.module.css'
 
@@ -19,7 +19,7 @@ import styles from './TravelDatePicker.module.css'
  * Recipe: the travel date panel — a "Date" tab (DateRangeCalendar + ± day
  * flexibility) and a "Flexible" tab (trip length + month picker).
  * Fully controlled; TravelDatePicker owns the state so it survives closing.
- * Example code for the docs site, not part of @acme/ui.
+ * Example code for the docs site, not part of @cielui/react.
  */
 
 export const FLEX_OPTIONS: readonly DateFlexibility[] = [

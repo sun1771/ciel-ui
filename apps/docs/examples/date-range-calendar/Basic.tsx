@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { DateRangeCalendar, type DateRange } from '@acme/ui'
+import { DateRangeCalendar, type DateRange } from '@cielui/react'
 
 export default function Basic() {
   const [range, setRange] = useState<DateRange>({

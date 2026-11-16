@@ -1,4 +1,4 @@
-import { Expander } from '@acme/ui'
+import { Expander } from '@cielui/react'
 
 export default function Sizes() {
   return (

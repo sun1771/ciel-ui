@@ -1,6 +1,6 @@
 'use client'
 
-import { Badge } from '@acme/ui'
+import { Badge } from '@cielui/react'
 
 const VARIANTS = ['default', 'error', 'success', 'information', 'warning'] as const
 const TEXT = { default: '12', error: '99+', success: 'New', information: 'Beta', warning: '!!' }

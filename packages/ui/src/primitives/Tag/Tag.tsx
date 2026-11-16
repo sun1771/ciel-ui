@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { cn } from '../../lib/utils'
-import { X } from '@acme/icons'
+import { X } from '@cielui/icons'
 import type { TagLabels, TagProps } from './types'
 
 const DEFAULT_LABELS: TagLabels = { dismiss: 'Dismiss' }

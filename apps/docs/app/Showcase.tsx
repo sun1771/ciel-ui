@@ -18,8 +18,8 @@ import {
   TabBar,
   TabItem,
   type DateRange,
-} from '@acme/ui'
-import { ArrowRight, Bed, Car, Star, Trip } from '@acme/icons'
+} from '@cielui/react'
+import { ArrowRight, Bed, Car, Star, Trip } from '@cielui/icons'
 import styles from './landing.module.css'
 
 /** A small live composition of real Ciel UI components for the landing page. */

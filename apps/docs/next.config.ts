@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'mdx'],
   // Workspace packages ship TypeScript source in development, so Next compiles
   // them (including their CSS Modules).
-  transpilePackages: ['@acme/ui', '@acme/icons', '@acme/tokens'],
+  transpilePackages: ['@cielui/react', '@cielui/icons', '@cielui/tokens'],
 }
 
 const withMDX = createMDX({

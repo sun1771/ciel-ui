@@ -87,4 +87,4 @@ Every changed value keeps its original in `packages/tokens/tokens.json` (`$exten
 
 ## Token source
 
-`packages/tokens/tokens.json` (Tokens Studio format) is the source of truth, and `tokens.css` is generated from it by `pnpm --filter @acme/tokens build`. The `@acme/tokens` test fails if `tokens.css` is out of date. The tripon-ai repo still has the original, pre-a11y `tokens.json`. Don't copy its files over these; the token audit and story tests would fail.
+`packages/tokens/tokens.json` (Tokens Studio format) is the source of truth, and `tokens.css` is generated from it by `pnpm --filter @cielui/tokens build`. The `@cielui/tokens` test fails if `tokens.css` is out of date. The tripon-ai repo still has the original, pre-a11y `tokens.json`. Don't copy its files over these; the token audit and story tests would fail.

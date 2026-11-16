@@ -1,7 +1,7 @@
 'use client'
 
 import { useSyncExternalStore } from 'react'
-import { ButtonIcon } from '@acme/ui'
+import { ButtonIcon } from '@cielui/react'
 
 type Theme = 'light' | 'dark'
 
